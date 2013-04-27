@@ -35,15 +35,15 @@ public class GroupTree extends JPanel {
 		return tree;
 	}
 	
-	private DefaultMutableTreeNode constructTree(Group g) {
+	private DefaultMutableTreeNode constructTree(DummyGroup g) {
 		DefaultMutableTreeNode thisNode = new DefaultMutableTreeNode(g.toString());
 		
-		for (Group subgroup : g.getSubgroups()) {
+		for (DummyGroup subgroup : g.getSubgroups()) {
 			DefaultMutableTreeNode n = constructTree(subgroup);
 			thisNode.add(n);
 		}
 		
-		for (Person member : g.getMembers()) {
+		for (DummyPerson member : g.getMembers()) {
 			thisNode.add(new DefaultMutableTreeNode(member));
 		}
 		

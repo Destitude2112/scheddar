@@ -13,10 +13,9 @@ import java.util.List;
 
 public class RealScheddar {
 	
-	private HashMap<String,RealGroup> groups; // maps names of groups to Groups 
-	private HashMap<String,RealPerson> people; // maps names of people People
+	private HashMap<String,Group> groups; // maps names of groups to Groups 
+	private HashMap<String,Person> people; // maps names of people People
 	private HashMap<String,Meeting> meetings; // maps names of meetings to Meetings
-	
 	
 	public static void main(String[] args){
 		// Load in past data from the database structure
@@ -35,7 +34,7 @@ public class RealScheddar {
 	 * @param p the person to add to the Hashmap
 	 */
 	
-	public void addPerson(RealPerson p){
+	public void addPerson(Person p){
 		this.people.put(p.getName(),p);
 	}
 	
@@ -45,7 +44,7 @@ public class RealScheddar {
 	 * @param g the group to add to the hashmap
 	 */
 	
-	public void addGroup(RealGroup g){
+	public void addGroup(Group g){
 		this.groups.put(g.getName(),g);
 	}
 	
@@ -97,14 +96,14 @@ public class RealScheddar {
 	
 	public List<String> getGroupEmails(String name){
 		List<String> emailList = new LinkedList<String>();
-		RealGroup g = groups.get(name);
+		Group g = groups.get(name);
 		if(g==null){
 			System.out.println("That group does not exist");
 			return emailList;
 		}
 		else{
-			List<RealPerson> groupMembers = g.getMembers();
-			for(RealPerson p : groupMembers){
+			List<Person> groupMembers = g.getMembers();
+			for(Person p : groupMembers){
 				emailList.add(p.getEmail());
 			}
 			return emailList;

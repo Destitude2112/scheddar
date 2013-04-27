@@ -11,22 +11,22 @@ package edu.brown.cs32.scheddar;
 public class Scheddar {
 	
 	private String _scheddarName;
-	private Group _parentGroup;
+	private DummyGroup _parentGroup;
 	
 	public Scheddar(String name) {
 		_scheddarName = name;
-		_parentGroup = new Group(_scheddarName);
+		_parentGroup = new DummyGroup(_scheddarName);
 	}
 	
 	public String getName() {
 		return _scheddarName;
 	}
 	
-	public Group getTopGroup() {
+	public DummyGroup getTopGroup() {
 		return _parentGroup;
 	}
 	
-	public void setTopGroup(Group g) {
+	public void setTopGroup(DummyGroup g) {
 		_parentGroup = g;
 	}
 	

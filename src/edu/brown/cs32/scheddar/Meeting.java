@@ -1,7 +1,4 @@
 package edu.brown.cs32.scheddar;
-import Person;
-import ScheddarTime;
-import TestGroup;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,7 +8,7 @@ import java.util.TreeSet;
 public class Meeting {
 	private String name;  // a name for the event
 	private ScheddarTime time; // the block of time when this meeting occurs
-	private List<TestGroup> groupsInvolved; // a list of the groups involved in this meeting
+	private List<Group> groupsInvolved; // a list of the groups involved in this meeting
 	private String description; // a description of this event
 	private List<Person> peopleAttending; // a list of the people who are currently attending this meeting
 	private double importanceThreshold; // the importance threshold that must be met for the meeting to occur
@@ -28,7 +25,7 @@ public class Meeting {
 		return this.time;
 	}
 	
-	public List<TestGroup> getGroupsInvolved(){
+	public List<Group> getGroupsInvolved(){
 		return this.groupsInvolved;
 	}
 	
@@ -56,7 +53,7 @@ public class Meeting {
 		this.time = newTime;
 	}
 	
-	public void setGroupsInvolved(List<TestGroup> newGroupList){
+	public void setGroupsInvolved(List<Group> newGroupList){
 		this.groupsInvolved = newGroupList;
 	}
 	
@@ -76,11 +73,11 @@ public class Meeting {
 	 * More convenient setters
 	 */
 	
-	public void addGroupInvolved(TestGroup group){
+	public void addGroupInvolved(Group group){
 		this.groupsInvolved.add(group);
 	}
 	
-	public void removeGroupInvolved(TestGroup group){
+	public void removeGroupInvolved(Group group){
 		this.groupsInvolved.remove(group);
 	}
 	
@@ -96,7 +93,7 @@ public class Meeting {
 	 * Constructor
 	 **/
 	
-	public Meeting(String name, ScheddarTime time,List<TestGroup> groupsInvolved,String description,List<Person> peopleAttending){
+	public Meeting(String name, ScheddarTime time,List<Group> groupsInvolved,String description,List<Person> peopleAttending){
 		this.name = name;
 		this.time = time;
 		this.groupsInvolved = groupsInvolved;
@@ -112,7 +109,7 @@ public class Meeting {
 	
 	public Set<String> getAllEmails(){
 		Set<String> allEmails = new TreeSet<String>();
-		for(TestGroup g : groupsInvolved){
+		for(Group g : groupsInvolved){
 			for(Person p : g.getMembers()){
 				allEmails.add(p.getEmail());
 			}
@@ -156,9 +153,9 @@ public class Meeting {
 	public boolean importanceAboveThreshold(double threshold){
 		double currImportance = 0.0;
 		for(Person p : peopleAttending){
-			Set<TestGroup> groups = p.getGroups();
+			Set<Group> groups = p.getGroups();
 			double maxImportance = 1.0;
-			for(TestGroup g : groups){
+			for(Group g : groups){
 				double possibleReplace = p.getImportance(g);
 				if(possibleReplace>maxImportance){
 					maxImportance = possibleReplace;

@@ -96,11 +96,11 @@ public class GUIScheddar extends JFrame {
 	
 	public static void main(String[] args) {
 		Scheddar s = new Scheddar("Project Blue");
-		Group g0 = s.getTopGroup();
+		DummyGroup g0 = s.getTopGroup();
 		
-		Group g1a = new Group("Roquefort");
-		Group g1b = new Group("Stilton");
-		Group gb2a = new Group("Village Blue");
+		DummyGroup g1a = new DummyGroup("Roquefort");
+		DummyGroup g1b = new DummyGroup("Stilton");
+		DummyGroup gb2a = new DummyGroup("Village Blue");
 		
 		gb2a.addMember("Tina");
 		gb2a.addMember("Bob");
