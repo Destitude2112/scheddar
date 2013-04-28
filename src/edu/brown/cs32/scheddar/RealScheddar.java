@@ -3,18 +3,16 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-
 /**
  * This is the main class of the application
  * @author atutino
  *
  */
 
-
 public class RealScheddar {
 	
 	private HashMap<String,Group> groups; // maps names of groups to Groups 
-	private HashMap<String,Person> people; // maps names of people People
+	private HashMap<String,Person> people; // maps emails of people People
 	private HashMap<String,Meeting> meetings; // maps names of meetings to Meetings
 	
 	public static void main(String[] args){
@@ -35,7 +33,7 @@ public class RealScheddar {
 	 */
 	
 	public void addPerson(Person p){
-		this.people.put(p.getName(),p);
+		this.people.put(p.getEmail(),p);
 	}
 	
 	/** 
@@ -134,4 +132,6 @@ public class RealScheddar {
 	public List<Meeting> dayMeetings(){
 		return null;
 	}
+	
+	
 }

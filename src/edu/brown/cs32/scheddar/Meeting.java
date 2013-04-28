@@ -153,10 +153,10 @@ public class Meeting {
 	public boolean importanceAboveThreshold(double threshold){
 		double currImportance = 0.0;
 		for(Person p : peopleAttending){
-			Set<Group> groups = p.getGroups();
+			List<Group> groups = p.getGroups();
 			double maxImportance = 1.0;
 			for(Group g : groups){
-				double possibleReplace = p.getImportance(g);
+				double possibleReplace = g.getMemberRanking(p);
 				if(possibleReplace>maxImportance){
 					maxImportance = possibleReplace;
 				}

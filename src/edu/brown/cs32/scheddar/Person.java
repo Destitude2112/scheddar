@@ -6,19 +6,24 @@ import java.util.Set;
 
 
 public class Person {
-	private String name;  // the person's name
+	private String firstName;
+	private String lastName;
 	private String email; // the person's email address
 	private String phoneNum; // the person's phone number
 	private String description; // administrative note on the person
-	private HashMap<Group,Double> groups; // a mapping of groups the person is in to their importance in that group
+	private List<Group> groups; // a mapping of groups the person is in to their importance in that group
 	private List<ScheddarTime> conflicts; // conflicting times
 	
 	/**
 	 * Getter Functions
 	 **/
 	
-	public String getName(){
-		return this.name;
+	public String getFirstName(){
+		return this.firstName;
+	}
+	
+	public String getLastName(){
+		return this.lastName;
 	}
 	
 	public String getEmail(){
@@ -33,12 +38,8 @@ public class Person {
 		return this.description;
 	}
 	
-	public Set<Group> getGroups(){
-		return this.groups.keySet();
-	}
-	
-	public double getImportance(Group g){
-		return this.groups.get(g);
+	public List<Group> getGroups(){
+		return this.groups;
 	}
 	
 	public List<ScheddarTime> getConflicts(){
@@ -49,8 +50,12 @@ public class Person {
 	 * Setter Functions (completely reset values)
 	 */
 	
-	public void setName(String name){
-		this.name = name;
+	public void setFirstName(String name){
+		this.firstName = name;
+	}
+	
+	public void setLastName(String name){
+		this.lastName = name;
 	}
 	
 	public void setEmail(String email){
@@ -65,8 +70,8 @@ public class Person {
 		this.description = description;
 	}
 	
-	public void setGroups(HashMap<Group,Double> newGroupHash){
-		this.groups = newGroupHash;
+	public void setGroups(List<Group> groups){
+		this.groups = groups;
 	}
 	
 	public void setConflicts(List<ScheddarTime> newConflictList){
@@ -84,17 +89,7 @@ public class Person {
 	 */
 	
 	public void addGroup(Group group){
-		this.groups.put(group,1.0);
-	}
-	
-	/**
-	 * Adds a person to a group with a specified importance level
-	 * @param group the group to add the person to
-	 * @param importance the importance to map the group to
-	 */
-	
-	public void addGroupImportance(Group group, double importance){
-		this.groups.put(group, importance);
+		this.groups.add(group);
 	}
 	
 	public void removeGroup(Group group){
@@ -109,7 +104,7 @@ public class Person {
 	
 	public void addGroupList(List<Group> groupList){
 		for(Group g : groupList){
-			this.groups.put(g,1.0);
+			this.groups.add(g);
 		}
 	}
 	

@@ -11,7 +11,7 @@ public class Group {
 	
 	private String name; // the name of the group
 	private List<Person> members; // the members of the group
-	private HashMap<Person,Integer> memberRankings; // maps person names to importance rank in this group
+	private HashMap<Person,Double> memberRankings; // maps person names to importance rank in this group
 	private List<Group> subgroups; // a list of the subgroups of this group
 	private Group parentGroup; // the parent of this group if one exists
 	
@@ -27,7 +27,7 @@ public class Group {
 		return this.members;
 	}
 	
-	public HashMap<Person,Integer> getMemberRankings(){
+	public HashMap<Person,Double> getMemberRankings(){
 		return this.memberRankings;
 	}
 	
@@ -51,7 +51,7 @@ public class Group {
 		this.members = newMemberList;
 	}
 	
-	public void setMemberRankings(HashMap<Person,Integer> newMemberRankings){
+	public void setMemberRankings(HashMap<Person,Double> newMemberRankings){
 		this.memberRankings = newMemberRankings;
 	}
 	
@@ -84,7 +84,7 @@ public class Group {
 	 * @param ranking the ranking to add
 	 */
 	
-	public void addMemberRanking(Person person, int ranking){
+	public void addMemberRanking(Person person, double ranking){
 		this.memberRankings.put(person,ranking);
 	}
 	
@@ -135,7 +135,7 @@ public class Group {
 	 * Constructor
 	 **/
 	
-	public Group(String name,List<Person> members,HashMap<Person,Integer> memberRankings,
+	public Group(String name,List<Person> members,HashMap<Person,Double> memberRankings,
 			List<Group> subgroups, Group parentGroup){
 		this.name = name;
 		this.members = members;
@@ -148,12 +148,49 @@ public class Group {
 	 * Returns a list of the names of every person in the group
 	 */
 	
-	public List<String> getPeopleNamesInGroup(){
+	public List<String> getPeopleFirstNamesInGroup(){
 		List<String> names = new LinkedList<String>();
 		for(Person p : this.getMembers()){
-			names.add(p.getName());
+			names.add(p.getFirstName());
 		}
 		return names;
 	}
 	
+	/**
+	 * Returns a list of the last names of every person in a group
+	 */
+	
+	public List<String> getPeopleLastNamesInGroup(){
+		List<String> names = new LinkedList<String>();
+		for(Person p : this.getMembers()){
+			names.add(p.getLastName());
+		}
+		return names;
+	}
+	
+	/**
+	 * Return a list of list of full names of every person in a group
+	 */
+	
+	public List<String> getPeopleFullNamesInGroup(){
+		List<String> firstNameList = getPeopleFirstNamesInGroup();
+		List<String> lastNameList = getPeopleLastNamesInGroup();
+		List<String> fullNameList = new LinkedList<String>();
+		for(int i=0;i<firstNameList.size();i++){
+			fullNameList.add(firstNameList.get(i) + " " + lastNameList.get(i));
+		}
+		return fullNameList;
+	}
+	
+	/**
+	 * Return a members ranking within the group
+	 */
+	
+	public double getMemberRanking(Person p) {
+		if(!this.memberRankings.containsKey(p)){
+			return 1.0;
+		}
+		double toRet = this.memberRankings.get(p);
+		return toRet;
+	}
 }
