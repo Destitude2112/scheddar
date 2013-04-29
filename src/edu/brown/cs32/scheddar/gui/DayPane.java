@@ -11,8 +11,11 @@ import javax.swing.JPanel;
  * and function.
  *
  */
-public class DayPanel extends JPanel {
-
+public class DayPane extends ScheddarSubPane {
 	private static final long serialVersionUID = 1L;
-
+	
+	public DayPane(ScheddarPane s) {
+		super(s);
+		// TODO Auto-generated constructor stub
+	}
 }

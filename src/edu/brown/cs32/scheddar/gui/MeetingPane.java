@@ -9,8 +9,11 @@ import javax.swing.JPanel;
  * be paired with a DayPanel object.
  *
  */
-public class MeetingPanel extends JPanel {
-
+public class MeetingPane extends ScheddarSubPane {
 	private static final long serialVersionUID = 1L;
-
+	
+	public MeetingPane(ScheddarPane s) {
+		super(s);
+		// TODO Auto-generated constructor stub
+	}
 }

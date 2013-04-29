@@ -35,7 +35,7 @@ public class Scheddar {
 	 */
 	
 	public void addPerson(Person p){
-		this.people.put(p.getName(),p);
+		this.people.put(p.getLastName(),p);
 	}
 	
 	/** 

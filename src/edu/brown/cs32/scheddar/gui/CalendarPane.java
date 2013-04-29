@@ -9,8 +9,14 @@ import javax.swing.JPanel;
  * of the Scheddar gui.
  *
  */
-public abstract class CalendarPanel extends JPanel {
-
+public class CalendarPane extends ScheddarSubPane {
 	private static final long serialVersionUID = 1L;
+	
+	public CalendarPane(ScheddarPane s) {
+		super(s);
+		// TODO Auto-generated constructor stub
+	}
+
+	
 
 }

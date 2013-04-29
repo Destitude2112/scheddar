@@ -8,21 +8,25 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import edu.brown.cs32.scheddar.DummyGroup;
-import edu.brown.cs32.scheddar.DummyPerson;
-import edu.brown.cs32.scheddar.DummyScheddar;
+import edu.brown.cs32.scheddar.*;
 
-public class GroupTree extends JPanel {
+/**
+ * @author sdemane
+ * 
+ * A panel containing the tree of groups and subgroups.
+ * 
+ */
+public class GroupTreePane extends ScheddarSubPane {
 	
 	private static final long serialVersionUID = 1L;
-	GUIScheddar _gui;
+	ScheddarPane _gui;
 	DummyScheddar _scheddar;
 	
-	public GroupTree(GUIScheddar g, DummyScheddar s) {
-		super(new GridLayout(1,1));
+	public GroupTreePane(ScheddarPane s) {
+		super(s);
 		
-		_gui = g;
-		_scheddar = s;
+		setLayout(new GridLayout(1,1));
+		
 		
 		JScrollPane treeView = new JScrollPane(initGroupTree());
 		treeView.setMinimumSize(new Dimension(100,50));

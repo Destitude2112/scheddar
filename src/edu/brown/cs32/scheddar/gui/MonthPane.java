@@ -6,8 +6,11 @@ package edu.brown.cs32.scheddar.gui;
  * Class representing the month view of the Scheddar gui.
  *
  */
-public class MonthPanel extends CalendarPanel {
-
+public class MonthPane extends CalendarPane {
 	private static final long serialVersionUID = 1L;
-
+	
+	public MonthPane(ScheddarPane s) {
+		super(s);
+		// TODO Auto-generated constructor stub
+	}
 }

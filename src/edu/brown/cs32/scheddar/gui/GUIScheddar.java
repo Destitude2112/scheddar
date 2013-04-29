@@ -1,25 +1,24 @@
 package edu.brown.cs32.scheddar.gui;
 
 import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.GraphicsEnvironment;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 
-import edu.brown.cs32.scheddar.DummyGroup;
-import edu.brown.cs32.scheddar.DummyScheddar;
+import edu.brown.cs32.scheddar.*;
 
 
 /**
  * @author sdemane
  * 
- * Class implementing the overall Scheddar GUI. Encompasses calendar
- * views, project/group/person/meeting creation and management, and
- * email management.
+ * This is the primary runnable class of the Scheddar application.
+ * It initializes an application window waiting to be filled with
+ * a ScheddarPanel which is project-specific. The ScheddarPanel is
+ * initialized and added when a project is opened from a file or 
+ * a new project is created.
  *
  */
 public class GUIScheddar extends JFrame {
@@ -27,44 +26,33 @@ public class GUIScheddar extends JFrame {
 	public static final boolean DEBUG = true;
 	
 	private static final long serialVersionUID = 1L;
-	private DummyScheddar _scheddar;
-	private Dimension _screenSize;
-	private GroupTree _tree;
+	Dimension _screenSize;
+	ScheddarPane _scheddarPanel;
 	
 	
-	public GUIScheddar(DummyScheddar s) {
-		_scheddar = s;
-		_screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	public GUIScheddar() {
+		_scheddarPanel = null;
+		
+		//_screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Scheddar");
-		setSize(new Dimension((int)_screenSize.getWidth()/2, (int)_screenSize.getHeight()/2));
 		
+		setMaximizedBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
+		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH); 
 		
 		setJMenuBar(initMenuBar());
 		
-		_tree = new GroupTree(this, _scheddar);
-		
-		JPanel calendarPlaceholder = new JPanel() {
-			private static final long serialVersionUID = 1L;
-
-			public Dimension getPreferredSize() {
-				return new Dimension((int)(getSize().getWidth() - _tree.getPreferredSize().getWidth()), (int)getSize().getHeight());
-			}
-		};
-		
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel,BoxLayout.X_AXIS));
-		panel.add(_tree);
-		panel.add(calendarPlaceholder);
-		
-		add(panel);
-		
-		//pack();
 		setVisible(true);
+		setResizable(false);
+		_screenSize = this.getContentPane().getSize();
+		
 	}
 	
 	
+	/**
+	 * @return Menu bar for the primary Scheddar app
+	 */
 	private JMenuBar initMenuBar() {
 		JMenuBar mb = new JMenuBar();
 		
@@ -127,6 +115,6 @@ public class GUIScheddar extends JFrame {
 		g0.add(g1b);
 		s.setTopGroup(g0);
 		
-		new GUIScheddar(s);
+		new GUIScheddar();
 	}
 }
