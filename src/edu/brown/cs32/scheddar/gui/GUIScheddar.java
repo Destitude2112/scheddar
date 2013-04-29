@@ -1,9 +1,8 @@
-package edu.brown.cs32.scheddar;
+package edu.brown.cs32.scheddar.gui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -11,18 +10,21 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import edu.brown.cs32.scheddar.DummyGroup;
+import edu.brown.cs32.scheddar.DummyScheddar;
+
 
 public class GUIScheddar extends JFrame {
 	
 	public static final boolean DEBUG = true;
 	
 	private static final long serialVersionUID = 1L;
-	private Scheddar _scheddar;
+	private DummyScheddar _scheddar;
 	private Dimension _screenSize;
 	private GroupTree _tree;
 	
 	
-	public GUIScheddar(Scheddar s) {
+	public GUIScheddar(DummyScheddar s) {
 		_scheddar = s;
 		_screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
@@ -36,6 +38,8 @@ public class GUIScheddar extends JFrame {
 		_tree = new GroupTree(this, _scheddar);
 		
 		JPanel calendarPlaceholder = new JPanel() {
+			private static final long serialVersionUID = 1L;
+
 			public Dimension getPreferredSize() {
 				return new Dimension((int)(getSize().getWidth() - _tree.getPreferredSize().getWidth()), (int)getSize().getHeight());
 			}
@@ -95,7 +99,7 @@ public class GUIScheddar extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		Scheddar s = new Scheddar("Project Blue");
+		DummyScheddar s = new DummyScheddar("Project Blue");
 		DummyGroup g0 = s.getTopGroup();
 		
 		DummyGroup g1a = new DummyGroup("Roquefort");

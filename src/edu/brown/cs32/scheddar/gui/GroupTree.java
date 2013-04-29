@@ -1,4 +1,4 @@
-package edu.brown.cs32.scheddar;
+package edu.brown.cs32.scheddar.gui;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -8,13 +8,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import edu.brown.cs32.scheddar.DummyGroup;
+import edu.brown.cs32.scheddar.DummyPerson;
+import edu.brown.cs32.scheddar.DummyScheddar;
+
 public class GroupTree extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	GUIScheddar _gui;
-	Scheddar _scheddar;
+	DummyScheddar _scheddar;
 	
-	public GroupTree(GUIScheddar g, Scheddar s) {
+	public GroupTree(GUIScheddar g, DummyScheddar s) {
 		super(new GridLayout(1,1));
 		
 		_gui = g;
