@@ -164,8 +164,5 @@ public class Meeting {
 			currImportance += maxImportance;
 		}
 		return currImportance >= threshold;
-	}
-	
-	
-	
+	}	
 }

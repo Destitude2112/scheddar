@@ -11,7 +11,7 @@ public class Group {
 	
 	private String name; // the name of the group
 	private List<Person> members; // the members of the group
-	private HashMap<Person,Double> memberRankings; // maps person names to importance rank in this group
+	private HashMap<String,Double> memberRankings; // maps person's ID to importance rank in this group
 	private List<Group> subgroups; // a list of the subgroups of this group
 	private Group parentGroup; // the parent of this group if one exists
 	
@@ -27,7 +27,7 @@ public class Group {
 		return this.members;
 	}
 	
-	public HashMap<Person,Double> getMemberRankings(){
+	public HashMap<String,Double> getMemberRankings(){
 		return this.memberRankings;
 	}
 	
@@ -51,7 +51,7 @@ public class Group {
 		this.members = newMemberList;
 	}
 	
-	public void setMemberRankings(HashMap<Person,Double> newMemberRankings){
+	public void setMemberRankings(HashMap<String,Double> newMemberRankings){
 		this.memberRankings = newMemberRankings;
 	}
 	
@@ -76,26 +76,27 @@ public class Group {
 	}
 	
 	/**
-	 * Adds an indivdual member and their ranking to the HashMap. Follows
+	 * Adds an individual member and their ranking to the HashMap. Follows
 	 * the rules of put() for a HashMap, so overwrites previous entry if
 	 * one existed. This can therefore be used to update a person's ranking.
 	 * 
-	 * @param person the person to add
+	 * @param email the email of the person to add
 	 * @param ranking the ranking to add
 	 */
 	
-	public void addMemberRanking(Person person, double ranking){
-		this.memberRankings.put(person,ranking);
+	public void addMemberRanking(String email, double ranking){
+		this.memberRankings.put(email,ranking);
 	}
 	
 	/**
 	 * Removes an individual member and their ranking from the HashMap.
+	 * Use the email of the person
 	 * If the given person was not in the table, nothing happens.
 	 * 
 	 * @param person the person to remove
 	 */
 	
-	public void removeMemberRanking(Person person){
+	public void removeMemberRanking(String person){
 		this.memberRankings.remove(person);
 	}
 	
@@ -135,7 +136,7 @@ public class Group {
 	 * Constructor
 	 **/
 	
-	public Group(String name,List<Person> members,HashMap<Person,Double> memberRankings,
+	public Group(String name,List<Person> members,HashMap<String,Double> memberRankings,
 			List<Group> subgroups, Group parentGroup){
 		this.name = name;
 		this.members = members;
@@ -191,6 +192,6 @@ public class Group {
 			return 1.0;
 		}
 		double toRet = this.memberRankings.get(p);
-		return toRet;
+		return toRet;		
 	}
 }
