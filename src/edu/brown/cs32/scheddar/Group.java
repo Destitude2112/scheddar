@@ -186,13 +186,11 @@ public class Group {
 	 */
 	
 	public List<String> getPeopleFullNamesInGroup(){
-		List<String> firstNameList = getPeopleFirstNamesInGroup();
-		List<String> lastNameList = getPeopleLastNamesInGroup();
-		List<String> fullNameList = new LinkedList<String>();
-		for(int i=0;i<firstNameList.size();i++){
-			fullNameList.add(firstNameList.get(i) + " " + lastNameList.get(i));
+		List<String> names = new LinkedList<String>();
+		for(Person p : this.getMembers()){
+			names.add(p.getLastName());
 		}
-		return fullNameList;
+		return names;
 	}
 	
 	/**
