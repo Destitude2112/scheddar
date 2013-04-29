@@ -2,6 +2,8 @@ package edu.brown.cs32.scheddar.gui;
 
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -27,11 +29,11 @@ public class GUIScheddar extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	Dimension _screenSize;
-	ScheddarPane _scheddarPanel;
+	ScheddarPane _scheddarPane;
 	
 	
 	public GUIScheddar() {
-		_scheddarPanel = null;
+		_scheddarPane = null;
 		
 		//_screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
@@ -51,9 +53,11 @@ public class GUIScheddar extends JFrame {
 	
 	
 	/**
-	 * @return Menu bar for the primary Scheddar app
+	 * @return Menu bar for the primary Scheddar app, complete with listeners
 	 */
 	private JMenuBar initMenuBar() {
+		boolean empty = _scheddarPane == null;
+		
 		JMenuBar mb = new JMenuBar();
 		
 		// creating file menu
@@ -61,7 +65,35 @@ public class GUIScheddar extends JFrame {
 		JMenuItem newScheddar = new JMenuItem("New");
 		JMenuItem open = new JMenuItem("Open");
 		JMenuItem save = new JMenuItem("Save");
+		if (empty) save.setEnabled(false);
 		JMenuItem exit = new JMenuItem("Exit");
+		
+		
+		// adding listeners for file menu
+		newScheddar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
+		open.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
+		save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
+		exit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		
 		fileMenu.add(newScheddar);
 		fileMenu.add(open);
 		fileMenu.add(save);
@@ -69,19 +101,69 @@ public class GUIScheddar extends JFrame {
 		
 		// creating create menu
 		JMenu createMenu = new JMenu("Create");
+		if (empty) createMenu.setEnabled(false);
 		JMenuItem person = new JMenuItem("New person");
 		JMenuItem group = new JMenuItem("New group");
 		JMenuItem meeting = new JMenuItem("New meeting");
+		
+		
+		// adding listeners for create menu
+		person.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new PersonForm(_scheddarPane);
+			}
+		});
+		
+		group.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				_scheddarPane.initializeMeeting();
+			}
+		});
+		
+		meeting.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new PersonForm(_scheddarPane);
+			}
+		});
+		
 		createMenu.add(person);
 		createMenu.add(group);
 		createMenu.add(meeting);
 		
 		// creating email menu
 		JMenu emailMenu = new JMenu("Email");
+		if (empty) emailMenu.setEnabled(false);
 		JMenuItem organizationEmail = new JMenuItem("Organization");
 		JMenuItem personEmail = new JMenuItem("Individual");
 		JMenuItem groupEmail = new JMenuItem("Group");
 		JMenuItem meetingEmail = new JMenuItem("Meeting");
+		
+		
+		// adding listeners for email menu
+		organizationEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new EmailForm(_scheddarPane);
+			}
+		});
+		
+		personEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new EmailForm(_scheddarPane);
+			}
+		});
+		
+		groupEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new EmailForm(_scheddarPane);
+			}
+		});
+		
+		meetingEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new EmailForm(_scheddarPane);
+			}
+		});
+		
 		emailMenu.add(organizationEmail);
 		emailMenu.add(personEmail);
 		emailMenu.add(groupEmail);

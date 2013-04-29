@@ -2,6 +2,8 @@ package edu.brown.cs32.scheddar.gui;
 
 import javax.swing.JInternalFrame;
 
+import edu.brown.cs32.scheddar.Scheddar;
+
 /**
  * @author sdemane
  * 
@@ -9,8 +11,11 @@ import javax.swing.JInternalFrame;
  * Scheddar project inside the application.
  *
  */
-public class ScheddarForm extends JInternalFrame {
-
+public class ScheddarForm extends AbstractForm {
 	private static final long serialVersionUID = 1L;
-
+	
+	public ScheddarForm(ScheddarPane s) {
+		super(s);
+		// TODO Auto-generated constructor stub
+	}
 }

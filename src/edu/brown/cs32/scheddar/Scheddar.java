@@ -28,6 +28,10 @@ public class Scheddar {
 		}
 	}
 	
+	public Scheddar() {
+	
+	}
+	
 	/**
 	 * Adds a new person to the Hashmap of people
 	 * 

@@ -28,6 +28,16 @@ public class ScheddarPane extends JPanel {
 		_size = gui._screenSize;
 	}
 	
+	@Override
+	public Dimension getPreferredSize() {
+		return _size;
+	}
 	
+	/**
+	 * Brings GUI to a new (empty) meeting pane at some default time
+	 */
+	public void initializeMeeting() {
+		
+	}
 	
 }
