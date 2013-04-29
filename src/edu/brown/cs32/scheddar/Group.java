@@ -146,6 +146,18 @@ public class Group {
 	}
 	
 	/**
+	 * Constructor with just the name
+	 */
+	
+	public Group(String name){
+		this.name = name;
+		this.members = new LinkedList<Person>();
+		this.memberRankings = new HashMap<String,Double>();
+		this.subgroups = new LinkedList<Group>();
+		this.parentGroup = null;
+	}
+	
+	/**
 	 * Returns a list of the names of every person in the group
 	 */
 	

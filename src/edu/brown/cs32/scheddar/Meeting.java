@@ -102,6 +102,18 @@ public class Meeting {
 	}
 	
 	/**
+	 * Constructor with just the name and time
+	 */
+	
+	public Meeting(String name, ScheddarTime time){
+		this.name = name;
+		this.time = time;
+		this.groupsInvolved = new LinkedList<Group>();
+		this.description = "";
+		this.peopleAttending = new LinkedList<Person>();
+	}
+	
+	/**
 	 * Returns a Set containing the emails of each person in a Group involved
 	 * in this meeting (Set used to prevent emailing a person multiple times
 	 * if they belong to more than one of the groups involved)
