@@ -71,24 +71,28 @@ public class GUIScheddar extends JFrame {
 		
 		// adding listeners for file menu
 		newScheddar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 			}
 		});
 		
 		open.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 			}
 		});
 		
 		save.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 			}
 		});
 		
 		exit.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
@@ -109,18 +113,21 @@ public class GUIScheddar extends JFrame {
 		
 		// adding listeners for create menu
 		person.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				new PersonForm(_scheddarPane);
 			}
 		});
 		
 		group.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				_scheddarPane.initializeMeeting();
 			}
 		});
 		
 		meeting.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				new PersonForm(_scheddarPane);
 			}
@@ -141,24 +148,28 @@ public class GUIScheddar extends JFrame {
 		
 		// adding listeners for email menu
 		organizationEmail.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				new EmailForm(_scheddarPane);
 			}
 		});
 		
 		personEmail.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				new EmailForm(_scheddarPane);
 			}
 		});
 		
 		groupEmail.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				new EmailForm(_scheddarPane);
 			}
 		});
 		
 		meetingEmail.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				new EmailForm(_scheddarPane);
 			}

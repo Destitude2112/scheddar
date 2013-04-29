@@ -33,13 +33,21 @@ public class Scheddar {
 	}
 	
 	/**
+	 * @return The root group has the same name as the overall scheddar
+	 * project, and should contain all other groups and members
+	 */
+	public Group getRootGroup() {
+		return null;
+	}
+	
+	/**
 	 * Adds a new person to the Hashmap of people
 	 * 
 	 * @param p the person to add to the Hashmap
 	 */
 	
 	public void addPerson(Person p){
-		this.people.put(p.getLastName(),p);
+		this.people.put(p.getFullName(),p);
 	}
 	
 	/** 
@@ -50,6 +58,14 @@ public class Scheddar {
 	
 	public void addGroup(Group g){
 		this.groups.put(g.getName(),g);
+	}
+	
+	public Group getGroup(String name) {
+		return groups.get(name);
+	}
+	
+	public Person getPerson(String name) {
+		return people.get(name);
 	}
 	
 	/**

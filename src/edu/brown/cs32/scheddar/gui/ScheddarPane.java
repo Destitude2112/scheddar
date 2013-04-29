@@ -22,6 +22,7 @@ public class ScheddarPane extends JPanel {
 	
 	Scheddar _scheddar;
 	Dimension _size;
+	GroupTreePane _groupTree;
 	
 	public ScheddarPane(GUIScheddar gui, Scheddar s) {
 		_scheddar = s;
@@ -38,6 +39,14 @@ public class ScheddarPane extends JPanel {
 	 */
 	public void initializeMeeting() {
 		
+	}
+	
+	public String getCurrentGroup() {
+		return _groupTree.getSelectedGroup();
+	}
+	
+	public String[] getGroupMembers(String name) {
+		return _scheddar.getGroup(name).getPeopleFullNamesInGroup().toArray(new String[0]);
 	}
 	
 }

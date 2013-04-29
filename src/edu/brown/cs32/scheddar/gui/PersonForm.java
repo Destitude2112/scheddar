@@ -15,6 +15,6 @@ public class PersonForm extends AbstractForm {
 	
 	public PersonForm(ScheddarPane s) {
 		super(s);
-		// TODO Auto-generated constructor stub
+		
 	}
 }
