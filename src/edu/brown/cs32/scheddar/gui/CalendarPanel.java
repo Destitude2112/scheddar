@@ -5,11 +5,11 @@ import javax.swing.JPanel;
 /**
  * @author sdemane
  * 
- * In-frame panel for meeting creation and editing. Should
- * be paired with a DayPanel object.
+ * An abstract class encompassing the week and month views 
+ * of the Scheddar gui.
  *
  */
-public class MeetingPanel extends JPanel {
+public abstract class CalendarPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 

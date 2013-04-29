@@ -14,6 +14,14 @@ import edu.brown.cs32.scheddar.DummyGroup;
 import edu.brown.cs32.scheddar.DummyScheddar;
 
 
+/**
+ * @author sdemane
+ * 
+ * Class implementing the overall Scheddar GUI. Encompasses calendar
+ * views, project/group/person/meeting creation and management, and
+ * email management.
+ *
+ */
 public class GUIScheddar extends JFrame {
 	
 	public static final boolean DEBUG = true;
