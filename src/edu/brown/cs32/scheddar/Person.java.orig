@@ -27,7 +27,11 @@ public class Person {
 		return this.lastName;
 	}
 	
+<<<<<<< HEAD
+	public String getFullName(){
+=======
 	public String getFullName() {
+>>>>>>> 751bd3be34327b3febaa5dc3f591a0c094c1392d
 		return firstName + " " + lastName;
 	}
 	

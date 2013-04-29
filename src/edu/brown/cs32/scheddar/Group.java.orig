@@ -188,7 +188,11 @@ public class Group {
 	public List<String> getPeopleFullNamesInGroup(){
 		List<String> names = new LinkedList<String>();
 		for(Person p : this.getMembers()){
+<<<<<<< HEAD
+			names.add(p.getLastName());
+=======
 			names.add(p.getFullName());
+>>>>>>> 751bd3be34327b3febaa5dc3f591a0c094c1392d
 		}
 		return names;
 	}
