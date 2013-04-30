@@ -18,28 +18,30 @@ public class Scheddar {
 	private HashMap<String,Meeting> meetings; // maps names of meetings to Meetings
 	private String name;
 	
-	public static void main(String[] args){
-		// Load in past data from the database structure
-		
-		// Start the GUI
-		
-		// Loop and accept input until the GUI is closed
-		while(true){
-			
-		}
-	}
-	
 	/**
 	 * Hi, I implemented a constructor and getRootGroup() to work with my group tree.
-	 * Feel free to reimplement if you want it done differently.
+	 * Feel free to reimplement if you want it done differently. 
+	 * 
+	 * This one constructs a completely new Scheddar
 	 * ~sdemane
 	 * 
 	 * 
 	 * @param name
 	 */
+	
 	public Scheddar(String name) {
 		this.name = name;
 		addGroup(new Group(name));
+	}
+	
+	/**
+	 * Construct a Scheddar from an XML file
+	 * 
+	 * Ask Prateek what data structure represents an XML file
+	 */
+	
+	public Scheddar(){
+		
 	}
 	
 	/**
