@@ -81,7 +81,7 @@ public class GroupForm extends AbstractForm {
 					g.addMember(_scheddarPane._scheddar.getPerson(name));
 				
 				_scheddarPane._scheddar.addGroup(g);
-				closeForm();
+				dispose();
 				
 			}
 		});
@@ -97,7 +97,4 @@ public class GroupForm extends AbstractForm {
 		setVisible(true);
 	}
 	
-	public void closeForm() {
-		this.dispose();
-	}
 }

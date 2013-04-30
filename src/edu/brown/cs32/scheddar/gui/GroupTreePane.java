@@ -22,7 +22,7 @@ public class GroupTreePane extends ScheddarSubPane {
 	
 	private static final long serialVersionUID = 1L;
 	ScheddarPane _gui;
-	DummyScheddar _scheddar;
+	Scheddar _scheddar;
 	
 	JTree _tree;
 	
@@ -31,7 +31,7 @@ public class GroupTreePane extends ScheddarSubPane {
 		
 		setLayout(new GridLayout(1,1));
 		
-		DefaultMutableTreeNode top = constructTree(_scheddar.getTopGroup());
+		DefaultMutableTreeNode top = constructTree(_scheddar.getRootGroup());
 		_tree = new JTree(top);
 		
 		JScrollPane treeView = new JScrollPane(_tree);
@@ -62,15 +62,15 @@ public class GroupTreePane extends ScheddarSubPane {
 	}
 	
 	
-	private DefaultMutableTreeNode constructTree(DummyGroup g) {
+	private DefaultMutableTreeNode constructTree(Group g) {
 		DefaultMutableTreeNode thisNode = new DefaultMutableTreeNode(g.toString());
 		
-		for (DummyGroup subgroup : g.getSubgroups()) {
+		for (Group subgroup : g.getSubgroups()) {
 			DefaultMutableTreeNode n = constructTree(subgroup);
 			thisNode.add(n);
 		}
 		
-		for (DummyPerson member : g.getMembers()) {
+		for (Person member : g.getMembers()) {
 			thisNode.add(new DefaultMutableTreeNode(member,false));
 		}
 		

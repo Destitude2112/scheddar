@@ -8,6 +8,7 @@ public class Group {
 	
 	//TODO: Note to self : might want to use Sets instead of the Lists if we want to prevent
 	// adding multiple copies of the same person/group to these fields
+	// If you do that don't forget to write equals() and hashCode() functions for Group and Person. ~sdemane
 	
 	private String name; // the name of the group
 	private List<Person> members; // the members of the group
@@ -37,6 +38,11 @@ public class Group {
 	
 	public Group getParentGroup(){
 		return this.parentGroup;
+	}
+	
+	@Override
+	public String toString() {
+		return getName();
 	}
 	
 	/**

@@ -51,6 +51,11 @@ public class Person {
 		return this.conflicts;
 	}
 	
+	@Override
+	public String toString() {
+		return getFullName();
+	}
+	
 	/**
 	 * Setter Functions (completely reset values)
 	 */

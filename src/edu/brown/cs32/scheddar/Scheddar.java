@@ -16,6 +16,7 @@ public class Scheddar {
 	private HashMap<String,Group> groups; // maps names of groups to Groups 
 	private HashMap<String,Person> people; // maps names of people People
 	private HashMap<String,Meeting> meetings; // maps names of meetings to Meetings
+	private String name;
 	
 	public static void main(String[] args){
 		// Load in past data from the database structure
@@ -28,16 +29,24 @@ public class Scheddar {
 		}
 	}
 	
-	public Scheddar() {
-	
+	/**
+	 * Hi, I implemented a constructor and getRootGroup() to work with my group tree.
+	 * Feel free to reimplement if you want it done differently.
+	 * ~sdemane
+	 * 
+	 * 
+	 * @param name
+	 */
+	public Scheddar(String name) {
+		this.name = name;
+		addGroup(new Group(name));
 	}
 	
 	/**
-	 * @return The root group has the same name as the overall scheddar
-	 * project, and should contain all other groups and members
+	 * @return The root group has the same name as the overall scheddar project, and contains all other groups and members
 	 */
 	public Group getRootGroup() {
-		return null;
+		return groups.get(name);
 	}
 	
 	/**
