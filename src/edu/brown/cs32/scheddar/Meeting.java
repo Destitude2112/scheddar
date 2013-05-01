@@ -37,7 +37,7 @@ public class Meeting {
 		return this.peopleAttending;
 	}
 	
-	public double getImportanceTreshold(){
+	public double getImportanceThreshold(){
 		return this.importanceThreshold;
 	}
 	
