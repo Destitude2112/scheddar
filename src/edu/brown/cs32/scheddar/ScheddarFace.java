@@ -39,6 +39,16 @@ public interface ScheddarFace {
 	public Group getParentGroup(String name);
 	
 	/**
+	 * Get a list of names of people who are in a group who are NOT
+	 * in any subgroup of that group
+	 * 
+	 * @param name the name of the group
+	 * @return a list of the people in the given group but not its subgroups
+	 */
+	
+	public List<String> getPeopleOnlyMainGroup(String name);
+	
+	/**
 	 * Methods to get data about a meeting from ???
 	 */
 	

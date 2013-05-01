@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 
-public class Scheddar {
+public class Scheddar implements ScheddarFace {
 	
 	private HashMap<String,Group> groups; // maps names of groups to Groups 
 	private HashMap<String,Person> people; // maps names of people People
@@ -164,5 +164,100 @@ public class Scheddar {
 	
 	public List<Meeting> dayMeetings(){
 		return null;
+	}
+
+	/**
+	 * Interface methods
+	 */
+	
+	@Override
+	public Person getPersonFromName(String personName) {
+		return this.people.get(personName);
+	}
+
+	@Override
+	public Group getGroupFromName(String groupName) {
+		return this.groups.get(groupName);
+	}
+
+	@Override
+	public Meeting getMeetingFromName(String meetingName) {
+		return this.meetings.get(meetingName);
+	}
+
+	@Override
+	public String getPersonEmail(String personName) {
+		return this.people.get(personName).getEmail();
+	}
+
+	@Override
+	public String getPersonPhoneNum(String personName) {
+		return this.people.get(personName).getPhoneNum();
+	}
+
+	@Override
+	public String getPersonDescription(String personName) {
+		return this.people.get(personName).getDescription();
+	}
+
+	@Override
+	public List<String> getMemberNames(String groupName) {
+		return this.groups.get(groupName).getPeopleFullNamesInGroup();
+	}
+
+	@Override
+	public List<String> getSubgroupNames(String groupName) {
+		List<Group> subgroups = this.groups.get(groupName).getSubgroups();
+		List<String> subgroupNames = new LinkedList<String>();
+		for(Group g : subgroups){
+			subgroupNames.add(g.getName());
+		}
+		return subgroupNames;
+	}
+
+	@Override
+	public List<Group> getSubgroups(String name) {
+		return this.groups.get(name).getSubgroups();
+	}
+	
+	//TODO: Decide if this is the behavior we want out of this function
+	
+	/**
+	 * Returns the name of a group's parent group if one exists.
+	 * If not, returns "".
+	 */
+	
+	@Override
+	public String getParentGroupName(String name) {
+		Group parentGroup = this.groups.get(name).getParentGroup();
+		if(parentGroup==null){
+			return "";
+		}
+		else{
+			return parentGroup.getName();
+		}
+	}
+
+	@Override
+	public Group getParentGroup(String name) {
+		return this.groups.get(name).getParentGroup();
+	}
+	
+	/**
+	 * Returns a list of the people only in the main group of the given
+	 * group name and not in any of its subgroups
+	 */
+	
+	@Override
+	public List<String> getPeopleOnlyMainGroup(String name) {
+		List<String> memberNames = this.groups.get(name).getPeopleFullNamesInGroup();
+		List<Group> subgroups = getSubgroups(name);
+		for(Group g : subgroups){
+			List<String> subgroupMemberNames = g.getPeopleFullNamesInGroup();
+			for(String n : subgroupMemberNames){
+				memberNames.remove(n);
+			}
+		}
+		return memberNames;
 	}
 }
