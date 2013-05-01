@@ -24,9 +24,12 @@ public class ScheddarPane extends JPanel {
 	Dimension _size;
 	GroupTreePane _groupTree;
 	
-	public ScheddarPane(GUIScheddar gui, Scheddar s) {
-		_scheddar = s;
+	public ScheddarPane(GUIScheddar gui) {
 		_size = gui._screenSize;
+	}
+	
+	public void renderScheddar(Scheddar s) {
+		_scheddar = s;
 	}
 	
 	@Override

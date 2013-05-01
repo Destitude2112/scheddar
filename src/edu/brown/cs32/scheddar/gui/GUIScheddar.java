@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -51,6 +52,13 @@ public class GUIScheddar extends JFrame {
 		
 	}
 	
+	private void initScheddarPane() {
+		_scheddarPane = new ScheddarPane(this);
+	}
+	
+	private void addInternalFrame(JInternalFrame f) {
+		add(f);
+	}
 	
 	/**
 	 * @return Menu bar for the primary Scheddar app, complete with listeners
@@ -73,7 +81,8 @@ public class GUIScheddar extends JFrame {
 		newScheddar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				initScheddarPane();
+				new ScheddarForm(_scheddarPane);
 			}
 		});
 		
@@ -188,25 +197,7 @@ public class GUIScheddar extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		DummyScheddar s = new DummyScheddar("Project Blue");
-		DummyGroup g0 = s.getTopGroup();
 		
-		DummyGroup g1a = new DummyGroup("Roquefort");
-		DummyGroup g1b = new DummyGroup("Stilton");
-		DummyGroup gb2a = new DummyGroup("Village Blue");
-		
-		gb2a.addMember("Tina");
-		gb2a.addMember("Bob");
-		g1b.addMember("Sam");
-		g1b.addMember("Jenn");
-		g1a.addMember("Tim");
-		g1a.addMember("Rafael");
-		g1a.addMember("Siri");
-		
-		g1b.add(gb2a);
-		g0.add(g1a);
-		g0.add(g1b);
-		s.setTopGroup(g0);
 		
 		new GUIScheddar();
 	}

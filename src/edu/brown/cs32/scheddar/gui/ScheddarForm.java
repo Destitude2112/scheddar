@@ -31,6 +31,7 @@ public class ScheddarForm extends AbstractForm {
 
 	JTextField nameField;
 	
+	
 	public ScheddarForm(ScheddarPane s) {
 		super(s);
 		JPanel panel = new JPanel();
@@ -50,9 +51,10 @@ public class ScheddarForm extends AbstractForm {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				dispose();
-				
+				if (nameField.getText() != "") {
+					_scheddarPane.renderScheddar(new Scheddar(nameField.getText()));
+					dispose();
+				}
 			}
 		});
 		

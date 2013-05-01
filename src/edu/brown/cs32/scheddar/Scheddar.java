@@ -31,6 +31,9 @@ public class Scheddar implements ScheddarFace {
 	
 	public Scheddar(String name) {
 		this.name = name;
+		groups = new HashMap<String,Group>();
+		people = new HashMap<String,Person>();
+		meetings = new HashMap<String,Meeting>();
 		addGroup(new Group(name));
 	}
 	
