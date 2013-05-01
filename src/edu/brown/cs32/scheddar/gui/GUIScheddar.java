@@ -31,6 +31,7 @@ public class GUIScheddar extends JFrame {
 	private static final long serialVersionUID = 1L;
 	Dimension _screenSize;
 	ScheddarPane _scheddarPane;
+	JMenuBar _mb;
 	
 	
 	public GUIScheddar() {
@@ -41,10 +42,12 @@ public class GUIScheddar extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Scheddar");
 		
-		setMaximizedBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
-		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH); 
 		
-		setJMenuBar(initMenuBar());
+		setMaximizedBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
+		//setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH); 
+		setSize(getMaximizedBounds().getSize());
+		initMenuBar();
+		setJMenuBar(_mb);
 		
 		setVisible(true);
 		setResizable(false);
@@ -54,19 +57,16 @@ public class GUIScheddar extends JFrame {
 	
 	private void initScheddarPane() {
 		_scheddarPane = new ScheddarPane(this);
-	}
-	
-	private void addInternalFrame(JInternalFrame f) {
-		add(f);
+		this.add(_scheddarPane);
 	}
 	
 	/**
 	 * @return Menu bar for the primary Scheddar app, complete with listeners
 	 */
-	private JMenuBar initMenuBar() {
+	private void initMenuBar() {
 		boolean empty = _scheddarPane == null;
 		
-		JMenuBar mb = new JMenuBar();
+		_mb = new JMenuBar();
 		
 		// creating file menu
 		JMenu fileMenu = new JMenu("File");
@@ -82,7 +82,10 @@ public class GUIScheddar extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				initScheddarPane();
+				initMenuBar(); //bug! make sure this is enabled
 				new ScheddarForm(_scheddarPane);
+				//TODO: Handle initialization if box is cancelled.
+				
 			}
 		});
 		
@@ -189,11 +192,10 @@ public class GUIScheddar extends JFrame {
 		emailMenu.add(groupEmail);
 		emailMenu.add(meetingEmail);
 		
-		mb.add(fileMenu);
-		mb.add(createMenu);
-		mb.add(emailMenu);
+		_mb.add(fileMenu);
+		_mb.add(createMenu);
+		_mb.add(emailMenu);
 		
-		return mb;
 	}
 	
 	public static void main(String[] args) {

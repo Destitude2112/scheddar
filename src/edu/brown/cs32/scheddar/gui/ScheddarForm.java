@@ -39,7 +39,6 @@ public class ScheddarForm extends AbstractForm {
 		
 		//getting name of organization
 		nameField = new JTextField(20);
-		nameField.add(new JLabel("Organization Name:"));
 		
 		
 		
@@ -60,6 +59,7 @@ public class ScheddarForm extends AbstractForm {
 		
 		
 		// adding everything
+		panel.add(new JLabel("Organization Name:"));
 		panel.add(nameField);
 		panel.add(create);
 		add(panel);

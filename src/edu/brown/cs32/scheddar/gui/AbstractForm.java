@@ -17,14 +17,10 @@ public abstract class AbstractForm extends JFrame {
 		super();
 		_scheddarPane = s;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setLocation(getFormLocation());
 		
-	}
-	
-	private Point getFormLocation() {
 		Dimension d = _scheddarPane._size;
-		Point p = new Point(d.width / 3, d.height / 3);
-		return p;
+		setBounds(d.width / 3, d.height / 3, 1, 1);
+		
 	}
 	
 	/**

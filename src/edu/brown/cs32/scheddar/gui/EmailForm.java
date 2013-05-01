@@ -1,8 +1,8 @@
 package edu.brown.cs32.scheddar.gui;
 
-import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
 
-import edu.brown.cs32.scheddar.Scheddar;
+import edu.brown.cs32.scheddar.*;
 
 /**
  * @author sdemane
@@ -15,7 +15,10 @@ public class EmailForm extends AbstractForm {
 	
 	public EmailForm(ScheddarPane s) {
 		super(s);
-		// TODO Auto-generated constructor stub
+		
+		JPanel recipPanel = new JPanel();
+		
+		
 	}
 
 }

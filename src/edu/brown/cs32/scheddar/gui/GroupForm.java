@@ -37,13 +37,11 @@ public class GroupForm extends AbstractForm {
 		
 		//getting name of new group
 		nameField = new JTextField(20);
-		nameField.add(new JLabel("Group Name:"));
 		
 		//getting parent group
 		String[] groupNames = getAllGroupNames();
 		groupList = new JComboBox<String>(groupNames);
 		groupList.setSelectedItem(_scheddarPane.getCurrentGroup());
-		groupList.add(new JLabel("Parent Group:"));
 		
 		//getting initial members
 		
@@ -53,7 +51,6 @@ public class GroupForm extends AbstractForm {
 		memberListPane.setPreferredSize(new Dimension(75,100));
 		JPanel listPanePane = new JPanel(new GridLayout(1,1));
 		listPanePane.add(memberListPane);
-		listPanePane.add(new JLabel("Choose members:"));
 		
 		
 		//adding listener so member list is updated if parent group changes
@@ -88,8 +85,11 @@ public class GroupForm extends AbstractForm {
 		
 		
 		// adding everything
+		panel.add(new JLabel("Group Name:"));
 		panel.add(nameField);
+		panel.add(new JLabel("Parent Group:"));
 		panel.add(groupList);
+		panel.add(new JLabel("Choose members:"));
 		panel.add(memberList);
 		panel.add(create);
 		add(panel);
