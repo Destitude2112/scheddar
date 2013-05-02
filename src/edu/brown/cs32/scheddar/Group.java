@@ -83,6 +83,14 @@ public class Group {
 		this.members.remove(person);
 	}
 	
+	public void removeMember(String name){
+		for(Person p :this.members){
+			if(p.getFullName().equals(name)){
+				this.members.remove(p);
+			}
+		}
+	}
+	
 	/**
 	 * Adds an individual member and their ranking to the HashMap. Follows
 	 * the rules of put() for a HashMap, so overwrites previous entry if

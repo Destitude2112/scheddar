@@ -1,10 +1,10 @@
 package edu.brown.cs32.scheddar;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Calendar;
 
 /**
  * This is the main class of the application
@@ -388,4 +388,29 @@ public class Scheddar implements ScheddarFace {
 		
 		return new ScheddarTime(hour,minute,0,dayOfWeek,day,month,year,false);
 	}
+	
+	/**
+	 * Return a Collection of all the people in this Scheddar instance
+	 */
+	
+	public Collection<Person> getAllPeople(){
+		return this.people.values();
+	}
+	
+	/**
+	 * Return a Collection of all the groups in this Scheddar instance
+	 */
+	
+	public Collection<Group> getAllGroups(){
+		return this.groups.values();
+	}
+	
+	/**
+	 * Return a Collection of all the meetings in this Scheddar instance
+	 */
+	
+	public Collection<Meeting> getAllMeetings(){
+		return this.meetings.values();
+	}
+	
 }

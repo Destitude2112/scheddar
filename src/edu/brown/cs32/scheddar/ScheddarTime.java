@@ -1,6 +1,4 @@
 package edu.brown.cs32.scheddar;
-import java.sql.Time;
-import java.sql.Date;
 
 public class ScheddarTime {
 	private int startHour; // the starting hour (0 - 24)
