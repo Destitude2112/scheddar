@@ -32,10 +32,14 @@ public class GUIScheddar extends JFrame {
 	Dimension _screenSize;
 	ScheddarPane _scheddarPane;
 	JMenuBar _mb;
+	GUIScheddar frame;
+	String group;
 	
 	
 	public GUIScheddar() {
+		super();
 		_scheddarPane = null;
+		frame = this;
 		
 		//_screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
@@ -63,8 +67,8 @@ public class GUIScheddar extends JFrame {
 	/**
 	 * @return Menu bar for the primary Scheddar app, complete with listeners
 	 */
-	private void initMenuBar() {
-		boolean empty = _scheddarPane == null;
+	private JMenuBar initMenuBar() {
+		boolean empty = (_scheddarPane == null);
 		
 		_mb = new JMenuBar();
 		
@@ -82,8 +86,8 @@ public class GUIScheddar extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				initScheddarPane();
-				initMenuBar(); //bug! make sure this is enabled
-				new ScheddarForm(_scheddarPane);
+//				initMenuBar(); //bug! make sure this is enabled
+				new ScheddarForm(_scheddarPane).setFrame(frame);
 				//TODO: Handle initialization if box is cancelled.
 				
 			}
@@ -195,11 +199,21 @@ public class GUIScheddar extends JFrame {
 		_mb.add(fileMenu);
 		_mb.add(createMenu);
 		_mb.add(emailMenu);
-		
+		return _mb;
+	}
+	
+	public JMenuBar getMenu() {
+		return _mb;
+	}
+	
+	public void setGroup(String g) {
+		group = g;
+		if(g!=null && g.length()>0) {
+			setTitle("Scheddar - "+g);
+		}
 	}
 	
 	public static void main(String[] args) {
-		
 		
 		new GUIScheddar();
 	}

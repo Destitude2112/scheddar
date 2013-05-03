@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -30,28 +31,31 @@ public class ScheddarForm extends AbstractForm {
 	private static final long serialVersionUID = 1L;
 
 	JTextField nameField;
-	
+	GUIScheddar frame;
 	
 	public ScheddarForm(ScheddarPane s) {
 		super(s);
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+		frame = null;
 		
 		//getting name of organization
-		nameField = new JTextField(20);
-		
-		
+		nameField = new JTextField(20);	
 		
 		
 		// making "Create" button
 		
-		JButton create = new JButton("Create Scheddar project!");
+		JButton create = new JButton("Create");
 		create.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (nameField.getText() != "") {
-					_scheddarPane.renderScheddar(new Scheddar(nameField.getText()));
+					String t = nameField.getText();
+					_scheddarPane.renderScheddar(new Scheddar(t));
+					frame.setGroup(t);
+					JMenuBar mb = frame.getMenu();
+					mb.getMenu(1).setEnabled(true);
 					dispose();
 				}
 			}
@@ -67,6 +71,8 @@ public class ScheddarForm extends AbstractForm {
 		setVisible(true);
 	}
 	
-	
+	public void setFrame(GUIScheddar f) {
+		frame = f;
+	}
 	
 }
