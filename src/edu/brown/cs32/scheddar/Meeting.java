@@ -1,5 +1,7 @@
 package edu.brown.cs32.scheddar;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -7,11 +9,17 @@ import java.util.TreeSet;
 
 public class Meeting {
 	private String name;  // a name for the event
-	private ScheddarTime time; // the block of time when this meeting occurs
-	private List<Group> groupsInvolved; // a list of the groups involved in this meeting
+	private boolean decided; // true if the meeting time is finalized
+	private ScheddarTime timeForFinalizing; // the time at which the meeting time must be finalized
+	
+	private ScheddarTime finalTime; // the block of time when the meeting will occur
+	private List<ScheddarTime> proposedTimes; // proposed times for the meeting to occur
+	private HashMap<Integer,Double> indexToScore; // maps proposed time indices to the weighted score for the meeting
+	
+	private List<Group> groupsInvolved; // a list of the names of groups involved in this meeting
 	private String description; // a description of this event
-	private List<Person> peopleAttending; // a list of the people who are currently attending this meeting
-	private double importanceThreshold; // the importance threshold that must be met for the meeting to occur
+	
+	private UsefulMethods methods = new UsefulMethods();
 	
 	/**
 	 * Getter Functions
@@ -21,8 +29,26 @@ public class Meeting {
 		return this.name;
 	}
 	
-	public ScheddarTime getTime(){
-		return this.time;
+	public boolean isDecided(){
+		return this.decided;
+	}
+	
+	public ScheddarTime getTimeForFinalizing(){
+		return this.getTimeForFinalizing();
+	}
+	
+	public List<ScheddarTime> getProposedTimes(){
+		return this.proposedTimes;
+	}
+	
+	public HashMap<Integer,Double> getIndexToScore(){
+		return this.indexToScore;
+	}
+	
+	// This will be null if a final time has yet to be decided
+	
+	public ScheddarTime getFinalTime(){
+		return this.finalTime;
 	}
 	
 	public List<Group> getGroupsInvolved(){
@@ -32,14 +58,7 @@ public class Meeting {
 	public String getDescription(){
 		return this.description;
 	}
-	
-	public List<Person> getPeopleAttending(){
-		return this.peopleAttending;
-	}
-	
-	public double getImportanceThreshold(){
-		return this.importanceThreshold;
-	}
+
 	
 	/**
 	 * Setter Functions (to completely reset values)
@@ -47,10 +66,6 @@ public class Meeting {
 	
 	public void setName(String name){
 		this.name = name;
-	}
-	
-	public void setTime(ScheddarTime newTime){
-		this.time = newTime;
 	}
 	
 	public void setGroupsInvolved(List<Group> newGroupList){
@@ -61,12 +76,8 @@ public class Meeting {
 		this.description = newDescription;
 	}
 	
-	public void setPeopleAttending(List<Person> newList){
-		this.peopleAttending = newList;
-	}
-	
-	public void setImportanceThreshold(double t){
-		this.importanceThreshold = t;
+	public void setProposedTimes(List<ScheddarTime> timeList){
+		this.proposedTimes = timeList;
 	}
 	
 	/**
@@ -81,37 +92,47 @@ public class Meeting {
 		this.groupsInvolved.remove(group);
 	}
 	
-	public void addPerson(Person person){
-		this.peopleAttending.add(person);
+	public void addProposedTime(ScheddarTime time){
+		this.proposedTimes.add(time);
 	}
 	
-	public void removePerson(Person person){
-		this.peopleAttending.remove(person);
+	public void removeProposedTime(ScheddarTime time){
+		this.proposedTimes.remove(time);
 	}
 	
 	/**
 	 * Constructor
 	 **/
 	
-	public Meeting(String name, ScheddarTime time,List<Group> groupsInvolved,String description,List<Person> peopleAttending){
+	public Meeting(String name, List<ScheddarTime> times,List<Group> groupsInvolved,String description,List<Person> peopleAttending){
 		this.name = name;
-		this.time = time;
+		this.proposedTimes = times;
 		this.groupsInvolved = groupsInvolved;
 		this.description = description;
-		this.peopleAttending = peopleAttending;
+		this.decided = false;
+		this.indexToScore = new HashMap<Integer,Double>();
+		
+		
+		// If there is only one proposed time, then the meeting will definitely occur then,
+		// so we set decided to true and the final time to that time
+		
+		if(this.proposedTimes.size()==1){
+			this.decided = true;
+			this.finalTime = this.proposedTimes.get(0);
+		}
+		
+		// Else we calculate the time by which we must decide on a final meeting time
+		
+		else{
+			ScheddarTime earliestTime = Collections.min(this.proposedTimes);
+			
+			// TODO:Decide if the time between deciding on the final meeting time
+			// should be on a meeting-by-meeting basis or global. If global, figure
+			// out how to pass it in here   ~ atutino
+			
+		}
 	}
 	
-	/**
-	 * Constructor with just the name and time
-	 */
-	
-	public Meeting(String name, ScheddarTime time){
-		this.name = name;
-		this.time = time;
-		this.groupsInvolved = new LinkedList<Group>();
-		this.description = "";
-		this.peopleAttending = new LinkedList<Person>();
-	}
 	
 	/**
 	 * Returns a Set containing the emails of each person in a Group involved
@@ -129,52 +150,4 @@ public class Meeting {
 		return allEmails;
 	}
 	
-	/**
-	 * Returns a List of emails of people who are already attending this meeting
-	 */
-	
-	public List<String> getAttendingEmails(){
-		List<String> attendingEmails = new LinkedList<String>();
-		for(Person p : peopleAttending){
-			attendingEmails.add(p.getEmail());
-		}
-		return attendingEmails;
-	}
-	
-	
-	/**
-	 * Returns true if attendance for this meeting is above a certain
-	 * percentage, returns false if not 
-	 * 
-	 * @param percentage the percentage to check
-	 * @param numPeople the number to find the percentage of
-	 */
-	
-	public boolean attendanceAbovePercentage(double percentage,int numPeople){
-		double currAttending = (double) peopleAttending.size();
-		return (currAttending/numPeople >= percentage);
-	}
-	
-	/**
-	 * Returns true if the sum of attending people's importance is above
-	 * a given threshold
-	 * 
-	 * @param threshold the level of importance that must be passed
-	 */
-	
-	public boolean importanceAboveThreshold(double threshold){
-		double currImportance = 0.0;
-		for(Person p : peopleAttending){
-			List<Group> groups = p.getGroups();
-			double maxImportance = 1.0;
-			for(Group g : groups){
-				double possibleReplace = g.getMemberRanking(p);
-				if(possibleReplace>maxImportance){
-					maxImportance = possibleReplace;
-				}
-			}
-			currImportance += maxImportance;
-		}
-		return currImportance >= threshold;
-	}	
 }

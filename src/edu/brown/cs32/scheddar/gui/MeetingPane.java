@@ -34,7 +34,7 @@ public class MeetingPane extends ScheddarSubPane {
 	JTextField description;
 	JList<String> peopleAttending;
 	JTextField newAttendee;
-	JTextField importanceThreshold;
+//	JTextField importanceThreshold;
 	
 	public MeetingPane(ScheddarPane s, Meeting m) {
 		super(s);
@@ -47,12 +47,12 @@ public class MeetingPane extends ScheddarSubPane {
 		description = new JTextField(20);
 		peopleAttending = new JList<String>();
 		newAttendee = new JTextField(20); 
-		importanceThreshold = new JTextField(20);
+//		importanceThreshold = new JTextField(20);
 		
 		if(m!=null) {
 			name.setText(m.getName());
 			description.setText(m.getDescription());
-			importanceThreshold.setText(Double.toHexString(m.getImportanceThreshold()));
+//			importanceThreshold.setText(Double.toHexString(m.getImportanceThreshold()));
 		}
 		JButton save = new JButton("Save");
 		
@@ -75,7 +75,7 @@ public class MeetingPane extends ScheddarSubPane {
 		panel.add(new JLabel("Attendees:"));
 		panel.add(peopleAttending);
 		panel.add(new JLabel("Importance:"));
-		panel.add(importanceThreshold);
+//		panel.add(importanceThreshold);
 		panel.add(save);
 		add(panel);		
 	}

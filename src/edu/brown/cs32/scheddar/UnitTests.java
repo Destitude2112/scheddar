@@ -8,6 +8,7 @@ package edu.brown.cs32.scheddar;
 
 import static org.junit.Assert.*;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class UnitTests {
 	
 	@Test
 	public void timeConflictTest(){
-		Scheddar testScheddar = new Scheddar("Test Name");
+		UsefulMethods testScheddar = new UsefulMethods();
 		ScheddarTime t1 = new ScheddarTime(0,0,30,0,1,0,2013,false);
 		ScheddarTime t2 = new ScheddarTime(1,0,60,0,1,0,2013,false);
 		ScheddarTime t3 = new ScheddarTime(1,0,30,0,1,0,2013,false);
@@ -59,10 +60,27 @@ public class UnitTests {
 	
 	@Test
 	public void testLeapYear(){
-		Scheddar test = new Scheddar("Test");
+		UsefulMethods test = new UsefulMethods();
 		assertTrue(!test.isLeapYear(2013));
 		assertTrue(test.isLeapYear(2112));
 		assertTrue(test.isLeapYear(2016));
 		assertTrue(!test.isLeapYear(2014));
+	}
+	
+	// Test that the comparator for ScheddarTimes works, meaning that the earlier a ScheddarTime is,
+	// the lower its value comparison-wise is
+	
+	@Test
+	public void testScheddarTimeComparable(){
+		// hour, minutes, duration, dayOfWeek, day, month, year
+		ScheddarTime t1 = new ScheddarTime(12,0,300,0,3,10,2000,false);
+		ScheddarTime t2 = new ScheddarTime(12,30,300,0,3,10,2000,false);
+		ScheddarTime t3 = new ScheddarTime(24,0,300,0,3,10,2112,false);
+		ScheddarTime t4 = new ScheddarTime(24,0,300,0,3,10,2112,false);
+		
+		assertTrue(t1.compareTo(t2)<0);
+		assertTrue(t2.compareTo(t3)<0);
+		assertTrue(t3.compareTo(t4)==0);
+		assertTrue(t4.compareTo(t1)>0);
 	}
 }

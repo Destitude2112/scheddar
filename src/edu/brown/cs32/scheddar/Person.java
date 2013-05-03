@@ -12,8 +12,12 @@ public class Person {
 	private String email; // the person's email address
 	private String phoneNum; // the person's phone number
 	private String description; // administrative note on the person
-	private List<Group> groups; // a list of groups that the person is in
-	private List<ScheddarTime> conflicts; // conflicting times
+	private List<ScheddarTime> conflicts; // recurring conflicts
+	
+	//TODO:Either remove or add dummy so Prateek can save. Depends on usefulness to GUI peeps  ~atutino
+	private List<Group> groupList; // groups that the person is in
+	
+	private UsefulMethods methods = new UsefulMethods();
 	
 	/**
 	 * Getter Functions
@@ -41,10 +45,6 @@ public class Person {
 	
 	public String getDescription(){
 		return this.description;
-	}
-	
-	public List<Group> getGroups(){
-		return this.groups;
 	}
 	
 	public List<ScheddarTime> getConflicts(){
@@ -80,10 +80,6 @@ public class Person {
 		this.description = description;
 	}
 	
-	public void setGroups(List<Group> groups){
-		this.groups = groups;
-	}
-	
 	public void setConflicts(List<ScheddarTime> newConflictList){
 		this.conflicts = newConflictList;
 	}
@@ -92,8 +88,9 @@ public class Person {
 	 * Constructor
 	 */
 	
-	//TODO : Figure out where in the GUI people are added to groups, might want to
-	// add group list in constructor
+	// The person's conflict list is not requested here, as a person is created by the adminstrator at
+	// a time, and the conflict list is not known until the person responds with an email giving
+	// specific recurring conflicts.    ~atutino
 	
 	public Person(String firstName, String lastName, String email, String phoneNum,
 			String description){
@@ -102,47 +99,14 @@ public class Person {
 		this.email = email;
 		this.phoneNum = phoneNum;
 		this.description = description;
-		this.groups = new LinkedList<Group>();
 		this.conflicts = new LinkedList<ScheddarTime>();
 	}
 	
 	
 	/**
-	 * Adds a person to a group with the default importance level of 1.0
-	 * @param group the group to add the person to
+	 * Methods to add/remove ScheddarTime conflicts. The boolean isRecurring should be
+	 * set to true for these times
 	 */
-	
-	public void addGroup(Group group){
-		this.groups.add(group);
-	}
-	
-	public void removeGroup(Group group){
-		this.groups.remove(group);
-	}
-	
-	/**
-	 * Adds all of the groups in a given list to the groups field with default importance 1.0
-	 * 
-	 * @param groupList
-	 */
-	
-	public void addGroupList(List<Group> groupList){
-		for(Group g : groupList){
-			this.groups.add(g);
-		}
-	}
-	
-	/**
-	 * Removes all of the groups in a given list from the groups field
-	 * 
-	 * @param groupList
-	 */
-	
-	public void removeGroupList(List<Group> groupList){
-		for(Group g : groupList){
-			this.groups.remove(g);
-		}
-	}
 	
 	public void addConflict(ScheddarTime conflict){
 		this.conflicts.add(conflict);
@@ -174,5 +138,11 @@ public class Person {
 		for(ScheddarTime c : conflictList){
 			this.removeConflict(c);
 		}
+	}
+	
+	// TODO : Decide if keeping group list or not
+	
+	public void addGroup(Group g){
+		this.groupList.add(g);
 	}
 }

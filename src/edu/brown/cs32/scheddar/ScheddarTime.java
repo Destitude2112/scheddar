@@ -1,6 +1,6 @@
 package edu.brown.cs32.scheddar;
 
-public class ScheddarTime {
+public class ScheddarTime implements Comparable {
 	private int startHour; // the starting hour (0 - 24)
 	private int startMinutes; // the starting minutes (0 - 60 , increments of 10 or 15)
 	private int duration; // in minutes
@@ -99,40 +99,24 @@ public class ScheddarTime {
 	}
 	
 	
-//	private Time startTime; // the starting time of this time block
-//	private int duration; // the duration of this time block in minutes
-//	private Date date; // the date in which this time block begins
-//	
-//	/**
-//	 * Getter functions
-//	 */
-//	
-//	public Time getStartTime(){
-//		return this.startTime;
-//	}
-//	
-//	public int getDuration(){
-//		return this.duration;
-//	}
-//	
-//	public Date getDate(){
-//		return this.date;
-//	}
-//	
-//	/**
-//	 * Setter functions
-//	 */
-//	
-//	public void setStartTime(Time newTime){
-//		this.startTime = newTime;
-//	}
-//	
-//	public void setDuration(int newDuration){
-//		this.duration = newDuration;
-//	}
-//	
-//	public void setDate(Date newDate){
-//		this.date = newDate;
-//	}
-//	
+	/**
+	 * This compare method compares the starting times of two ScheddarTimes. The later event is > than the
+	 * earlier event
+	 */
+	
+	@Override
+	public int compareTo(Object o) {
+		ScheddarTime t2 = (ScheddarTime) o;
+		if(this.year > t2.year) return 1;
+		if(this.year < t2.year) return -1;
+		if(this.month > t2.month) return 1;
+		if(this.month < t2.month) return -1;
+		if(this.day > t2.day) return 1;
+		if(this.day < t2.day) return -1;
+		if(this.startHour > t2.startHour) return 1;
+		if(this.startHour < t2.startHour) return -1;
+		if(this.startMinutes > t2.startMinutes) return 1;
+		if(this.startMinutes < t2.startMinutes) return -1;
+		return 0;
+	}
 }

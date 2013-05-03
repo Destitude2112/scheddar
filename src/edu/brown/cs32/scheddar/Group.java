@@ -13,10 +13,19 @@ public class Group {
 	//TODO: Change the List<Group> to List<String>
 	
 	private String name; // the name of the group
-	private List<Person> members; // the members of the group
-	private HashMap<String,Double> memberRankings; // maps person's ID to importance rank in this group
-	private List<Group> subgroups; // a list of the subgroups of this group
-	private Group parentGroup; // the parent of this group if one exists
+	
+	private List<String> dummyMembers; // used for XML loading
+	private List<Person> members; // the full names of the members of the group
+	
+	private HashMap<String,Double> memberRankings; // maps person's name to importance rank in this group
+	
+	private List<String> dummySubgroups; // used for XML parsing
+	private List<Group> subgroups; // a list of the names of subgroups of this group
+	
+	private String dummyParentGroup; // used for XML parsing
+	private Group parentGroup; // the name of the parent of this group if one exists
+	
+	private UsefulMethods methods = new UsefulMethods();
 	
 	/**
 	 * Getter Functions
