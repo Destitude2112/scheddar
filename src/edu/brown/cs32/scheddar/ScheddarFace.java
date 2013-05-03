@@ -49,8 +49,7 @@ public interface ScheddarFace {
 	public List<String> getPeopleOnlyMainGroup(String name);
 	
 	/**
-	 * Methods to get data about a meeting from ???
+	 * Methods to get data about a meeting from the meeting's name
 	 */
-	
 	
 }

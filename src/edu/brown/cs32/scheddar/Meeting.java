@@ -150,4 +150,20 @@ public class Meeting {
 		return allEmails;
 	}
 	
+	/**
+	 * Finds the best time to hold the meeting out of the proposed times.
+	 * To be called at a given period of time before the first proposed meeting
+	 * time as described elsewhere
+	 */
+	
+	public ScheddarTime getBestTime(){
+		double bestScore = Collections.max(indexToScore.values());
+		for(int i : indexToScore.keySet()){
+			if(indexToScore.get(i)==bestScore){
+				return proposedTimes.get(i);
+			}
+		}
+		return null; // shouldnt happen
+	}
+	
 }
