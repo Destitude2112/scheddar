@@ -58,6 +58,9 @@ public class Scheddar implements ScheddarFace {
 	 * Ask Prateek what data structure represents an XML file
 	 */
 	
+	
+	//TODO : Make this a constructor for loading XML
+	
 	public Scheddar(){
 		
 	}
@@ -365,9 +368,15 @@ public class Scheddar implements ScheddarFace {
 					totalWeight += g.getMemberRanking(p);
 					List<ScheddarTime> conflicts = p.getConflicts();
 					for(ScheddarTime t : conflicts){
-						if(methods.doTimesConflict(t,currTime)){
-							currScore += g.getMemberRanking(p);
-							break;
+						//TODO : This should be based on dayOfWeek
+						if(t.getDayOfWeek()==currTime.getDayOfWeek()){
+							t.setDay(currTime.getDay());
+							t.setMonth(currTime.getMonth());
+							t.setYear(currTime.getYear());
+							if(methods.doTimesConflict(t,currTime)){
+								currScore += g.getMemberRanking(p);
+								break;
+							}
 						}
 					}
 				}

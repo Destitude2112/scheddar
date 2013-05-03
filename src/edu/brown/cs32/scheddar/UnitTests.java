@@ -114,4 +114,14 @@ public class UnitTests {
 		assertTrue(t3End.getStartHour()==0);
 		assertTrue(t3End.getStartMinutes()==0);
 	}
+	
+	// Test that daysInMonth method works
+	@Test
+	public void testDaysInMonth(){
+		UsefulMethods methods = new UsefulMethods();
+		assertTrue(methods.daysInMonth(1,2112)==31);
+		assertTrue(methods.daysInMonth(2,2113)==28);
+		assertTrue(methods.daysInMonth(2,2112)==29);
+		assertTrue(methods.daysInMonth(9,1337)==30);
+	}
 }
