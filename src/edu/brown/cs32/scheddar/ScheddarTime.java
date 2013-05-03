@@ -10,6 +10,8 @@ public class ScheddarTime implements Comparable {
 	private int year; // the year
 	private boolean isRecurring; // for meetings recurring on a particular day of the week at the given time
 	
+	private UsefulMethods methods = new UsefulMethods();
+	
 	/**
 	 * Full constructor
 	 */
@@ -118,5 +120,47 @@ public class ScheddarTime implements Comparable {
 		if(this.startMinutes > t2.startMinutes) return 1;
 		if(this.startMinutes < t2.startMinutes) return -1;
 		return 0;
+	}
+	
+	/**
+	 * Returns a ScheddarTime corresponding to the end of this one
+	 * We assume a meeting will never be longer than an entire day here, which
+	 * is a fair assumption for a business meeting
+	 */
+	
+	public ScheddarTime getEndTime(){
+		int newMinutes = this.startMinutes;
+		int newHours = this.startHour;
+		int newDay = this.day;
+		int newDayOfWeek = this.dayOfWeek;
+		int newMonth = this.month;
+		int newYear = this.year;
+		
+		newMinutes += this.duration;
+		int addedHours = newMinutes / 60;
+		newHours += addedHours;
+		newMinutes = newMinutes - (60 * addedHours);
+
+		if(newHours < 24){
+			return new ScheddarTime(newHours,newMinutes,0,newDayOfWeek,newDay,newMonth,newYear,false);
+		}
+		
+		newHours = newHours - 24; // else we are in a new day, so subtract 24 hours
+		newDay += 1;
+		newDayOfWeek += 1;
+		if(newDayOfWeek==7) newDayOfWeek = 0; // set day of week back to 0 if necessary
+		int daysInThisMonth = methods.daysInMonth(newMonth, newYear);
+		if(newDay<=daysInThisMonth){
+			return new ScheddarTime(newHours,newMinutes,0,newDayOfWeek,newDay,newMonth,newYear,false);
+		}
+		// Else we are in a new month
+		newDay = 1;
+		newMonth += 1;
+		if(newMonth<=12){
+			return new ScheddarTime(newHours,newMinutes,0,newDayOfWeek,newDay,newMonth,newYear,false);
+		}
+		else{
+			return new ScheddarTime(newHours,newMinutes,0,newDayOfWeek,newDay,1,newYear+1,false);
+		}
 	}
 }

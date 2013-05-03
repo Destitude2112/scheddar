@@ -83,4 +83,35 @@ public class UnitTests {
 		assertTrue(t3.compareTo(t4)==0);
 		assertTrue(t4.compareTo(t1)>0);
 	}
+	
+	// Test that the getEndTime() method works correctly
+	
+	@Test
+	public void getEndTimeTest(){
+		ScheddarTime t1 = new ScheddarTime(12,0,320,0,3,10,2000,false);  // one that stays in the same day, overflows minutes
+		ScheddarTime t1End = t1.getEndTime();
+		assertTrue(t1End.getDay()==3);
+		assertTrue(t1End.getMonth()==10);
+		assertTrue(t1End.getYear()==2000);
+		assertTrue(t1End.getStartHour()==17);
+		assertTrue(t1End.getStartMinutes()==20);
+		
+		ScheddarTime t2 = new ScheddarTime(23,0,340,0,3,10,2000,false); // one that overflows days
+		ScheddarTime t2End = t2.getEndTime();
+		assertTrue(t2End.getDay()==4);
+		assertTrue(t2End.getMonth()==10);
+		assertTrue(t2End.getYear()==2000);
+		assertTrue(t2End.getDayOfWeek()==1);
+		assertTrue(t2End.getStartHour()==4);
+		assertTrue(t2End.getStartMinutes()==40);
+		
+		ScheddarTime t3 = new ScheddarTime(23,30,30,6,31,12,2112,false); // one that goes into a new year. Happy New Years!
+		ScheddarTime t3End = t3.getEndTime();
+		assertTrue(t3End.getDay()==1);
+		assertTrue(t3End.getMonth()==1);
+		assertTrue(t3End.getYear()==2113);
+		assertTrue(t3End.getDayOfWeek()==0);
+		assertTrue(t3End.getStartHour()==0);
+		assertTrue(t3End.getStartMinutes()==0);
+	}
 }
