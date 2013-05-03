@@ -6,12 +6,6 @@ import java.util.List;
 
 public class Group {
 	
-	//TODO: Note to self : might want to use Sets instead of the Lists if we want to prevent
-	// adding multiple copies of the same person/group to these fields
-	// If you do that don't forget to write equals() and hashCode() functions for Group and Person. ~sdemane
-	
-	//TODO: Change the List<Group> to List<String>
-	
 	private String name; // the name of the group
 	
 	private List<String> dummyMembers; // used for XML loading

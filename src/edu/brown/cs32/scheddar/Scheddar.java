@@ -21,6 +21,8 @@ public class Scheddar implements ScheddarFace {
 	private String name;
 	private String adminName; // the name of the admin of this Scheddar
 	
+	private UsefulMethods methods = new UsefulMethods();
+	
 	
 	// This is the number of hours before the EARLIEST proposed time for a meeting
 	// that the program will calculate the best meeting time, decide on it,
@@ -55,6 +57,9 @@ public class Scheddar implements ScheddarFace {
 	 * 
 	 * Ask Prateek what data structure represents an XML file
 	 */
+	
+	
+	//TODO : Make this a constructor for loading XML
 	
 	public Scheddar(){
 		
@@ -333,5 +338,54 @@ public class Scheddar implements ScheddarFace {
 	public Collection<Meeting> getAllMeetings(){
 		return this.meetings.values();
 	}
+	
+	//TODO: Just planning out exactly how this works. So when an admin proposes a meeting, they fill in fields corresponding
+	// to the parts of the Meeting object. Once they fill that in, they press a button. This creates a Meeting object.
+	// However, a box should come up that displays the results of this method, and allow them to change the proposed times
+	// A new Meeting object shouldnt be created, proposedTimes should just be altered if necessary -atutino
+	
+	/**
+	 * This algorithm gives the admin a ranking of proposed times for a meeting based
+	 * upon the recurring conflicts of people in the groups involved in that meeting. This
+	 * should be run after an admin puts in some suggested times for a meeting, display
+	 * the ratings to the admin, and then give them the choice to change some of the proposed
+	 * times if they were not to their liking
+	 * 
+	 * @param proposedTimes a list of the times that the admin is proposing
+	 * @return an array containing the preliminary ratings for each time, indexes same as list of proposedTimes
+	 */
+	
+	public double[] getRecurringRankings(Meeting m){
+		List<ScheddarTime> timeList = m.getProposedTimes();
+		double[] ratings = new double[timeList.size()];
+		for(int i=0;i<timeList.size();i++){
+			ScheddarTime currTime = timeList.get(i);
+			double currScore = 0.0; // keep track of weights of people with conflicts
+			double totalWeight = 0.0; // keep track of the total weight of people in the groups for normalizing results
+			
+			for(Group g : m.getGroupsInvolved()){
+				for(Person p : g.getMembers()){
+					totalWeight += g.getMemberRanking(p);
+					List<ScheddarTime> conflicts = p.getConflicts();
+					for(ScheddarTime t : conflicts){
+						//TODO : This should be based on dayOfWeek
+						if(t.getDayOfWeek()==currTime.getDayOfWeek()){
+							t.setDay(currTime.getDay());
+							t.setMonth(currTime.getMonth());
+							t.setYear(currTime.getYear());
+							if(methods.doTimesConflict(t,currTime)){
+								currScore += g.getMemberRanking(p);
+								break;
+							}
+						}
+					}
+				}
+			}
+			
+			ratings[i] = ((totalWeight - currScore) / totalWeight) * 100; // No conflicts gives a score 0f 100, all conflicts gives score of 0
+		}
+		return ratings;
+	}
+	
 	
 }

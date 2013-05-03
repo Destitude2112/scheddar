@@ -61,7 +61,7 @@ public class EmailStubs {
 	// Testing purposes
 	
 	public static void main(String[] args){
-		String admin = "Boss Guy";
+		String admin = "Jayce";
 		String noob = "Teemo";
 		List<String> groups = new LinkedList<String>();
 		groups.add("TSM");
