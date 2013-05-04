@@ -17,8 +17,21 @@ public class EmailParser {
 	
 	//TODO : Make these initialized by the admin in some way
 	
-	final static String username = "scheddartest@gmail.com";
-	final static String password = "DreamTheater";
+	static String username;
+	static String password;
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param username
+	 * @param password
+	 */
+	
+	public EmailParser(String username, String password){
+		this.username = username;
+		this.password = password;
+	}
+	
 	
 	/**
 	 * Sends an addedPersonEmail to the given user

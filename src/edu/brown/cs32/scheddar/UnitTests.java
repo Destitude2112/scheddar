@@ -19,8 +19,9 @@ public class UnitTests {
 	
 	@Test
 	public void newScheddarTest() {
-		Scheddar newScheddar = new Scheddar("Test Name");
+		Scheddar newScheddar = new Scheddar("Test Name","admin","username","password");
 		assertTrue(newScheddar.getRootGroup().getName().equals("Test Name"));
+		assertTrue(newScheddar.getAdminName().equals("admin"));
 		assertTrue(newScheddar.getAllPeople().isEmpty());
 		assertTrue(newScheddar.getAllMeetings().isEmpty());
 	}
@@ -41,7 +42,7 @@ public class UnitTests {
 	
 	@Test
 	public void getEmailTest(){
-		Scheddar test = new Scheddar("Test");
+		Scheddar test = new Scheddar("Test","admin","user","pass");
 		test.addGroup(new Group("New Group"));
 		assertTrue(test.getGroupEmails("New Group").isEmpty());
 		test.getGroup("New Group").addMember(new Person("Bob","Johnson","testEmail","",""));
