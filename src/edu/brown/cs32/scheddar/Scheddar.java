@@ -389,13 +389,83 @@ public class Scheddar implements ScheddarFace {
 		return ratings;
 	}
 	
-	// TODO : This
-	
 	/**
 	 * This method reads all unread emails and updates values within this Scheddar accordingly
 	 */
 	
-	public void readEmails(){
+	public void readAndParseEmails(){
 		
+		//TODO : Stuff that actually moves the Strings from the EmailParser here
+		// This will be in a loop such that placeholder iterates through each
+		// (subject,body) tuple created from the emails
+		
+		Tuple<String,String> placeholder = new Tuple<String,String>("asdf","asdf");
+		String subject = placeholder.x;
+		String body = placeholder.y;
+		
+		String[] subjectSpl = subject.split(" ");
+		String[] bodySpl = body.split(" ");
+		
+		if(subjectSpl.length<3){
+			// Send an error email, invalid subject line
+			return;
+		}
+		
+		String personName = (subjectSpl[0] + " " + subjectSpl[1]);
+		
+		if(!this.people.containsKey(personName)){
+			// Send an error email, invalid subject line
+			return;
+		}
+		if(subjectSpl[2].equals("Conflicts")){ // we are parsing a conflicts email
+			if(bodySpl.length%2!=0){
+				// Send an error email, invalid body
+			}
+			for(int i=0;i<bodySpl.length-1;i+=2){
+				String dayAbbrev = bodySpl[i];
+				int dayOfWeek = -1;
+				if(dayAbbrev.equals("Sun")) dayOfWeek = 0;
+				if(dayAbbrev.equals("Mon")) dayOfWeek = 1;
+				if(dayAbbrev.equals("Tue")) dayOfWeek = 2;
+				if(dayAbbrev.equals("Wed")) dayOfWeek = 3;
+				if(dayAbbrev.equals("Thu")) dayOfWeek = 4;
+				if(dayAbbrev.equals("Fri")) dayOfWeek = 5;
+				if(dayAbbrev.equals("Sat")) dayOfWeek = 6;
+				if(dayOfWeek==-1){
+					// Send an error email, invalid body
+				}
+				String timeRange = bodySpl[i+1];
+				int startHour = -1;
+				int startMinutes = -1;
+				int duration = -1;
+				String[] dashSpl = timeRange.split("-");
+				String[] timeSpl1 = dashSpl[0].split(":");
+				String[] timeSpl2 = dashSpl[1].split(":");
+				startHour = Integer.parseInt(timeSpl1[0]);
+				startMinutes = Integer.parseInt(timeSpl1[1]);
+				duration = Integer.parseInt(timeSpl2[0]) * 60 + Integer.parseInt(timeSpl2[1]) - (startHour * 60) - startMinutes;
+				this.people.get(personName).addConflict(new ScheddarTime(startHour,startMinutes,duration,dayOfWeek,0,0,0,true));
+			}
+		}
+		else if(subjectSpl[2].equals("MeetingTimes")){ // we are parsing a MeetingTimes email
+			String meetingName = "";
+			for(int i=3;i<subjectSpl.length;i++){
+				meetingName += subjectSpl[i];
+				if(i!=subjectSpl.length-1){
+					meetingName += " ";
+				}
+			}
+			Meeting m = meetings.get(meetingName); // the meeting the person responded to
+			Person p = people.get(personName);
+			double importance = m.getPersonImportance(p);
+			for(String index : bodySpl){
+				int ind = Integer.parseInt(index);
+				m.updateScore(ind,importance);
+			}
+		}
+		else{
+			// Send an error email, invalid subject line
+			return;
+		}
 	}
 }

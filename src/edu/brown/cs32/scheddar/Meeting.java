@@ -172,4 +172,27 @@ public class Meeting {
 		return null; // shouldnt happen
 	}
 	
+	/**
+	 * Get a person's importance to a meeting based on their importance in the groups
+	 * of the meeting
+	 */
+	
+	public double getPersonImportance(Person p){
+		double maxImportance = 1.0;
+		for(Group g : this.getGroupsInvolved()){
+			if(g.getMemberRanking(p)>maxImportance){
+				maxImportance = g.getMemberRanking(p);
+			}
+		}
+		return maxImportance;
+	}
+	
+	/**
+	 * Update a score in the Hashmap of proposed time indices to scores
+	 */
+	
+	public void updateScore(int index, double score){
+		double prevScore = this.indexToScore.get(index);
+		this.indexToScore.put(index,prevScore + score);
+	}
 }

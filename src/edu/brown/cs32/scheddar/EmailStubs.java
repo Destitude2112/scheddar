@@ -52,7 +52,7 @@ public class EmailStubs {
 				" line of the email body. \n\n ";
 		toRet += "Example: If you cannot make meetings 0 and 2, respond with : \n";
 		toRet += "0 2\n\n";
-		toRet += "The subject line of the email should be <YourFirstName> <YourLastName> MeetingTimes \n\n";
+		toRet += "The subject line of the email should be <YourFirstName> <YourLastName> MeetingTimes <MeetingName> \n\n";
 		toRet += "Do not put anything else in the body or subject of the email. Thank you!";
 		
 		return toRet;

@@ -13,8 +13,6 @@ import javax.mail.Flags.Flag;
 import javax.mail.internet.*;
 import javax.mail.search.FlagTerm;
 
-import sun.misc.IOUtils;
-
 public class EmailParser {
 	
 	//TODO : Make these initialized by the admin in some way
@@ -205,7 +203,7 @@ public class EmailParser {
 		 InputStream is = p.getInputStream();
 		 String result = getStringFromInputStream(is);
 		 System.out.println(result);
-		 return;
+//		 return;
 //		 if (!(is instanceof BufferedInputStream)){
 //			 is = new BufferedInputStream(is);
 //		 }
