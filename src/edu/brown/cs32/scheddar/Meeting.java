@@ -15,12 +15,26 @@ public class Meeting {
 	private List<ScheddarTime> proposedTimes; // proposed times for the meeting to occur
 	private HashMap<Integer,Double> indexToScore; // maps proposed time indices to the weighted score for the meeting
 	
+	public List<String> dummyGroupsInvolved;
 	private List<Group> groupsInvolved; // a list of the names of groups involved in this meeting
 	private String description; // a description of this event
 	
 	private UsefulMethods methods = new UsefulMethods();
 	
 	// The number of days in advance that a meeting will be finalized
+	Meeting(String name, Boolean decided, ScheddarTime timeForFinalizing, ScheddarTime finalTime,
+			List<ScheddarTime> proposedTimes, HashMap<Integer, Double> indexToScore, 
+			List<String> dummyGroupsInvolved, String description){
+		this.name = name;
+		this.decided = decided;
+		this.timeForFinalizing = timeForFinalizing;
+		this.finalTime = finalTime;
+		this.proposedTimes = proposedTimes;
+		this.indexToScore = indexToScore;
+		this.dummyGroupsInvolved = dummyGroupsInvolved;
+		this.description = description;
+	}
+	
 	
 	private int daysBeforeMeetingFinalized = 3;
 	
@@ -37,7 +51,7 @@ public class Meeting {
 	}
 	
 	public ScheddarTime getTimeForFinalizing(){
-		return this.getTimeForFinalizing();
+		return timeForFinalizing;
 	}
 	
 	public List<ScheddarTime> getProposedTimes(){
@@ -155,6 +169,14 @@ public class Meeting {
 		}
 	}
 	
+	
+	/**
+	 * Setters
+	 */
+	
+	public boolean getDecided(){
+		return decided;
+	}
 	
 	/**
 	 * Returns a Set containing the emails of each person in a Group involved

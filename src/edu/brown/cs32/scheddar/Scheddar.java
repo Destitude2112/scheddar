@@ -1,5 +1,6 @@
 package edu.brown.cs32.scheddar;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,7 +21,8 @@ public class Scheddar implements ScheddarFace {
 	private HashMap<String,Meeting> meetings; // maps names of meetings to Meetings
 	private String name;
 	private String adminName; // the name of the admin of this Scheddar
-	
+	public ScheddarXML sxml;
+	private String dest;
 	
 	private UsefulMethods methods = new UsefulMethods();
 	
@@ -34,6 +36,38 @@ public class Scheddar implements ScheddarFace {
 	// The number of days in advance that a meeting will be finalized
 	
 	private int daysBeforeMeetingFinalized = 3;
+	
+	
+    Scheddar(String dest){
+		
+		//Instantiate the hashMaps
+		people = new HashMap<String, Person>();
+		groups = new HashMap<String, Group>();
+		meetings = new HashMap<String, Meeting>();
+		
+		//Initialize the destination and the XML file
+		this.dest = dest;
+		this.sxml = new ScheddarXML(this);
+		
+		//Adding meetings to allMeetings just to test the meetings parser
+		ScheddarTime tff = new ScheddarTime(14,30, 2, 0, 12,10, 2012, false);
+		ArrayList<ScheddarTime> nl = new ArrayList<ScheddarTime>();
+		nl.add(tff);
+		HashMap<Integer, Double> hm = new HashMap<Integer, Double>();
+		hm.put(1,1.0);
+		ArrayList<String> gi = new ArrayList<String>();
+		gi.add("noone");
+		Meeting m = new Meeting("meeting1", false, tff, tff, nl, hm, gi, "blabla");
+		meetings.put("meeting1", m);
+		
+		//Finally, load the file contents from the XML location
+		sxml.makeDBFromXML(dest);
+		
+		System.out.println("allPersons has "+ people.size() + " members");
+		System.out.println("allGroups has "+ groups.size() + " members");
+		
+	}
+	
 	
 	/**
 	 * Hi, I implemented a constructor and getRootGroup() to work with my group tree.
@@ -82,6 +116,10 @@ public class Scheddar implements ScheddarFace {
 		return this.adminName;
 	}
 	
+	public String getDest(){
+		return this.dest;
+	}
+	
 	/**
 	 * Adds a new person to the Hashmap of people
 	 * 
@@ -108,6 +146,18 @@ public class Scheddar implements ScheddarFace {
 	
 	public Person getPerson(String name) {
 		return people.get(name);
+	}
+	
+	public void setGroups(HashMap<String,Group> groups){
+		this.groups = groups;
+	}
+	
+	public void setPeople(HashMap<String,Person> people){
+		this.people = people;
+	}
+	
+	public void setMeetings(HashMap<String,Meeting> meetings){
+		this.meetings = meetings;
 	}
 	
 	/**
@@ -172,6 +222,12 @@ public class Scheddar implements ScheddarFace {
 		}
 	}
 	
+	/**
+	 * Save all the data in the corresponding ScheddarXML file
+	 */
+	public void saveData(){
+		sxml.saveLocalDataToXML();	
+	}
 	
 	/**
 	 * Return all Meetings that have a proposed time in a given month
@@ -233,6 +289,30 @@ public class Scheddar implements ScheddarFace {
 	/**
 	 * Interface methods
 	 */
+	
+	/**
+	 * Getter for groups
+	 * @return
+	 */
+	public HashMap<String, Group> getGroups(){
+		return groups;
+	}
+	
+	/**
+	 * Geter for persons
+	 * @return
+	 */
+	public HashMap<String, Person> getPersons(){
+		return people;
+	}
+	
+	/**
+	 * Getter for meetings
+	 * @return
+	 */
+	public HashMap<String, Meeting> getMeetings(){
+		return meetings;
+	}
 	
 	@Override
 	public Person getPersonFromName(String personName) {

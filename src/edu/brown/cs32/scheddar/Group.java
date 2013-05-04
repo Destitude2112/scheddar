@@ -1,5 +1,6 @@
 package edu.brown.cs32.scheddar;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,15 +9,15 @@ public class Group {
 	
 	private String name; // the name of the group
 	
-	private List<String> dummyMembers; // used for XML loading
+	public List<String> dummyMembers; // used for XML loading
 	private List<Person> members; // the full names of the members of the group
 	
 	private HashMap<String,Double> memberRankings; // maps person's name to importance rank in this group
 	
-	private List<String> dummySubgroups; // used for XML parsing
+	public List<String> dummySubgroups; // used for XML parsing
 	private List<Group> subgroups; // a list of the names of subgroups of this group
 	
-	private String dummyParentGroup; // used for XML parsing
+	public String dummyParentGroup; // used for XML parsing
 	private Group parentGroup; // the name of the parent of this group if one exists
 	
 	private UsefulMethods methods = new UsefulMethods();
@@ -176,6 +177,25 @@ public class Group {
 		this.parentGroup = null;
 	}
 	
+	public Group(String currName, String[] members,
+			HashMap<String, Double> hm,
+			ArrayList<String> groups, String currParentGroup) {
+		
+		this.name = currName;
+		
+		ArrayList<String> dummyMembers = new ArrayList<String>();
+		for(String member: members){
+			dummyMembers.add(member);
+		}
+		
+		this.dummyMembers = dummyMembers;
+		this.memberRankings = hm;
+		this.setDummySubgroups(groups);
+		this.dummyParentGroup = currParentGroup;
+		
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Returns a list of the names of every person in the group
 	 */
@@ -222,5 +242,13 @@ public class Group {
 		}
 		double toRet = this.memberRankings.get(p);
 		return toRet;		
+	}
+
+	public List<String> getDummySubgroups() {
+		return dummySubgroups;
+	}
+
+	public void setDummySubgroups(List<String> dummySubgroups) {
+		this.dummySubgroups = dummySubgroups;
 	}
 }
