@@ -15,8 +15,6 @@ import javax.mail.search.FlagTerm;
 
 public class EmailParser {
 	
-	//TODO : Make these initialized by the admin in some way
-	
 	static String username;
 	static String password;
 	
