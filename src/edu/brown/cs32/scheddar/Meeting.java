@@ -20,7 +20,9 @@ public class Meeting {
 	
 	private UsefulMethods methods = new UsefulMethods();
 	
-	private int timeBeforeMeetingFinalized = 72;
+	// The number of days in advance that a meeting will be finalized
+	
+	private int daysBeforeMeetingFinalized = 3;
 	
 	/**
 	 * Getter Functions
@@ -133,10 +135,23 @@ public class Meeting {
 		
 		else{
 			ScheddarTime earliestTime = Collections.min(this.proposedTimes);
+			int newDay = earliestTime.getDay() - this.daysBeforeMeetingFinalized;
+			int newMonth = earliestTime.getMonth();
+			int newYear = earliestTime.getYear();
+			int newHour = earliestTime.getStartHour();
+			int newMinutes = earliestTime.getStartMinutes();
 			
-			// TODO: Calculate the time by which a decision must
-			// be made
+			if(newDay <= 0){
+				newMonth--;
+				if(newMonth==0){ 
+					newMonth = 12; // if was january and backed up, go to december
+					newYear = newYear--;
+				}
+				newDay = methods.daysInMonth(newMonth,newYear) + newDay;
+			}
 			
+			ScheddarTime timeToFinalize = new ScheddarTime(newHour,newMinutes,0,0,newDay,newMonth,newYear,false);
+			this.timeForFinalizing = timeToFinalize;
 		}
 	}
 	

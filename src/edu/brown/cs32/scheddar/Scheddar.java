@@ -21,19 +21,19 @@ public class Scheddar implements ScheddarFace {
 	private String name;
 	private String adminName; // the name of the admin of this Scheddar
 	
+	
 	private UsefulMethods methods = new UsefulMethods();
 	
 	//TODO : Decide how/where to give username/password
-	private EmailParser emailParser = new EmailParser();
 	
-	// This is the number of hours before the EARLIEST proposed time for a meeting
-	// that the program will calculate the best meeting time, decide on it,
-	// tell the GUI to update accordingly, and email all people involved
-	// with the decided time. I set it to 3 days, can change.   ~ atutino
+	private String username; // the username of the admin's email account
+	private String password; // the password of the admin's email account
 	
-	//TODO:Decide if this should be here on a meeting by meeting basis
+	private EmailParser emailParser;
 	
-	private int timeBeforeMeetingFinalized = 72;
+	// The number of days in advance that a meeting will be finalized
+	
+	private int daysBeforeMeetingFinalized = 3;
 	
 	/**
 	 * Hi, I implemented a constructor and getRootGroup() to work with my group tree.
@@ -46,12 +46,16 @@ public class Scheddar implements ScheddarFace {
 	 * @param name
 	 */
 	
-	public Scheddar(String name) {
-		this.name = name;
+	public Scheddar(String rootGroupName, String adminName, String username, String password) {
+		this.name = rootGroupName;
 		groups = new HashMap<String,Group>();
 		people = new HashMap<String,Person>();
 		meetings = new HashMap<String,Meeting>();
-		addGroup(new Group(name));
+		addGroup(new Group(rootGroupName));
+		this.adminName = adminName;
+		this.username = username;
+		this.password = password;
+		this.emailParser = new EmailParser(username,password);
 	}
 	
 	/**
@@ -72,6 +76,10 @@ public class Scheddar implements ScheddarFace {
 	 */
 	public Group getRootGroup() {
 		return groups.get(name);
+	}
+	
+	public String getAdminName(){
+		return this.adminName;
 	}
 	
 	/**
