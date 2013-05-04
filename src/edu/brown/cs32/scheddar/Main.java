@@ -26,7 +26,7 @@ public class Main {
 		 <description>blabla</description></meeting></meeting></All>
 		 */
 		
-		String dest = "/Users/Prateek/Desktop/" + "groups.xml"; //Can specify any location of an XML file
+		String dest = "/home/atutino/Desktop/test.xml"; //Can specify any location of an XML file
 		Scheddar s1 = new Scheddar(dest); //This creates a Scheddar object from all that is in the XML
 		
 		//Application use

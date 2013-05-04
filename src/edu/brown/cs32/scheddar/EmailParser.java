@@ -271,9 +271,9 @@ public class EmailParser {
 		potentialTimes.add(new ScheddarTime(2,45,30,4,2,2,2112,false));
 		Meeting testMeeting = new Meeting("Mayhem Festival",potentialTimes,null,"",null);
 		testMeeting.setFinalTime(new ScheddarTime(7,30,90,3,3,3,2113,false));
-		sendMeetingRequestEmail("destitude2112@hotmail.com","Mordecai",testMeeting);
+	//	sendMeetingRequestEmail("destitude2112@hotmail.com","Mordecai",testMeeting);
 		
-	//	sendFinalizedMeetingEmail("destitude2112@hotmail.com", "Rigby", testMeeting);
+	//	sendFinalizedMeetingEmail("destitude2112@hotmail.com", "Alec", testMeeting);
 		List<Tuple<String,String>> testTuples  = getEmailTuples();
 		for(Tuple<String,String> tuple : testTuples){
 			System.out.println("Subject: " + tuple.x);

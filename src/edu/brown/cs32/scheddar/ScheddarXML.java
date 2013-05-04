@@ -812,7 +812,7 @@ public class ScheddarXML{
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer t = tf.newTransformer();
 			DOMSource src = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("/Users/Prateek/Desktop/groups.xml"));
+			StreamResult result = new StreamResult(new File(myScheddar.getDest()));
 			
 			t.transform(src, result);
 			

@@ -116,6 +116,10 @@ public class Scheddar implements ScheddarFace {
 		return this.adminName;
 	}
 	
+	public String getDest(){
+		return this.dest;
+	}
+	
 	/**
 	 * Adds a new person to the Hashmap of people
 	 * 

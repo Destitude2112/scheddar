@@ -38,8 +38,14 @@ well as any Groups that the new Group refers to (i.e. a group that is a child of
 the child values of that group).
 
 When adding a new person, the admin must fill out a form with fields for the person's name, email, phone number, a short
-description, and a list of the groups that the person is in.
+description, and a list of the groups that the person is in, with the importance of that person in each of the groups.
 
 When a new person is created and added to groups, the EmailParser method sendAddedPersonEmail() should be called, which
 sends an email notifying the person that they have been added to groups, and requests that they send an email containing
 recurring conflicts.
+
+When a new meeting is created, the admin must enter the name of the meeting, a list of the groups involved, a decription of
+the meeting, and a list of proposed date/times for the meeting to occur at. This should instantiate a new Meeting object. However,
+before this Meeting is added to the main HashMap of meetings, the program runs getRecurringRankings on it to get estimates
+of attendance for each proposed time, and displays them to the admin. The admin can then choose to submit the Meeting, or
+change the times if he/she is unhappy with the predicted weighted attendance of the meeting.
