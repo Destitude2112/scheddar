@@ -30,18 +30,20 @@ import edu.brown.cs32.scheddar.Scheddar;
 public class ScheddarForm extends AbstractForm {
 	private static final long serialVersionUID = 1L;
 
-	JTextField nameField;
+	JTextField nameField,adminField,emailField,passwordField;
 	GUIScheddar frame;
 	
-	public ScheddarForm(ScheddarPane s) {
+	public ScheddarForm(ScheddarPane s, GUIScheddar g) {
 		super(s);
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-		frame = null;
+		frame = g;
 		
 		//getting name of organization
 		nameField = new JTextField(20);	
-		// TODO: add fields for admin, email, password
+		adminField = new JTextField(20);
+		emailField = new JTextField(20);
+		passwordField = new JTextField(20);
 		
 		// making "Create" button
 		
@@ -51,11 +53,12 @@ public class ScheddarForm extends AbstractForm {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (nameField.getText() != "") {
-					String t = nameField.getText();
-					_scheddarPane.renderScheddar(new Scheddar());
-					frame.setGroup(t);
+					String name = nameField.getText();
+					_scheddarPane.renderScheddar(new Scheddar(nameField.getText(), adminField.getText(), emailField.getText(), passwordField.getText()));
+					frame.setGroup(name);
 					JMenuBar mb = frame.getMenu();
 					mb.getMenu(1).setEnabled(true);
+					mb.getMenu(2).setEnabled(true);
 					dispose();
 				}
 			}
@@ -65,6 +68,12 @@ public class ScheddarForm extends AbstractForm {
 		// adding everything
 		panel.add(new JLabel("Organization Name:"));
 		panel.add(nameField);
+		panel.add(new JLabel("Administrator Name:"));
+		panel.add(adminField);
+		panel.add(new JLabel("Email:"));
+		panel.add(emailField);
+		panel.add(new JLabel("Email Password:"));
+		panel.add(passwordField);
 		panel.add(create);
 		add(panel);
 		pack();
