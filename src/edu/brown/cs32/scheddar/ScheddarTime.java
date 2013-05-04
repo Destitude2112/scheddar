@@ -163,4 +163,17 @@ public class ScheddarTime implements Comparable {
 			return new ScheddarTime(newHours,newMinutes,0,newDayOfWeek,newDay,1,newYear+1,false);
 		}
 	}
+	
+	/**
+	 * Returns the time as a nice String
+	 */
+	
+	public String timeToString(){
+		if(this.startMinutes<10){
+			String minutes = ("0" + Integer.toString(this.startMinutes));
+			return (Integer.toString(this.startHour) + ":" + minutes);
+		} else {
+			return (Integer.toString(this.startHour) + ":" + Integer.toString(this.startMinutes));
+		}
+	}
 }

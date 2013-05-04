@@ -79,6 +79,13 @@ public class Meeting {
 		this.proposedTimes = timeList;
 	}
 	
+	// THIS IS FOR TESTING PURPOSES ONLY. FINALTIME SHOULD
+	// NOT BE SET USING THIS METHOD!
+	
+	public void setFinalTime(ScheddarTime time){
+		this.finalTime = time;
+	}
+	
 	/**
 	 * More convenient setters
 	 */

@@ -23,7 +23,6 @@ public class Scheddar implements ScheddarFace {
 	
 	private UsefulMethods methods = new UsefulMethods();
 	
-	
 	// This is the number of hours before the EARLIEST proposed time for a meeting
 	// that the program will calculate the best meeting time, decide on it,
 	// tell the GUI to update accordingly, and email all people involved
