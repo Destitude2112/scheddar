@@ -1,5 +1,6 @@
 package edu.brown.cs32.scheddar;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -100,15 +101,18 @@ public class UsefulMethods {
 	
 	
 	/**
-	 * To be filled in: return a number (1-7) indicating the day of the week
+	 * To be filled in: return a number (0->6) indicating the day of the week
 	 * 
-	 * @param day
-	 * @param month
-	 * @param year
+	 * @param day the day number
+	 * @param month the month number
+	 * @param year the year number
 	 * @return
 	 */
+	
 	public static int dayOfTheWeek(int day, int month, int year) {
-		return -1;
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date(year-1900,month-1,day));
+		return c.get(Calendar.DAY_OF_WEEK)-1;
 	}
 	
 	//TODO : Since this our application is meant to be used mainly by businesses, I assume

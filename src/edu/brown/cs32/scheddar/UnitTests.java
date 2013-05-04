@@ -125,4 +125,13 @@ public class UnitTests {
 		assertTrue(methods.daysInMonth(2,2112)==29);
 		assertTrue(methods.daysInMonth(9,1337)==30);
 	}
+	
+	// Test dayOfWeek method
+	@Test
+	public void testDayOfTheWeek(){
+		UsefulMethods methods = new UsefulMethods();
+		System.out.println(methods.dayOfTheWeek(4,5,2013));
+		assertTrue(methods.dayOfTheWeek(4,5,2013)==6);
+		assertTrue(methods.dayOfTheWeek(30,9,2014)==2);
+	}
 }
