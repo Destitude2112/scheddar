@@ -1,5 +1,6 @@
 package edu.brown.cs32.scheddar;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -102,7 +103,15 @@ public class Person {
 		this.conflicts = new LinkedList<ScheddarTime>();
 	}
 	
-	
+	Person(String firstName, String lastName, String emailID, String phone, String description, List<ScheddarTime> conflicts){
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = emailID;
+		this.phoneNum = phone;
+		this.description = description;
+		this.conflicts = conflicts;
+	}
+
 	/**
 	 * Methods to add/remove ScheddarTime conflicts. The boolean isRecurring should be
 	 * set to true for these times
