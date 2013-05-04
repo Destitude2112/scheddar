@@ -72,10 +72,10 @@ public class GroupForm extends AbstractForm {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Group g = new Group(nameField.getText().trim());
-				g.setParentGroup(_scheddarPane._scheddar.getGroup((String)groupList.getSelectedItem()));
+				g.setParentGroup(_scheddarPane._scheddar.getGroupFromName((String)groupList.getSelectedItem()));
 				
 				for (String name : memberList.getSelectedValuesList())
-					g.addMember(_scheddarPane._scheddar.getPerson(name));
+					g.addMember(_scheddarPane._scheddar.getPersonFromName(name));
 				
 				_scheddarPane._scheddar.addGroup(g);
 				dispose();

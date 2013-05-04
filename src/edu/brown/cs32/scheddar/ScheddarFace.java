@@ -53,7 +53,7 @@ public interface ScheddarFace {
 	 */
 	
 	
-	
+	public List<Meeting> dayMeetings(int day, int month, int year);
 	
 	
 	
@@ -61,5 +61,6 @@ public interface ScheddarFace {
 	 * Methods for adding things to the schedule
 	 */
 	public void addPerson(Person p);
+	public void addGroup(Group g);
 	
 }

@@ -6,9 +6,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.geom.Line2D;
+import java.util.Date;
+import java.util.List;
 
 import javax.swing.JPanel;
+
+import edu.brown.cs32.scheddar.*;
 
 
 /**
@@ -39,6 +44,11 @@ public class DayPane extends ScheddarSubPane {
 		return d;
 	}
 	
+	private Rectangle getTimeBlock(ScheddarTime st) {
+		Dimension d = getPreferredSize();
+		return null;
+	}
+	
 	
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -51,11 +61,6 @@ public class DayPane extends ScheddarSubPane {
 		g2.draw(new Line2D.Double(0,0,0,size.height));
 		g2.draw(new Line2D.Double(0,0,size.width,0));
 		g2.draw(new Line2D.Double(size.width,size.height,0,size.height));
-		if (i < 12) {
-			g2.drawString((int)i + " am",3,(int)size.height/24.0*i-3);
-		} else {
-			g2.drawString((int)(i + " am",3,(int)size.height/24.0*i-3);
-		}
 		g2.draw(new Line2D.Double(size.width,size.height,size.width,0));
 		
 		g2.setPaint(Color.gray);
@@ -65,12 +70,19 @@ public class DayPane extends ScheddarSubPane {
 			
 			g2.draw(new Line2D.Double(0,size.height/24.0*i,size.width,size.height/24.0*i));
 			
-			g2.drawString((int)i+":00",3,(int)size.height/24.0*i-3);
+			g2.drawString((int)i+":00",3,(int)(size.height/24.0*i-3));
 			
 		}
 		
-		List<Meeting> 
+		g2.drawString(new Date().toString(), 10, 3);
 		
+		List<Meeting> meetings = _scheddar.dayMeetings(day, month, year);
+		
+		for (Meeting m : meetings) {
+			if (m.isDecided()) {
+				
+			}
+		}
 		
 		
 		

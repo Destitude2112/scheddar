@@ -1,5 +1,6 @@
 package edu.brown.cs32.scheddar.gui;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -78,6 +79,12 @@ public class MeetingPane extends ScheddarSubPane {
 //		panel.add(importanceThreshold);
 		panel.add(save);
 		add(panel);		
+	}
+	
+	public Dimension getPreferredSize() {
+		Dimension d = _scheddarPane.getPreferredSize();
+		d.width = (int)(d.width * .75);
+		return d;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package edu.brown.cs32.scheddar.gui;
 
+import edu.brown.cs32.scheddar.*;
+
 /**
  * @author sdemane
  *
@@ -9,8 +11,10 @@ package edu.brown.cs32.scheddar.gui;
 public class WeekPane extends CalendarPane {
 	private static final long serialVersionUID = 1L;
 	
-	public WeekPane(ScheddarPane s) {
+	public WeekPane(ScheddarPane s, int day, int month, int year) {
 		super(s);
-		// TODO Auto-generated constructor stub
+		
+		int weekday = UsefulMethods.dayOfTheWeek(day, month, year);
+		
 	}
 }

@@ -1,6 +1,8 @@
 package edu.brown.cs32.scheddar.gui;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 
 import edu.brown.cs32.scheddar.*;
 
@@ -22,6 +24,8 @@ public abstract class ScheddarSubPane extends JPanel {
 	public ScheddarSubPane(ScheddarPane s) {
 		_scheddarPane = s;
 		_scheddar = s._scheddar;
+		
+		setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 	}
 	
 }

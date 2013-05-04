@@ -41,7 +41,7 @@ public class ScheddarForm extends AbstractForm {
 		
 		//getting name of organization
 		nameField = new JTextField(20);	
-		
+		// TODO: add fields for admin, email, password
 		
 		// making "Create" button
 		
@@ -52,7 +52,7 @@ public class ScheddarForm extends AbstractForm {
 			public void actionPerformed(ActionEvent e) {
 				if (nameField.getText() != "") {
 					String t = nameField.getText();
-					_scheddarPane.renderScheddar(new Scheddar(t));
+					_scheddarPane.renderScheddar(new Scheddar());
 					frame.setGroup(t);
 					JMenuBar mb = frame.getMenu();
 					mb.getMenu(1).setEnabled(true);

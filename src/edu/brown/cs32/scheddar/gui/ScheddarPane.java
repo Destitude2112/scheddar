@@ -29,6 +29,9 @@ public class ScheddarPane extends JPanel {
 		_size = gui._screenSize;
 		_groupTree = new GroupTreePane(this);
 		_calendar = new CalendarPane(this);
+		
+		add(_groupTree);
+		add(_calendar);
 	}
 	
 	public void renderScheddar(ScheddarFace s) {
