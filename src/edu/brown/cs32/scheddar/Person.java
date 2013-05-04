@@ -136,7 +136,7 @@ public class Person {
 	
 	public void removeConflictList(List<ScheddarTime> conflictList){
 		for(ScheddarTime c : conflictList){
-			this.removeConflict(c);
+			this.removeConflict(c);  
 		}
 	}
 	

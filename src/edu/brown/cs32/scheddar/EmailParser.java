@@ -1,9 +1,19 @@
 package edu.brown.cs32.scheddar;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 import javax.mail.*;
+import javax.mail.Flags.Flag;
 import javax.mail.internet.*;
+import javax.mail.search.FlagTerm;
+
+import sun.misc.IOUtils;
 
 public class EmailParser {
 	
@@ -134,12 +144,107 @@ public class EmailParser {
 		}	
 	}
 	
+	/**
+	 * Read in all of the emails the account has received
+	 */
+	
+	public static void getReceivedEmails(){
+		Folder inbox;
+		Properties props = System.getProperties();
+		props.setProperty("mail.store.protocol", "imaps");
+		try{
+			Session session = Session.getDefaultInstance(props,null);
+			Store store = session.getStore("imaps");
+			store.connect("imap.gmail.com",username,password);
+			
+			inbox = store.getFolder("Inbox");
+			inbox.open(Folder.READ_ONLY);
+			
+			Message messages[] = inbox.search(new FlagTerm(new Flags(Flag.SEEN),false));
+			
+			FetchProfile fp = new FetchProfile();
+			fp.add(FetchProfile.Item.ENVELOPE);
+			fp.add(FetchProfile.Item.CONTENT_INFO);
+			inbox.fetch(messages, fp);
+			
+			try{
+				printAllMessages(messages);
+				inbox.close(true);
+				store.close();
+			} catch (Exception ex) {
+				System.out.println("Exception occurred at time of read mail");
+				ex.printStackTrace();
+			}
+		} catch (NoSuchProviderException e) {
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void printAllMessages(Message[] msgs) throws Exception{
+		for(int i=0;i<msgs.length;i++){
+			String subject = msgs[i].getSubject();
+			System.out.println("Subject : " + subject);
+			getContent(msgs[i]);
+		}
+	}
+	
+	public static void getContent(Message msg){
+		try{
+			Multipart mp = (Multipart) msg.getContent();
+		//	System.out.println(mp.getBodyPart(0));
+			dumpPart(mp.getBodyPart(0));
+		} catch (Exception ex) {
+			System.out.println("Exception arise at get Content");
+			ex.printStackTrace();
+		}
+	 }
+	 
+	 public static void dumpPart(Part p) throws Exception{
+		 InputStream is = p.getInputStream();
+		 String result = getStringFromInputStream(is);
+		 System.out.println(result);
+		 return;
+//		 if (!(is instanceof BufferedInputStream)){
+//			 is = new BufferedInputStream(is);
+//		 }
+//		 int c;
+//		 System.out.println("Message : ");
+//		 while ((c = is.read()) != -1){
+//			 System.out.write(c);
+//		 }
+	 }
+	 
+	 public static String getStringFromInputStream(InputStream is){
+		 BufferedReader br = null;
+		 StringBuilder sb = new StringBuilder();
+		 
+		 String line;
+		 try{
+			 br = new BufferedReader(new InputStreamReader(is));
+			 while((line = br.readLine()) != null){
+				 sb.append(line);
+			 }
+		 } catch (IOException e){
+			 e.printStackTrace();
+		 } finally {
+			 if (br!=null){
+				 try{
+					 br.close();
+				 } catch (IOException e){
+					 e.printStackTrace();
+				 }
+			 }
+		 }
+		 return sb.toString();
+	 }
 	// For testing purposes
 	
 	public static void main(String[] args){
-	//	List<String> testList = new LinkedList<String>();
-	//	testList.add("Win Group");
-	//	testList.add("TSM");
+		List<String> testList = new LinkedList<String>();
+		testList.add("Win Group");
+		testList.add("TSM");
 	//	sendAddedPersonEmail("destitude2112@hotmail.com","Desteh Guyman","Mordecai",testList);
 		
 		List<ScheddarTime> potentialTimes = new LinkedList<ScheddarTime>();
@@ -148,8 +253,9 @@ public class EmailParser {
 		potentialTimes.add(new ScheddarTime(2,45,30,4,2,2,2112,false));
 		Meeting testMeeting = new Meeting("Mayhem Festival",potentialTimes,null,"",null);
 		testMeeting.setFinalTime(new ScheddarTime(7,30,90,3,3,3,2113,false));
-		sendMeetingRequestEmail("destitude2112@hotmail.com","Mordecai",testMeeting);
+	//	sendMeetingRequestEmail("destitude2112@hotmail.com","Mordecai",testMeeting);
 		
-		sendFinalizedMeetingEmail("destitude2112@hotmail.com", "Rigby", testMeeting);
+	//	sendFinalizedMeetingEmail("destitude2112@hotmail.com", "Rigby", testMeeting);
+	//	getReceivedEmails();
 	}
 }

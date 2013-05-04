@@ -24,7 +24,13 @@ public class EmailStubs {
 		}
 		toRet += "\n";
 		toRet += "Please respond to this email with any recurring conflicts you have.\n";
-		toRet += "The proper format is :";
+		toRet += "The proper format is a SINGLE LINE of as many <Day Abbrev> <Time Range> as you need. \n";
+		toRet += "For example: \n\n";
+		toRet += "Mon 11:30-12:30 Tue 3:00-4:00 Wed 17:30-17:45 Thu 8:00-9:00 Fri 9:00-10:00 Sat 23:00-23:30 Sun 12:00-13:00\n\n";
+		toRet += "Make sure the day abbreviations are correct. Ranges should NOT span from one day into another.\n";
+		toRet += "The subject of your email should be <YourFirstName> <YourLastName> Conflicts\n";
+		toRet += "Do NOT put anything else in the subject or body of your response.\n\n";
+		toRet += "Thank you!";
 		
 		return toRet;
 	}
@@ -46,7 +52,8 @@ public class EmailStubs {
 				" line of the email body. \n\n ";
 		toRet += "Example: If you cannot make meetings 0 and 2, respond with : \n";
 		toRet += "0 2\n\n";
-		toRet += "Do not put anything else in the body of the email. Thank you!";
+		toRet += "The subject line of the email should be <YourFirstName> <YourLastName> MeetingTimes \n\n";
+		toRet += "Do not put anything else in the body or subject of the email. Thank you!";
 		
 		return toRet;
 	}
