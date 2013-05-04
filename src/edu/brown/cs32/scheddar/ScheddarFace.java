@@ -10,7 +10,7 @@ public interface ScheddarFace {
 	 * Need to a method to returns people in a group who are not in
 	 * any subgroups of that group as Strings
 	 */
-	
+
 	
 	/**
 	 * Methods to get the object associated with a name
@@ -51,5 +51,15 @@ public interface ScheddarFace {
 	/**
 	 * Methods to get data about a meeting from the meeting's name
 	 */
+	
+	
+	
+	
+	
+	
+	/**
+	 * Methods for adding things to the schedule
+	 */
+	public void addPerson(Person p);
 	
 }

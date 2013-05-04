@@ -69,7 +69,7 @@ public class PersonForm extends AbstractForm {
 			public void actionPerformed(ActionEvent e) {
 				Person p = new Person(firstName.getText().trim(),lastName.getText().trim(),email.getText().trim(),phone.getText().trim(),description.getText().trim());								
 				for (String name : groupMemberships.getSelectedValuesList()) {
-					Group g = _scheddarPane._scheddar.getGroup(name);
+					Group g = _scheddarPane._scheddar.getGroupFromName(name);
 					while(g!=null) {
 						p.addGroup(g);
 						g = g.getParentGroup();

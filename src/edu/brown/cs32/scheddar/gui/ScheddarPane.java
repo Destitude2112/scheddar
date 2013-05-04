@@ -20,7 +20,7 @@ public class ScheddarPane extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	Scheddar _scheddar;
+	ScheddarFace _scheddar;
 	Dimension _size;
 	GroupTreePane _groupTree;
 	CalendarPane _calendar;
@@ -31,7 +31,7 @@ public class ScheddarPane extends JPanel {
 		_calendar = new CalendarPane(this);
 	}
 	
-	public void renderScheddar(Scheddar s) {
+	public void renderScheddar(ScheddarFace s) {
 		_scheddar = s;
 	}
 	
@@ -52,6 +52,6 @@ public class ScheddarPane extends JPanel {
 	}
 	
 	public String[] getGroupMembers(String name) {
-		return _scheddar.getGroup(name).getPeopleFullNamesInGroup().toArray(new String[0]);
+		return _scheddar.getGroupFromName(name).getPeopleFullNamesInGroup().toArray(new String[0]);
 	}
 }

@@ -17,7 +17,7 @@ public abstract class ScheddarSubPane extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	ScheddarPane _scheddarPane;
-	Scheddar _scheddar;
+	ScheddarFace _scheddar;
 	
 	public ScheddarSubPane(ScheddarPane s) {
 		_scheddarPane = s;

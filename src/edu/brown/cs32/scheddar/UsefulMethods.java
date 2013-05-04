@@ -18,7 +18,7 @@ public class UsefulMethods {
 	 * @return true if it is a leap year, false if not
 	 */
 	
-	public boolean isLeapYear(int year){
+	public static boolean isLeapYear(int year){
 		if(year%400==0) return true;
 		else if (year%100==0) return false;
 		else if (year%4==0) return true;
@@ -30,7 +30,7 @@ public class UsefulMethods {
 	 * duration of 0
 	 */
 	
-	public ScheddarTime getCurrentTime(){
+	public static ScheddarTime getCurrentTime(){
 		Date date = new Date();
 		String dateString = date.toString();
 		System.out.println(dateString);
@@ -81,7 +81,7 @@ public class UsefulMethods {
 	 *@param year the year (used for deciding if leap year)
 	 */
 	
-	public int daysInMonth(int month,int year){
+	public static int daysInMonth(int month,int year){
 		if(month==9 || month==4 || month==6 || month==11){
 			return 30;
 		}
@@ -98,6 +98,19 @@ public class UsefulMethods {
 		}
 	}
 	
+	
+	/**
+	 * To be filled in: return a number (1-7) indicating the day of the week
+	 * 
+	 * @param day
+	 * @param month
+	 * @param year
+	 * @return
+	 */
+	public static int dayOfTheWeek(int day, int month, int year) {
+		return -1;
+	}
+	
 	//TODO : Since this our application is meant to be used mainly by businesses, I assume
 	// here that there are no meetings that run from one day into the next (businesses
 	// generally do not hold meetings that go through midnight into the next day)
@@ -111,7 +124,7 @@ public class UsefulMethods {
 	 * @return true if the times overlap, false if they do not
 	 */
 	
-	public boolean doTimesConflict(ScheddarTime t1, ScheddarTime t2){
+	public static boolean doTimesConflict(ScheddarTime t1, ScheddarTime t2){
 		if (t1.getYear() != t2.getYear()) return false;
 		if (t1.getMonth() != t2.getMonth()) return false;
 		if (t1.getDay() != t2.getDay()) return false;
