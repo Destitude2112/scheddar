@@ -20,6 +20,8 @@ public class Meeting {
 	
 	private UsefulMethods methods = new UsefulMethods();
 	
+	private int timeBeforeMeetingFinalized = 72;
+	
 	/**
 	 * Getter Functions
 	 */
@@ -132,9 +134,8 @@ public class Meeting {
 		else{
 			ScheddarTime earliestTime = Collections.min(this.proposedTimes);
 			
-			// TODO:Decide if the time between deciding on the final meeting time
-			// should be on a meeting-by-meeting basis or global. If global, figure
-			// out how to pass it in here   ~ atutino
+			// TODO: Calculate the time by which a decision must
+			// be made
 			
 		}
 	}

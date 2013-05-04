@@ -142,12 +142,17 @@ public class EmailParser {
 		}	
 	}
 	
+	//TODO : When you read an email here, set it to being read so the program does not needlessly check old scheduling
+	// emails and the admin does not have to clear the inbox out manually
+	
 	/**
-	 * Read in all of the emails the account has received
+	 * Read in all of the unread emails that the account has, and return a List of Tuple<String,String>
+	 * The first String is the subject of the email, and the second is the body.
 	 */
 	
-	public static void getReceivedEmails(){
+	public static List<Tuple<String,String>> getEmailTuples(){
 		Folder inbox;
+		List<Tuple<String,String>> emailTuples = new LinkedList<Tuple<String,String>>();
 		Properties props = System.getProperties();
 		props.setProperty("mail.store.protocol", "imaps");
 		try{
@@ -166,9 +171,10 @@ public class EmailParser {
 			inbox.fetch(messages, fp);
 			
 			try{
-				printAllMessages(messages);
+				printAllMessages(messages,emailTuples);
 				inbox.close(true);
 				store.close();
+				return emailTuples;
 			} catch (Exception ex) {
 				System.out.println("Exception occurred at time of read mail");
 				ex.printStackTrace();
@@ -178,31 +184,32 @@ public class EmailParser {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
+		return null; // should never be reached
 	}
 	
-	public static void printAllMessages(Message[] msgs) throws Exception{
+	public static void printAllMessages(Message[] msgs, List<Tuple<String,String>> emailTuples) throws Exception{
 		for(int i=0;i<msgs.length;i++){
 			String subject = msgs[i].getSubject();
-			System.out.println("Subject : " + subject);
-			getContent(msgs[i]);
+			emailTuples.add(new Tuple<String,String>(subject,"")); // add the subject to the list of emailTuples
+			getContent(msgs[i],emailTuples,i);
 		}
 	}
 	
-	public static void getContent(Message msg){
+	public static void getContent(Message msg, List<Tuple<String,String>> emailTuples,int index){
 		try{
 			Multipart mp = (Multipart) msg.getContent();
 		//	System.out.println(mp.getBodyPart(0));
-			dumpPart(mp.getBodyPart(0));
+			emailTuples.get(index).y = dumpPart(mp.getBodyPart(0));
 		} catch (Exception ex) {
 			System.out.println("Exception arise at get Content");
 			ex.printStackTrace();
 		}
 	 }
 	 
-	 public static void dumpPart(Part p) throws Exception{
+	 public static String dumpPart(Part p) throws Exception{
 		 InputStream is = p.getInputStream();
 		 String result = getStringFromInputStream(is);
-		 System.out.println(result);
+		 return result;
 //		 return;
 //		 if (!(is instanceof BufferedInputStream)){
 //			 is = new BufferedInputStream(is);
@@ -237,6 +244,8 @@ public class EmailParser {
 		 }
 		 return sb.toString();
 	 }
+	 
+	 
 	// For testing purposes
 	
 	public static void main(String[] args){
@@ -251,9 +260,13 @@ public class EmailParser {
 		potentialTimes.add(new ScheddarTime(2,45,30,4,2,2,2112,false));
 		Meeting testMeeting = new Meeting("Mayhem Festival",potentialTimes,null,"",null);
 		testMeeting.setFinalTime(new ScheddarTime(7,30,90,3,3,3,2113,false));
-	//	sendMeetingRequestEmail("destitude2112@hotmail.com","Mordecai",testMeeting);
+		sendMeetingRequestEmail("destitude2112@hotmail.com","Mordecai",testMeeting);
 		
 	//	sendFinalizedMeetingEmail("destitude2112@hotmail.com", "Rigby", testMeeting);
-	//	getReceivedEmails();
+		List<Tuple<String,String>> testTuples  = getEmailTuples();
+		for(Tuple<String,String> tuple : testTuples){
+			System.out.println("Subject: " + tuple.x);
+			System.out.println("Message: " + tuple.y);
+		}
 	}
 }
