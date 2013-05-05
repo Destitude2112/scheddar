@@ -21,12 +21,13 @@ public class ScheddarPane extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	ScheddarFace _scheddar;
-	Dimension _size;
+	GUIScheddar _gui;
 	GroupTreePane _groupTree;
 	CalendarPane _calendar;
 	
-	public ScheddarPane(GUIScheddar gui) {
-		_size = gui._screenSize;
+	public ScheddarPane(GUIScheddar gui, ScheddarFace s) {
+		_gui = gui;
+		_scheddar = s;
 		_groupTree = new GroupTreePane(this);
 		_calendar = new CalendarPane(this);
 		
@@ -34,13 +35,13 @@ public class ScheddarPane extends JPanel {
 		add(_calendar);
 	}
 	
-	public void renderScheddar(ScheddarFace s) {
+	public void setScheddar(ScheddarFace s) {
 		_scheddar = s;
 	}
 	
 	@Override
 	public Dimension getPreferredSize() {
-		return _size;
+		return _gui._screenSize;
 	}
 	
 	/**

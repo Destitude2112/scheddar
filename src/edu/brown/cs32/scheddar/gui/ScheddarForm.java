@@ -1,10 +1,12 @@
 package edu.brown.cs32.scheddar.gui;
 
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,9 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 
-import edu.brown.cs32.scheddar.Group;
-import edu.brown.cs32.scheddar.Scheddar;
+import edu.brown.cs32.scheddar.*;
 
 /**
  * @author sdemane
@@ -31,13 +33,15 @@ public class ScheddarForm extends AbstractForm {
 	private static final long serialVersionUID = 1L;
 
 	JTextField nameField,adminField,emailField,passwordField;
-	GUIScheddar frame;
 	
-	public ScheddarForm(ScheddarPane s, GUIScheddar g) {
+	GUIScheddar _gui;
+	
+	public ScheddarForm(ScheddarPane s, GUIScheddar gui) {
 		super(s);
+		_gui = gui;
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-		frame = g;
 		
 		//getting name of organization
 		nameField = new JTextField(20);	
@@ -53,35 +57,76 @@ public class ScheddarForm extends AbstractForm {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (nameField.getText() != "") {
-					String name = nameField.getText();
-					_scheddarPane.renderScheddar(new Scheddar(nameField.getText(), adminField.getText(), emailField.getText(), passwordField.getText()));
-					frame.setGroup(name);
-					JMenuBar mb = frame.getMenu();
-					mb.getMenu(1).setEnabled(true);
-					mb.getMenu(2).setEnabled(true);
-					dispose();
+					
+					ScheddarFace s = new Scheddar(nameField.getText(), adminField.getText(), emailField.getText(), passwordField.getText());
+					
+					_scheddarPane = new ScheddarPane(_gui, s);
+					
+					setVisible(false);
+					
 				}
 			}
 		});
 		
+		JButton cancel = new JButton("Cancel");
+		cancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				setVisible(false);
+			}
+		});
 		
-		// adding everything
-		panel.add(new JLabel("Organization Name:"));
-		panel.add(nameField);
-		panel.add(new JLabel("Administrator Name:"));
-		panel.add(adminField);
-		panel.add(new JLabel("Email:"));
-		panel.add(emailField);
-		panel.add(new JLabel("Email Password:"));
-		panel.add(passwordField);
-		panel.add(create);
-		add(panel);
+		
+		// adding intro
+		panel.add(Box.createVerticalStrut(20));
+		panel.add(new JLabel("Create a new Scheddar project:"));
+		panel.add(Box.createVerticalStrut(15));
+		
+		
+		// adding fields
+		JPanel fieldPanel = new JPanel();
+		fieldPanel.setLayout(new GridLayout(4, 2, 5, 10));
+		
+		fieldPanel.add(new JLabel("Organization Name:",SwingConstants.RIGHT));
+		fieldPanel.add(nameField);
+		
+		fieldPanel.add(new JLabel("Administrator Name:",SwingConstants.RIGHT));
+		fieldPanel.add(adminField);
+		
+		fieldPanel.add(new JLabel("Email:",SwingConstants.RIGHT));
+		fieldPanel.add(emailField);
+		
+		fieldPanel.add(new JLabel("Email Password:",SwingConstants.RIGHT));
+		fieldPanel.add(passwordField);
+		
+		panel.add(fieldPanel);
+		panel.add(Box.createVerticalStrut(15));
+		
+		
+		// different panel for buttons.
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.X_AXIS));
+		buttonPanel.add(Box.createHorizontalGlue());
+		buttonPanel.add(create);
+		buttonPanel.add(Box.createHorizontalStrut(5));
+		buttonPanel.add(cancel);
+		
+		panel.add(buttonPanel);
+		panel.add(Box.createVerticalStrut(20));
+		
+		
+		// adding horizontal border space
+		JPanel otherPanel = new JPanel();
+		otherPanel.setLayout(new BoxLayout(otherPanel,BoxLayout.X_AXIS));
+		otherPanel.add(Box.createHorizontalStrut(30));
+		otherPanel.add(panel);
+		otherPanel.add(Box.createHorizontalStrut(30));
+		
+		add(otherPanel);
 		pack();
 		setVisible(true);
-	}
-	
-	public void setFrame(GUIScheddar f) {
-		frame = f;
 	}
 	
 }

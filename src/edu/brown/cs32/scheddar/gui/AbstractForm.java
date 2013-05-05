@@ -16,7 +16,7 @@ public abstract class AbstractForm extends JFrame {
 	public AbstractForm(ScheddarPane s) {
 		super();
 		_scheddarPane = s;
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 //		Dimension d = _scheddarPane._size;
 //		setBounds(d.width / 3, d.height / 3, 1, 1);

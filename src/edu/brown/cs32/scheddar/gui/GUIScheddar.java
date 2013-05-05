@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -39,16 +40,13 @@ public class GUIScheddar extends JFrame {
 	Dimension _screenSize;
 	ScheddarPane _scheddarPane;
 	JMenuBar _mb;
-	GUIScheddar frame;
 	String group;
 	
 	
 	public GUIScheddar() {
 		super();
 		_scheddarPane = null;
-		frame = this;
 		
-		//_screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Scheddar");
@@ -60,23 +58,22 @@ public class GUIScheddar extends JFrame {
 		initMenuBar();
 		setJMenuBar(_mb);
 		
-		setVisible(true);
-		setResizable(false);
-		_screenSize = this.getContentPane().getSize();
 		
 	}
 	
-	private void initScheddarPane() {
-		_scheddarPane = new ScheddarPane(this);
-		this.add(_scheddarPane);
+	public void renderScheddar(ScheddarPane pane) {
+		_scheddarPane = pane;
+		add(pane);
+		setVisible(true);
+		setResizable(false);
+		_screenSize = this.getContentPane().getSize();
 	}
+	
 	
 	/**
 	 * @return Menu bar for the primary Scheddar app, complete with listeners
 	 */
 	private JMenuBar initMenuBar() {
-		boolean empty = (_scheddarPane == null);
-//		boolean empty = false;
 		
 		_mb = new JMenuBar();
 		
@@ -85,32 +82,26 @@ public class GUIScheddar extends JFrame {
 		JMenuItem newScheddar = new JMenuItem("New");
 		JMenuItem open = new JMenuItem("Open");
 		JMenuItem save = new JMenuItem("Save");
-		if (empty) save.setEnabled(false); // Enable this somehow
+		JMenuItem options = new JMenuItem("Options");
 		JMenuItem exit = new JMenuItem("Exit");
 		
 		
 		// adding listeners for file menu
-		newScheddar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				initScheddarPane();
-				new ScheddarForm(_scheddarPane,frame);
-				//TODO: Handle initialization if box is cancelled.
-				
-			}
-		});
+		newScheddar.addActionListener(new NewScheddarListener());
 		
-		open.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
+		open.addActionListener(new OpenScheddarListener());
 		
 		save.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+			}
+		});
+		
+		options.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO: write options form. Make sure there's xml for saving options
 			}
 		});
 		
@@ -128,7 +119,6 @@ public class GUIScheddar extends JFrame {
 		
 		// creating create menu
 		JMenu createMenu = new JMenu("Create");
-		if (empty) createMenu.setEnabled(false);
 		JMenuItem person = new JMenuItem("New person");
 		JMenuItem group = new JMenuItem("New group");
 		JMenuItem meeting = new JMenuItem("New meeting");
@@ -162,7 +152,6 @@ public class GUIScheddar extends JFrame {
 		
 		// creating email menu
 		JMenu emailMenu = new JMenu("Email");
-		if (empty) emailMenu.setEnabled(false);
 		JMenuItem organizationEmail = new JMenuItem("Organization");
 		JMenuItem personEmail = new JMenuItem("Individual");
 		JMenuItem groupEmail = new JMenuItem("Group");
@@ -220,6 +209,106 @@ public class GUIScheddar extends JFrame {
 		}
 	}
 	
+
+	
+	
+	public void showStartFrame() {
+		JFrame startFrame = new JFrame();
+		JLabel l1 = new JLabel("Welcome to Scheddar, the cheesy scheduling app!");
+		JLabel l2 = new JLabel("Would you like to start a new Scheddar project, or open an existing one?");
+		JButton newButton = new JButton("New project");
+		JButton openButton = new JButton("Open project");
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+		l1.setAlignmentX(CENTER_ALIGNMENT);
+		l2.setAlignmentX(CENTER_ALIGNMENT);
+		newButton.setAlignmentX(CENTER_ALIGNMENT);
+		openButton.setAlignmentX(CENTER_ALIGNMENT);
+		
+		
+		newButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ScheddarForm form = new ScheddarForm(null,GUIScheddar.this);
+				while (form.isVisible());
+				ScheddarPane sp = form._scheddarPane;
+				if (sp == null) {
+					form.dispose();
+				} else {
+					renderScheddar(sp);
+				}
+				
+			}
+		});
+		
+		openButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser();
+				fc.showOpenDialog(GUIScheddar.this);
+				
+			}
+		});
+		
+		panel.add(Box.createVerticalStrut(20));
+		panel.add(l1);
+		panel.add(Box.createVerticalStrut(10));
+		panel.add(l2);
+		panel.add(Box.createVerticalStrut(15));
+		panel.add(newButton);
+		panel.add(Box.createVerticalStrut(6));
+		panel.add(openButton);
+		panel.add(Box.createVerticalStrut(20));
+		
+		startFrame.add(panel);
+		
+		// adding horizontal border space
+		JPanel otherPanel = new JPanel();
+		otherPanel.setLayout(new BoxLayout(otherPanel,BoxLayout.X_AXIS));
+		otherPanel.add(Box.createHorizontalStrut(30));
+		otherPanel.add(panel);
+		otherPanel.add(Box.createHorizontalStrut(30));
+		
+		
+		startFrame.add(otherPanel);
+		startFrame.pack();
+		startFrame.setTitle("Scheddar");
+		startFrame.setLocationRelativeTo(null);
+		startFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		startFrame.setVisible(true);
+	}
+	
+	public class NewScheddarListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			ScheddarForm form = new ScheddarForm(null,GUIScheddar.this);
+			while (form.isVisible());
+			ScheddarPane sp = form._scheddarPane;
+			if (sp == null) {
+				form.dispose();
+			} else {
+				renderScheddar(sp);
+			}
+		}
+	}
+	
+	public class OpenScheddarListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JFileChooser fc = new JFileChooser();
+			
+			
+			
+			
+		}
+	}
+	
+	
 	/**
 	 *                                                                              _ _                                                                               
 	 *                                                                 ___   ___   (/(/  ___                                                                          
@@ -268,59 +357,10 @@ public class GUIScheddar extends JFrame {
 	 */
 	public static void main(String[] args) {
 		
-		// TODO: when the program opens, there should be a dialog asking if the user wants to make a new scheddar or open an existing one
-		// After that, the actual GUI should open.
+		GUIScheddar gui = new GUIScheddar();
 		
-		JFrame startFrame = new JFrame();
-		JLabel l1 = new JLabel("Welcome to Scheddar, the cheesy scheduling app!");
-		JLabel l2 = new JLabel("Would you like to start a new Scheddar project, or open an existing one?");
-		JButton newButton = new JButton("New project");
-		JButton openButton = new JButton("Open project");
+		gui.showStartFrame();
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-		l1.setAlignmentX(CENTER_ALIGNMENT);
-		l2.setAlignmentX(CENTER_ALIGNMENT);
-		newButton.setAlignmentX(CENTER_ALIGNMENT);
-		openButton.setAlignmentX(CENTER_ALIGNMENT);
 		
-		Scheddar s;
-		
-		newButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
-		openButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
-		panel.add(Box.createVerticalStrut(8));
-		panel.add(l1);
-		panel.add(Box.createVerticalStrut(5));
-		panel.add(l2);
-		panel.add(Box.createVerticalStrut(5));
-		panel.add(newButton);
-		panel.add(Box.createVerticalStrut(3));
-		panel.add(openButton);
-		panel.add(Box.createVerticalStrut(8));
-		
-		startFrame.add(panel);
-		startFrame.pack();
-		startFrame.setTitle("Scheddar");
-		startFrame.setLocationRelativeTo(null);
-		startFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		startFrame.setVisible(true);
-		
-//		new GUIScheddar();
 	}
 }

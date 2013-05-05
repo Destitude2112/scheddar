@@ -1,11 +1,14 @@
 package edu.brown.cs32.scheddar;
 
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
 
 /**
  * This is the main class of the application
@@ -100,9 +103,9 @@ public class Scheddar implements ScheddarFace {
 	
 	
 	//TODO : Make this a constructor for loading XML
-	
-	public Scheddar(){
-		
+
+	public Scheddar(File xmlFile){
+		// This needs to take a File object. ~sdemane
 	}
 	
 	/**
