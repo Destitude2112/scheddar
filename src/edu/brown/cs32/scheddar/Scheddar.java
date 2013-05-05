@@ -558,4 +558,22 @@ public class Scheddar implements ScheddarFace {
 			}
 		}
 	}
+
+	/**
+	 * Interface email sending methods
+	 */
+	@Override
+	public void sendFinalizedMeetingEmail(String toEmail, String name, Meeting meeting) {
+		emailParser.sendFinalizedMeetingEmail(toEmail,name,meeting);
+	}
+	
+	@Override
+	public void sendAddedPersonEmail(String toEmail, String adminName, String personName, List<String> groupList) {
+		emailParser.sendAddedPersonEmail(toEmail,adminName,personName,groupList);
+	}
+	
+	@Override
+	public void sendMeetingRequestEmail(String toEmail, String personName, Meeting meeting) {
+		emailParser.sendMeetingRequestEmail(toEmail, personName, meeting);
+	}
 }

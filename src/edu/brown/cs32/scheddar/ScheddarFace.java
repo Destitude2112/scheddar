@@ -63,5 +63,20 @@ public interface ScheddarFace {
 	 */
 	public void addPerson(Person p);
 	public void addGroup(Group g);
+	
+	/**
+	 * Methods for sending emails
+	 */
+
+//	public void sendInvalidSubjectEmail();
+//	public void sendInvalidBodyEmail();
+
+	void sendFinalizedMeetingEmail(String toEmail, String name, Meeting meeting);
+
+	void sendAddedPersonEmail(String toEmail, String adminName,
+			String personName, List<String> groupList);
+
+	void sendMeetingRequestEmail(String toEmail, String personName,
+			Meeting meeting);
 
 }

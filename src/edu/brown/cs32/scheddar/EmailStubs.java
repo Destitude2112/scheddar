@@ -114,6 +114,25 @@ public class EmailStubs {
 		return toRet;
 	}
 	
+	/**
+	 * Returns a String used for the body of an email to be sent to a person who sent an email with
+	 * an invalid body
+	 * 
+	 * @param name the person's name
+	 * @param body the invalid body that was sent
+	 * @return the body of the email to send
+	 */
+	
+	public static String invalidBodyEmail(String name, String body){
+		String toRet = new String();
+		toRet += ("Hello, " + name + "!\n\n");
+		toRet += ("You recently sent an email with the following body : \n\n");
+		toRet += (body += "\n\n");
+		toRet += ("To have your response be recognized by our system, please send another email with a correctly" +
+				" formatted body.\n");
+		return toRet;
+	}
+	
 	// Testing purposes
 	
 	public static void main(String[] args){
