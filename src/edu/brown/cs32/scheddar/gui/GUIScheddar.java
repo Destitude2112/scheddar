@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -18,6 +19,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import edu.brown.cs32.scheddar.*;
 
@@ -67,6 +69,7 @@ public class GUIScheddar extends JFrame {
 		setVisible(true);
 		setResizable(false);
 		_screenSize = this.getContentPane().getSize();
+		setGroup(_scheddarPane.getRootGroupName());
 	}
 	
 	
@@ -227,31 +230,9 @@ public class GUIScheddar extends JFrame {
 		openButton.setAlignmentX(CENTER_ALIGNMENT);
 		
 		
-		newButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ScheddarForm form = new ScheddarForm(null,GUIScheddar.this);
-				while (form.isVisible());
-				ScheddarPane sp = form._scheddarPane;
-				if (sp == null) {
-					form.dispose();
-				} else {
-					renderScheddar(sp);
-				}
-				
-			}
-		});
+		newButton.addActionListener(new NewScheddarListener());
 		
-		openButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser fc = new JFileChooser();
-				fc.showOpenDialog(GUIScheddar.this);
-				
-			}
-		});
+		openButton.addActionListener(new OpenScheddarListener());
 		
 		panel.add(Box.createVerticalStrut(20));
 		panel.add(l1);
@@ -301,10 +282,15 @@ public class GUIScheddar extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JFileChooser fc = new JFileChooser();
+			fc.setDialogTitle("Open Scheddar...");
+			fc.setFileFilter(new FileNameExtensionFilter("Scheddar files","xml"));
+			int retval = fc.showOpenDialog(GUIScheddar.this);
 			
-			
-			
-			
+			if (retval == JFileChooser.APPROVE_OPTION) {
+				File scheddarFile = fc.getSelectedFile();
+				ScheddarPane sp = new ScheddarPane(GUIScheddar.this, new Scheddar(scheddarFile));
+				renderScheddar(sp);
+			}
 		}
 	}
 	

@@ -39,6 +39,10 @@ public class ScheddarPane extends JPanel {
 		_scheddar = s;
 	}
 	
+	public String getRootGroupName() {
+		return _scheddar.getRootGroup().getName();
+	}
+	
 	@Override
 	public Dimension getPreferredSize() {
 		return _gui._screenSize;

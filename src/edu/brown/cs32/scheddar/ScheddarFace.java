@@ -11,6 +11,7 @@ public interface ScheddarFace {
 	 * any subgroups of that group as Strings
 	 */
 
+	public Group getRootGroup();
 	
 	/**
 	 * Methods to get the object associated with a name
