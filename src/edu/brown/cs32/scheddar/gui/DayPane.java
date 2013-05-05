@@ -28,10 +28,12 @@ import edu.brown.cs32.scheddar.*;
 public class DayPane extends ScheddarSubPane {
 	private static final long serialVersionUID = 1L;
 	
+	ScheddarTime time;
 	int day,month,year;
 	
 	public DayPane(ScheddarPane s, ScheddarTime st) {
 		super(s);
+		this.time = st;
 		this.day = st.getDay();
 		this.month = st.getMonth();
 		this.year = st.getYear();
@@ -40,9 +42,7 @@ public class DayPane extends ScheddarSubPane {
 	@Override
 	public Dimension getPreferredSize() {
 		Dimension d = _scheddarPane.getPreferredSize();
-		System.out.println("DayPane: "+_scheddarPane.getPreferredSize());
-		d.width = d.width / 8;
-		return d;
+		return new Dimension(d.width / 8, d.height);
 	}
 	
 	private Rectangle getTimeBlock(ScheddarTime st) {
@@ -57,7 +57,8 @@ public class DayPane extends ScheddarSubPane {
 		// drawing border
 		
 		Dimension size = getPreferredSize();
-		g2.setStroke(new BasicStroke(5));
+		g2.setBackground(Color.white);
+		g2.setStroke(new BasicStroke(1));
 		g2.setPaint(Color.darkGray);
 		g2.draw(new Line2D.Double(0,0,0,size.height));
 		g2.draw(new Line2D.Double(0,0,size.width,0));
@@ -65,17 +66,17 @@ public class DayPane extends ScheddarSubPane {
 		g2.draw(new Line2D.Double(size.width,size.height,size.width,0));
 		
 		g2.setPaint(Color.gray);
-		g2.setFont(new Font("SansSerif",Font.PLAIN,6));
+		g2.setFont(new Font("SansSerif",Font.PLAIN,10));
 		
 		for (double i = 1.0; i < 24; i += 1.0) {
 			
 			g2.draw(new Line2D.Double(0,size.height/24.0*i,size.width,size.height/24.0*i));
 			
-			g2.drawString((int)i+":00",3,(int)(size.height/24.0*i-3));
+			g2.drawString((int)i+":00",4,(int)(size.height/24.0*i-3));
 			
 		}
 		
-		g2.drawString(new Date().toString(), 10, 3);
+		g2.drawString(time.dateToString(), 10, 15);
 		
 		List<Meeting> meetings = _scheddar.dayMeetings(day, month, year);
 		

@@ -59,7 +59,7 @@ public class UsefulMethods {
 	 */
 	public static ScheddarTime getNextDay(ScheddarTime time) {
 		int weekday = time.getDayOfWeek() + 1;
-		if (weekday < 6)
+		if (weekday > 6)
 			weekday = 0;
 		
 		int day = time.getDay() + 1;
@@ -170,6 +170,7 @@ public class UsefulMethods {
 		return c.get(Calendar.DAY_OF_WEEK)-1;
 	}
 	
+	
 	//TODO : Since this our application is meant to be used mainly by businesses, I assume
 	// here that there are no meetings that run from one day into the next (businesses
 	// generally do not hold meetings that go through midnight into the next day)
@@ -201,6 +202,14 @@ public class UsefulMethods {
 		}
 		
 		return false;
+	}
+	
+	public String getMonthName(int month) {
+		return null;
+	}
+	
+	public String getWeekdayName(int weekday) {
+		return null;
 	}
 	
 }

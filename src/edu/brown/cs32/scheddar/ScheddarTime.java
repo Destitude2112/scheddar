@@ -1,5 +1,7 @@
 package edu.brown.cs32.scheddar;
 
+import java.text.DateFormatSymbols;
+
 public class ScheddarTime implements Comparable {
 	private int startHour; // the starting hour (0 - 24)
 	private int startMinutes; // the starting minutes (0 - 60 , increments of 10 or 15)
@@ -11,6 +13,7 @@ public class ScheddarTime implements Comparable {
 	private boolean isRecurring; // for meetings recurring on a particular day of the week at the given time
 	
 	private UsefulMethods methods = new UsefulMethods();
+	private DateFormatSymbols dateFormat = new DateFormatSymbols();
 	
 	/**
 	 * Full constructor
@@ -175,5 +178,20 @@ public class ScheddarTime implements Comparable {
 		} else {
 			return (Integer.toString(this.startHour) + ":" + Integer.toString(this.startMinutes));
 		}
+	}
+	
+	
+	/**
+	 * Returns the date as a nice String, e.g.
+	 * 
+	 * March 4, 2013
+	 * Monday
+	 */
+	
+	public String dateToString() {
+		String monthString = dateFormat.getShortMonths()[month];
+		String weekdayString = dateFormat.getWeekdays()[dayOfWeek+1];
+		String dateString = monthString + " " + day + ", " + year;
+		return weekdayString + " " + dateString;
 	}
 }

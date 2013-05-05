@@ -45,8 +45,7 @@ public class ScheddarPane extends JPanel {
 	
 	@Override
 	public Dimension getPreferredSize() {
-		System.out.println("ScheddarPane: "+_gui._screenSize);
-		return _gui._screenSize;
+		return _gui.getScreenSize();
 	}
 	
 	/**

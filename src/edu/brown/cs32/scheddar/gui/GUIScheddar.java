@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.io.File;
+import java.util.Calendar;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -44,7 +45,7 @@ public class GUIScheddar extends JFrame {
 	public static final boolean DEBUG = true;
 	
 	private static final long serialVersionUID = 1L;
-	Dimension _screenSize;
+	private Dimension _screenSize;
 	ScheddarPane _scheddarPane;
 	JMenuBar _mb;
 	String group;
@@ -71,7 +72,11 @@ public class GUIScheddar extends JFrame {
 		
 	}
 	
-	public void renderScheddar(ScheddarPane pane) {
+	public Dimension getScreenSize() {
+		return _screenSize;
+	}
+	
+	private void renderScheddar(ScheddarPane pane) {
 		_scheddarPane = pane;
 		add(pane);
 		setVisible(true);
@@ -373,6 +378,7 @@ public class GUIScheddar extends JFrame {
 	 *                                                                                                                                                                
 	 */
 	public static void main(String[] args) {
+		
 		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
 		} catch (Exception e) {}
