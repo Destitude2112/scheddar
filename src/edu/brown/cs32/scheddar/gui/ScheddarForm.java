@@ -57,13 +57,9 @@ public class ScheddarForm extends AbstractForm {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (nameField.getText() != "") {
-					
 					ScheddarFace s = new Scheddar(nameField.getText(), adminField.getText(), emailField.getText(), passwordField.getText());
-					
 					_scheddarPane = new ScheddarPane(_gui, s);
-					
 					setVisible(false);
-					
 				}
 			}
 		});
@@ -73,7 +69,6 @@ public class ScheddarForm extends AbstractForm {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				setVisible(false);
 			}
 		});

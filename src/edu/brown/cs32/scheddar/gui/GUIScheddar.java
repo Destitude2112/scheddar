@@ -3,8 +3,11 @@ package edu.brown.cs32.scheddar.gui;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.io.File;
 
 import javax.swing.Box;
@@ -43,6 +46,8 @@ public class GUIScheddar extends JFrame {
 	ScheddarPane _scheddarPane;
 	JMenuBar _mb;
 	String group;
+	JFrame startFrame;
+	AbstractForm form;
 	
 	
 	public GUIScheddar() {
@@ -216,7 +221,7 @@ public class GUIScheddar extends JFrame {
 	
 	
 	public void showStartFrame() {
-		JFrame startFrame = new JFrame();
+		startFrame = new JFrame();
 		JLabel l1 = new JLabel("Welcome to Scheddar, the cheesy scheduling app!");
 		JLabel l2 = new JLabel("Would you like to start a new Scheddar project, or open an existing one?");
 		JButton newButton = new JButton("New project");
@@ -266,13 +271,31 @@ public class GUIScheddar extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ScheddarForm form = new ScheddarForm(null,GUIScheddar.this);
-			while (form.isVisible());
+			form = new ScheddarForm(null,GUIScheddar.this);
+			form.addComponentListener(new ScheddarFormCloseListener());
+			
+		}
+	}
+	
+	public class ScheddarFormCloseListener implements ComponentListener {
+		@Override
+		public void componentShown(ComponentEvent arg0) {}
+		
+		@Override
+		public void componentResized(ComponentEvent arg0) {}
+		
+		@Override
+		public void componentMoved(ComponentEvent arg0) {}
+		
+		@Override
+		public void componentHidden(ComponentEvent arg0) {
 			ScheddarPane sp = form._scheddarPane;
 			if (sp == null) {
 				form.dispose();
 			} else {
 				renderScheddar(sp);
+				startFrame.dispose();
+				form.dispose();
 			}
 		}
 	}
@@ -290,6 +313,7 @@ public class GUIScheddar extends JFrame {
 				File scheddarFile = fc.getSelectedFile();
 				ScheddarPane sp = new ScheddarPane(GUIScheddar.this, new Scheddar(scheddarFile));
 				renderScheddar(sp);
+				startFrame.dispose();
 			}
 		}
 	}

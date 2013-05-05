@@ -11,12 +11,14 @@ import edu.brown.cs32.scheddar.*;
 public abstract class AbstractForm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
+	
 	ScheddarPane _scheddarPane;
 	
 	public AbstractForm(ScheddarPane s) {
 		super();
 		_scheddarPane = s;
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 //		Dimension d = _scheddarPane._size;
 //		setBounds(d.width / 3, d.height / 3, 1, 1);
