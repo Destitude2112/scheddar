@@ -260,10 +260,13 @@ public class EmailParser {
 	// For testing purposes
 	
 	public static void main(String[] args){
+		
+		EmailParser testParser = new EmailParser("scheddartest@gmail.com","DreamTheater");
+		
 		List<String> testList = new LinkedList<String>();
 		testList.add("Win Group");
 		testList.add("TSM");
-	//	sendAddedPersonEmail("destitude2112@hotmail.com","Desteh Guyman","Mordecai",testList);
+	//	testParser.sendAddedPersonEmail("destitude2112@hotmail.com","Desteh Guyman","Mordecai",testList);
 		
 		List<ScheddarTime> potentialTimes = new LinkedList<ScheddarTime>();
 		potentialTimes.add(new ScheddarTime(12,0,30,3,1,2,2112,false));
@@ -271,13 +274,8 @@ public class EmailParser {
 		potentialTimes.add(new ScheddarTime(2,45,30,4,2,2,2112,false));
 		Meeting testMeeting = new Meeting("Mayhem Festival",potentialTimes,null,"",null);
 		testMeeting.setFinalTime(new ScheddarTime(7,30,90,3,3,3,2113,false));
-	//	sendMeetingRequestEmail("destitude2112@hotmail.com","Mordecai",testMeeting);
+	//	testParser,sendMeetingRequestEmail("destitude2112@hotmail.com","Mordecai",testMeeting);
 		
-	//	sendFinalizedMeetingEmail("destitude2112@hotmail.com", "Alec", testMeeting);
-		List<Tuple<String,String>> testTuples  = getEmailTuples();
-		for(Tuple<String,String> tuple : testTuples){
-			System.out.println("Subject: " + tuple.x);
-			System.out.println("Message: " + tuple.y);
-		}
+	//	testParser.sendFinalizedMeetingEmail("destitude2112@hotmail.com", "Alec", testMeeting);
 	}
 }

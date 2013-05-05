@@ -63,5 +63,5 @@ public interface ScheddarFace {
 	 */
 	public void addPerson(Person p);
 	public void addGroup(Group g);
-	
+
 }

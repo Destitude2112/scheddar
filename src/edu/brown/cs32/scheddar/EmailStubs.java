@@ -15,6 +15,14 @@ import java.util.List;
 
 public class EmailStubs {
 	
+	/**
+	 * Returns a String that should be the body of an email sent to a Person that was just added to Groups
+	 * @param adminName the name of the administrator of this Scheddar
+	 * @param personName the name of the person that was added
+	 * @param groupList a list of the names of the groups that the person was added to
+	 * @return the body of an email to send to that person
+	 */
+	
 	public static String addedPersonEmail(String adminName, String personName, List<String> groupList){
 		String toRet = new String();
 		toRet += ("Hello, " + personName + "!\n\n");
@@ -34,6 +42,14 @@ public class EmailStubs {
 		
 		return toRet;
 	}
+	
+	/**
+	 * Returns a String to be used in the body of an email sent to a person who is a member of a group
+	 * that a Meeting was scheduled for
+	 * @param personName the name of the person
+	 * @param meeting the Meeting that was scheduled
+	 * @return the body of an email to send to that person
+	 */
 	
 	public static String meetingRequestEmail(String personName, Meeting meeting){
 		String toRet = new String();
@@ -58,6 +74,13 @@ public class EmailStubs {
 		return toRet;
 	}
 	
+	/**
+	 * Returns a String that should be used as the body of an email sent to a person for
+	 * whom a meeting time has just been finalized
+	 * @param name the name of the person
+	 * @param meeting the meeting that was finalized
+	 * @return the body of an email for a finalized meeting
+	 */
 	
 	public static String finalizedMeetingEmail(String name, Meeting meeting){
 		String toRet = new String();
@@ -66,6 +89,28 @@ public class EmailStubs {
 		ScheddarTime time = meeting.getFinalTime();
 		toRet += ("It will be on " + time.getMonth() + "/" + time.getDay() + "/" + time.getYear() + " from "
 				+ time.timeToString() + "-" + time.getEndTime().timeToString());
+		return toRet;
+	}
+	
+	/**
+	 * Returns a String used for the body of an email to be sent to a person who sent an email
+	 * to the admin's account with an invalid subject
+	 * @param name the person's name
+	 * @param subject the invalid subject that was sent
+	 * @return the body of the email to send
+	 */
+	
+	public static String invalidSubjectEmail(String name, String subject){
+		String toRet = new String();
+		toRet += ("Hello, " + name + "!\n\n");
+		toRet += ("You recently sent an email with the subject " + subject+ " \n");
+		toRet += ("This is an invalid subject for our email parsing system. \n");
+		toRet += ("To have your response be recognized by our system, please send another email. \n");
+		toRet += ("To set or update your recurring conflicts, the subject should be : \n");
+		String[] nameSpl = name.split(" ");
+		toRet += (nameSpl[0] + " " + nameSpl[1] + " Conflicts/n/n");
+		toRet += ("To indicate availability for an upcoming meeting, the subject should be : \n");
+		toRet += (nameSpl[0] + " " + nameSpl[1] + " MeetingTimes <MeetingName>\n\n");
 		return toRet;
 	}
 	
@@ -79,6 +124,13 @@ public class EmailStubs {
 		groups.add("CLG");
 		groups.add("BROBROBRO");
 		System.out.println(addedPersonEmail(admin,noob,groups));
+		
+		String testName = "Roy Mustang";
+		String invalidSubject = "Roy Mustard invaliadfasdf";
+		
+		System.out.println(invalidSubjectEmail(testName,invalidSubject));
 	}
+	
+	
 	
 }
