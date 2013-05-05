@@ -30,16 +30,17 @@ public class DayPane extends ScheddarSubPane {
 	
 	int day,month,year;
 	
-	public DayPane(ScheddarPane s, int day, int month, int year) {
+	public DayPane(ScheddarPane s, ScheddarTime st) {
 		super(s);
-		this.day = day;
-		this.month = month;
-		this.year = year;
+		this.day = st.getDay();
+		this.month = st.getMonth();
+		this.year = st.getYear();
 	}
 	
-	
+	@Override
 	public Dimension getPreferredSize() {
 		Dimension d = _scheddarPane.getPreferredSize();
+		System.out.println("DayPane: "+_scheddarPane.getPreferredSize());
 		d.width = d.width / 8;
 		return d;
 	}
@@ -80,7 +81,7 @@ public class DayPane extends ScheddarSubPane {
 		
 		for (Meeting m : meetings) {
 			if (m.isDecided()) {
-				
+				Rectangle block = getTimeBlock(m.getFinalTime());
 			}
 		}
 		

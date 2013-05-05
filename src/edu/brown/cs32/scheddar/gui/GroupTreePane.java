@@ -21,8 +21,7 @@ import edu.brown.cs32.scheddar.*;
 public class GroupTreePane extends ScheddarSubPane {
 	
 	private static final long serialVersionUID = 1L;
-	ScheddarPane _gui;
-	Scheddar _scheddar;
+
 	
 	JTree _tree;
 	
@@ -40,7 +39,7 @@ public class GroupTreePane extends ScheddarSubPane {
 	}
 	
 	public Dimension getPreferredSize() {
-		return new Dimension(100,_gui.getHeight());
+		return new Dimension(100,_scheddarPane.getHeight());
 	}
 	
 	/**

@@ -22,6 +22,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import edu.brown.cs32.scheddar.*;
@@ -64,6 +66,7 @@ public class GUIScheddar extends JFrame {
 		setSize(getMaximizedBounds().getSize());
 		initMenuBar();
 		setJMenuBar(_mb);
+		_screenSize = this.getContentPane().getSize();
 		
 		
 	}
@@ -363,10 +366,16 @@ public class GUIScheddar extends JFrame {
 	 *                                                                                                                                          _ _   _ _          _  
 	 *                                                                                                                                         (/(/  (/(/  ___    (/  
 	 *                                                                                                                                                    (___)       
+	 * @throws UnsupportedLookAndFeelException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws ClassNotFoundException 
 	 *                                                                                                                                                                
 	 */
 	public static void main(String[] args) {
-		
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+		} catch (Exception e) {}
 		GUIScheddar gui = new GUIScheddar();
 		
 		gui.showStartFrame();

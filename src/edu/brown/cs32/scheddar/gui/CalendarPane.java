@@ -2,6 +2,8 @@ package edu.brown.cs32.scheddar.gui;
 
 import javax.swing.JPanel;
 
+import edu.brown.cs32.scheddar.*;
+
 /**
  * @author sdemane
  * 
@@ -14,7 +16,8 @@ public class CalendarPane extends ScheddarSubPane {
 	
 	public CalendarPane(ScheddarPane s) {
 		super(s);
-		// TODO Auto-generated constructor stub
+		ScheddarTime today = UsefulMethods.getCurrentTime();
+		add(new WeekPane(s, today));
 	}
 
 	

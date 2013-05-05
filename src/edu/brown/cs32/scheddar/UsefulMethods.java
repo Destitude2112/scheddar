@@ -26,12 +26,67 @@ public class UsefulMethods {
 		else return false;
 	}
 	
+	
+	/**
+	 * Returns the ScheddarTime referring to 00:00 on sunday before this
+	 * time, to find a reference to the start of the week.
+	 * 
+	 * @param time
+	 * @return
+	 */
+	public static ScheddarTime getPrecedingSunday(ScheddarTime time) {
+		int day = time.getDay() - time.getDayOfWeek();
+		int month = time.getMonth();
+		int year = time.getYear();
+		if (day < 1) {
+			month--;
+			if (month < 0) {
+				year--;
+				month = 11;
+			}
+			day = day + daysInMonth(month, year);
+		}
+		
+		return new ScheddarTime(0, 0, 0, 0, day, month, year, false);
+	}
+	
+	
+	/**
+	 * Returns the day after time.
+	 * 
+	 * @param time
+	 * @return
+	 */
+	public static ScheddarTime getNextDay(ScheddarTime time) {
+		int weekday = time.getDayOfWeek() + 1;
+		if (weekday < 6)
+			weekday = 0;
+		
+		int day = time.getDay() + 1;
+		int month  = time.getMonth();
+		int year = time.getYear();
+		
+		if (day > daysInMonth(month, year)) {
+			month++;
+			day = 1;
+		}
+		
+		if (month > 11) {
+			year++;
+			month = 0;
+		}
+		
+		return new ScheddarTime(0, 0, 0, weekday, day, month, year, false);
+		
+	}
+	
+	
 	/**
 	 * Create and return a ScheddarTime of the real life current time with a
 	 * duration of 0
 	 */
 	
-	public static ScheddarTime getCurrentTime(){
+	public static ScheddarTime getCurrentTime() {
 		Date date = new Date();
 		String dateString = date.toString();
 		System.out.println(dateString);

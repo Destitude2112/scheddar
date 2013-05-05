@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  * Class representing the month view of the Scheddar gui.
  *
  */
-public class MonthPane extends CalendarPane {
+public class MonthPane extends ScheddarSubPane {
 	private static final long serialVersionUID = 1L;
 	
 	ScheddarPane _scheddarPane;

@@ -8,13 +8,24 @@ import edu.brown.cs32.scheddar.*;
  * Class representing the week view of the Scheddar gui.
  *
  */
-public class WeekPane extends CalendarPane {
+public class WeekPane extends ScheddarSubPane {
 	private static final long serialVersionUID = 1L;
 	
-	public WeekPane(ScheddarPane s, int day, int month, int year) {
+	/**
+	 * Constructs the week view containing the given time
+	 * 
+	 * @param s
+	 * @param time Any time
+	 */
+	public WeekPane(ScheddarPane s, ScheddarTime time) {
 		super(s);
 		
-		int weekday = UsefulMethods.dayOfTheWeek(day, month, year);
+		ScheddarTime curDay = UsefulMethods.getPrecedingSunday(time);
+		
+		for (int i = 0; i < 7; i++) {
+			add(new DayPane(_scheddarPane, curDay));
+			curDay = UsefulMethods.getNextDay(curDay);
+		}
 		
 	}
 }
