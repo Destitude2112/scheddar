@@ -1,13 +1,13 @@
 # Java binaries #
 
 *.class
-*.jar
+
 
 
 # Metadata #
 
-.classpath
-.project
+
+
 
 
 # Log files #

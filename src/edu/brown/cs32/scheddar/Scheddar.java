@@ -27,7 +27,6 @@ public class Scheddar implements ScheddarFace {
 	public ScheddarXML sxml;
 	private String dest;
 	
-	private UsefulMethods methods = new UsefulMethods();
 	
 	//TODO : Decide how/where to give username/password
 	
@@ -105,7 +104,7 @@ public class Scheddar implements ScheddarFace {
 	//TODO : Make this a constructor for loading XML
 
 	public Scheddar(File xmlFile){
-		// This needs to take a File object. ~sdemane
+		
 	}
 	
 	/**
@@ -466,7 +465,7 @@ public class Scheddar implements ScheddarFace {
 							t.setDay(currTime.getDay());
 							t.setMonth(currTime.getMonth());
 							t.setYear(currTime.getYear());
-							if(methods.doTimesConflict(t,currTime)){
+							if(UsefulMethods.doTimesConflict(t,currTime)){
 								currScore += g.getMemberRanking(p);
 								break;
 							}

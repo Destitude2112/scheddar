@@ -40,20 +40,23 @@ public class ScheddarXML{
 		}
 	}
 	
+	public void makeDBFromXML(String dest) {
+		makeDBFromXML(new File(dest));
+	}
 	
 	/**
 	 * 
 	 * When the application loads up, this function reads the XML and populates the groups 
 	 * HashMap in the Main
 	 * 
-	 * @param dest the destination of the XML file to read from
+	 * @param localXMLFile the destination of the XML file to read from
 	 */
-	public void makeDBFromXML(String dest){
+	public void makeDBFromXML(File localXMLFile){
 		try {
 			
 			myScheddar.setGroups(new HashMap<String, Group>());
 			
-				File localXMLFile = new File (dest);
+				//File localXMLFile = new File (dest);
 			
 				doc = db.parse(localXMLFile);
 				

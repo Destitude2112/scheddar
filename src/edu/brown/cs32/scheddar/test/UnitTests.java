@@ -1,4 +1,4 @@
-package edu.brown.cs32.scheddar;
+package edu.brown.cs32.scheddar.test;
 
 /**
  * This is our unit test suite for Scheddar
@@ -12,6 +12,12 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
+
+import edu.brown.cs32.scheddar.Group;
+import edu.brown.cs32.scheddar.Person;
+import edu.brown.cs32.scheddar.Scheddar;
+import edu.brown.cs32.scheddar.ScheddarTime;
+import edu.brown.cs32.scheddar.UsefulMethods;
 
 public class UnitTests {
 
