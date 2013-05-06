@@ -45,7 +45,7 @@ public class DayPane extends ScheddarSubPane {
 	@Override
 	public Dimension getPreferredSize() {
 		Dimension d = _scheddarPane.getPreferredSize();
-		return new Dimension(d.width / 8, d.height);
+		return new Dimension(d.width / 8 - 10, d.height);
 	}
 	
 	private Rectangle getTimeBlock(ScheddarTime st) {
@@ -62,7 +62,6 @@ public class DayPane extends ScheddarSubPane {
 	
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		
 		// drawing border
 		
 		Dimension size = getPreferredSize();

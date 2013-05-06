@@ -1,10 +1,8 @@
 package edu.brown.cs32.scheddar.gui;
 
-import java.awt.Dimension;
-import java.awt.Point;
+import java.util.Collection;
 
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 
 import edu.brown.cs32.scheddar.*;
 
@@ -14,14 +12,16 @@ public abstract class AbstractForm extends JFrame {
 	
 	
 	ScheddarPane _scheddarPane;
+	ScheddarFace _scheddar;
 	
 	public AbstractForm(ScheddarPane s) {
 		super();
+		_scheddar = null;
 		_scheddarPane = s;
+		if (_scheddarPane != null)
+			_scheddar = _scheddarPane._scheddar;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-//		Dimension d = _scheddarPane._size;
-//		setBounds(d.width / 3, d.height / 3, 1, 1);
 		setLocationRelativeTo(null);
 		
 	}
@@ -30,6 +30,13 @@ public abstract class AbstractForm extends JFrame {
 	 * @return A string array of the names of all the groups
 	 */
 	public String[] getAllGroupNames() {
-		return new String[0];
+		Collection<Group> groups = _scheddar.getAllGroups();
+		String[] names = new String[groups.size()];
+		int i = 0;
+		for (Group g : groups) {
+			names[i] = g.getName();
+			i++;
+		}
+		return names;
 	}
 }

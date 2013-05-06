@@ -1,5 +1,6 @@
 package edu.brown.cs32.scheddar;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface ScheddarFace {
@@ -12,6 +13,7 @@ public interface ScheddarFace {
 	 */
 
 	public Group getRootGroup();
+	public Collection<Group> getAllGroups();
 	
 	/**
 	 * Methods to get the object associated with a name
@@ -71,12 +73,12 @@ public interface ScheddarFace {
 //	public void sendInvalidSubjectEmail();
 //	public void sendInvalidBodyEmail();
 
-	void sendFinalizedMeetingEmail(String toEmail, String name, Meeting meeting);
+	public void sendFinalizedMeetingEmail(String toEmail, String name, Meeting meeting);
 
-	void sendAddedPersonEmail(String toEmail, String adminName,
+	public void sendAddedPersonEmail(String toEmail, String adminName,
 			String personName, List<String> groupList);
 
-	void sendMeetingRequestEmail(String toEmail, String personName,
+	public void sendMeetingRequestEmail(String toEmail, String personName,
 			Meeting meeting);
 
 }

@@ -73,6 +73,7 @@ public class Group {
 	
 	public void setParentGroup(Group newParent){
 		this.parentGroup = newParent;
+		newParent.addSubgroup(this);
 	}
 	
 	/**
@@ -163,6 +164,8 @@ public class Group {
 		this.memberRankings = memberRankings;
 		this.subgroups = subgroups;
 		this.parentGroup = parentGroup;
+		
+		parentGroup.addSubgroup(this);
 	}
 	
 	/**

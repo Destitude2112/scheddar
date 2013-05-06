@@ -15,8 +15,8 @@ import javax.mail.search.FlagTerm;
 
 public class EmailParser {
 	
-	static String username;
-	static String password;
+	private String username;
+	private String password;
 	
 	/**
 	 * Constructor
@@ -41,7 +41,7 @@ public class EmailParser {
 	 * @throws UnsupportedEncodingException
 	 */
 	
-	public static void sendAddedPersonEmail(String toEmail, String adminName, String personName, List<String> groupList){
+	public void sendAddedPersonEmail(String toEmail, String adminName, String personName, List<String> groupList){
 		Properties props = new Properties();
 		props.put("mail.smtp.auth","true");
 		props.put("mail.smtp.starttls.enable","true");
@@ -81,7 +81,7 @@ public class EmailParser {
 	 * @param meeting the Meeting the email is about
 	 */
 	
-	public static void sendMeetingRequestEmail(String toEmail, String personName, Meeting meeting){
+	public void sendMeetingRequestEmail(String toEmail, String personName, Meeting meeting){
 		Properties props = new Properties();
 		props.put("mail.smtp.auth","true");
 		props.put("mail.smtp.starttls.enable","true");
@@ -121,7 +121,7 @@ public class EmailParser {
 	 * @param meeting the meeting
 	 */
 		
-	public static void sendFinalizedMeetingEmail(String toEmail, String name, Meeting meeting){
+	public void sendFinalizedMeetingEmail(String toEmail, String name, Meeting meeting){
 		Properties props = new Properties();
 		props.put("mail.smtp.auth","true");
 		props.put("mail.smtp.starttls.enable","true");
@@ -161,7 +161,7 @@ public class EmailParser {
 	 * The first String is the subject of the email, and the second is the body.
 	 */
 	
-	public static List<Tuple<String,String>> getEmailTuples(){
+	public List<Tuple<String,String>> getEmailTuples(){
 		Folder inbox;
 		List<Tuple<String,String>> emailTuples = new LinkedList<Tuple<String,String>>();
 		Properties props = System.getProperties();
@@ -198,7 +198,7 @@ public class EmailParser {
 		return null; // should never be reached
 	}
 	
-	public static void printAllMessages(Message[] msgs, List<Tuple<String,String>> emailTuples) throws Exception{
+	public void printAllMessages(Message[] msgs, List<Tuple<String,String>> emailTuples) throws Exception{
 		for(int i=0;i<msgs.length;i++){
 			String subject = msgs[i].getSubject();
 			emailTuples.add(new Tuple<String,String>(subject,"")); // add the subject to the list of emailTuples
@@ -206,7 +206,7 @@ public class EmailParser {
 		}
 	}
 	
-	public static void getContent(Message msg, List<Tuple<String,String>> emailTuples,int index){
+	public void getContent(Message msg, List<Tuple<String,String>> emailTuples,int index){
 		try{
 			Multipart mp = (Multipart) msg.getContent();
 		//	System.out.println(mp.getBodyPart(0));
@@ -217,7 +217,7 @@ public class EmailParser {
 		}
 	 }
 	 
-	 public static String dumpPart(Part p) throws Exception{
+	 public String dumpPart(Part p) throws Exception{
 		 InputStream is = p.getInputStream();
 		 String result = getStringFromInputStream(is);
 		 return result;
@@ -232,7 +232,7 @@ public class EmailParser {
 //		 }
 	 }
 	 
-	 public static String getStringFromInputStream(InputStream is){
+	 public String getStringFromInputStream(InputStream is){
 		 BufferedReader br = null;
 		 StringBuilder sb = new StringBuilder();
 		 

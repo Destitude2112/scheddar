@@ -61,9 +61,9 @@ public class PersonForm extends AbstractForm {
 		listPanePane.add(memberListPane);
 		listPanePane.add(new JLabel("Choose members:"));		
 		
-		// making "Create Group" button
+		// making "Create Person" button
 		
-		JButton create = new JButton("Create group");
+		JButton create = new JButton("Create person");
 		create.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {

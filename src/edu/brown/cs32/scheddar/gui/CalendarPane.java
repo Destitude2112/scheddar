@@ -21,11 +21,13 @@ public class CalendarPane extends ScheddarSubPane {
 	}
 	
 	public void switchToMonth(ScheddarTime time) {
-		
+		revalidate();
 	}
 	
 	public void switchToWeek(ScheddarTime time) {
-		
+		removeAll();
+		add(new WeekPane(_scheddarPane,time));
+		revalidate();
 	}
 	
 	public void switchToMeeting(ScheddarTime time, Meeting m) {
@@ -37,6 +39,7 @@ public class CalendarPane extends ScheddarSubPane {
 		
 		add(new DayPane(_scheddarPane, time));
 		add(new MeetingPane(_scheddarPane, m));
+		revalidate();
 	}
 
 	

@@ -44,7 +44,6 @@ public class GroupForm extends AbstractForm {
 		groupList.setSelectedItem(_scheddarPane.getCurrentGroup());
 		
 		//getting initial members
-		
 		memberList = new JList<String>(_scheddarPane.getGroupMembers((String)groupList.getSelectedItem()));
 		memberList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		JScrollPane memberListPane = new JScrollPane(memberList);
@@ -77,7 +76,7 @@ public class GroupForm extends AbstractForm {
 				for (String name : memberList.getSelectedValuesList())
 					g.addMember(_scheddarPane._scheddar.getPersonFromName(name));
 				
-				_scheddarPane._scheddar.addGroup(g);
+				_scheddarPane.addGroup(g);
 				dispose();
 				
 			}

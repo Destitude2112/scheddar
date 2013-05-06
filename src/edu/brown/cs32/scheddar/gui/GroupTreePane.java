@@ -24,30 +24,46 @@ public class GroupTreePane extends ScheddarSubPane {
 
 	
 	JTree _tree;
+	DefaultMutableTreeNode _topNode;
+	JScrollPane _treeView;
 	
 	public GroupTreePane(ScheddarPane s) {
 		super(s);
 		
 		setLayout(new GridLayout(1,1));
 		
-		DefaultMutableTreeNode top = constructTree(_scheddar.getRootGroup());
-		_tree = new JTree(top);
+		_topNode = constructTree(_scheddar.getRootGroup());
+		_tree = new JTree(_topNode);
 		
-		JScrollPane treeView = new JScrollPane(_tree);
-		treeView.setMinimumSize(new Dimension(100,50));
-		add(treeView);
+		_treeView = new JScrollPane(_tree);
+		_treeView.setMinimumSize(new Dimension(100,50));
+		add(_treeView);
+	}
+	
+	public void updateTree() {
+		
+		_topNode = constructTree(_scheddar.getRootGroup());
+		_tree = new JTree(_topNode);
+		
+		_treeView = new JScrollPane(_tree);
+		remove(0);
+		add(_treeView,0);
+		revalidate();
 	}
 	
 	public Dimension getPreferredSize() {
-		return new Dimension(100,_scheddarPane.getHeight());
+		Dimension d = _scheddarPane.getPreferredSize();
+		return new Dimension(d.width / 8, d.height);
 	}
 	
 	/**
-	 * @return Name of group currently selected in tree
+	 * @return Name of group currently selected in tree.
+	 * If a person is selected, it returns the immediate parent.
+	 * If nothing is selected, it returns the root group.
 	 */
 	public String getSelectedGroup() {
 		if (_tree.getSelectionPath() == null) {
-			return "";
+			return _scheddarPane.getRootGroupName();
 		}
 		
 		TreeNode selection = (TreeNode) _tree.getSelectionPath().getLastPathComponent();
@@ -62,6 +78,8 @@ public class GroupTreePane extends ScheddarSubPane {
 	
 	
 	private DefaultMutableTreeNode constructTree(Group g) {
+		System.out.println("constructTree: group "+g);
+		System.out.println("subgroups "+g.getSubgroups());
 		DefaultMutableTreeNode thisNode = new DefaultMutableTreeNode(g.toString());
 		
 		for (Group subgroup : g.getSubgroups()) {
@@ -72,7 +90,6 @@ public class GroupTreePane extends ScheddarSubPane {
 		for (Person member : g.getMembers()) {
 			thisNode.add(new DefaultMutableTreeNode(member,false));
 		}
-		
 		return thisNode;
 	}
 }

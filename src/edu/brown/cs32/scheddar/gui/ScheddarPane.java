@@ -55,11 +55,17 @@ public class ScheddarPane extends JPanel {
 		_calendar.switchToMeeting(null, null);
 	}
 	
+	public void addGroup(Group g) {
+		_scheddar.addGroup(g);
+		_groupTree.updateTree();
+		repaint();
+	}
+	
 	public String getCurrentGroup() {
 		return _groupTree.getSelectedGroup();
 	}
 	
 	public String[] getGroupMembers(String name) {
-		return _scheddar.getGroupFromName(name).getPeopleFullNamesInGroup().toArray(new String[0]);
+		return _scheddar.getGroupFromName(name).getPeopleFullNamesInGroup().toArray(new String[1]);
 	}
 }
