@@ -78,8 +78,6 @@ public class GroupTreePane extends ScheddarSubPane {
 	
 	
 	private DefaultMutableTreeNode constructTree(Group g) {
-		System.out.println("constructTree: group "+g);
-		System.out.println("subgroups "+g.getSubgroups());
 		DefaultMutableTreeNode thisNode = new DefaultMutableTreeNode(g.toString());
 		
 		for (Group subgroup : g.getSubgroups()) {
