@@ -1,6 +1,6 @@
 package edu.brown.cs32.scheddar.gui;
 
-import javax.swing.JPanel;
+
 
 import edu.brown.cs32.scheddar.*;
 
@@ -18,6 +18,25 @@ public class CalendarPane extends ScheddarSubPane {
 		super(s);
 		ScheddarTime today = UsefulMethods.getCurrentTime();
 		add(new WeekPane(s, today));
+	}
+	
+	public void switchToMonth(ScheddarTime time) {
+		
+	}
+	
+	public void switchToWeek(ScheddarTime time) {
+		
+	}
+	
+	public void switchToMeeting(ScheddarTime time, Meeting m) {
+		
+		removeAll();
+		
+		if (time == null)
+			time = UsefulMethods.getCurrentTime();
+		
+		add(new DayPane(_scheddarPane, time));
+		add(new MeetingPane(_scheddarPane, m));
 	}
 
 	

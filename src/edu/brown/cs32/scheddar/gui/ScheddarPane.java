@@ -52,7 +52,7 @@ public class ScheddarPane extends JPanel {
 	 * Brings GUI to a new (empty) meeting pane at some default time
 	 */
 	public void initializeMeeting() {
-		
+		_calendar.switchToMeeting(null, null);
 	}
 	
 	public String getCurrentGroup() {

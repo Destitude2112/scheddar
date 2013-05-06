@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Line2D;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -30,6 +31,8 @@ public class DayPane extends ScheddarSubPane {
 	
 	ScheddarTime time;
 	int day,month,year;
+	Color finalMeetingColor = new Color(210,40,40);
+	Color proposedMeetingColor = new Color(120,160,210);
 	
 	public DayPane(ScheddarPane s, ScheddarTime st) {
 		super(s);
@@ -47,7 +50,13 @@ public class DayPane extends ScheddarSubPane {
 	
 	private Rectangle getTimeBlock(ScheddarTime st) {
 		Dimension d = getPreferredSize();
-		return null;
+		int x = 0;
+		int startMinutes = st.getStartHour() * 60 + st.getStartMinutes();
+		int y = startMinutes * d.height / 1440;
+		int width = d.width;
+		int height = st.getDuration() * d.height / 1440;
+		
+		return new Rectangle(x, y, width, height);
 	}
 	
 	
@@ -80,9 +89,39 @@ public class DayPane extends ScheddarSubPane {
 		
 		List<Meeting> meetings = _scheddar.dayMeetings(day, month, year);
 		
+		g2.setStroke(new BasicStroke(2));
 		for (Meeting m : meetings) {
 			if (m.isDecided()) {
-				Rectangle block = getTimeBlock(m.getFinalTime());
+				ScheddarTime t = m.getFinalTime();
+				
+				
+				if (t.getDay() == this.day && 
+						t.getMonth() == this.month && 
+						t.getYear() == this.year) {
+					Rectangle block = getTimeBlock(m.getFinalTime());
+					
+					g2.setPaint(Color.black);
+					g2.draw(block);
+					
+					g2.setPaint(finalMeetingColor);
+					g2.fill(block);
+				}
+			} else {
+				List<ScheddarTime> proposedTimes = m.getProposedTimes();
+				HashMap<Integer,Double> indexToScore = m.getIndexToScore();
+				for (ScheddarTime t : proposedTimes) {
+					if (t.getDay() == this.day && 
+							t.getMonth() == this.month && 
+							t.getYear() == this.year) {
+						Rectangle block = getTimeBlock(m.getFinalTime());
+						
+						g2.setPaint(Color.black);
+						g2.draw(block);
+						
+						g2.setPaint(proposedMeetingColor);
+						g2.fill(block);
+					}
+				}
 			}
 		}
 		

@@ -151,14 +151,14 @@ public class GUIScheddar extends JFrame {
 		group.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_scheddarPane.initializeMeeting();
+				new GroupForm(_scheddarPane);
 			}
 		});
 		
 		meeting.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new PersonForm(_scheddarPane);
+				_scheddarPane.initializeMeeting();
 			}
 		});
 		

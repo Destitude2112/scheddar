@@ -115,7 +115,7 @@ public class ScheddarForm extends AbstractForm {
 		// adding horizontal border space
 		JPanel otherPanel = new JPanel();
 		otherPanel.setLayout(new BoxLayout(otherPanel,BoxLayout.X_AXIS));
-		otherPanel.add(Box.createHorizontalStrut(30));
+		//otherPanel.add(Box.createHorizontalStrut(30));
 		otherPanel.add(panel);
 		otherPanel.add(Box.createHorizontalStrut(30));
 		
