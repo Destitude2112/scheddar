@@ -1,11 +1,9 @@
 package edu.brown.cs32.scheddar;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 import javax.mail.*;
@@ -158,12 +156,13 @@ public class EmailParser {
 	
 	/**
 	 * Read in all of the unread emails that the account has, and return a List of Tuple<String,String>
-	 * The first String is the subject of the email, and the second is the body.
+	 * The first String is the subject of the email, the second is the body, and the third is the address
+	 * that sent the email
 	 */
 	
-	public List<Tuple<String,String>> getEmailTuples(){
+	public List<Triple<String,String,String>> getEmailTriples(){
 		Folder inbox;
-		List<Tuple<String,String>> emailTuples = new LinkedList<Tuple<String,String>>();
+		List<Triple<String,String,String>> emailTriples = new LinkedList<Triple<String,String,String>>();
 		Properties props = System.getProperties();
 		props.setProperty("mail.store.protocol", "imaps");
 		try{
@@ -182,10 +181,10 @@ public class EmailParser {
 			inbox.fetch(messages, fp);
 			
 			try{
-				printAllMessages(messages,emailTuples);
+				printAllMessages(messages,emailTriples);
 				inbox.close(true);
 				store.close();
-				return emailTuples;
+				return emailTriples;
 			} catch (Exception ex) {
 				System.out.println("Exception occurred at time of read mail");
 				ex.printStackTrace();
@@ -198,19 +197,24 @@ public class EmailParser {
 		return null; // should never be reached
 	}
 	
-	public void printAllMessages(Message[] msgs, List<Tuple<String,String>> emailTuples) throws Exception{
+	public void printAllMessages(Message[] msgs, List<Triple<String,String,String>> emailTriples) throws Exception{
 		for(int i=0;i<msgs.length;i++){
 			String subject = msgs[i].getSubject();
-			emailTuples.add(new Tuple<String,String>(subject,"")); // add the subject to the list of emailTuples
-			getContent(msgs[i],emailTuples,i);
+			Address[] a = msgs[i].getFrom();
+			String address = "";
+			if(a[0]!=null){
+				address = a[0].toString();
+			}
+			emailTriples.add(new Triple<String,String,String>(subject,"",address)); // add the subject to the list of emailTuples
+			getContent(msgs[i],emailTriples,i);
 		}
 	}
 	
-	public void getContent(Message msg, List<Tuple<String,String>> emailTuples,int index){
+	public void getContent(Message msg, List<Triple<String,String,String>> emailTriples,int index){
 		try{
 			Multipart mp = (Multipart) msg.getContent();
 		//	System.out.println(mp.getBodyPart(0));
-			emailTuples.get(index).y = dumpPart(mp.getBodyPart(0));
+			emailTriples.get(index).y = dumpPart(mp.getBodyPart(0));
 		} catch (Exception ex) {
 			System.out.println("Exception arise at get Content");
 			ex.printStackTrace();
