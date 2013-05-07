@@ -31,12 +31,7 @@ public class Scheddar implements ScheddarFace {
 	private String password; // the password of the admin's email account
 	
 	private EmailParser emailParser;
-	
-	// The number of days in advance that a meeting will be finalized
-	
-	private int daysBeforeMeetingFinalized = 3;
-
-	
+		
     Scheddar(String dest){
 		
 		//Instantiate the hashMaps
