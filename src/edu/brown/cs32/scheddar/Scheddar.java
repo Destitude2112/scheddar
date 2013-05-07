@@ -364,8 +364,6 @@ public class Scheddar implements ScheddarFace {
 		return this.groups.get(name).getSubgroups();
 	}
 	
-	//TODO: Decide if this is the behavior we want out of this function
-	
 	/**
 	 * Returns the name of a group's parent group if one exists.
 	 * If not, returns "".
@@ -470,8 +468,6 @@ public class Scheddar implements ScheddarFace {
 		}
 		return ratings;
 	}
-	
-	//TODO Make this mark the emails it reads as read so old emails are not read multiple times
 	
 	/**
 	 * This method reads all unread emails and updates values within this Scheddar accordingly

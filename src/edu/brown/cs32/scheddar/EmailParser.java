@@ -231,10 +231,6 @@ public class EmailParser {
 		}	
 	}
 	
-	
-	//TODO : When you read an email here, set it to being read so the program does not needlessly check old scheduling
-	// emails and the admin does not have to clear the inbox out manually
-	
 	/**
 	 * Read in all of the unread emails that the account has, and return a List of Tuple<String,String>
 	 * The first String is the subject of the email, the second is the body, and the third is the address
