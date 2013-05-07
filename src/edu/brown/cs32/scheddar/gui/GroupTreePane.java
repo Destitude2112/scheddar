@@ -86,7 +86,8 @@ public class GroupTreePane extends ScheddarSubPane {
 		}
 		
 		for (Person member : g.getMembers()) {
-			thisNode.add(new DefaultMutableTreeNode(member,false));
+			DefaultMutableTreeNode person = new DefaultMutableTreeNode(member.getFullName());
+			thisNode.add(person);
 		}
 		return thisNode;
 	}

@@ -101,6 +101,7 @@ public class Person {
 		this.phoneNum = phoneNum;
 		this.description = description;
 		this.conflicts = new LinkedList<ScheddarTime>();
+		this.groupList = new LinkedList<Group>();
 	}
 	
 	Person(String firstName, String lastName, String emailID, String phone, String description, List<ScheddarTime> conflicts){
