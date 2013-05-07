@@ -151,6 +151,87 @@ public class EmailParser {
 		}	
 	}
 	
+	/**
+	 * Sends a subject error message to the given user
+	 * 
+	 * @param toEmail the address to email
+	 * @param name the name of the person
+	 * @param the invalid subject
+	 */
+	
+	public void sendSubjectErrorEmail(String toEmail, String subject){
+		Properties props = new Properties();
+		props.put("mail.smtp.auth","true");
+		props.put("mail.smtp.starttls.enable","true");
+		props.put("mail.smtp.host","smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		
+		Session session = Session.getInstance(props,
+				new javax.mail.Authenticator(){
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username,password);
+			}
+		});
+		
+		String msgBody = EmailStubs.invalidSubjectEmail(subject);
+		
+		try{
+			Message msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress(username));
+			msg.addRecipient(Message.RecipientType.TO,
+					new InternetAddress(toEmail));
+			msg.setSubject("Subject error! Please read!");
+			msg.setText(msgBody);
+			
+			Transport.send(msg);
+		} catch (AddressException ex){
+			ex.printStackTrace();
+		} catch (MessagingException e){
+			e.printStackTrace();
+		}	
+	}
+	
+	/**
+	 * Sends a body error message to the given user
+	 * 
+	 * @param toEmail the address to email
+	 * @param name the name of the person
+	 * @param body the invalid body that was sent
+	 */
+	
+	public void sendInvalidBodyEmail(String toEmail, String body){
+		Properties props = new Properties();
+		props.put("mail.smtp.auth","true");
+		props.put("mail.smtp.starttls.enable","true");
+		props.put("mail.smtp.host","smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		
+		Session session = Session.getInstance(props,
+				new javax.mail.Authenticator(){
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username,password);
+			}
+		});
+		
+		String msgBody = EmailStubs.invalidBodyEmail(body);
+		
+		try{
+			Message msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress(username));
+			msg.addRecipient(Message.RecipientType.TO,
+					new InternetAddress(toEmail));
+			msg.setSubject("Body error! Please read!");
+			msg.setText(msgBody);
+			
+			Transport.send(msg);
+		} catch (AddressException ex){
+			ex.printStackTrace();
+		} catch (MessagingException e){
+			e.printStackTrace();
+		}	
+	}
+	
+	
 	//TODO : When you read an email here, set it to being read so the program does not needlessly check old scheduling
 	// emails and the admin does not have to clear the inbox out manually
 	

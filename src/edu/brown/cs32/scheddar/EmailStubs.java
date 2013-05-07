@@ -100,17 +100,15 @@ public class EmailStubs {
 	 * @return the body of the email to send
 	 */
 	
-	public static String invalidSubjectEmail(String name, String subject){
+	public static String invalidSubjectEmail(String subject){
 		String toRet = new String();
-		toRet += ("Hello, " + name + "!\n\n");
 		toRet += ("You recently sent an email with the subject " + subject+ " \n");
 		toRet += ("This is an invalid subject for our email parsing system. \n");
-		toRet += ("To have your response be recognized by our system, please send another email. \n");
+		toRet += ("To have your response be recognized by our system, please send another email. \n\n");
 		toRet += ("To set or update your recurring conflicts, the subject should be : \n");
-		String[] nameSpl = name.split(" ");
-		toRet += (nameSpl[0] + " " + nameSpl[1] + " Conflicts/n/n");
+		toRet += ("<FirstName> <LastName> Conflicts\n\n");
 		toRet += ("To indicate availability for an upcoming meeting, the subject should be : \n");
-		toRet += (nameSpl[0] + " " + nameSpl[1] + " MeetingTimes <MeetingName>\n\n");
+		toRet += ("<FirstName> <LastName> MeetingTimes <MeetingName>\n\n");
 		return toRet;
 	}
 	
@@ -123,9 +121,8 @@ public class EmailStubs {
 	 * @return the body of the email to send
 	 */
 	
-	public static String invalidBodyEmail(String name, String body){
-		String toRet = new String();
-		toRet += ("Hello, " + name + "!\n\n");
+	public static String invalidBodyEmail(String body){
+		String toRet = new String();;
 		toRet += ("You recently sent an email with the following body : \n\n");
 		toRet += (body += "\n\n");
 		toRet += ("To have your response be recognized by our system, please send another email with a correctly" +
@@ -147,7 +144,7 @@ public class EmailStubs {
 		String testName = "Roy Mustang";
 		String invalidSubject = "Roy Mustard invaliadfasdf";
 		
-		System.out.println(invalidSubjectEmail(testName,invalidSubject));
+		System.out.println(invalidSubjectEmail(invalidSubject));
 	}
 	
 	
