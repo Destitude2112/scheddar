@@ -259,7 +259,7 @@ public class EmailParser {
 			
 			try{
 				printAllMessages(messages,emailTriples);
-				inbox.close(false); // this might mark emails as read correctly
+				inbox.close(true);
 				store.close();
 				return emailTriples;
 			} catch (Exception ex) {

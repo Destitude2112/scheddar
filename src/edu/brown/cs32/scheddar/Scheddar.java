@@ -35,7 +35,7 @@ public class Scheddar implements ScheddarFace {
 	// The number of days in advance that a meeting will be finalized
 	
 	private int daysBeforeMeetingFinalized = 3;
-	
+
 	
     Scheddar(String dest){
 		

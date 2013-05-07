@@ -23,6 +23,15 @@ public class Meeting {
 	private UsefulMethods methods = new UsefulMethods();
 	
 	// The number of days in advance that a meeting will be finalized
+	
+	//TODO : Need to take this in and also store it in the XML file
+	
+	private int hoursBeforeMeetingFinalized = 72; // the number of hours before the first proposed meeting that the meeting time should be finalized
+	
+	/**
+	 * XML Constructor
+	 */
+	
 	Meeting(String name, Boolean decided, ScheddarTime timeForFinalizing, ScheddarTime finalTime,
 			List<ScheddarTime> proposedTimes, HashMap<Integer, Double> indexToScore, 
 			List<String> dummyGroupsInvolved, String description){
@@ -36,8 +45,106 @@ public class Meeting {
 		this.description = description;
 	}
 	
+	/**
+	 * Constructor for default time before scheduling
+	 **/
 	
-	private int daysBeforeMeetingFinalized = 3;
+	public Meeting(String name, List<ScheddarTime> times,List<Group> groupsInvolved,String description,List<Person> peopleAttending){
+		this.name = name;
+		this.proposedTimes = times;
+		this.groupsInvolved = groupsInvolved;
+		this.description = description;
+		this.decided = false;
+		this.indexToScore = new HashMap<Integer,Double>();
+		
+		
+		// If there is only one proposed time, then the meeting will definitely occur then,
+		// so we set decided to true and the final time to that time
+		
+		if(this.proposedTimes.size()==1){
+			this.decided = true;
+			this.finalTime = this.proposedTimes.get(0);
+		}
+		
+		// Else we calculate the time by which we must decide on a final meeting time
+		
+		else{
+			ScheddarTime earliestTime = Collections.min(this.proposedTimes);
+			int newDay = earliestTime.getDay();
+			int newMonth = earliestTime.getMonth();
+			int newYear = earliestTime.getYear();
+			int newHour = earliestTime.getStartHour() - this.hoursBeforeMeetingFinalized;
+			int newMinutes = earliestTime.getStartMinutes();
+			
+			while(newHour < 0){
+				newHour += 24;
+				newDay = newDay - 1;
+			}
+			
+			if(newDay <= 0){
+				newMonth--;
+				if(newMonth==0){ 
+					newMonth = 12; // if was january and backed up, go to december
+					newYear = newYear--;
+				}
+				newDay = methods.daysInMonth(newMonth,newYear) + newDay;
+			}
+			
+			ScheddarTime timeToFinalize = new ScheddarTime(newHour,newMinutes,0,0,newDay,newMonth,newYear,false);
+			this.timeForFinalizing = timeToFinalize;
+		}
+	}
+	
+	/**
+	 * Constructor for explicit time given before scheduling
+	 */
+	
+	public Meeting(String name, List<ScheddarTime> times,List<Group> groupsInvolved,String description,List<Person> peopleAttending, int hoursBeforeScheduling){
+		this.name = name;
+		this.proposedTimes = times;
+		this.groupsInvolved = groupsInvolved;
+		this.description = description;
+		this.decided = false;
+		this.indexToScore = new HashMap<Integer,Double>();
+		
+		
+		// If there is only one proposed time, then the meeting will definitely occur then,
+		// so we set decided to true and the final time to that time
+		
+		if(this.proposedTimes.size()==1){
+			this.decided = true;
+			this.finalTime = this.proposedTimes.get(0);
+		}
+		
+		// Else we calculate the time by which we must decide on a final meeting time
+		
+		else{
+			ScheddarTime earliestTime = Collections.min(this.proposedTimes);
+			int newDay = earliestTime.getDay();
+			int newMonth = earliestTime.getMonth();
+			int newYear = earliestTime.getYear();
+			int newHour = earliestTime.getStartHour() - hoursBeforeScheduling;
+			int newMinutes = earliestTime.getStartMinutes();
+			
+			while(newHour < 0){
+				newHour += 24;
+				newDay = newDay - 1;
+			}
+			
+			if(newDay <= 0){
+				newMonth--;
+				if(newMonth==0){ 
+					newMonth = 12; // if was january and backed up, go to december
+					newYear = newYear--;
+				}
+				newDay = methods.daysInMonth(newMonth,newYear) + newDay;
+			}
+			
+			ScheddarTime timeToFinalize = new ScheddarTime(newHour,newMinutes,0,0,newDay,newMonth,newYear,false);
+			this.timeForFinalizing = timeToFinalize;
+		}
+	}
+	
 	
 	/**
 	 * Getter Functions
@@ -124,52 +231,6 @@ public class Meeting {
 	public void removeProposedTime(ScheddarTime time){
 		this.proposedTimes.remove(time);
 	}
-	
-	/**
-	 * Constructor
-	 **/
-	
-	public Meeting(String name, List<ScheddarTime> times,List<Group> groupsInvolved,String description,List<Person> peopleAttending){
-		this.name = name;
-		this.proposedTimes = times;
-		this.groupsInvolved = groupsInvolved;
-		this.description = description;
-		this.decided = false;
-		this.indexToScore = new HashMap<Integer,Double>();
-		
-		
-		// If there is only one proposed time, then the meeting will definitely occur then,
-		// so we set decided to true and the final time to that time
-		
-		if(this.proposedTimes.size()==1){
-			this.decided = true;
-			this.finalTime = this.proposedTimes.get(0);
-		}
-		
-		// Else we calculate the time by which we must decide on a final meeting time
-		
-		else{
-			ScheddarTime earliestTime = Collections.min(this.proposedTimes);
-			int newDay = earliestTime.getDay() - this.daysBeforeMeetingFinalized;
-			int newMonth = earliestTime.getMonth();
-			int newYear = earliestTime.getYear();
-			int newHour = earliestTime.getStartHour();
-			int newMinutes = earliestTime.getStartMinutes();
-			
-			if(newDay <= 0){
-				newMonth--;
-				if(newMonth==0){ 
-					newMonth = 12; // if was january and backed up, go to december
-					newYear = newYear--;
-				}
-				newDay = methods.daysInMonth(newMonth,newYear) + newDay;
-			}
-			
-			ScheddarTime timeToFinalize = new ScheddarTime(newHour,newMinutes,0,0,newDay,newMonth,newYear,false);
-			this.timeForFinalizing = timeToFinalize;
-		}
-	}
-	
 	
 	/**
 	 * Setters
@@ -295,6 +356,4 @@ public class Meeting {
 		}
 		return toRet;
 	}
-	
-	
 }
