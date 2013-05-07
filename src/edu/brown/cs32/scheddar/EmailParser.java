@@ -263,7 +263,7 @@ public class EmailParser {
 			
 			try{
 				printAllMessages(messages,emailTriples);
-				inbox.close(true);
+				inbox.close(false); // this might mark emails as read correctly
 				store.close();
 				return emailTriples;
 			} catch (Exception ex) {
@@ -294,7 +294,6 @@ public class EmailParser {
 	public void getContent(Message msg, List<Triple<String,String,String>> emailTriples,int index){
 		try{
 			Multipart mp = (Multipart) msg.getContent();
-		//	System.out.println(mp.getBodyPart(0));
 			emailTriples.get(index).y = dumpPart(mp.getBodyPart(0));
 		} catch (Exception ex) {
 			System.out.println("Exception arise at get Content");

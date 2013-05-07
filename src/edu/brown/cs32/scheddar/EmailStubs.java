@@ -139,12 +139,13 @@ public class EmailStubs {
 		groups.add("TSM");
 		groups.add("CLG");
 		groups.add("BROBROBRO");
-		System.out.println(addedPersonEmail(admin,noob,groups));
+//		System.out.println(addedPersonEmail(admin,noob,groups));
 		
 		String testName = "Roy Mustang";
 		String invalidSubject = "Roy Mustard invaliadfasdf";
 		
 		System.out.println(invalidSubjectEmail(invalidSubject));
+		System.out.println(invalidBodyEmail(invalidSubject));
 	}
 	
 	

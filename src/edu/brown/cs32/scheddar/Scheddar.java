@@ -26,10 +26,7 @@ public class Scheddar implements ScheddarFace {
 	private String adminName; // the name of the admin of this Scheddar
 	public ScheddarXML sxml;
 	private String dest;
-	
-	
-	//TODO : Decide how/where to give username/password
-	
+
 	private String username; // the username of the admin's email account
 	private String password; // the password of the admin's email account
 	
@@ -431,11 +428,6 @@ public class Scheddar implements ScheddarFace {
 	public Collection<Meeting> getAllMeetings(){
 		return this.meetings.values();
 	}
-	
-	//TODO: Just planning out exactly how this works. So when an admin proposes a meeting, they fill in fields corresponding
-	// to the parts of the Meeting object. Once they fill that in, they press a button. This creates a Meeting object.
-	// However, a box should come up that displays the results of this method, and allow them to change the proposed times
-	// A new Meeting object shouldnt be created, proposedTimes should just be altered if necessary -atutino
 	
 	/**
 	 * This algorithm gives the admin a ranking of proposed times for a meeting based
