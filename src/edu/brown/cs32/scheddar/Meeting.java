@@ -2,6 +2,7 @@ package edu.brown.cs32.scheddar;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -233,4 +234,67 @@ public class Meeting {
 		double prevScore = this.indexToScore.get(index);
 		this.indexToScore.put(index,prevScore + score);
 	}
+	
+	/**
+	 * Ranks all potential ScheddarTimes that a meeting could occur in
+	 * (broken into 30 minute intervals) based on recurring conflicts,
+	 * and returns a HashMap of scores to ScheddarTimes
+	 * 
+	 * @param timeRange a list of ScheddarTimes representing time ranges that the
+	 * meeting could occur in (ranges will be in multiples of 30 minutes)
+	 * @param duration the duration of the meeting (will be a multiple of 30)
+	 * @return 
+	 */
+	
+	public HashMap<Double,ScheddarTime> recommendMeetingTimes(List<ScheddarTime> timeRanges, int duration){
+		HashMap<Double,ScheddarTime> toRet = new HashMap<Double,ScheddarTime>();
+		
+		List<ScheddarTime> potentialTimes = new LinkedList<ScheddarTime>();
+		
+		// Generate all potential meeting times within the ranges that were given
+		
+		for(ScheddarTime time : timeRanges){
+			int day = time.getDay();
+			int month = time.getMonth();
+			int year = time.getYear();
+			int dayOfWeek = time.getDayOfWeek();
+			int startTime = time.getStartHour() * 60 + time.getStartMinutes(); // the start time in minutes
+			ScheddarTime endScheddar = time.getEndTime();
+			int endTime = endScheddar.getStartHour() * 60 + endScheddar.getStartMinutes(); // the end time in minutes
+			while(startTime+duration<=endTime){
+				int hour = startTime % 60;
+				int minutes = startTime - (hour * 60);
+				potentialTimes.add(new ScheddarTime(hour,minutes,duration,dayOfWeek,day,month,year,false));
+				startTime += duration;
+			}
+		}
+		
+		// Generate rankings based on recurring conflicts
+		
+		for(ScheddarTime t : potentialTimes){
+			double currScore = 0.0; // keep track of weights of people with conflicts
+			double totalWeight = 0.0; // keep track of the total weight of people in the groups for normalizing results
+			for(Group g : this.getGroupsInvolved()){
+				for(Person p : g.getMembers()){
+					totalWeight += g.getMemberRanking(p);
+					List<ScheddarTime> conflicts = p.getConflicts();
+					for(ScheddarTime c : conflicts){
+						if(c.getDayOfWeek()== t.getDayOfWeek()){
+							c.setDay(t.getDay());
+							c.setMonth(t.getMonth());
+							c.setYear(t.getYear());
+							if(UsefulMethods.doTimesConflict(c,t)){
+								currScore += g.getMemberRanking(p);
+								break;
+							}
+						}
+					}
+				}
+			}
+			toRet.put(((totalWeight - currScore) / totalWeight) * 100, t);
+		}
+		return toRet;
+	}
+	
+	
 }
