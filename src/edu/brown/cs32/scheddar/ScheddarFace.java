@@ -57,6 +57,7 @@ public interface ScheddarFace {
 	
 	
 	public List<Meeting> dayMeetings(int day, int month, int year);
+	public List<Meeting> monthMeetings(int month, int year);
 	
 	
 	

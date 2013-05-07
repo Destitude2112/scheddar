@@ -1,5 +1,6 @@
 package edu.brown.cs32.scheddar.gui;
 
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -32,6 +33,7 @@ public class GroupForm extends AbstractForm {
 	
 	public GroupForm(ScheddarPane s) {
 		super(s);
+		System.out.println("HISODFLJIODSF");
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
@@ -88,9 +90,25 @@ public class GroupForm extends AbstractForm {
 		panel.add(nameField);
 		panel.add(new JLabel("Parent Group:"));
 		panel.add(groupList);
-		panel.add(new JLabel("Choose members:"));
-		panel.add(memberList);
+		System.out.println(memberList.getComponentCount());
+		if(memberList.getComponentCount()>0) {
+			panel.add(new JLabel("Choose members:"));
+			panel.add(memberList);
+		}
 		panel.add(create);
+		JPanel cards;
+		final String BUTTONPANEL = "Card with JButtons";
+		final String TEXTPANEL = "Card with JTextField";
+		cards = new JPanel(new CardLayout());
+		JPanel card1 = new JPanel();
+		JPanel card2 = new JPanel();
+		cards.add(card1, BUTTONPANEL);
+		cards.add(card2, TEXTPANEL);
+		String comboBoxItems[] = { BUTTONPANEL, TEXTPANEL };
+		JComboBox cb = new JComboBox(comboBoxItems);
+		cb.setEditable(false);
+		card1.add(cb);
+		panel.add(cards);
 		add(panel);
 		pack();
 		setVisible(true);

@@ -2,10 +2,13 @@ package edu.brown.cs32.scheddar.gui;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreeSelectionModel;
@@ -29,17 +32,26 @@ public class GroupTreePane extends ScheddarSubPane {
 	
 	public GroupTreePane(ScheddarPane s) {
 		super(s);
-		
+			
 		setLayout(new GridLayout(1,1));
 		
 		_topNode = constructTree(_scheddar.getRootGroup());
 		_tree = new JTree(_topNode);
+		_tree.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("Clicked");
+				if (SwingUtilities.isRightMouseButton(e)) {
+					_tree.setSelectionRow(_tree.getRowForLocation(e.getPoint().x, e.getPoint().y));
+				}
+			}
+		});
 		
 		_treeView = new JScrollPane(_tree);
 		_treeView.setMinimumSize(new Dimension(100,50));
 		add(_treeView);
 	}
-	
+		
 	public void updateTree() {
 		
 		_topNode = constructTree(_scheddar.getRootGroup());

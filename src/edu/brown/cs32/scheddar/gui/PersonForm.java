@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -55,6 +56,7 @@ public class PersonForm extends AbstractForm {
 		String[] groupNames = getAllGroupNames();
 		groupMemberships = new JList<String>(groupNames);
 		groupMemberships.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		groupMemberships.setSelectedValue(s._scheddar.getRootGroup().getName(), true);
 		JScrollPane memberListPane = new JScrollPane(groupMemberships);
 		memberListPane.setPreferredSize(new Dimension(75,100));
 		JPanel listPanePane = new JPanel(new GridLayout(1,1));
@@ -67,8 +69,9 @@ public class PersonForm extends AbstractForm {
 		create.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Person p = new Person(firstName.getText().trim(),lastName.getText().trim(),email.getText().trim(),phone.getText().trim(),description.getText().trim());								
-				for (String name : groupMemberships.getSelectedValuesList()) {
+				Person p = new Person(firstName.getText().trim(),lastName.getText().trim(),email.getText().trim(),phone.getText().trim(),description.getText().trim());
+				List<String> groups = groupMemberships.getSelectedValuesList(); 
+				for (String name : groups) {
 					Group g = _scheddarPane._scheddar.getGroupFromName(name);
 					while(g!=null) {
 						p.addGroup(g);
