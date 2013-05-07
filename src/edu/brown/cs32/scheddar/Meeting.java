@@ -373,6 +373,24 @@ public class Meeting {
 					}
 				}
 			}
+			
+			HashMap<Person,Double> otherPeople = this.getExtraPeopleToImportance();
+			Set<Person> personSet = otherPeople.keySet();
+			for(Person p : personSet){
+				totalWeight+=otherPeople.get(p);
+				List<ScheddarTime> conflicts = p.getConflicts();
+				for(ScheddarTime conflict: conflicts){
+					if(conflict.getDayOfWeek()==t.getDayOfWeek()){
+						conflict.setDay(t.getDay());
+						conflict.setMonth(t.getMonth());
+						conflict.setYear(t.getYear());
+						if(UsefulMethods.doTimesConflict(t,conflict)){
+							currScore += otherPeople.get(p);
+							break;
+						}
+					}
+				}
+			}
 			toRet.put(((totalWeight - currScore) / totalWeight) * 100, t);
 		}
 		return toRet;
