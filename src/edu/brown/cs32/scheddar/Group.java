@@ -82,6 +82,9 @@ public class Group {
 	
 	public void addMember(Person person){
 		this.members.add(person);
+		if (this.getParentGroup()!=null){
+			this.getParentGroup().addMember(person);
+		}
 	}
 	
 	public void removeMember(Person person){
@@ -101,12 +104,12 @@ public class Group {
 	 * the rules of put() for a HashMap, so overwrites previous entry if
 	 * one existed. This can therefore be used to update a person's ranking.
 	 * 
-	 * @param email the email of the person to add
+	 * @param name the name of the person to add
 	 * @param ranking the ranking to add
 	 */
 	
-	public void addMemberRanking(String email, double ranking){
-		this.memberRankings.put(email,ranking);
+	public void addMemberRanking(String name, double ranking){
+		this.memberRankings.put(name,ranking);
 	}
 	
 	/**
