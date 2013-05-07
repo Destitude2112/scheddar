@@ -22,11 +22,16 @@ public class Meeting {
 	
 	private UsefulMethods methods = new UsefulMethods();
 	
-	// The number of days in advance that a meeting will be finalized
+	// The number of hours in advance that a meeting will be finalized
 	
-	//TODO : Need to take this in and also store it in the XML file
+	private int hoursBeforeMeetingFinalized = 72;
 	
-	private int hoursBeforeMeetingFinalized = 72; // the number of hours before the first proposed meeting that the meeting time should be finalized
+	// A Hashmap of individuals to importance for a meeting that are not in groups involved with the meeting
+	// Maps the Person to their importance in this meeting
+	
+	private HashMap<Person, Double> extraPeopleToImportance;
+	
+	//TODO : Add extraPeopleToImportance to the XML file for Meetings
 	
 	/**
 	 * XML Constructor
@@ -43,6 +48,7 @@ public class Meeting {
 		this.indexToScore = indexToScore;
 		this.dummyGroupsInvolved = dummyGroupsInvolved;
 		this.description = description;
+
 	}
 	
 	/**
@@ -56,7 +62,7 @@ public class Meeting {
 		this.description = description;
 		this.decided = false;
 		this.indexToScore = new HashMap<Integer,Double>();
-		
+		this.extraPeopleToImportance = new HashMap<Person,Double>();
 		
 		// If there is only one proposed time, then the meeting will definitely occur then,
 		// so we set decided to true and the final time to that time
@@ -106,7 +112,7 @@ public class Meeting {
 		this.description = description;
 		this.decided = false;
 		this.indexToScore = new HashMap<Integer,Double>();
-		
+		this.extraPeopleToImportance = new HashMap<Person,Double>();
 		
 		// If there is only one proposed time, then the meeting will definitely occur then,
 		// so we set decided to true and the final time to that time
@@ -158,6 +164,10 @@ public class Meeting {
 		return this.decided;
 	}
 	
+	public boolean getDecided(){
+		return decided;
+	}
+	
 	public ScheddarTime getTimeForFinalizing(){
 		return timeForFinalizing;
 	}
@@ -182,6 +192,10 @@ public class Meeting {
 	
 	public String getDescription(){
 		return this.description;
+	}
+	
+	public HashMap<Person,Double> getExtraPeopleToImportance(){
+		return this.extraPeopleToImportance;
 	}
 
 	
@@ -232,12 +246,8 @@ public class Meeting {
 		this.proposedTimes.remove(time);
 	}
 	
-	/**
-	 * Setters
-	 */
-	
-	public boolean getDecided(){
-		return decided;
+	public void addExtraPerson(Person p, double importance){
+		this.extraPeopleToImportance.put(p,importance);
 	}
 	
 	/**
@@ -252,6 +262,10 @@ public class Meeting {
 			for(Person p : g.getMembers()){
 				allEmails.add(p.getEmail());
 			}
+		}
+		Set<Person> keys = this.extraPeopleToImportance.keySet();
+		for(Person person : keys){
+			allEmails.add(person.getEmail());
 		}
 		return allEmails;
 	}
@@ -274,7 +288,11 @@ public class Meeting {
 	
 	/**
 	 * Get a person's importance to a meeting based on their importance in the groups
-	 * of the meeting
+	 * of the meeting. Will also find a Person's importance if they are in the extraPeople
+	 * Hashmap.
+	 * 
+	 * @param p the Person to get the importance of
+	 * @return the double representing that person's importance
 	 */
 	
 	public double getPersonImportance(Person p){
@@ -283,6 +301,9 @@ public class Meeting {
 			if(g.getMemberRanking(p)>maxImportance){
 				maxImportance = g.getMemberRanking(p);
 			}
+		}
+		if(this.extraPeopleToImportance.containsKey(p)){
+			maxImportance = extraPeopleToImportance.get(p);
 		}
 		return maxImportance;
 	}

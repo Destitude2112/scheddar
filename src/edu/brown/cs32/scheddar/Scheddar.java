@@ -505,7 +505,9 @@ public class Scheddar implements ScheddarFace {
 			return;
 		}
 		if(subjectSpl[2].equals("Conflicts")){ // we are parsing a conflicts email
+			List<ScheddarTime> oldConflicts = this.people.get(personName).getConflicts();
 			try{
+				this.people.get(personName).setConflicts(new LinkedList<ScheddarTime>());
 				for(int i=0;i<bodySpl.length-1;i+=2){
 					String dayAbbrev = bodySpl[i];
 					int dayOfWeek = -1;
@@ -530,6 +532,7 @@ public class Scheddar implements ScheddarFace {
 				}
 			} catch (Exception e){
 				emailParser.sendInvalidBodyEmail(address, body);
+				this.people.get(personName).setConflicts(oldConflicts);
 				return;
 			}
 		}
