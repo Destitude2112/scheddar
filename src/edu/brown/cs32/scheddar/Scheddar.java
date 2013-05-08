@@ -1,6 +1,7 @@
 package edu.brown.cs32.scheddar;
 
 
+import edu.brown.cs32.scheddar.gui.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -146,7 +147,7 @@ public class Scheddar implements ScheddarFace {
 	 */
 	
 	public void addPerson(Person p){
-		this.people.put(p.getFullName(),p);
+			this.people.put(p.getFullName(),p);
 	}
 	
 	/** 
@@ -196,6 +197,10 @@ public class Scheddar implements ScheddarFace {
 	 */
 	
 	public void removePerson(String name){
+		Person p = this.people.get(name);
+		for(Group g: p.getGroups()) {
+			g.removeMember(p);
+		}
 		this.people.remove(name);
 	}
 	
@@ -206,6 +211,8 @@ public class Scheddar implements ScheddarFace {
 	 */
 	
 	public void removeGroup(String name){
+		Group g = this.groups.get(name);
+		g.getParentGroup().removeSubgroup(g);
 		this.groups.remove(name);
 	}
 	

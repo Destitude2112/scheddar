@@ -40,7 +40,6 @@ public class GroupTreePane extends ScheddarSubPane {
 		_tree.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				System.out.println("Clicked");
 				if (SwingUtilities.isRightMouseButton(e)) {
 					_tree.setSelectionRow(_tree.getRowForLocation(e.getPoint().x, e.getPoint().y));
 				}

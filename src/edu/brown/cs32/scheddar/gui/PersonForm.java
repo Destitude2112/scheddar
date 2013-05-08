@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -71,6 +72,13 @@ public class PersonForm extends AbstractForm {
 			public void actionPerformed(ActionEvent e) {
 				if(firstName.getText().trim().length()>0 && lastName.getText().trim().length()>0) {
 					Person p = new Person(firstName.getText().trim(),lastName.getText().trim(),email.getText().trim(),phone.getText().trim(),description.getText().trim());
+					Collection <Person> existingPeople = _scheddarPane._scheddar.getAllPeople();
+					for(Person ep : existingPeople){
+						if(ep.getFullName().equals(p.getFullName())){
+							PopUps.popUpPersonAlreadyExists();
+							return;
+						}
+					}
 					List<String> groups = groupMemberships.getSelectedValuesList(); 
 					for (String name : groups) {
 						Group g = _scheddarPane._scheddar.getGroupFromName(name);
@@ -79,6 +87,7 @@ public class PersonForm extends AbstractForm {
 					}				
 					_scheddarPane._scheddar.addPerson(p);
 					_scheddarPane._groupTree.updateTree();
+					_scheddarPane._gui._mb.getMenu(2).getMenuComponent(0).setEnabled(true);
 					dispose();				
 				}
 			}

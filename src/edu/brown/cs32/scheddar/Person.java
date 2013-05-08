@@ -52,6 +52,10 @@ public class Person {
 		return this.conflicts;
 	}
 	
+	public List<Group> getGroups() {
+		return this.groupList;
+	}
+	
 	@Override
 	public String toString() {
 		return getFullName();
