@@ -1,6 +1,5 @@
 package edu.brown.cs32.scheddar.gui;
 
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -18,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
-import edu.brown.cs32.scheddar.*;
+import edu.brown.cs32.scheddar.Group;
 
 /**
  * @author sdemane
@@ -36,11 +35,10 @@ public class GroupForm extends AbstractForm {
 	public GroupForm(ScheddarPane s) {
 		super(s);
 		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-		panel.setPreferredSize(new Dimension(250,200));
+		panel.setLayout(new FlowLayout());
 		
 		//getting name of new group
-		nameField = new JTextField(25);
+		nameField = new JTextField(20);
 		nameField.setMaximumSize(new Dimension(250,25));
 		panel.add(new JLabel("Group Name:"));
 		panel.add(nameField);
@@ -49,7 +47,7 @@ public class GroupForm extends AbstractForm {
 		String[] groupNames = getAllGroupNames();
 		groupList = new JComboBox<String>(groupNames);
 		groupList.setSelectedItem(_scheddarPane.getCurrentGroup());
-		groupList.setMaximumSize(new Dimension(250,25));
+		groupList.setPreferredSize(new Dimension(260,25));
 		panel.add(new JLabel("Parent Group:"));
 		panel.add(groupList);
 		
@@ -60,6 +58,7 @@ public class GroupForm extends AbstractForm {
 		memberListPane.setPreferredSize(new Dimension(75,100));
 		JPanel listPanePane = new JPanel(new GridLayout(1,1));
 		listPanePane.add(memberListPane);
+		panel.setPreferredSize(new Dimension(370,Math.max(110,80+28*memberList.getModel().getSize())));
 		
 		
 		//adding listener so member list is updated if parent group changes
@@ -106,19 +105,6 @@ public class GroupForm extends AbstractForm {
 			
 			panel.add(new JLabel("Choose members:"));
 			panel.add(memberList);
-			JPanel cards;
-			final String BUTTONPANEL = "Card with JButtons";
-			final String TEXTPANEL = "Card with JTextField";
-			cards = new JPanel(new CardLayout());
-			JPanel card1 = new JPanel();
-			JPanel card2 = new JPanel();
-			cards.add(card1, BUTTONPANEL);
-			cards.add(card2, TEXTPANEL);
-			String comboBoxItems[] = { BUTTONPANEL, TEXTPANEL };
-			JComboBox cb = new JComboBox(comboBoxItems);
-			cb.setEditable(false);
-			card1.add(cb);
-			panel.add(cards);
 		}
 		panel.add(create);
 		add(panel);
