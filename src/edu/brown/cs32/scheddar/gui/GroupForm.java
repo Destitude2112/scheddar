@@ -33,7 +33,6 @@ public class GroupForm extends AbstractForm {
 	
 	public GroupForm(ScheddarPane s) {
 		super(s);
-		System.out.println("HISODFLJIODSF");
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
@@ -90,8 +89,8 @@ public class GroupForm extends AbstractForm {
 		panel.add(nameField);
 		panel.add(new JLabel("Parent Group:"));
 		panel.add(groupList);
-		System.out.println(memberList.getComponentCount());
-		if(memberList.getComponentCount()>0) {
+		System.out.println(memberList.getModel().getSize());
+		if(memberList.getModel().getSize()>1) {
 			panel.add(new JLabel("Choose members:"));
 			panel.add(memberList);
 		}

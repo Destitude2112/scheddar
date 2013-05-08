@@ -59,13 +59,6 @@ public class MeetingPane extends ScheddarSubPane {
 		panel.add(descriPanel);
 		panel.add(Box.createVerticalStrut(20));
 		
-		
-		
-		
-		
-		
-		
-		
 	}
 	
 	public Dimension getPreferredSize() {

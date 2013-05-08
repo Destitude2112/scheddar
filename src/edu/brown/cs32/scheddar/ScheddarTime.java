@@ -159,11 +159,11 @@ public class ScheddarTime implements Comparable {
 		// Else we are in a new month
 		newDay = 1;
 		newMonth += 1;
-		if(newMonth<=12){
+		if(newMonth<12){
 			return new ScheddarTime(newHours,newMinutes,0,newDayOfWeek,newDay,newMonth,newYear,false);
 		}
 		else{
-			return new ScheddarTime(newHours,newMinutes,0,newDayOfWeek,newDay,1,newYear+1,false);
+			return new ScheddarTime(newHours,newMinutes,0,newDayOfWeek,newDay,0,newYear+1,false);
 		}
 	}
 	

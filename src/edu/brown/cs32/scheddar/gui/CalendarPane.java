@@ -17,10 +17,12 @@ public class CalendarPane extends ScheddarSubPane {
 	public CalendarPane(ScheddarPane s) {
 		super(s);
 		ScheddarTime today = UsefulMethods.getCurrentTime();
-		switchToWeek(today);
+		switchToMonth(today);
 	}
 	
 	public void switchToMonth(ScheddarTime time) {
+		removeAll();
+		add(new MonthPane(_scheddarPane,time));
 		revalidate();
 	}
 	

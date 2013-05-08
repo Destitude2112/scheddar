@@ -49,6 +49,10 @@ public class UsefulMethods {
 		
 		return new ScheddarTime(0, 0, 0, 0, day, month, year, false);
 	}
+
+	public static ScheddarTime getFirstOfMonth(ScheddarTime time) {
+		return new ScheddarTime(0, 0, 0, (time.getDayOfWeek()-time.getDay()+36)%7, 1, time.getMonth(), time.getYear(), false);
+	}
 	
 	
 	/**
@@ -58,10 +62,7 @@ public class UsefulMethods {
 	 * @return
 	 */
 	public static ScheddarTime getNextDay(ScheddarTime time) {
-		int weekday = time.getDayOfWeek() + 1;
-		if (weekday > 6)
-			weekday = 0;
-		
+		int weekday = (time.getDayOfWeek() + 1) % 7;		
 		int day = time.getDay() + 1;
 		int month  = time.getMonth();
 		int year = time.getYear();
@@ -76,8 +77,7 @@ public class UsefulMethods {
 			month = 0;
 		}
 		
-		return new ScheddarTime(0, 0, 0, weekday, day, month, year, false);
-		
+		return new ScheddarTime(0, 0, 0, weekday, day, month, year, false);		
 	}
 	
 	
@@ -89,7 +89,6 @@ public class UsefulMethods {
 	public static ScheddarTime getCurrentTime() {
 		Date date = new Date();
 		String dateString = date.toString();
-		System.out.println(dateString);
 		String[] splitDate = dateString.split(" ");
 		String dayName = splitDate[0];
 		
@@ -107,7 +106,7 @@ public class UsefulMethods {
 		// Convert the month of the year to the correct number
 		
 		String monthName = splitDate[1];
-		int month = -1;
+		int month;
 		if(monthName.equals("Jan")) month = 0;
 		else if(monthName.equals("Feb")) month = 1;
 		else if(monthName.equals("Mar")) month = 2;
@@ -131,17 +130,17 @@ public class UsefulMethods {
 	}
 	
 	/**
-	 * Return the number of days in a given month (1 -> Jan, 2-> Feb, etc.)
+	 * Return the number of days in a given month (0 -> Jan, 1-> Feb, etc.)
 	 *
 	 *@param month the number of the month
 	 *@param year the year (used for deciding if leap year)
 	 */
 	
-	public static int daysInMonth(int month,int year){
-		if(month==9 || month==4 || month==6 || month==11){
+	public static int daysInMonth(int month, int year){
+		if(month==8 || month==3 || month==5 || month==10){
 			return 30;
 		}
-		else if(month==2){
+		else if(month==1){
 			if(isLeapYear(year)){
 				return 29;
 			}
@@ -166,7 +165,7 @@ public class UsefulMethods {
 	
 	public static int dayOfTheWeek(int day, int month, int year) {
 		Calendar c = Calendar.getInstance();
-		c.setTime(new Date(year-1900,month-1,day));
+		c.setTime(new Date(year-1900,month,day));
 		return c.get(Calendar.DAY_OF_WEEK)-1;
 	}
 	
