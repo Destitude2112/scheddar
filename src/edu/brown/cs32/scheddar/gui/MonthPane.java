@@ -62,11 +62,18 @@ public class MonthPane extends ScheddarSubPane {
 		});
 		this.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JButton prevButton = new JButton("Previous Month");
+		JButton weekButton = new JButton("Week View");
 		JButton nextButton = new JButton("Next Month");
 		prevButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				loadPrevMonth();
+			}
+		});
+		weekButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_scheddarPane._calendar.switchToWeek(_time);
 			}
 		});
 		nextButton.addActionListener(new ActionListener() {
@@ -76,6 +83,7 @@ public class MonthPane extends ScheddarSubPane {
 			}
 		});
 		this.add(prevButton);
+		this.add(weekButton);
 		this.add(nextButton);
 }	
 	
@@ -103,7 +111,7 @@ public class MonthPane extends ScheddarSubPane {
 		
 		String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 		String[] days =  {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-		drawCenteredString(g, months[_time.getMonth()], size.width/2, 60);
+		drawCenteredString(g, months[_time.getMonth()]+" "+_time.getYear(), size.width/2, 60);
 		g.setFont(new Font("SansSerif",Font.PLAIN,15));
 		
 		for(double i = 1.0; i < WEEKS_TO_DISPLAY; i += 1.0) {

@@ -13,36 +13,42 @@ import edu.brown.cs32.scheddar.*;
  */
 public class CalendarPane extends ScheddarSubPane {
 	private static final long serialVersionUID = 1L;
+	private ScheddarTime _time;
 	
 	public CalendarPane(ScheddarPane s) {
 		super(s);
 		ScheddarTime today = UsefulMethods.getCurrentTime();
-		switchToMeeting(today,null);
+		switchToMonth(today);
 	}
 	
 	public void switchToMonth(ScheddarTime time) {
 		removeAll();
 		add(new MonthPane(_scheddarPane,time));
+		_time = time;
 		revalidate();
 	}
 	
 	public void switchToWeek(ScheddarTime time) {
 		removeAll();
 		add(new WeekPane(_scheddarPane,time));
+		_time = time;
 		revalidate();
 	}
 	
 	public void switchToMeeting(ScheddarTime time, Meeting m) {
 		removeAll();
-		
+
 		if (time == null)
 			time = UsefulMethods.getCurrentTime();
-		
+
+		_time = time;
 		add(new DayPane(_scheddarPane, time));
 		add(new MeetingPane(_scheddarPane, m));
 		revalidate();
 	}
 
-	
+	public ScheddarTime getTime() {
+		return _time;
+	}
 
 }

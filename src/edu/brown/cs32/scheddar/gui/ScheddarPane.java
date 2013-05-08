@@ -66,6 +66,6 @@ public class ScheddarPane extends JPanel {
 	}
 	
 	public String[] getGroupMembers(String name) {
-		return _scheddar.getGroupFromName(name).getPeopleFullNamesInGroup().toArray(new String[1]);
+		return _scheddar.getGroupFromName(name).getPeopleFullNamesInGroup().toArray(new String[0]);
 	}
 }

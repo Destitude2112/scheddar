@@ -2,6 +2,7 @@ package edu.brown.cs32.scheddar.gui;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,14 +36,21 @@ public class GroupForm extends AbstractForm {
 		super(s);
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+		panel.setPreferredSize(new Dimension(250,200));
 		
 		//getting name of new group
-		nameField = new JTextField(20);
+		nameField = new JTextField(25);
+		nameField.setMaximumSize(new Dimension(250,25));
+		panel.add(new JLabel("Group Name:"));
+		panel.add(nameField);
 		
 		//getting parent group
 		String[] groupNames = getAllGroupNames();
 		groupList = new JComboBox<String>(groupNames);
 		groupList.setSelectedItem(_scheddarPane.getCurrentGroup());
+		groupList.setMaximumSize(new Dimension(250,25));
+		panel.add(new JLabel("Parent Group:"));
+		panel.add(groupList);
 		
 		//getting initial members
 		memberList = new JList<String>(_scheddarPane.getGroupMembers((String)groupList.getSelectedItem()));
@@ -71,43 +79,40 @@ public class GroupForm extends AbstractForm {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Group g = new Group(nameField.getText().trim());
-				g.setParentGroup(_scheddarPane._scheddar.getGroupFromName((String)groupList.getSelectedItem()));
-				
-				for (String name : memberList.getSelectedValuesList())
-					g.addMember(_scheddarPane._scheddar.getPersonFromName(name));
-				
-				_scheddarPane.addGroup(g);
-				dispose();
-				
+				if(nameField.getText().trim().length()>0) {
+					Group g = new Group(nameField.getText().trim());
+					g.setParentGroup(_scheddarPane._scheddar.getGroupFromName((String)groupList.getSelectedItem()));
+					
+					for (String name : memberList.getSelectedValuesList())
+						g.addMember(_scheddarPane._scheddar.getPersonFromName(name));
+					
+					_scheddarPane.addGroup(g);
+					dispose();
+				}
 			}
 		});
 		
 		
 		// adding everything
-		panel.add(new JLabel("Group Name:"));
-		panel.add(nameField);
-		panel.add(new JLabel("Parent Group:"));
-		panel.add(groupList);
-		System.out.println(memberList.getModel().getSize());
-		if(memberList.getModel().getSize()>1) {
+		if(memberList.getModel().getSize()>0) {
+			
 			panel.add(new JLabel("Choose members:"));
 			panel.add(memberList);
+			JPanel cards;
+			final String BUTTONPANEL = "Card with JButtons";
+			final String TEXTPANEL = "Card with JTextField";
+			cards = new JPanel(new CardLayout());
+			JPanel card1 = new JPanel();
+			JPanel card2 = new JPanel();
+			cards.add(card1, BUTTONPANEL);
+			cards.add(card2, TEXTPANEL);
+			String comboBoxItems[] = { BUTTONPANEL, TEXTPANEL };
+			JComboBox cb = new JComboBox(comboBoxItems);
+			cb.setEditable(false);
+			card1.add(cb);
+			panel.add(cards);
 		}
 		panel.add(create);
-		JPanel cards;
-		final String BUTTONPANEL = "Card with JButtons";
-		final String TEXTPANEL = "Card with JTextField";
-		cards = new JPanel(new CardLayout());
-		JPanel card1 = new JPanel();
-		JPanel card2 = new JPanel();
-		cards.add(card1, BUTTONPANEL);
-		cards.add(card2, TEXTPANEL);
-		String comboBoxItems[] = { BUTTONPANEL, TEXTPANEL };
-		JComboBox cb = new JComboBox(comboBoxItems);
-		cb.setEditable(false);
-		card1.add(cb);
-		panel.add(cards);
 		add(panel);
 		pack();
 		setVisible(true);

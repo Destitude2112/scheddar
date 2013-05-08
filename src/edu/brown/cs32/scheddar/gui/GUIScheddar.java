@@ -163,8 +163,80 @@ public class GUIScheddar extends JFrame {
 		
 		
 		
+<<<<<<< HEAD
 		_mb.add(fileMenu);
 		_mb.add(createMenu);
+=======
+		// adding listeners for email menu
+		organizationEmail.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new EmailForm(_scheddarPane);
+			}
+		});
+		
+		personEmail.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new EmailForm(_scheddarPane);
+			}
+		});
+		
+		groupEmail.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new EmailForm(_scheddarPane);
+			}
+		});
+		
+		meetingEmail.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new EmailForm(_scheddarPane);
+			}
+		});
+		
+		emailMenu.add(organizationEmail);
+		emailMenu.add(personEmail);
+		emailMenu.add(groupEmail);
+		emailMenu.add(meetingEmail);
+		
+		// creating email menu
+		JMenu viewMenu = new JMenu("View");
+		JMenuItem weekView = new JMenuItem("Week View");
+		JMenuItem monthView = new JMenuItem("Month View");
+		JMenuItem meetingView = new JMenuItem("Meeting");
+		
+		weekView.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_scheddarPane._calendar.switchToWeek(_scheddarPane._calendar.getTime());
+			}
+		});
+		
+		monthView.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_scheddarPane._calendar.switchToMonth(_scheddarPane._calendar.getTime());
+			}
+		});
+		
+		meetingView.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_scheddarPane.initializeMeeting();
+			}
+		});
+		
+		viewMenu.add(weekView);
+		viewMenu.add(monthView);
+		viewMenu.add(meetingView);
+		
+		_mb.add(fileMenu);
+		_mb.add(createMenu);
+		_mb.add(emailMenu);
+		_mb.add(viewMenu);
+>>>>>>> 17898af1a04302eb344c16db140ff67d43b738cb
 		return _mb;
 	}
 	
