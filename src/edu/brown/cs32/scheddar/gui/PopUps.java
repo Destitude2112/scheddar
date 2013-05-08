@@ -12,4 +12,18 @@ public class PopUps {
 	public static void popUpMeetingAlreadyExists(){
 		JOptionPane.showMessageDialog(null,"That meeting name already exists.");
 	}
-}
+	
+	
+	/**
+	 * Makes a confimation box appear that returns true if they
+	 * press the yes button
+	 * @return true if yes is pressed, else false
+	 */
+	
+	public static boolean popUpConfirmationBox(){
+		return(JOptionPane.showConfirmDialog(null, "Are you sure?","Scheddar",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)
+				== JOptionPane.YES_OPTION);
+	}
+	
+} 	

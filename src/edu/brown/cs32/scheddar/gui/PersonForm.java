@@ -1,6 +1,7 @@
 package edu.brown.cs32.scheddar.gui;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,14 +45,14 @@ public class PersonForm extends AbstractForm {
 	public PersonForm(ScheddarPane s) {
 		super(s);
 		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		//getting name of new group
 		firstName = new JTextField(20);
 		lastName = new JTextField(20);
-		email = new JTextField(30);
+		email = new JTextField(20);
 		phone = new JTextField(20);
-		description = new JTextField(30);
+		description = new JTextField(20);
 		
 		//getting groups
 		String[] groupNames = getAllGroupNames();
@@ -63,6 +64,7 @@ public class PersonForm extends AbstractForm {
 		JPanel listPanePane = new JPanel(new GridLayout(1,1));
 		listPanePane.add(memberListPane);
 		listPanePane.add(new JLabel("Choose members:"));		
+		panel.setPreferredSize(new Dimension(360,165+31*groupMemberships.getModel().getSize()));
 		
 		// making "Create Person" button
 		

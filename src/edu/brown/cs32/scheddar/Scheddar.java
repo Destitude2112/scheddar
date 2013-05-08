@@ -548,7 +548,7 @@ public class Scheddar implements ScheddarFace {
 
 		// The shortest possible valid subject is 4 words. If less than that, send an invalid subject email
 		if(subjectSpl.length<4){
-			emailParser.sendSubjectErrorEmail(address, subject);
+			emailParser.sendInvalidSubjectEmail(address, subject);
 			return;
 		}
 
@@ -556,7 +556,7 @@ public class Scheddar implements ScheddarFace {
 
 		// If the second and third terms in the email don't form a valid name, send an error email
 		if(!this.people.containsKey(personName)){
-			emailParser.sendSubjectErrorEmail(address, subject);
+			emailParser.sendInvalidSubjectEmail(address, subject);
 			return;
 		}
 		if(subjectSpl[3].equals("Conflicts")){ // we are parsing a conflicts email
@@ -613,7 +613,7 @@ public class Scheddar implements ScheddarFace {
 			}
 		}
 		else{
-			emailParser.sendSubjectErrorEmail(address, subject);
+			emailParser.sendInvalidSubjectEmail(address, subject);
 			return;
 		}
 	}
@@ -636,4 +636,17 @@ public class Scheddar implements ScheddarFace {
 	public void sendMeetingRequestEmail(String toEmail, String personName, Meeting meeting) {
 		emailParser.sendMeetingRequestEmail(toEmail, personName, meeting);
 	}
+	
+	public void sendInvalidSubjectEmail(String toEmail, String subject){
+		emailParser.sendInvalidSubjectEmail(toEmail, subject);
+	}
+	
+	public void sendInvalidBodyEmail(String toEmail, String body){
+		emailParser.sendInvalidBodyEmail(toEmail, body);
+	}
+	
+	public void sendCustomEmail(String toEmail, String body, String subject){
+		emailParser.sendCustomEmail(toEmail, body, subject);
+	}
+	
 }
