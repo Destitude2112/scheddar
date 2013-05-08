@@ -275,6 +275,8 @@ public class MeetingPane extends ScheddarSubPane {
 					if (p != null) {
 						meeting.addExtraPerson(p, (impComboBox.getSelectedIndex() + 1) * 20);
 						updateLists();
+					} else {
+						PopUps.popUpPersonNotFound();
 					}
 				}
 			});
