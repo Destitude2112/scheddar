@@ -33,7 +33,6 @@ public class CalendarPane extends ScheddarSubPane {
 	}
 	
 	public void switchToMeeting(ScheddarTime time, Meeting m) {
-		
 		removeAll();
 		
 		if (time == null)
