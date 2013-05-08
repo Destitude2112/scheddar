@@ -21,9 +21,11 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -38,10 +40,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 import javax.swing.text.MaskFormatter;
 
-import edu.brown.cs32.scheddar.Group;
-import edu.brown.cs32.scheddar.Meeting;
-import edu.brown.cs32.scheddar.Person;
-import edu.brown.cs32.scheddar.ScheddarTime;
+import edu.brown.cs32.scheddar.*;
 
 
 /**
@@ -80,6 +79,7 @@ public class MeetingPane extends ScheddarSubPane {
 	JList<String> selectSlots;
 	
 	JList<String> proposedTimeList;
+	JButton emailAvailability;
 	
 	
 	
@@ -346,6 +346,7 @@ public class MeetingPane extends ScheddarSubPane {
 					} catch (ParseException e) {
 						// do nothing
 					}
+					updateLists();
 					
 				}
 			});
@@ -378,13 +379,20 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			JPanel updatePanel = new JPanel();
 			updatePanel.setLayout(new BoxLayout(updatePanel,BoxLayout.X_AXIS));
-			JButton pickSlots = new JButton("Select time slots");
+			JButton pickSlots = new JButton("Select time slot");
 			pickSlots.addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					// TODO: take selected slots and add them to the final slots pane
-					
+					String slot = selectSlots.getSelectedValue();
+					if (slot != null) {
+						for (ScheddarTime t : timeSlots.values()) {
+							if (slot.startsWith(t.timeRangeToString())) {
+								meeting.addProposedTime(t);
+							}
+						}
+					}
+					updateLists();
 				}
 			});
 			updatePanel.add(Box.createHorizontalGlue());
@@ -411,17 +419,26 @@ public class MeetingPane extends ScheddarSubPane {
 				
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					// TODO: remove time slot from list
+					for (ScheddarTime t : meeting.getProposedTimes()) {
+						if (proposedTimeList.getSelectedValue().equals(t.timeRangeToString())) {
+							meeting.removeProposedTime(t);
+							updateLists();
+						}
+					}
 					
 				}
 			});
 			
-			JButton emailAvailability = new JButton("Request Availabilities");
+			emailAvailability = new JButton("Request Availabilities");
 			emailAvailability.addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// send emails to attendees requesting availability
+					for (String name : meeting.getAllNames()) {
+						Person p = _scheddar.getPersonFromName(name);
+						_scheddar.sendMeetingRequestEmail(p.getEmail(), name, meeting);
+						emailAvailability.setEnabled(false);
+					}
 					
 				}
 			});
@@ -431,8 +448,37 @@ public class MeetingPane extends ScheddarSubPane {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO pop a dialog confirming final time
-					
+					String proposedTime = proposedTimeList.getSelectedValue();
+					if (proposedTime != null) {
+						int retval = JOptionPane.showConfirmDialog(MeetingPane.this, "Would you like to finalize this meeting for "+proposedTime+"?");
+						if (retval == JOptionPane.OK_OPTION) {
+							for (ScheddarTime t : meeting.getProposedTimes()) {
+								if (proposedTimeList.getSelectedValue().equals(t.timeRangeToString())) {
+									meeting.setFinalTime(t);
+									break;
+								}
+							}
+							MeetingPane.this.removeAll();
+							JPanel panel = new JPanel();
+							panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+							panel.add(Box.createVerticalStrut(20));
+							
+							JTextArea info = new JTextArea();
+							info.append("Name: " + meeting.getName() + "\n");
+							info.append("Description: " + meeting.getDescription() + "\n");
+							info.append("\n");
+							info.append("This meeting has been scheduled for "+meeting.getFinalTime().timeRangeToString() + "\n");
+							info.append("\n");
+							info.append("Invitees:\n");
+							for (String n : meeting.getAllNames()) {
+								info.append(n + "\n");
+							}
+							
+							panel.add(info);
+							MeetingPane.this.add(panel);
+							MeetingPane.this.revalidate();
+						}
+					}
 				}
 			});
 			
@@ -457,6 +503,9 @@ public class MeetingPane extends ScheddarSubPane {
 		
 		add(panel);
 	}
+	
+	
+	
 	
 	private void updateLists() {
 		DefaultListModel<String> addedList = new DefaultListModel<String>();

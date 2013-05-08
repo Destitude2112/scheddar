@@ -239,6 +239,7 @@ public class Meeting {
 	// NOT BE SET USING THIS METHOD!
 	
 	public void setFinalTime(ScheddarTime time){
+		decided = true;
 		this.finalTime = time;
 	}
 	
