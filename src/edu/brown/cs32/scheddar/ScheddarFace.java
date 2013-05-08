@@ -88,14 +88,11 @@ public interface ScheddarFace {
 	 * Methods for sending emails
 	 */
 
-//	public void sendInvalidSubjectEmail();
-//	public void sendInvalidBodyEmail();
-
+	public void sendInvalidSubjectEmail(String toEmail, String subject);
+	public void sendInvalidBodyEmail(String toEmail, String body);
 	public void sendFinalizedMeetingEmail(String toEmail, String name, Meeting meeting);
-
 	public void sendAddedPersonEmail(String toEmail, String adminName,
 			String personName, List<String> groupList);
-
 	public void sendMeetingRequestEmail(String toEmail, String personName,
 			Meeting meeting);
 

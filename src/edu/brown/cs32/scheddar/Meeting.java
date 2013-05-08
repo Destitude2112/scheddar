@@ -90,8 +90,8 @@ public class Meeting {
 			
 			if(newDay <= 0){
 				newMonth--;
-				if(newMonth==0){ 
-					newMonth = 12; // if was january and backed up, go to december
+				if(newMonth<0){ 
+					newMonth = 11; // if was january and backed up, go to december
 					newYear = newYear--;
 				}
 				newDay = methods.daysInMonth(newMonth,newYear) + newDay;
@@ -140,8 +140,8 @@ public class Meeting {
 			
 			if(newDay <= 0){
 				newMonth--;
-				if(newMonth==0){ 
-					newMonth = 12; // if was january and backed up, go to december
+				if(newMonth<0){ 
+					newMonth = 11; // if was january and backed up, go to december
 					newYear = newYear--;
 				}
 				newDay = methods.daysInMonth(newMonth,newYear) + newDay;

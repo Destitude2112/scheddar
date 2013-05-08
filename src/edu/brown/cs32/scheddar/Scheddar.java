@@ -636,4 +636,13 @@ public class Scheddar implements ScheddarFace {
 	public void sendMeetingRequestEmail(String toEmail, String personName, Meeting meeting) {
 		emailParser.sendMeetingRequestEmail(toEmail, personName, meeting);
 	}
+	
+	public void sendInvalidSubjectEmail(String toEmail, String subject){
+		emailParser.sendSubjectErrorEmail(toEmail, subject);
+	}
+	
+	public void sendInvalidBodyEmail(String toEmail, String body){
+		emailParser.sendInvalidBodyEmail(toEmail, body);
+	}
+	
 }
