@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -454,6 +455,24 @@ public class Scheddar implements ScheddarFace {
 								currScore += g.getMemberRanking(p);
 								break;
 							}
+						}
+					}
+				}
+			}
+			
+			HashMap<Person,Double> otherPeople = m.getExtraPeopleToImportance();
+			Set<Person> personSet = otherPeople.keySet();
+			for(Person p : personSet){
+				totalWeight+=otherPeople.get(p);
+				List<ScheddarTime> conflicts = p.getConflicts();
+				for(ScheddarTime t: conflicts){
+					if(t.getDayOfWeek()==currTime.getDayOfWeek()){
+						t.setDay(currTime.getDay());
+						t.setMonth(currTime.getMonth());
+						t.setYear(currTime.getYear());
+						if(UsefulMethods.doTimesConflict(t,currTime)){
+							currScore += otherPeople.get(p);
+							break;
 						}
 					}
 				}
