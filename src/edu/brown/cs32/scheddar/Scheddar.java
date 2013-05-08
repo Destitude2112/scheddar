@@ -506,19 +506,29 @@ public class Scheddar implements ScheddarFace {
 		
 		String[] subjectSpl = subject.split(" ");
 		String[] bodySpl = body.split(" ");
+		
+		if(subjectSpl.length==0){
+			return; // we don't care about empty subject emails
+		}
+		
+		if(!subjectSpl[0].equals("[Scheddar]")){
+			return; // if the first word in the email is not the [Scheddar] tag, ignore the email
+		}
 
-		if(subjectSpl.length<3){
+		// The shortest possible valid subject is 4 words. If less than that, send an invalid subject email
+		if(subjectSpl.length<4){
 			emailParser.sendSubjectErrorEmail(address, subject);
 			return;
 		}
 
-		String personName = (subjectSpl[0] + " " + subjectSpl[1]);
+		String personName = (subjectSpl[1] + " " + subjectSpl[2]);
 
+		// If the second and third terms in the email don't form a valid name, send an error email
 		if(!this.people.containsKey(personName)){
 			emailParser.sendSubjectErrorEmail(address, subject);
 			return;
 		}
-		if(subjectSpl[2].equals("Conflicts")){ // we are parsing a conflicts email
+		if(subjectSpl[3].equals("Conflicts")){ // we are parsing a conflicts email
 			List<ScheddarTime> oldConflicts = this.people.get(personName).getConflicts();
 			try{
 				this.people.get(personName).setConflicts(new LinkedList<ScheddarTime>());
@@ -550,10 +560,10 @@ public class Scheddar implements ScheddarFace {
 				return;
 			}
 		}
-		else if(subjectSpl[2].equals("MeetingTimes")){ // we are parsing a MeetingTimes email
+		else if(subjectSpl[3].equals("MeetingTimes")){ // we are parsing a MeetingTimes email
 			try{
 				String meetingName = "";
-				for(int i=3;i<subjectSpl.length;i++){
+				for(int i=4;i<subjectSpl.length;i++){
 					meetingName += subjectSpl[i];
 					if(i!=subjectSpl.length-1){
 						meetingName += " ";

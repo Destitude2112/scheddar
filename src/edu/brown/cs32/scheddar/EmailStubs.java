@@ -36,8 +36,10 @@ public class EmailStubs {
 		toRet += "For example: \n\n";
 		toRet += "Mon 11:30-12:30 Tue 3:00-4:00 Wed 17:30-17:45 Thu 8:00-9:00 Fri 9:00-10:00 Sat 23:00-23:30 Sun 12:00-13:00\n\n";
 		toRet += "Make sure the day abbreviations are correct. Ranges should NOT span from one day into another.\n";
-		toRet += "The subject of your email should be <YourFirstName> <YourLastName> Conflicts\n";
-		toRet += "Do NOT put anything else in the subject or body of your response.\n\n";
+		toRet += "The subject of your email should be [Scheddar] <YourFirstName> <YourLastName> Conflicts\n";
+		toRet += "Do NOT put anything else in the subject or body of your response.\n";
+		toRet += "If you ever need to update your recurring conflicts, send another email of the same form to overwrite your " +
+		"previous ones. \n\n";
 		toRet += "Thank you!";
 		
 		return toRet;
@@ -68,7 +70,8 @@ public class EmailStubs {
 				" line of the email body. \n\n ";
 		toRet += "Example: If you cannot make meetings 0 and 2, respond with : \n";
 		toRet += "0 2\n\n";
-		toRet += "The subject line of the email should be <YourFirstName> <YourLastName> MeetingTimes <MeetingName> \n\n";
+		toRet += "The subject line of the email should be [Scheddar] <YourFirstName> <YourLastName> MeetingTimes <MeetingName> \n\n";
+		toRet += "If your availability changes, you can send another email of the same format to update your response. \n";
 		toRet += "Do not put anything else in the body or subject of the email. Thank you!";
 		
 		return toRet;
@@ -106,9 +109,9 @@ public class EmailStubs {
 		toRet += ("This is an invalid subject for our email parsing system. \n");
 		toRet += ("To have your response be recognized by our system, please send another email. \n\n");
 		toRet += ("To set or update your recurring conflicts, the subject should be : \n");
-		toRet += ("<FirstName> <LastName> Conflicts\n\n");
+		toRet += ("[Scheddar] <FirstName> <LastName> Conflicts\n\n");
 		toRet += ("To indicate availability for an upcoming meeting, the subject should be : \n");
-		toRet += ("<FirstName> <LastName> MeetingTimes <MeetingName>\n\n");
+		toRet += ("[Scheddar] <FirstName> <LastName> MeetingTimes <MeetingName>\n\n");
 		return toRet;
 	}
 	

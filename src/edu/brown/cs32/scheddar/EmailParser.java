@@ -6,6 +6,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.mail.*;
 import javax.mail.Flags.Flag;
 import javax.mail.internet.*;
@@ -248,7 +251,7 @@ public class EmailParser {
 			store.connect("imap.gmail.com",username,password);
 			
 			inbox = store.getFolder("Inbox");
-			inbox.open(Folder.READ_ONLY);
+			inbox.open(Folder.READ_WRITE);
 			
 			Message messages[] = inbox.search(new FlagTerm(new Flags(Flag.SEEN),false));
 			
@@ -258,8 +261,13 @@ public class EmailParser {
 			inbox.fetch(messages, fp);
 			
 			try{
-				printAllMessages(messages,emailTriples);
-				inbox.close(true);
+				List<Integer> markRead = printAllMessages(messages,emailTriples);
+				inbox.setFlags(messages,new Flags(Flags.Flag.SEEN),false);
+				for(Integer i : markRead){
+					inbox.setFlags(new Message[] {messages[i]}, new Flags(Flags.Flag.SEEN),true);
+				}
+				
+				inbox.close(false);
 				store.close();
 				return emailTriples;
 			} catch (Exception ex) {
@@ -274,18 +282,43 @@ public class EmailParser {
 		return null; // should never be reached
 	}
 	
-	public void printAllMessages(Message[] msgs, List<Triple<String,String,String>> emailTriples) throws Exception{
+	/**
+	 * Returns a list of the indices of messages that start with the tag [Scheddar]
+	 * @param msgs an array of messages
+	 * @param emailTriples a List of emailTriples
+	 * @return a list of the indices of messages that start with the tag [Scheddar]
+	 * @throws Exception
+	 */
+	
+	public List<Integer> printAllMessages(Message[] msgs, List<Triple<String,String,String>> emailTriples) throws Exception{
+		List<Integer> toRet = new LinkedList<Integer>(); // used to keep track of messages to mark as read
 		for(int i=0;i<msgs.length;i++){
 			String subject = msgs[i].getSubject();
+			
+			String[] subj = subject.split(" ");
+			if(subj.length>=1){
+				if(subj[0].equals("[Scheddar]")){
+					toRet.add(i);
+				}
+			}
+			
 			Address[] a = msgs[i].getFrom();
 			String address = "";
 			if(a[0]!=null){
 				address = a[0].toString();
 			}
-			emailTriples.add(new Triple<String,String,String>(subject,"",address)); // add the subject to the list of emailTuples
+			Pattern pattern = Pattern.compile("<(.+?)>");
+			Matcher matcher = pattern.matcher(address);
+			matcher.find();
+			emailTriples.add(new Triple<String,String,String>(subject,"",matcher.group(1))); // add the subject to the list of emailTuples
 			getContent(msgs[i],emailTriples,i);
 		}
+		return toRet;
 	}
+	
+	/**
+	 * The following three methods get the content from an email and store it in the emailTriples list
+	 */
 	
 	public void getContent(Message msg, List<Triple<String,String,String>> emailTriples,int index){
 		try{
@@ -301,15 +334,6 @@ public class EmailParser {
 		 InputStream is = p.getInputStream();
 		 String result = getStringFromInputStream(is);
 		 return result;
-//		 return;
-//		 if (!(is instanceof BufferedInputStream)){
-//			 is = new BufferedInputStream(is);
-//		 }
-//		 int c;
-//		 System.out.println("Message : ");
-//		 while ((c = is.read()) != -1){
-//			 System.out.write(c);
-//		 }
 	 }
 	 
 	 public String getStringFromInputStream(InputStream is){
@@ -357,5 +381,25 @@ public class EmailParser {
 	//	testParser,sendMeetingRequestEmail("destitude2112@hotmail.com","Mordecai",testMeeting);
 		
 	//	testParser.sendFinalizedMeetingEmail("destitude2112@hotmail.com", "Alec", testMeeting);
+//		List<Triple<String,String,String>> testTriples = testParser.getEmailTriples();
+//		String subject = testTriples.get(0).x;
+//		String body = testTriples.get(0).y;
+//		String address = testTriples.get(0).z;
+//	
+//		System.out.println("Subject: " + subject);
+//		System.out.println("Body : " + body);
+//		System.out.println("Address : " + address);
+//		
+//		System.out.println("Subject " + testTriples.get(1).x);
+//		System.out.println("Body : " + testTriples.get(1).y);
+//		System.out.println("Address : " + testTriples.get(1).z);
+//		
+//		System.out.println("Subject " + testTriples.get(2).x);
+//		System.out.println("Body : " + testTriples.get(2).y);
+//		System.out.println("Address : " + testTriples.get(2).z);
+//		
+//		System.out.println("Subject " + testTriples.get(3).x);
+//		System.out.println("Body : " + testTriples.get(3).y);
+//		System.out.println("Address : " + testTriples.get(3).z);
 	}
 }
