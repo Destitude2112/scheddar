@@ -10,14 +10,22 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.TreeMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.NavigableMap;
+import java.util.HashMap;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -75,10 +83,10 @@ public class MeetingPane extends ScheddarSubPane {
 	SpinnerDateModel fromFieldModel;
 	SpinnerDateModel toFieldModel;
 	
-	TreeMap<Double,ScheddarTime> timeSlots;
+	HashMap<ScheddarTime,Double> timeSlots = new HashMap<ScheddarTime,Double>();
 	JList<String> selectSlots;
 	
-	JList<String> proposedTimeList;
+	JList<String> proposedTimes;
 	JButton emailAvailability;
 	
 	
@@ -197,8 +205,8 @@ public class MeetingPane extends ScheddarSubPane {
 			unaddedGroups.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			selectSlots = new JList<String>();
 			selectSlots.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			proposedTimeList = new JList<String>();
-			proposedTimeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			proposedTimes = new JList<String>();
+			proposedTimes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			
 			
 			
@@ -227,8 +235,14 @@ public class MeetingPane extends ScheddarSubPane {
 				
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+					Person p;
+					Group g;
 					if (addedGroups.getSelectedValue() != null) {
-						meeting.removeGroupInvolved(_scheddar.getGroupFromName(addedGroups.getSelectedValue()));
+						if ((g = _scheddar.getGroupFromName(addedGroups.getSelectedValue())) != null) {
+							meeting.removeGroupInvolved(g);
+						} else if ((p = _scheddar.getPersonFromName(addedGroups.getSelectedValue())) != null) {
+							meeting.removeExtraPerson(p);
+						}
 						updateLists();
 					}
 				}
@@ -257,8 +271,11 @@ public class MeetingPane extends ScheddarSubPane {
 				
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					meeting.addExtraPerson(_scheddar.getPersonFromName((String)nameComboBox.getSelectedItem()), (impComboBox.getSelectedIndex() + 1) * 20);
-					updateLists();
+					Person p = _scheddar.getPersonFromName((String)nameComboBox.getSelectedItem());
+					if (p != null) {
+						meeting.addExtraPerson(p, (impComboBox.getSelectedIndex() + 1) * 20);
+						updateLists();
+					}
 				}
 			});
 			
@@ -287,6 +304,9 @@ public class MeetingPane extends ScheddarSubPane {
 			durationPanel.setAlignmentX(RIGHT_ALIGNMENT);
 			schedulePanel.add(durationPanel);
 			schedulePanel.add(Box.createVerticalStrut(10));
+			
+			// TODO Add field for time to autoschedule
+			
 			
 			JLabel meetingLabel = new JLabel("Select range of possible meeting times:");
 			meetingLabel.setAlignmentX(RIGHT_ALIGNMENT);
@@ -321,6 +341,7 @@ public class MeetingPane extends ScheddarSubPane {
 			fromTime.setEditor(new JSpinner.DateEditor(dateField, "HH:mm"));
 			toTime.setEditor(new JSpinner.DateEditor(dateField, "HH:mm"));
 			
+			//TODO: debug time spinners
 			
 			
 			JButton addRange = new JButton("Calculate meeting times");
@@ -342,7 +363,7 @@ public class MeetingPane extends ScheddarSubPane {
 						d.setTime(timeFormat.parse(durationField.getValue().toString()));
 						int duration = d.get(Calendar.HOUR_OF_DAY) * 60 + d.get(Calendar.MINUTE);
 						
-						timeSlots = new TreeMap<Double,ScheddarTime>(meeting.recommendMeetingTimes(range, duration));
+						timeSlots = new HashMap<ScheddarTime,Double>(meeting.recommendMeetingTimes(range, duration));
 					} catch (ParseException e) {
 						// do nothing
 					}
@@ -386,7 +407,7 @@ public class MeetingPane extends ScheddarSubPane {
 				public void actionPerformed(ActionEvent arg0) {
 					String slot = selectSlots.getSelectedValue();
 					if (slot != null) {
-						for (ScheddarTime t : timeSlots.values()) {
+						for (ScheddarTime t : timeSlots.keySet()) {
 							if (slot.startsWith(t.timeRangeToString())) {
 								meeting.addProposedTime(t);
 							}
@@ -410,7 +431,7 @@ public class MeetingPane extends ScheddarSubPane {
 			JPanel proposedTimePanel = new JPanel(new GridLayout(1,2));
 			
 			proposedTimePanel.add(new JPanel());
-			proposedTimePanel.add(new JScrollPane(proposedTimeList));
+			proposedTimePanel.add(new JScrollPane(proposedTimes));
 			
 			JPanel optionsPanel = new JPanel();
 			
@@ -420,7 +441,7 @@ public class MeetingPane extends ScheddarSubPane {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					for (ScheddarTime t : meeting.getProposedTimes()) {
-						if (proposedTimeList.getSelectedValue().equals(t.timeRangeToString())) {
+						if (proposedTimes.getSelectedValue().equals(t.timeRangeToString())) {
 							meeting.removeProposedTime(t);
 							updateLists();
 						}
@@ -448,12 +469,12 @@ public class MeetingPane extends ScheddarSubPane {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String proposedTime = proposedTimeList.getSelectedValue();
+					String proposedTime = proposedTimes.getSelectedValue();
 					if (proposedTime != null) {
 						int retval = JOptionPane.showConfirmDialog(MeetingPane.this, "Would you like to finalize this meeting for "+proposedTime+"?");
 						if (retval == JOptionPane.OK_OPTION) {
 							for (ScheddarTime t : meeting.getProposedTimes()) {
-								if (proposedTimeList.getSelectedValue().equals(t.timeRangeToString())) {
+								if (proposedTimes.getSelectedValue().equals(t.timeRangeToString())) {
 									meeting.setFinalTime(t);
 									break;
 								}
@@ -498,7 +519,7 @@ public class MeetingPane extends ScheddarSubPane {
 		}
 		
 		
-		
+		updateLists();
 		
 		
 		add(panel);
@@ -510,9 +531,16 @@ public class MeetingPane extends ScheddarSubPane {
 	private void updateLists() {
 		DefaultListModel<String> addedList = new DefaultListModel<String>();
 		DefaultListModel<String> unaddedList = new DefaultListModel<String>();
+		DefaultComboBoxModel<String> peopleList = new DefaultComboBoxModel<String>();
+		DefaultListModel<String> timeslotList = new DefaultListModel<String>();
+		DefaultListModel<String> proposedTimesList = new DefaultListModel<String>();
 		
 		for (Group g : meeting.getGroupsInvolved()) {
 			addedList.addElement(g.getName());
+		}
+		
+		for (Person p : meeting.getExtraPeopleToImportance().keySet()) {
+			addedList.addElement(p.getFullName());
 		}
 		
 		for (String n : _scheddar.getGroups().keySet()) {
@@ -521,10 +549,58 @@ public class MeetingPane extends ScheddarSubPane {
 			}
 		}
 		
+		for (String n : _scheddar.getPersons().keySet()) {
+			if (!addedList.contains(n)) {
+				peopleList.addElement(n);
+			}
+		}
+		
+		HashSet<String> proposedTimeStrings = new HashSet<String>();
+		
+		for (int i = 0; i < meeting.getProposedTimes().size(); i++) {
+			ScheddarTime t = meeting.getProposedTimes().get(i);
+			proposedTimeStrings.add(t.timeRangeToString());
+			proposedTimesList.addElement(t.timeRangeToString() + "    [" + meeting.getIndexToScore().get(i)+"]");
+		}
+		
+		
+		
+		
+		
+		LinkedList<Map.Entry<ScheddarTime,Double>> orderedTimes = new LinkedList<Map.Entry<ScheddarTime,Double>>();
+		orderedTimes.addAll(timeSlots.entrySet());
+		Comparator<Map.Entry<ScheddarTime,Double>> c = new Comparator<Map.Entry<ScheddarTime,Double>>() {
+			@Override
+			public int compare(Entry<ScheddarTime, Double> o1,
+					Entry<ScheddarTime, Double> o2) {
+				double v1 = o1.getValue();
+				double v2 = o2.getValue();
+				
+				if (v1 > v2) {
+					return -1;
+				} else if (v1 < v2) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+		};
+		
+		Collections.sort(orderedTimes, c);
+		
+		while (!orderedTimes.isEmpty()) {
+			Map.Entry<ScheddarTime, Double> e = orderedTimes.pollLast();
+			if (!proposedTimeStrings.contains(e.getKey().timeRangeToString()))
+				timeslotList.addElement(e.getKey().timeRangeToString() + "    ["+e.getValue()+"]");
+		}
+		
+		
+		
 		addedGroups.setModel(addedList);
 		unaddedGroups.setModel(unaddedList);
-		
-		//TODO: also update person list; add individuals to groups list (attendees)
+		nameComboBox.setModel(peopleList);
+		selectSlots.setModel(timeslotList);
+		proposedTimes.setModel(proposedTimesList);
 	}
 	
 	

@@ -165,6 +165,7 @@ public class Meeting {
 		this.dummyGroupsInvolved = new ArrayList<String>();
 		this.groupsInvolved = new ArrayList<Group>();
 		this.description = "";
+		this.extraPeopleToImportance = new HashMap<Person,Double>();
 	}
 	
 	
@@ -267,6 +268,10 @@ public class Meeting {
 		this.extraPeopleToImportance.put(p,importance);
 	}
 	
+	public void removeExtraPerson(Person p) {
+		this.extraPeopleToImportance.remove(p);
+	}
+	
 	/**
 	 * Returns a Set containing the emails of each person in a Group involved
 	 * in this meeting (Set used to prevent emailing a person multiple times
@@ -362,8 +367,8 @@ public class Meeting {
 	 * @return 
 	 */
 	
-	public HashMap<Double,ScheddarTime> recommendMeetingTimes(ScheddarTime time, int duration){
-		HashMap<Double,ScheddarTime> toRet = new HashMap<Double,ScheddarTime>();
+	public HashMap<ScheddarTime,Double> recommendMeetingTimes(ScheddarTime time, int duration){
+		HashMap<ScheddarTime,Double> toRet = new HashMap<ScheddarTime,Double>();
 		
 		List<ScheddarTime> potentialTimes = new LinkedList<ScheddarTime>();
 		
@@ -425,7 +430,7 @@ public class Meeting {
 					}
 				}
 			}
-			toRet.put(((totalWeight - currScore) / totalWeight) * 100, t);
+			toRet.put(t,((totalWeight - currScore) / totalWeight) * 100);
 		}
 		return toRet;
 	}

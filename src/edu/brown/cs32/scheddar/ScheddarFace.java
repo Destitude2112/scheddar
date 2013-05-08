@@ -24,6 +24,7 @@ public interface ScheddarFace {
 
 	public Group getRootGroup();
 	public HashMap<String,Group> getGroups();
+	public HashMap<String,Person> getPersons();
 	
 	/**
 	 * Methods to get the object associated with a name
