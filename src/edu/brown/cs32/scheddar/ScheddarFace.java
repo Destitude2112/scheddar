@@ -33,6 +33,7 @@ public interface ScheddarFace {
 	public Group getGroupFromName(String groupName);
 	public Meeting getMeetingFromName(String meetingName);
 	
+	
 	/**
 	 * Methods to get data about a person from their name
 	 */
@@ -72,10 +73,14 @@ public interface ScheddarFace {
 	
 	
 	/**
-	 * Methods for adding things to the schedule
+	 * Methods for adding and removing things in the schedule
 	 */
 	public void addPerson(Person p);
 	public void addGroup(Group g);
+	public void removePerson(String name);
+	public void removeGroup(String name);
+	public Collection<Person> getAllPeople();
+
 	
 	/**
 	 * Methods for sending emails

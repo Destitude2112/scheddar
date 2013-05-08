@@ -161,6 +161,29 @@ public class GUIScheddar extends JFrame {
 		createMenu.add(group);
 		createMenu.add(meeting);
 		
+		// creating create menu
+		JMenu editMenu = new JMenu("Edit");
+		JMenuItem deletePerson = new JMenuItem("Delete person");
+		JMenuItem deleteGroup = new JMenuItem("Delete group");			
+		
+		// adding listeners for create menu
+		deletePerson.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new PersonForm(_scheddarPane);
+			}
+		});
+		
+		deleteGroup.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new GroupForm(_scheddarPane);
+			}
+		});		
+		
+		editMenu.add(deletePerson);
+		editMenu.add(deleteGroup);
+		
 		// creating email menu
 		JMenu emailMenu = new JMenu("Email");
 		JMenuItem organizationEmail = new JMenuItem("Organization");
@@ -236,6 +259,7 @@ public class GUIScheddar extends JFrame {
 		
 		_mb.add(fileMenu);
 		_mb.add(createMenu);
+		_mb.add(editMenu);
 		_mb.add(emailMenu);
 		_mb.add(viewMenu);
 		return _mb;
