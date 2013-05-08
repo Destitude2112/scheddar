@@ -80,6 +80,8 @@ public interface ScheddarFace {
 	public void removePerson(String name);
 	public void removeGroup(String name);
 	public Collection<Person> getAllPeople();
+	public Collection<Group> getAllGroups();
+	public Collection<Meeting> getAllMeetings();
 
 	
 	/**
