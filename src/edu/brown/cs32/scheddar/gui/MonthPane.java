@@ -3,16 +3,22 @@ package edu.brown.cs32.scheddar.gui;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import edu.brown.cs32.scheddar.Meeting;
@@ -40,7 +46,38 @@ public class MonthPane extends ScheddarSubPane {
 		_scheddarPane = s;
 		_time = st;
 		_startDay = UsefulMethods.getPrecedingSunday(UsefulMethods.getFirstOfMonth(st));
-	}	
+		this.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Dimension size = getPreferredSize();
+				int x = (e.getPoint().x)/(size.width/7);
+				int y = (e.getPoint().y)/(int)(size.height/WEEKS_TO_DISPLAY)-1;
+				if(y<0) return; // Clicked outside calendar
+				ScheddarTime curDay = _startDay;
+				for(int i = 0 ; i < 7*y+x ; i++) {
+					curDay = UsefulMethods.getNextDay(curDay);
+				}
+				_scheddarPane._calendar.switchToWeek(curDay);
+			}
+		});
+		this.setLayout(new FlowLayout(FlowLayout.LEFT));
+		JButton prevButton = new JButton("Previous Month");
+		JButton nextButton = new JButton("Next Month");
+		prevButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loadPrevMonth();
+			}
+		});
+		nextButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loadNextMonth();
+			}
+		});
+		this.add(prevButton);
+		this.add(nextButton);
+}	
 	
 	@Override
 	public Dimension getPreferredSize() {
@@ -67,7 +104,6 @@ public class MonthPane extends ScheddarSubPane {
 		String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 		String[] days =  {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 		drawCenteredString(g, months[_time.getMonth()], size.width/2, 60);
-		g.setFont(new Font("SansSerif",Font.PLAIN,22));
 		g.setFont(new Font("SansSerif",Font.PLAIN,15));
 		
 		for(double i = 1.0; i < WEEKS_TO_DISPLAY; i += 1.0) {
@@ -87,6 +123,8 @@ public class MonthPane extends ScheddarSubPane {
 			}
 			g.draw(new Line2D.Double(0,size.height/WEEKS_TO_DISPLAY*i,size.width,size.height/WEEKS_TO_DISPLAY*i));			
 		}
+		g.setFont(new Font("SansSerif",Font.PLAIN,20));
+
 		for(int i = 0 ; i < days.length ; i++) {
 			drawCenteredString(g, days[i],i*size.width/7+size.width/14, (int)(size.height/WEEKS_TO_DISPLAY-10));
 			g.draw(new Line2D.Double(size.width/days.length*i,size.height/WEEKS_TO_DISPLAY, size.width/days.length*i, size.height));
@@ -112,6 +150,28 @@ public class MonthPane extends ScheddarSubPane {
 		int startDay = _startDay.getMonth()==t.getMonth() ? t.getDay() : t.getDay()-UsefulMethods.daysInMonth(_startDay.getMonth(), _startDay.getYear());
 		int y = (t.getDay()-startDay)/7;
 		return new Point(size.width/7*x, (int)(size.height/WEEKS_TO_DISPLAY*y));
+	}
+
+	public void loadPrevMonth() {
+		int month = _time.getMonth()-1;
+		int year = _time.getYear();
+		if(month<0) {
+			year--;
+			month = 11;
+		}
+		int day = Math.min(_time.getDay(), UsefulMethods.daysInMonth(month, year));
+		_scheddarPane._calendar.switchToMonth(new ScheddarTime(0, 0, 0, UsefulMethods.dayOfTheWeek(day, month, year), day, month, year, false));
+	}
+	
+	public void loadNextMonth() {
+		int month = _time.getMonth()+1;
+		int year = _time.getYear();
+		if(month>11) {
+			year++;
+			month = 0;
+		}
+		int day = Math.min(_time.getDay(), UsefulMethods.daysInMonth(month, year));
+		_scheddarPane._calendar.switchToMonth(new ScheddarTime(0, 0, 0, UsefulMethods.dayOfTheWeek(day, month, year), day, month, year, false));
 	}
 	
 	/**
