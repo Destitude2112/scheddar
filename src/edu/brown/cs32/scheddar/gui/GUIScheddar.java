@@ -161,12 +161,12 @@ public class GUIScheddar extends JFrame {
 		createMenu.add(group);
 		createMenu.add(meeting);
 		
-		// creating create menu
+		// creating edit menu
 		JMenu editMenu = new JMenu("Edit");
 		JMenuItem deletePerson = new JMenuItem("Delete person");
 		JMenuItem deleteGroup = new JMenuItem("Delete group");			
 		
-		// adding listeners for create menu
+		// adding listeners for delete menu
 		deletePerson.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -220,12 +220,8 @@ public class GUIScheddar extends JFrame {
 			}
 		});
 		
-		emailMenu.add(organizationEmail);
-		emailMenu.add(personEmail);
-		emailMenu.add(groupEmail);
-		emailMenu.add(meetingEmail);
 		
-		// creating email menu
+		// creating view menu
 		JMenu viewMenu = new JMenu("View");
 		JMenuItem weekView = new JMenuItem("Week View");
 		JMenuItem monthView = new JMenuItem("Month View");
