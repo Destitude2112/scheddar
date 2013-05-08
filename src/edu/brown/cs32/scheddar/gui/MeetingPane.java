@@ -1,11 +1,16 @@
 package edu.brown.cs32.scheddar.gui;
 
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.Box;
@@ -13,15 +18,21 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerListModel;
+import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
+import javax.swing.text.MaskFormatter;
 
 import edu.brown.cs32.scheddar.Group;
 import edu.brown.cs32.scheddar.Meeting;
@@ -51,6 +62,15 @@ public class MeetingPane extends ScheddarSubPane {
 	
 	JComboBox<String> nameComboBox;
 	JComboBox<String> impComboBox;
+	
+	JSpinner durationField = new JSpinner();
+	JSpinner dateField = new JSpinner();
+	JSpinner fromTime = new JSpinner();
+	JSpinner toTime = new JSpinner();
+	
+	SpinnerDateModel dateFieldModel;
+	SpinnerDateModel fromFieldModel;
+	SpinnerDateModel toFieldModel;
 	
 	String[] importanceArray = {"Whatever", "Debatably Important", "Definitely Important", "Extremely Important", "Cataclysmically Important"};
 	
@@ -207,17 +227,76 @@ public class MeetingPane extends ScheddarSubPane {
 		
 		
 		// submitting time ranges
-		JPanel timeRangePanel = new JPanel();
-		timeRangePanel.setLayout(new BoxLayout(timeRangePanel,BoxLayout.Y_AXIS));
+		JPanel schedulePanel = new JPanel();
+		schedulePanel.setLayout(new BoxLayout(schedulePanel,BoxLayout.Y_AXIS));
 		JPanel durationPanel = new JPanel();
-		String[] durations = {"0:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00", "4:30", "5:00", "5:30", "6:00"};
-		JComboBox<String> durationBox = new JComboBox<String>(durations);
-		durationBox.setSelectedIndex(1);
+		String[] durations = new String[12];
+		for (int i = 0; i < 6; i++) {
+			durations[i*2] = i + ":30";
+			durations[i*2+1] = new Integer(i+1) + ":00";
+		}
+		durationField.setModel(new SpinnerListModel(durations));
+		durationField.setValue("1:00");
 		durationPanel.add(new JLabel("Required meeting duration (H:MM):"));
-		durationPanel.add(durationBox);
-		timeRangePanel.add(durationPanel);
+		durationPanel.add(durationField);
+		schedulePanel.add(durationPanel);
+		schedulePanel.add(Box.createVerticalStrut(10));
 		
-		// TODO: fill in with JFormattedTextFields (requires research)
+		
+		schedulePanel.add(new JLabel("Select range of possible meeting times:"));
+		
+		JPanel timeRangePanel = new JPanel();
+		timeRangePanel.setLayout(new GridLayout(4,2));
+		dateFieldModel = new SpinnerDateModel();
+		dateFieldModel.setValue(new Date());
+		dateFieldModel.setCalendarField(Calendar.DAY_OF_MONTH);
+		
+		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+		
+		fromFieldModel = new SpinnerDateModel();
+		toFieldModel = new SpinnerDateModel();
+		try {
+			fromFieldModel.setValue(timeFormat.parse(_scheddar.getStartHour()));
+			toFieldModel.setValue(timeFormat.parse(_scheddar.getEndHour()));
+		} catch (ParseException e) {
+			// ignore, just don't set values
+		}
+		
+		fromFieldModel.setCalendarField(Calendar.MINUTE);
+		toFieldModel.setCalendarField(Calendar.MINUTE);
+		
+		dateField.setModel(dateFieldModel);
+		fromTime.setModel(fromFieldModel);
+		toTime.setModel(toFieldModel);
+		
+		
+		dateField.setEditor(new JSpinner.DateEditor(dateField, "MM/dd/yy"));
+		fromTime.setEditor(new JSpinner.DateEditor(dateField, "HH:mm"));
+		toTime.setEditor(new JSpinner.DateEditor(dateField, "HH:mm"));
+		
+		
+		
+		JButton addRange = new JButton("Add time range");
+		addRange.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		
+		timeRangePanel.add(new JLabel("Date:",SwingConstants.RIGHT));
+		timeRangePanel.add(dateField);
+		timeRangePanel.add(new JLabel("Earliest start time:",SwingConstants.RIGHT));
+		timeRangePanel.add(fromTime);
+		timeRangePanel.add(new JLabel("Latest end time:",SwingConstants.RIGHT));
+		timeRangePanel.add(toTime);
+		timeRangePanel.add(new JPanel());
+		timeRangePanel.add(addRange);
+		panel.add(timeRangePanel);
+		panel.add(Box.createVerticalStrut(20));
+		
+		
 		
 		
 		add(panel);

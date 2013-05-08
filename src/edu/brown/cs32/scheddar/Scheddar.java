@@ -32,6 +32,9 @@ public class Scheddar implements ScheddarFace {
 	private String password; // the password of the admin's email account
 	
 	private EmailParser emailParser;
+	
+	private String startHour = "07:00";
+	private String endHour = "18:00";
 		
     Scheddar(String dest){
 		
@@ -99,6 +102,27 @@ public class Scheddar implements ScheddarFace {
 	public Scheddar(File xmlFile){
 		
 	}
+	
+	/**
+	 * Getting and setting project options
+	 */
+	
+	public String getStartHour() {
+		return startHour;
+	}
+	
+	public String getEndHour() {
+		return endHour;
+	}
+	
+	public void setStartHour(String time) {
+		startHour = time;
+	}
+	
+	public void setEndHour(String time) {
+		endHour = time;
+	}
+	
 	
 	/**
 	 * @return The root group has the same name as the overall scheddar project, and contains all other groups and members
