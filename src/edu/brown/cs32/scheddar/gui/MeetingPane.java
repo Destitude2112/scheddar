@@ -196,7 +196,7 @@ public class MeetingPane extends ScheddarSubPane {
 	
 	public Dimension getPreferredSize() {
 		Dimension d = _scheddarPane.getPreferredSize();
-		return new Dimension(d.width * 3/4, d.height);
+		return new Dimension(d.width*3/4 - 25, d.height);
 	}
 	
 	

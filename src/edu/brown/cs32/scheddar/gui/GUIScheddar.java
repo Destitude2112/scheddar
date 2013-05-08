@@ -203,9 +203,41 @@ public class GUIScheddar extends JFrame {
 		emailMenu.add(groupEmail);
 		emailMenu.add(meetingEmail);
 		
+		// creating email menu
+		JMenu viewMenu = new JMenu("View");
+		JMenuItem weekView = new JMenuItem("Week View");
+		JMenuItem monthView = new JMenuItem("Month View");
+		JMenuItem meetingView = new JMenuItem("Meeting");
+		
+		weekView.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_scheddarPane._calendar.switchToWeek(_scheddarPane._calendar.getTime());
+			}
+		});
+		
+		monthView.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_scheddarPane._calendar.switchToMonth(_scheddarPane._calendar.getTime());
+			}
+		});
+		
+		meetingView.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_scheddarPane.initializeMeeting();
+			}
+		});
+		
+		viewMenu.add(weekView);
+		viewMenu.add(monthView);
+		viewMenu.add(meetingView);
+		
 		_mb.add(fileMenu);
 		_mb.add(createMenu);
 		_mb.add(emailMenu);
+		_mb.add(viewMenu);
 		return _mb;
 	}
 	
