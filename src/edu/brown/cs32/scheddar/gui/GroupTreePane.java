@@ -91,14 +91,13 @@ public class GroupTreePane extends ScheddarSubPane {
 	
 	private DefaultMutableTreeNode constructTree(Group g) {
 		DefaultMutableTreeNode thisNode = new DefaultMutableTreeNode(g.toString());
-		
 		for (Group subgroup : g.getSubgroups()) {
 			DefaultMutableTreeNode n = constructTree(subgroup);
 			thisNode.add(n);
 		}
 		
 		for (String member : _scheddar.getPeopleOnlyMainGroup(g.getName())) {
-			DefaultMutableTreeNode person = new DefaultMutableTreeNode(member);
+			DefaultMutableTreeNode person = new DefaultMutableTreeNode("- "+member);
 			thisNode.add(person);
 		}
 		return thisNode;

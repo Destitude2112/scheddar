@@ -69,19 +69,18 @@ public class PersonForm extends AbstractForm {
 		create.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Person p = new Person(firstName.getText().trim(),lastName.getText().trim(),email.getText().trim(),phone.getText().trim(),description.getText().trim());
-				List<String> groups = groupMemberships.getSelectedValuesList(); 
-				for (String name : groups) {
-					Group g = _scheddarPane._scheddar.getGroupFromName(name);
-					while(g!=null) {
+				if(firstName.getText().trim().length()>0 && lastName.getText().trim().length()>0) {
+					Person p = new Person(firstName.getText().trim(),lastName.getText().trim(),email.getText().trim(),phone.getText().trim(),description.getText().trim());
+					List<String> groups = groupMemberships.getSelectedValuesList(); 
+					for (String name : groups) {
+						Group g = _scheddarPane._scheddar.getGroupFromName(name);
 						p.addGroup(g);
 						g.addMember(p);
-						g = g.getParentGroup();
-					}
-				}				
-				_scheddarPane._scheddar.addPerson(p);
-				_scheddarPane._groupTree.updateTree();
-				dispose();				
+					}				
+					_scheddarPane._scheddar.addPerson(p);
+					_scheddarPane._groupTree.updateTree();
+					dispose();				
+				}
 			}
 		});
 		
