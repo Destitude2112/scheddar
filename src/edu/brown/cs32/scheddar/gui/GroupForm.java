@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -80,6 +81,14 @@ public class GroupForm extends AbstractForm {
 			public void actionPerformed(ActionEvent e) {
 				if(nameField.getText().trim().length()>0) {
 					Group g = new Group(nameField.getText().trim());
+					Collection<Group> existingGroups = _scheddarPane._scheddar.getAllGroups();
+					for(Group eg : existingGroups){
+						if(eg.getName().equals(g.getName())){
+							PopUps.popUpGroupAlreadyExists();
+							return;
+						}
+					}
+					
 					g.setParentGroup(_scheddarPane._scheddar.getGroupFromName((String)groupList.getSelectedItem()));
 					for (String name : memberList.getSelectedValuesList()) {
 						g.addMember(_scheddarPane._scheddar.getPersonFromName(name));
