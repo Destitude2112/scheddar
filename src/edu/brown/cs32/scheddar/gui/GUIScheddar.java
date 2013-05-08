@@ -190,8 +190,7 @@ public class GUIScheddar extends JFrame {
 		JMenuItem personEmail = new JMenuItem("Individual");
 		JMenuItem groupEmail = new JMenuItem("Group");
 		JMenuItem meetingEmail = new JMenuItem("Meeting");
-		
-		
+
 		// adding listeners for email menu
 		organizationEmail.addActionListener(new ActionListener() {
 			@Override

@@ -182,10 +182,20 @@ public class ScheddarTime implements Comparable {
 	
 	
 	/**
+	 * @return date and time range in a string
+	 */
+	public String timeRangeToString() { 
+		String startTime = timeToString();
+		String endTime = getEndTime().timeToString();
+		String date = month + "/" + day + "/" + year;
+		return startTime + " - " + endTime + "    " + date;
+	}
+	
+	
+	/**
 	 * Returns the date as a nice String, e.g.
 	 * 
-	 * March 4, 2013
-	 * Monday
+	 * Monday March 4, 2013
 	 */
 	
 	public String dateToString() {

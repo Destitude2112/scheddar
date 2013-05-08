@@ -285,6 +285,23 @@ public class Meeting {
 		}
 		return allEmails;
 	}
+
+	
+	
+	public Set<String> getAllNames(){
+		Set<String> allNames = new TreeSet<String>();
+		for(Group g : groupsInvolved){
+			for(Person p : g.getMembers()){
+				allNames.add(p.getFullName());
+			}
+		}
+		Set<Person> keys = this.extraPeopleToImportance.keySet();
+		for(Person person : keys){
+			allNames.add(person.getFullName());
+		}
+		return allNames;
+	}
+	
 	
 	/**
 	 * Finds the best time to hold the meeting out of the proposed times.
@@ -344,28 +361,28 @@ public class Meeting {
 	 * @return 
 	 */
 	
-	public HashMap<Double,ScheddarTime> recommendMeetingTimes(List<ScheddarTime> timeRanges, int duration){
+	public HashMap<Double,ScheddarTime> recommendMeetingTimes(ScheddarTime time, int duration){
 		HashMap<Double,ScheddarTime> toRet = new HashMap<Double,ScheddarTime>();
 		
 		List<ScheddarTime> potentialTimes = new LinkedList<ScheddarTime>();
 		
 		// Generate all potential meeting times within the ranges that were given
 		
-		for(ScheddarTime time : timeRanges){
-			int day = time.getDay();
-			int month = time.getMonth();
-			int year = time.getYear();
-			int dayOfWeek = time.getDayOfWeek();
-			int startTime = time.getStartHour() * 60 + time.getStartMinutes(); // the start time in minutes
-			ScheddarTime endScheddar = time.getEndTime();
-			int endTime = endScheddar.getStartHour() * 60 + endScheddar.getStartMinutes(); // the end time in minutes
-			while(startTime+duration<=endTime){
-				int hour = startTime % 60;
-				int minutes = startTime - (hour * 60);
-				potentialTimes.add(new ScheddarTime(hour,minutes,duration,dayOfWeek,day,month,year,false));
-				startTime += duration;
-			}
+		
+		int day = time.getDay();
+		int month = time.getMonth();
+		int year = time.getYear();
+		int dayOfWeek = time.getDayOfWeek();
+		int startTime = time.getStartHour() * 60 + time.getStartMinutes(); // the start time in minutes
+		ScheddarTime endScheddar = time.getEndTime();
+		int endTime = endScheddar.getStartHour() * 60 + endScheddar.getStartMinutes(); // the end time in minutes
+		while(startTime+duration<=endTime){
+			int hour = startTime % 60;
+			int minutes = startTime - (hour * 60);
+			potentialTimes.add(new ScheddarTime(hour,minutes,duration,dayOfWeek,day,month,year,false));
+			startTime += duration;
 		}
+		
 		
 		// Generate rankings based on recurring conflicts
 		
