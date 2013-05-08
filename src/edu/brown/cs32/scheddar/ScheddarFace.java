@@ -7,6 +7,15 @@ import java.util.List;
 public interface ScheddarFace {
 	
 	/**
+	 * Project option getters and setters
+	 */
+	
+	public String getStartHour();
+	public String getEndHour();
+	public void setStartHour(String time);
+	public void setEndHour(String time);
+	
+	/**
 	 * Need to be able to get the actual object by a name
 	 * Need to be able to get relevant lists of things from name
 	 * Need to a method to returns people in a group who are not in
