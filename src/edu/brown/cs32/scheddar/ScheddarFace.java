@@ -95,5 +95,6 @@ public interface ScheddarFace {
 			String personName, List<String> groupList);
 	public void sendMeetingRequestEmail(String toEmail, String personName,
 			Meeting meeting);
+	public void sendCustomEmail(String toEmail, String body, String subject);
 
 }

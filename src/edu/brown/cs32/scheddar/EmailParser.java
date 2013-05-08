@@ -162,7 +162,7 @@ public class EmailParser {
 	 * @param the invalid subject
 	 */
 	
-	public void sendSubjectErrorEmail(String toEmail, String subject){
+	public void sendInvalidSubjectEmail(String toEmail, String subject){
 		Properties props = new Properties();
 		props.put("mail.smtp.auth","true");
 		props.put("mail.smtp.starttls.enable","true");
@@ -233,6 +233,46 @@ public class EmailParser {
 			e.printStackTrace();
 		}	
 	}
+	
+	/**
+	 * Sends an email with the given body to the given address
+	 * 
+	 * @param toEmail the email address to send the email to
+	 * @param body the body of the email
+	 */
+	
+	public void sendCustomEmail(String toEmail, String body, String subject){
+		Properties props = new Properties();
+		props.put("mail.smtp.auth","true");
+		props.put("mail.smtp.starttls.enable","true");
+		props.put("mail.smtp.host","smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		
+		Session session = Session.getInstance(props,
+				new javax.mail.Authenticator(){
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username,password);
+			}
+		});
+		
+		String msgBody = body;
+		
+		try{
+			Message msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress(username));
+			msg.addRecipient(Message.RecipientType.TO,
+					new InternetAddress(toEmail));
+			msg.setSubject(subject);
+			msg.setText(msgBody);
+			
+			Transport.send(msg);
+		} catch (AddressException ex){
+			ex.printStackTrace();
+		} catch (MessagingException e){
+			e.printStackTrace();
+		}	
+	}
+	
 	
 	/**
 	 * Read in all of the unread emails that the account has, and return a List of Tuple<String,String>
