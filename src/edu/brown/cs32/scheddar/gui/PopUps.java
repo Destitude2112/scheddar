@@ -26,4 +26,15 @@ public class PopUps {
 				== JOptionPane.YES_OPTION);
 	}
 	
+	public static void popUpPersonNotFound(){
+		JOptionPane.showMessageDialog(null,"That person does not exist in this Scheddar.");
+	}
+	
+	public static void popUpGroupNotFound(){
+		JOptionPane.showMessageDialog(null,"That group does not exist in this Scheddar.");
+	}
+	
+	public static void popUpMeetingNotFound(){
+		JOptionPane.showMessageDialog(null,"That meeting does not exist in this Scheddar.");
+	}
 } 	
