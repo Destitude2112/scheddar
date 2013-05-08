@@ -164,20 +164,21 @@ public class GUIScheddar extends JFrame {
 		// creating edit menu
 		JMenu editMenu = new JMenu("Edit");
 		JMenuItem deletePerson = new JMenuItem("Delete person");
-		JMenuItem deleteGroup = new JMenuItem("Delete group");			
+		JMenuItem deleteGroup = new JMenuItem("Delete group");	
+		deletePerson.setEnabled(false);
 		
 		// adding listeners for delete menu
 		deletePerson.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new PersonForm(_scheddarPane);
+				new DeletePersonForm(_scheddarPane);
 			}
 		});
 		
 		deleteGroup.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new GroupForm(_scheddarPane);
+				new DeleteGroupForm(_scheddarPane);
 			}
 		});		
 		
@@ -219,6 +220,11 @@ public class GUIScheddar extends JFrame {
 				new EmailForm(_scheddarPane);
 			}
 		});
+		
+		emailMenu.add(organizationEmail);
+		emailMenu.add(personEmail);
+		emailMenu.add(groupEmail);
+		emailMenu.add(meetingEmail);
 		
 		
 		// creating view menu

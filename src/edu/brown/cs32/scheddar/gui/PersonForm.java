@@ -79,6 +79,7 @@ public class PersonForm extends AbstractForm {
 					}				
 					_scheddarPane._scheddar.addPerson(p);
 					_scheddarPane._groupTree.updateTree();
+					_scheddarPane._gui._mb.getMenu(2).getMenuComponent(0).setEnabled(true);
 					dispose();				
 				}
 			}

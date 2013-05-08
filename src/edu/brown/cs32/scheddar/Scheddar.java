@@ -196,6 +196,10 @@ public class Scheddar implements ScheddarFace {
 	 */
 	
 	public void removePerson(String name){
+		Person p = this.people.get(name);
+		for(Group g: p.getGroups()) {
+			g.removeMember(p);
+		}
 		this.people.remove(name);
 	}
 	
@@ -206,6 +210,8 @@ public class Scheddar implements ScheddarFace {
 	 */
 	
 	public void removeGroup(String name){
+		Group g = this.groups.get(name);
+		g.getParentGroup().removeSubgroup(g);
 		this.groups.remove(name);
 	}
 	
