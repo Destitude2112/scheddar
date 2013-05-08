@@ -1,5 +1,6 @@
 package edu.brown.cs32.scheddar;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -149,6 +150,21 @@ public class Meeting {
 			ScheddarTime timeToFinalize = new ScheddarTime(newHour,newMinutes,0,0,newDay,newMonth,newYear,false);
 			this.timeForFinalizing = timeToFinalize;
 		}
+	}
+	
+	/**
+	 * Empty constructor for when a new meeting pane is created
+	 */
+	public Meeting() {
+		this.name = "";
+		this.decided = false;
+		this.timeForFinalizing = null;
+		this.finalTime = null;
+		this.proposedTimes = new ArrayList<ScheddarTime>();
+		this.indexToScore = new HashMap<Integer,Double>();
+		this.dummyGroupsInvolved = new ArrayList<String>();
+		this.groupsInvolved = new ArrayList<Group>();
+		this.description = "";
 	}
 	
 	

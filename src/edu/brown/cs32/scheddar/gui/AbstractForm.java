@@ -30,7 +30,7 @@ public abstract class AbstractForm extends JFrame {
 	 * @return A string array of the names of all the groups
 	 */
 	public String[] getAllGroupNames() {
-		Collection<Group> groups = _scheddar.getAllGroups();
+		Collection<Group> groups = _scheddar.getGroups().values();
 		String[] names = new String[groups.size()];
 		int i = 0;
 		for (Group g : groups) {

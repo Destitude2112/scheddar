@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -47,7 +48,7 @@ public class ScheddarForm extends AbstractForm {
 		nameField = new JTextField(20);	
 		adminField = new JTextField(20);
 		emailField = new JTextField(20);
-		passwordField = new JTextField(20);
+		passwordField = new JPasswordField(20);
 		
 		// making "Create" button
 		

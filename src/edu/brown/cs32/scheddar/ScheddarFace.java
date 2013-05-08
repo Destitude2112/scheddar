@@ -1,6 +1,7 @@
 package edu.brown.cs32.scheddar;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 public interface ScheddarFace {
@@ -13,7 +14,7 @@ public interface ScheddarFace {
 	 */
 
 	public Group getRootGroup();
-	public Collection<Group> getAllGroups();
+	public HashMap<String,Group> getGroups();
 	
 	/**
 	 * Methods to get the object associated with a name
