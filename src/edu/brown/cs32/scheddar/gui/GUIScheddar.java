@@ -161,51 +161,10 @@ public class GUIScheddar extends JFrame {
 		createMenu.add(group);
 		createMenu.add(meeting);
 		
-		// creating email menu
-		JMenu emailMenu = new JMenu("Email");
-		JMenuItem organizationEmail = new JMenuItem("Organization");
-		JMenuItem personEmail = new JMenuItem("Individual");
-		JMenuItem groupEmail = new JMenuItem("Group");
-		JMenuItem meetingEmail = new JMenuItem("Meeting");
 		
-		
-		// adding listeners for email menu
-		organizationEmail.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new EmailForm(_scheddarPane);
-			}
-		});
-		
-		personEmail.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new EmailForm(_scheddarPane);
-			}
-		});
-		
-		groupEmail.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new EmailForm(_scheddarPane);
-			}
-		});
-		
-		meetingEmail.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new EmailForm(_scheddarPane);
-			}
-		});
-		
-		emailMenu.add(organizationEmail);
-		emailMenu.add(personEmail);
-		emailMenu.add(groupEmail);
-		emailMenu.add(meetingEmail);
 		
 		_mb.add(fileMenu);
 		_mb.add(createMenu);
-		_mb.add(emailMenu);
 		return _mb;
 	}
 	
