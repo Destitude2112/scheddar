@@ -5,26 +5,19 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JComboBox;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import edu.brown.cs32.scheddar.Group;
 import edu.brown.cs32.scheddar.Person;
-import edu.brown.cs32.scheddar.Scheddar;
 
 /**
  * @author sdemane
@@ -32,7 +25,7 @@ import edu.brown.cs32.scheddar.Scheddar;
  * Class implementing the person creation/editor form.
  *
  */
-public class PersonForm extends AbstractForm {
+public class EditPersonForm extends AbstractForm {
 	private static final long serialVersionUID = 1L;
 	
 	JTextField firstName;
@@ -42,7 +35,7 @@ public class PersonForm extends AbstractForm {
 	JTextField description;
 	JList<String> groupMemberships;
 	
-	public PersonForm(ScheddarPane s) {
+	public EditPersonForm(ScheddarPane s, Person p) {
 		super(s);
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -61,15 +54,19 @@ public class PersonForm extends AbstractForm {
 		groupMemberships.setSelectedValue(s._scheddar.getRootGroup().getName(), true);
 		JScrollPane memberListPane = new JScrollPane(groupMemberships);
 		memberListPane.setPreferredSize(new Dimension(75,100));
+		JPanel listPanePane = new JPanel(new GridLayout(1,1));
+		listPanePane.add(memberListPane);
+		listPanePane.add(new JLabel("Choose members:"));		
 		panel.setPreferredSize(new Dimension(360,165+31*groupMemberships.getModel().getSize()));
 		
 		// making "Create Person" button
 		
-		JButton create = new JButton("Create person");
+		JButton create = new JButton("Save");
 		create.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(firstName.getText().trim().length()>0 && lastName.getText().trim().length()>0) {
+					
 					Person p = new Person(firstName.getText().trim(),lastName.getText().trim(),email.getText().trim(),phone.getText().trim(),description.getText().trim());
 					Collection <Person> existingPeople = _scheddarPane._scheddar.getAllPeople();
 					for(Person ep : existingPeople){
@@ -84,10 +81,7 @@ public class PersonForm extends AbstractForm {
 						p.addGroup(g);
 						g.addMember(p);
 					}				
-					_scheddarPane._scheddar.addPerson(p);
 					_scheddarPane._groupTree.updateTree();
-					_scheddarPane._gui._mb.getMenu(2).getMenuComponent(0).setEnabled(true);
-					_scheddarPane._gui._mb.getMenu(2).getMenuComponent(2).setEnabled(true);
 					dispose();				
 				}
 			}
