@@ -1,6 +1,7 @@
 package edu.brown.cs32.scheddar;
 
 
+import edu.brown.cs32.scheddar.gui.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -146,7 +147,7 @@ public class Scheddar implements ScheddarFace {
 	 */
 	
 	public void addPerson(Person p){
-		this.people.put(p.getFullName(),p);
+			this.people.put(p.getFullName(),p);
 	}
 	
 	/** 
