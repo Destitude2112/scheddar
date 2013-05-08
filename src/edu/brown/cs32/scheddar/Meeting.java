@@ -49,7 +49,7 @@ public class Meeting {
 		this.indexToScore = indexToScore;
 		this.dummyGroupsInvolved = dummyGroupsInvolved;
 		this.description = description;
-
+		this.extraPeopleToImportance = new HashMap<Person,Double>();
 	}
 	
 	/**
@@ -165,6 +165,7 @@ public class Meeting {
 		this.dummyGroupsInvolved = new ArrayList<String>();
 		this.groupsInvolved = new ArrayList<Group>();
 		this.description = "";
+		this.extraPeopleToImportance = new HashMap<Person,Double>();
 	}
 	
 	
