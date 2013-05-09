@@ -26,6 +26,10 @@ public abstract class AbstractForm extends JFrame {
 		
 	}
 	
+	public boolean isFun() {
+		return _scheddarPane.isFun();
+	}
+	
 	/**
 	 * @return A string array of the names of all the groups
 	 */

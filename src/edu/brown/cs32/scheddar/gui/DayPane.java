@@ -1,15 +1,24 @@
 package edu.brown.cs32.scheddar.gui;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import edu.brown.cs32.scheddar.Meeting;
 import edu.brown.cs32.scheddar.ScheddarTime;
@@ -38,6 +47,26 @@ public class DayPane extends ScheddarSubPane {
 		this.day = st.getDay();
 		this.month = st.getMonth();
 		this.year = st.getYear();
+		this.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Dimension size = getPreferredSize();
+				Point p = e.getPoint();
+				int hour = (int)(p.getY()/(size.height/24));
+				List<Meeting> meetings = _scheddar.dayMeetings(day, month, year);
+				Meeting m = null;
+				for(Meeting meeting: meetings) {
+					if(meeting.isDecided()) {
+						if(meeting.getFinalTime().getStartHour()<=hour && meeting.getFinalTime().getDuration()+meeting.getFinalTime().getStartHour()>=hour) {
+							m = meeting;
+							break;
+						}
+					}
+				}
+				_scheddarPane._calendar.switchToMeeting(new ScheddarTime(hour, 0, 1, time.getDayOfWeek(), day, month, year, false), m);
+				
+			}
+		});
 	}
 	
 	@Override
@@ -58,12 +87,28 @@ public class DayPane extends ScheddarSubPane {
 	}
 	
 	
+	
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		// drawing border
+		if (isFun())
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, 0.0f));
+		
+		
+		String startTime = _scheddar.getStartHour();
+		String endTime = _scheddar.getEndHour();
+		
+		int startHour = Integer.parseInt(startTime.split(":")[0]);
+		int endHour = Integer.parseInt(endTime.split(":")[0]);
+		int numHours = endHour - startHour;
 		
 		Dimension size = getPreferredSize();
+		
+		
 		g2.setBackground(Color.white);
+		
+		
+		
+		
 		g2.setStroke(new BasicStroke(1));
 		g2.setPaint(Color.darkGray);
 		g2.draw(new Line2D.Double(0,0,0,size.height));
@@ -74,12 +119,12 @@ public class DayPane extends ScheddarSubPane {
 		g2.setPaint(Color.gray);
 		g2.setFont(new Font("SansSerif",Font.PLAIN,10));
 		
-		for (double i = 1.0; i < 24; i += 1.0) {
+		for (double i = 1; i < numHours; i += 1.0) {
 			
-			g2.draw(new Line2D.Double(0,size.height/24.0*i,size.width,size.height/24.0*i));
+			g2.draw(new Line2D.Double(0,size.height/numHours*i,size.width,size.height/numHours*i));
 			
-			g2.drawString((int)i+":00",4,(int)(size.height/24.0*i-3));
-			
+			g2.drawString((int)(i+startHour)+":00",4,(int)(size.height/numHours*i-3));
+
 		}
 		
 		g2.drawString(time.dateToString(), 10, 15);

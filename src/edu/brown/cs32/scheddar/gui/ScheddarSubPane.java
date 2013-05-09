@@ -28,4 +28,8 @@ public abstract class ScheddarSubPane extends JPanel {
 		setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 	}
 	
+	public boolean isFun() {
+		return _scheddarPane.isFun();
+	}
+	
 }

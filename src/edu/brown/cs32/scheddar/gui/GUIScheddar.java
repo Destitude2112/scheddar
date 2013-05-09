@@ -6,11 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -47,6 +54,9 @@ public class GUIScheddar extends JFrame {
 	JFrame startFrame;
 	AbstractForm form;
 	
+	private boolean _funMode = false;
+	private JCheckBox checkbox;
+	
 	
 	public GUIScheddar() {
 		super();
@@ -78,6 +88,10 @@ public class GUIScheddar extends JFrame {
 		//setResizable(false);
 		_screenSize = this.getContentPane().getSize();
 		setGroup(_scheddarPane.getRootGroupName());
+	}
+	
+	public boolean isFun() {
+		return _funMode;
 	}
 	
 	
@@ -299,8 +313,6 @@ public class GUIScheddar extends JFrame {
 		}
 	}
 	
-
-	
 	
 	public void showStartFrame() {
 		startFrame = new JFrame();
@@ -309,12 +321,28 @@ public class GUIScheddar extends JFrame {
 		JButton newButton = new JButton("New project");
 		JButton openButton = new JButton("Open project");
 		
+		checkbox = new JCheckBox();
+		checkbox.setSelected(false);
+		checkbox.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getSource() == checkbox) {
+					_funMode = e.getStateChange() == ItemEvent.SELECTED;
+				}
+			}
+		});
+		
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		l1.setAlignmentX(CENTER_ALIGNMENT);
 		l2.setAlignmentX(CENTER_ALIGNMENT);
 		newButton.setAlignmentX(CENTER_ALIGNMENT);
 		openButton.setAlignmentX(CENTER_ALIGNMENT);
+		checkbox.setAlignmentX(CENTER_ALIGNMENT);
+		
+		
 		
 		
 		newButton.addActionListener(new NewScheddarListener());
@@ -329,6 +357,8 @@ public class GUIScheddar extends JFrame {
 		panel.add(newButton);
 		panel.add(Box.createVerticalStrut(6));
 		panel.add(openButton);
+		panel.add(Box.createVerticalStrut(10));
+		panel.add(checkbox);
 		panel.add(Box.createVerticalStrut(20));
 		
 		startFrame.add(panel);
@@ -445,10 +475,6 @@ public class GUIScheddar extends JFrame {
 	 *                                                                                                                                          _ _   _ _          _  
 	 *                                                                                                                                         (/(/  (/(/  ___    (/  
 	 *                                                                                                                                                    (___)       
-	 * @throws UnsupportedLookAndFeelException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
-	 * @throws ClassNotFoundException 
 	 *                                                                                                                                                                
 	 */
 	public static void main(String[] args) {
