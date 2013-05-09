@@ -415,14 +415,18 @@ public class MeetingPane extends ScheddarSubPane {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					String slot = selectSlots.getSelectedValue();
+					ScheddarTime time = null;
 					if (slot != null) {
 						for (ScheddarTime t : timeSlots.keySet()) {
 							if (slot.startsWith(t.timeRangeToString())) {
 								meeting.addProposedTime(t);
+								time = t;
 							}
 						}
 					}
 					updateLists();
+					_scheddar.addMeeting(meeting);
+					_scheddarPane._calendar.switchToMeeting(time, meeting);
 				}
 			});
 			updatePanel.add(Box.createHorizontalGlue());

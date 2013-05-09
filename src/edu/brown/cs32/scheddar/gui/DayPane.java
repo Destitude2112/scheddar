@@ -35,6 +35,7 @@ public class DayPane extends ScheddarSubPane {
 	int day,month,year;
 	Color finalMeetingColor = new Color(210,40,40);
 	Color proposedMeetingColor = new Color(120,160,210);
+	int startHour, endHour, numHours;
 	
 	public DayPane(ScheddarPane s, ScheddarTime st) {
 		super(s);
@@ -42,12 +43,20 @@ public class DayPane extends ScheddarSubPane {
 		this.day = st.getDay();
 		this.month = st.getMonth();
 		this.year = st.getYear();
+		
+		String startTime = _scheddar.getStartHour();
+		String endTime = _scheddar.getEndHour();
+		
+		startHour = Integer.parseInt(startTime.split(":")[0]);
+		endHour = Integer.parseInt(endTime.split(":")[0]);
+		numHours = endHour - startHour;
+		
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Dimension size = getPreferredSize();
 				Point p = e.getPoint();
-				int hour = (int)(p.getY()/(size.height/24));
+				int hour = (int)(p.getY()/(size.height/numHours));
 				List<Meeting> meetings = _scheddar.dayMeetings(day, month, year);
 				Meeting m = null;
 				for(Meeting meeting: meetings) {
@@ -74,9 +83,9 @@ public class DayPane extends ScheddarSubPane {
 		Dimension d = getPreferredSize();
 		int x = 0;
 		int startMinutes = st.getStartHour() * 60 + st.getStartMinutes();
-		int y = startMinutes * d.height / 1440;
+		int y = startMinutes * d.height / (60*numHours);
 		int width = d.width;
-		int height = st.getDuration() * d.height / 1440;
+		int height = st.getDuration() * d.height / (60*numHours);
 		
 		return new Rectangle(x, y, width, height);
 	}
@@ -92,12 +101,7 @@ public class DayPane extends ScheddarSubPane {
 		}
 		
 		
-		String startTime = _scheddar.getStartHour();
-		String endTime = _scheddar.getEndHour();
 		
-		int startHour = Integer.parseInt(startTime.split(":")[0]);
-		int endHour = Integer.parseInt(endTime.split(":")[0]);
-		int numHours = endHour - startHour;
 		
 		Dimension size = getPreferredSize();
 		
@@ -152,7 +156,7 @@ public class DayPane extends ScheddarSubPane {
 					if (t.getDay() == this.day && 
 							t.getMonth() == this.month && 
 							t.getYear() == this.year) {
-						Rectangle block = getTimeBlock(m.getFinalTime());
+						Rectangle block = getTimeBlock(t);
 						
 						g2.setPaint(Color.black);
 						g2.draw(block);

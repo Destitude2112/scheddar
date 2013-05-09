@@ -309,6 +309,7 @@ public class ScheddarXML{
 	        
 	    	currGroup.setMembers(members);
 	    	if(parentGroup!=null && !parentGroup.getName().equals("")){
+	    		System.out.println("parent group is "+ parentGroup.getName());
 	        currGroup.setParentGroup(parentGroup);
 	    	}
 	        currGroup.setSubgroups(subgroups);
@@ -815,6 +816,7 @@ public class ScheddarXML{
 		staff.appendChild(memberRankings);
 		
 		//subgroups elements
+		System.out.println("Writing subgroups: " + currSubgroups);
 		Element subgroups = doc.createElement("subgroups");
 		subgroups.appendChild(doc.createTextNode(generateSubgroupString(currSubgroups)));
 		staff.appendChild(subgroups);
@@ -822,6 +824,7 @@ public class ScheddarXML{
 		//parent group element
 		//System.out.println("curr parent group: "+ currParentGroup);
 		if (currParentGroup==null) currParentGroup = "";
+		System.out.println("Writing parentgroups: " + currParentGroup);
 		Element parentGroup = doc.createElement("parentGroup");
 		parentGroup.appendChild(doc.createTextNode(currParentGroup));
 		staff.appendChild(parentGroup);

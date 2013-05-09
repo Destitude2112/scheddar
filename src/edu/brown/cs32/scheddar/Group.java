@@ -68,10 +68,16 @@ public class Group {
 	}
 	
 	public void setSubgroups(List<Group> newSubgroups){
+		ArrayList<String> dummySubGroups = new ArrayList<String>();
+		for(Group group: newSubgroups){
+			dummySubGroups.add(group.getName());
+		}
+		this.dummySubgroups = dummySubGroups;
 		this.subgroups = newSubgroups;
 	}
 	
 	public void setParentGroup(Group newParent){
+		this.dummyParentGroup = newParent.name;
 		this.parentGroup = newParent;
 		newParent.addSubgroup(this);
 	}
@@ -135,6 +141,9 @@ public class Group {
 	}
 	
 	public void addSubgroup(Group newSubgroup){
+		if(this.subgroups==null){
+			this.subgroups = new ArrayList<Group>();
+		}
 		this.subgroups.add(newSubgroup);
 	}
 	
