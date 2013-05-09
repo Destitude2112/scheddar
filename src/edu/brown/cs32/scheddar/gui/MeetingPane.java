@@ -92,7 +92,7 @@ public class MeetingPane extends ScheddarSubPane {
 	
 	
 	
-	String[] importanceArray = {"Whatever", "Debatably Important", "Definitely Important", "Extremely Important", "Cataclysmically Important"};
+	
 	SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 	
 	public MeetingPane(ScheddarPane s, Meeting m) {
@@ -264,7 +264,7 @@ public class MeetingPane extends ScheddarSubPane {
 			JPanel individualPanel = new JPanel(new GridLayout(1,3,8,0));
 			nameComboBox = new JComboBox<String>();
 			nameComboBox.setEditable(true);
-			impComboBox = new JComboBox<String>(importanceArray);
+			impComboBox = new JComboBox<String>(Scheddar.importanceArrayLabels);
 			impComboBox.setSelectedIndex(2);
 			JButton addPersonButton = new JButton("Add to Meeting ^^");
 			addPersonButton.addActionListener(new ActionListener() {
@@ -273,7 +273,7 @@ public class MeetingPane extends ScheddarSubPane {
 				public void actionPerformed(ActionEvent arg0) {
 					Person p = _scheddar.getPersonFromName((String)nameComboBox.getSelectedItem());
 					if (p != null) {
-						meeting.addExtraPerson(p, (impComboBox.getSelectedIndex() + 1) * 20);
+						meeting.addExtraPerson(p, Scheddar.importanceArrayValues[impComboBox.getSelectedIndex()]);
 						updateLists();
 					} else {
 						PopUps.popUpPersonNotFound();

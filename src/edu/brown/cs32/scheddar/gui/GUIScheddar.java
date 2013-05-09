@@ -68,14 +68,14 @@ public class GUIScheddar extends JFrame {
 	}
 	
 	public Dimension getScreenSize() {
-		return _screenSize;
+		return this.getContentPane().getSize();
 	}
 	
 	private void renderScheddar(ScheddarPane pane) {
 		_scheddarPane = pane;
 		add(pane);
 		setVisible(true);
-		setResizable(false);
+		//setResizable(false);
 		_screenSize = this.getContentPane().getSize();
 		setGroup(_scheddarPane.getRootGroupName());
 	}
