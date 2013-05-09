@@ -243,10 +243,10 @@ public class Group {
 	 */
 	
 	public double getMemberRanking(Person p) {
-		if(!this.memberRankings.containsKey(p)){
+		if(!this.memberRankings.containsKey(p.getFullName())){
 			return 1.0;
 		}
-		double toRet = this.memberRankings.get(p);
+		double toRet = this.memberRankings.get(p.getFullName());
 		return toRet;		
 	}
 
