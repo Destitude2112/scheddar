@@ -95,10 +95,7 @@ public class Scheddar implements ScheddarFace {
 	 * Construct a Scheddar from an XML file
 	 * 
 	 * Ask Prateek what data structure represents an XML file
-	 */
-	
-	
-	//TODO : Make this a constructor for loading XML
+	 */	
 
 	public Scheddar(File xmlFile){
 		

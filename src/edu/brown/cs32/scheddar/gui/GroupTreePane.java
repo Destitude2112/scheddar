@@ -5,15 +5,13 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
-import javax.swing.tree.TreeSelectionModel;
 
-import edu.brown.cs32.scheddar.*;
+import edu.brown.cs32.scheddar.Group;
 
 /**
  * @author sdemane
