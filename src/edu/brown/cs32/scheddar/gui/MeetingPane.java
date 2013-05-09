@@ -227,11 +227,13 @@ public class MeetingPane extends ScheddarSubPane {
 				namePanel.add(new JLabel("Meeting Title: " + meeting.getName()));
 			}
 			namePanel.setAlignmentX(RIGHT_ALIGNMENT);
+			namePanel.setOpaque(false);
 			panel.add(namePanel);
 			
 			panel.add(Box.createVerticalStrut(10));
 			
 			JPanel descriPanel = new JPanel();
+			descriPanel.setOpaque(false);
 			//descriPanel.setLayout(new BoxLayout(descriPanel,BoxLayout.X_AXIS));
 			descriPanel.add(new JLabel("Description:"));
 			//descriPanel.add(Box.createHorizontalStrut(5));
@@ -245,7 +247,7 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			
 			JPanel groupPanel = new JPanel(new GridLayout(1,3,10,0));
-			
+			groupPanel.setOpaque(false);
 			
 			
 			
@@ -257,7 +259,7 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			
 			JPanel groupButtonsPanel = new JPanel(new GridLayout(4,1,0,3));
-			
+			groupButtonsPanel.setOpaque(false);
 			JButton addGroup = new JButton("Add to Meeting -->");
 			addGroup.addActionListener(new ActionListener() {
 				
@@ -302,7 +304,7 @@ public class MeetingPane extends ScheddarSubPane {
 			panel.add(Box.createVerticalStrut(20));
 			
 			JPanel individualPanel = new JPanel(new GridLayout(1,3,8,0));
-			
+			individualPanel.setOpaque(false);
 			JButton addPersonButton = new JButton("Add to Meeting ^^");
 			addPersonButton.addActionListener(new ActionListener() {
 				
@@ -330,6 +332,7 @@ public class MeetingPane extends ScheddarSubPane {
 			// submitting time ranges
 			JPanel schedulePanel = new JPanel();
 			schedulePanel.setLayout(new BoxLayout(schedulePanel,BoxLayout.Y_AXIS));
+			schedulePanel.setOpaque(false);
 			JPanel durationPanel = new JPanel();
 			
 			
@@ -560,7 +563,7 @@ public class MeetingPane extends ScheddarSubPane {
 		
 		updateLists();
 		
-		
+		panel.setOpaque(false);
 		add(panel);
 	}
 	
