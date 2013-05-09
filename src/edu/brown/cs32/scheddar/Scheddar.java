@@ -39,7 +39,19 @@ public class Scheddar implements ScheddarFace {
 	
 	public static String[] importanceArrayLabels = {"Whatever", "Debatably Important", "Definitely Important", "Extremely Important", "Cataclysmically Important"};
 	public static double[] importanceArrayValues = {Math.pow(2, 1), Math.pow(2, 2), Math.pow(2, 3), Math.pow(2, 4), Math.pow(2, 5)};
+
+
+	Scheddar(){
 		
+		people = new HashMap<String, Person>();
+		groups = new HashMap<String, Group>();
+		meetings = new HashMap<String, Meeting>();
+		
+		
+		this.sxml = new ScheddarXML(this);
+		
+	}
+	
     Scheddar(String dest){
 		
 		//Instantiate the hashMaps
@@ -52,7 +64,7 @@ public class Scheddar implements ScheddarFace {
 		this.sxml = new ScheddarXML(this);
 		
 		//Adding meetings to allMeetings just to test the meetings parser
-		ScheddarTime tff = new ScheddarTime(14,30, 2, 0, 12,10, 2012, false);
+		/*ScheddarTime tff = new ScheddarTime(14,30, 2, 0, 12,10, 2012, false);
 		ArrayList<ScheddarTime> nl = new ArrayList<ScheddarTime>();
 		nl.add(tff);
 		HashMap<Integer, Double> hm = new HashMap<Integer, Double>();
@@ -60,7 +72,7 @@ public class Scheddar implements ScheddarFace {
 		ArrayList<String> gi = new ArrayList<String>();
 		gi.add("noone");
 		Meeting m = new Meeting("meeting1", false, tff, tff, nl, hm, gi, "blabla");
-		meetings.put("meeting1", m);
+		meetings.put("meeting1", m);*/
 		
 		//Finally, load the file contents from the XML location
 		sxml.makeDBFromXML(dest);
@@ -675,6 +687,10 @@ public class Scheddar implements ScheddarFace {
 	@Override
 	public void setAdminPassword(String pass) {
 		this.password = pass;
+	}
+
+	public void setDest(String string) {
+		this.dest = string;
 	}
 	
 }
