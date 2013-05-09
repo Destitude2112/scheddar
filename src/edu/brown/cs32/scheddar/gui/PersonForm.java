@@ -21,6 +21,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 
 import edu.brown.cs32.scheddar.Group;
 import edu.brown.cs32.scheddar.Person;
@@ -95,17 +96,20 @@ public class PersonForm extends AbstractForm {
 		
 		
 		// adding everything
-		panel.add(new JLabel("First name:"));
-		panel.add(firstName);
-		panel.add(new JLabel("Last name:"));
-		panel.add(lastName);
-		panel.add(new JLabel("Email:"));
-		panel.add(email);
-		panel.add(new JLabel("Phone:"));
-		panel.add(phone);
-		panel.add(new JLabel("Description:"));
-		panel.add(description);
-		panel.add(groupMemberships);
+		JPanel fieldsPanel = new JPanel(new GridLayout(5,2,5,5));
+		fieldsPanel.add(new JLabel("First name:",SwingConstants.RIGHT));
+		fieldsPanel.add(firstName);
+		fieldsPanel.add(new JLabel("Last name:",SwingConstants.RIGHT));
+		fieldsPanel.add(lastName);
+		fieldsPanel.add(new JLabel("Email:",SwingConstants.RIGHT));
+		fieldsPanel.add(email);
+		fieldsPanel.add(new JLabel("Phone:",SwingConstants.RIGHT));
+		fieldsPanel.add(phone);
+		fieldsPanel.add(new JLabel("Description:",SwingConstants.RIGHT));
+		fieldsPanel.add(description);
+		
+		panel.add(fieldsPanel);
+		panel.add(new JScrollPane(groupMemberships));
 		panel.add(create);
 		add(panel);
 		pack();

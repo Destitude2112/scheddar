@@ -1,7 +1,9 @@
 package edu.brown.cs32.scheddar.gui;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -16,8 +18,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -90,7 +96,7 @@ public class MonthPane extends ScheddarSubPane {
 	@Override
 	public Dimension getPreferredSize() {
 		Dimension d = _scheddarPane.getPreferredSize();
-		return new Dimension(d.width*7/8-50, d.height);
+		return new Dimension(d.width*7/8-20, d.height);
 	}
 
 	@Override
@@ -98,7 +104,20 @@ public class MonthPane extends ScheddarSubPane {
 		ScheddarTime _curDay = _startDay;
 		Graphics2D g = (Graphics2D) graphics;
 		Dimension size = getPreferredSize();
+		Composite originalComposite = g.getComposite();
+		Composite transparentComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
 		g.setBackground(Color.white);
+		
+		if (isFun()) {
+			BufferedImage img = null;
+			try {
+			    img = ImageIO.read(new File("data/cheese.jpg"));
+			    g.drawImage(img,0,0,getPreferredSize().width,getPreferredSize().height,null);
+			} catch (IOException e) {
+			}
+		}
+		
+		
 		g.setStroke(new BasicStroke(1));
 		g.setPaint(Color.DARK_GRAY);
 		g.draw(new Line2D.Double(0,0,0,size.height));
@@ -123,8 +142,11 @@ public class MonthPane extends ScheddarSubPane {
 				}
 				if(_curDay.getMonth()==_time.getMonth() && _curDay.getDay()==_time.getDay()) {
 					g.setPaint(new Color(240,240,230));
+					if (isFun())
+					g.setComposite(transparentComposite);
 					g.fillRect(size.width/days.length*j, (int)(size.height/WEEKS_TO_DISPLAY*i), size.width/days.length, (int)(size.height/WEEKS_TO_DISPLAY));
 					g.setPaint(Color.gray);
+					g.setComposite(originalComposite);
 				}
 				g.drawString(Integer.toString(_curDay.getDay()), 5+size.width/days.length*j,(int)(20+size.height/WEEKS_TO_DISPLAY*i));
 				_curDay = UsefulMethods.getNextDay(_curDay);
