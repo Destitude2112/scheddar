@@ -289,11 +289,18 @@ public class MeetingPane extends ScheddarSubPane {
 					}
 				}
 			});
-			
-			groupButtonsPanel.add(new JPanel());
+			JPanel b1 = new JPanel();
+			b1.setOpaque(false);
+			JPanel b2 = new JPanel();
+			b1.setOpaque(false);
+			JPanel b3 = new JPanel();
+			b1.setOpaque(false);
+			JPanel b4 = new JPanel();
+			b1.setOpaque(false);
+			groupButtonsPanel.add(b1);
 			groupButtonsPanel.add(addGroup);
 			groupButtonsPanel.add(removeGroup);
-			groupButtonsPanel.add(new JPanel());
+			groupButtonsPanel.add(b2);
 			
 			groupPanel.add(unaddedGroupsPane);
 			groupPanel.add(groupButtonsPanel);
@@ -338,6 +345,7 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			durationPanel.add(new JLabel("Required meeting duration (HH:MM):"));
 			durationPanel.add(durationField);
+			durationPanel.setOpaque(false);
 			durationPanel.setAlignmentX(RIGHT_ALIGNMENT);
 			schedulePanel.add(durationPanel);
 			schedulePanel.add(Box.createVerticalStrut(10));
@@ -345,7 +353,8 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			
 			JLabel meetingLabel = new JLabel("Select range of possible meeting times:");
-			meetingLabel.setAlignmentX(RIGHT_ALIGNMENT);
+			meetingLabel.setOpaque(false);
+			meetingLabel.setAlignmentX(CENTER_ALIGNMENT);
 			schedulePanel.add(meetingLabel);
 			schedulePanel.add(Box.createVerticalStrut(10));
 			JPanel timeRangePanel = new JPanel();
@@ -408,7 +417,7 @@ public class MeetingPane extends ScheddarSubPane {
 			timeRangePanel.add(fromTime);
 			timeRangePanel.add(new JLabel("Latest end time:",SwingConstants.RIGHT));
 			timeRangePanel.add(toTime);
-			timeRangePanel.add(new JPanel());
+			timeRangePanel.add(b3);
 			timeRangePanel.add(addRange);
 			
 			
@@ -418,10 +427,12 @@ public class MeetingPane extends ScheddarSubPane {
 			JScrollPane slotListPane = new JScrollPane(selectSlots);			
 			
 			JPanel slotSelectionPanel = new JPanel(new GridLayout(1,2,5,0));
+			timeRangePanel.setOpaque(false);
 			slotSelectionPanel.add(timeRangePanel);
 			slotSelectionPanel.add(slotListPane);
 			
 			slotSelectionPanel.setAlignmentX(RIGHT_ALIGNMENT);
+			slotSelectionPanel.setOpaque(false);
 			schedulePanel.add(slotSelectionPanel);
 			schedulePanel.add(Box.createVerticalStrut(5));
 			
@@ -451,6 +462,7 @@ public class MeetingPane extends ScheddarSubPane {
 			updatePanel.add(pickSlots);
 			
 			updatePanel.setAlignmentX(RIGHT_ALIGNMENT);
+			updatePanel.setOpaque(false);
 			schedulePanel.add(updatePanel);
 			schedulePanel.add(Box.createVerticalStrut(20));
 			
@@ -461,7 +473,7 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			JPanel proposedTimePanel = new JPanel(new GridLayout(1,2));
 			
-			proposedTimePanel.add(new JPanel());
+			proposedTimePanel.add(b4);
 			proposedTimePanel.add(new JScrollPane(proposedTimes));
 			
 			JPanel optionsPanel = new JPanel();
@@ -550,12 +562,15 @@ public class MeetingPane extends ScheddarSubPane {
 			optionsPanel.add(scheduleNow);
 			
 			proposedTimePanel.setAlignmentX(RIGHT_ALIGNMENT);
+			proposedTimePanel.setOpaque(false);
 			optionsPanel.setAlignmentX(RIGHT_ALIGNMENT);
+			optionsPanel.setOpaque(false);
 			
 			schedulePanel.add(proposedTimePanel);
 			schedulePanel.add(optionsPanel);
 		
 			schedulePanel.setAlignmentX(RIGHT_ALIGNMENT);
+			schedulePanel.setOpaque(false);
 			panel.add(schedulePanel);
 			panel.add(Box.createVerticalStrut(20));
 		}
