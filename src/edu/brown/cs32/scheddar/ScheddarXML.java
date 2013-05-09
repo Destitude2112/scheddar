@@ -882,7 +882,7 @@ public class ScheddarXML{
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer t = tf.newTransformer();
 			DOMSource src = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(myScheddar.getDest()));
+			StreamResult result = new StreamResult(myScheddar.getSaveFile());
 			
 			t.transform(src, result);
 			

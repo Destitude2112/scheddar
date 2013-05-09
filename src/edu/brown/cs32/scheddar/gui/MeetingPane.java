@@ -88,6 +88,7 @@ public class MeetingPane extends ScheddarSubPane {
 	
 	public MeetingPane(ScheddarPane s, Meeting m) {
 		super(s);
+		this.setLayout(new GridLayout(1,1));
 		
 		meeting = m;
 		if (meeting == null)
@@ -401,7 +402,7 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			
 			JScrollPane slotListPane = new JScrollPane(selectSlots);
-			
+			slotListPane.getViewport().setViewSize(slotListPane.getSize());
 			
 			
 			
@@ -536,8 +537,13 @@ public class MeetingPane extends ScheddarSubPane {
 		
 		updateLists();
 		
+		JPanel otherPanel = new JPanel();
+		otherPanel.setLayout(new BoxLayout(otherPanel,BoxLayout.X_AXIS));
+		otherPanel.add(Box.createHorizontalStrut(20));
+		otherPanel.add(panel);
+		otherPanel.add(Box.createHorizontalStrut(20));
 		
-		add(panel);
+		add(otherPanel);
 	}
 	
 	
@@ -616,6 +622,7 @@ public class MeetingPane extends ScheddarSubPane {
 		nameComboBox.setModel(peopleList);
 		selectSlots.setModel(timeslotList);
 		proposedTimes.setModel(proposedTimesList);
+		this.revalidate();
 	}
 	
 	
