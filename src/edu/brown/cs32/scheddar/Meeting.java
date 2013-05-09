@@ -395,7 +395,7 @@ public class Meeting {
 			startTime += duration;
 		}
 		
-		System.out.println(potentialTimes.size());
+	//	System.out.println(potentialTimes.size());
 		// Generate rankings based on recurring conflicts
 		
 		for(ScheddarTime t : potentialTimes){
