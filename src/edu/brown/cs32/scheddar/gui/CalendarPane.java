@@ -2,6 +2,8 @@ package edu.brown.cs32.scheddar.gui;
 
 
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -32,6 +34,7 @@ public class CalendarPane extends ScheddarSubPane {
 	
 	public void switchToMonth(ScheddarTime time) {
 		removeAll();
+		revalidate();
 		add(new MonthPane(_scheddarPane,time));
 		_time = time;
 		revalidate();
@@ -39,6 +42,7 @@ public class CalendarPane extends ScheddarSubPane {
 	
 	public void switchToWeek(ScheddarTime time) {
 		removeAll();
+		revalidate();
 		add(new WeekPane(_scheddarPane,time));
 		_time = time;
 		revalidate();
@@ -46,7 +50,7 @@ public class CalendarPane extends ScheddarSubPane {
 	
 	public void switchToMeeting(ScheddarTime time, Meeting m) {
 		removeAll();
-
+		revalidate();
 		if (time == null)
 			time = UsefulMethods.getCurrentTime();
 
@@ -66,6 +70,7 @@ public class CalendarPane extends ScheddarSubPane {
 	
 	@Override
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		if (isFun()) {
 			BufferedImage img = null;

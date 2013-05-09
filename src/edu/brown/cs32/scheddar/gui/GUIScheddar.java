@@ -430,6 +430,23 @@ public class GUIScheddar extends JFrame {
 		}
 	}
 	
+	public class SaveScheddarListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JFileChooser fc = new JFileChooser();
+			fc.setDialogTitle("Save Scheddar...");
+			fc.setFileFilter(new FileNameExtensionFilter("Scheddar files","xml"));
+			fc.setSelectedFile(_scheddarPane._scheddar.getSaveFile());
+			int retval = fc.showSaveDialog(GUIScheddar.this);
+			
+			if (retval == JFileChooser.APPROVE_OPTION) {
+				File scheddarFile = fc.getSelectedFile();
+				_scheddarPane._scheddar.save(scheddarFile);
+			}
+		}
+	}
+	
 	
 	/**
 	 *                                                                              _ _                                                                               

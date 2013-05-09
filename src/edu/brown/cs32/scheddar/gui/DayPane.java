@@ -87,11 +87,14 @@ public class DayPane extends ScheddarSubPane {
 	}
 	
 	
-	
+	@Override
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		if (isFun())
+		if (isFun()) {
+			setOpaque(false);
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, 0.0f));
+		}
 		
 		
 		String startTime = _scheddar.getStartHour();
