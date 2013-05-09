@@ -1,11 +1,11 @@
 package edu.brown.cs32.scheddar.gui;
 
 import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import edu.brown.cs32.scheddar.*;
+import edu.brown.cs32.scheddar.ScheddarTime;
+import edu.brown.cs32.scheddar.UsefulMethods;
 
 /**
  * @author sdemane

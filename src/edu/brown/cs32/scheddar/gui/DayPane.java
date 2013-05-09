@@ -126,7 +126,6 @@ public class DayPane extends ScheddarSubPane {
 		}
 		
 		g2.drawString(time.dateToString(), 10, 15);
-		
 		List<Meeting> meetings = _scheddar.dayMeetings(day, month, year);
 		
 		g2.setStroke(new BasicStroke(2));

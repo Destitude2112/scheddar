@@ -55,7 +55,7 @@ public class GroupForm extends AbstractForm {
 		topPanel.add(groupList);
 		
 		//getting initial members
-		memberList = new JList<String>(_scheddarPane.getGroupMembers((String)groupList.getSelectedItem()));
+ 		memberList = new JList<String>(_scheddarPane.getGroupMembers((String)groupList.getSelectedItem()));
 		memberList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		JScrollPane memberListPane = new JScrollPane(memberList);
 		memberListPane.setPreferredSize(new Dimension(75,100));
