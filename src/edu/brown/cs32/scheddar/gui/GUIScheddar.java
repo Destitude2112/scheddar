@@ -181,7 +181,7 @@ public class GUIScheddar extends JFrame {
 		editGroup.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new DeleteGroupForm(_scheddarPane);
+				new DeleteGroupForm(_scheddarPane, false);
 			}
 		});		
 
@@ -195,7 +195,7 @@ public class GUIScheddar extends JFrame {
 		deleteGroup.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new DeleteGroupForm(_scheddarPane);
+				new DeleteGroupForm(_scheddarPane, true);
 			}
 		});		
 

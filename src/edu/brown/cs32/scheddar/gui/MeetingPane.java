@@ -340,9 +340,9 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			
 			dateField.setEditor(new JSpinner.DateEditor(dateField, "MM/dd/yy"));
-			fromTime.setEditor(new JSpinner.DateEditor(dateField, "HH:mm"));
-			toTime.setEditor(new JSpinner.DateEditor(dateField, "HH:mm"));
-			
+			fromTime.setEditor(new JSpinner.DateEditor(fromTime, "HH:mm"));
+			toTime.setEditor(new JSpinner.DateEditor(toTime, "HH:mm"));
+
 			//TODO: debug time spinners
 			
 			
@@ -353,10 +353,15 @@ public class MeetingPane extends ScheddarSubPane {
 				public void actionPerformed(ActionEvent arg0) {
 					Calendar date,from,to,difference;
 					date = from = to = difference = new GregorianCalendar();
+					
+					//TODO : Times being passed in here are incorrect
+					
 					date.setTime(dateFieldModel.getDate());
 					from.setTime(fromFieldModel.getDate());
 					to.setTime(toFieldModel.getDate());
 					difference.setTimeInMillis(to.getTimeInMillis() - from.getTimeInMillis());
+					
+					System.out.println("Button day : " + from.get(Calendar.HOUR_OF_DAY));
 					
 					ScheddarTime range = new ScheddarTime(from.get(Calendar.HOUR_OF_DAY),from.get(Calendar.MINUTE), difference.get(Calendar.MINUTE),date.get(Calendar.DAY_OF_WEEK),date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR),false);
 					
@@ -365,9 +370,10 @@ public class MeetingPane extends ScheddarSubPane {
 						d.setTime(timeFormat.parse(durationField.getValue().toString()));
 						int duration = d.get(Calendar.HOUR_OF_DAY) * 60 + d.get(Calendar.MINUTE);
 						
-						timeSlots = new HashMap<ScheddarTime,Double>(meeting.recommendMeetingTimes(range, duration));
+						timeSlots = meeting.recommendMeetingTimes(range, duration);
 					} catch (ParseException e) {
 						// do nothing
+						System.out.println("parse exception D:");
 					}
 					updateLists();
 					

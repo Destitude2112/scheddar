@@ -1,6 +1,7 @@
 package edu.brown.cs32.scheddar;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -382,6 +383,12 @@ public class Meeting {
 		int startTime = time.getStartHour() * 60 + time.getStartMinutes(); // the start time in minutes
 		ScheddarTime endScheddar = time.getEndTime();
 		int endTime = endScheddar.getStartHour() * 60 + endScheddar.getStartMinutes(); // the end time in minutes
+		
+		System.out.println("Day : " + day);
+		System.out.println("Month : " + month);
+		System.out.println("Year : " + year);
+		System.out.println("Start Time : " + startTime);
+		System.out.println("End Time : " + endTime);
 		while(startTime+duration<=endTime){
 			int hour = startTime % 60;
 			int minutes = startTime - (hour * 60);
@@ -389,7 +396,7 @@ public class Meeting {
 			startTime += duration;
 		}
 		
-		
+		System.out.println(potentialTimes.size());
 		// Generate rankings based on recurring conflicts
 		
 		for(ScheddarTime t : potentialTimes){
@@ -431,6 +438,16 @@ public class Meeting {
 				}
 			}
 			toRet.put(t,((totalWeight - currScore) / totalWeight) * 100);
+		}
+		
+		Collection<ScheddarTime> times = toRet.keySet();
+		Collection<Double> scores = toRet.values();
+		
+		for(ScheddarTime t : times){
+			System.out.println(t.toString());
+		}
+		for(Double score : scores){
+			System.out.println(score);
 		}
 		return toRet;
 	}

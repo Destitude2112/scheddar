@@ -98,4 +98,15 @@ public interface ScheddarFace {
 			Meeting meeting);
 	public void sendCustomEmail(String toEmail, String body, String subject);
 
+	/**
+	 * Methods for OptionsForm
+	 */
+	
+	public String getAdminName();
+	public String getPassword();
+	public String getUsername();
+	public void setAdminName(String name);
+	public void setAdminUsername(String user);
+	public void setAdminPassword(String pass);
+	
 }
