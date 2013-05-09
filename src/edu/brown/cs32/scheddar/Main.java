@@ -1,11 +1,13 @@
 package edu.brown.cs32.scheddar;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Main {
-
+	
+	static File dest = new File("data/group.xml");
 	public static void main(String[] args){
 		
 		//Contents of a sample test XML
@@ -29,7 +31,6 @@ public class Main {
 		 <description>blabla</description></meeting></meeting></All>
 		 */
 		
-		String dest = "data/" + "group.xml"; //Can specify any location of an XML file
 		
 		//Scheddar s1 = new Scheddar(dest); //This creates a Scheddar object from all that is in the XML
 		Scheddar s1 = getTestData();
@@ -50,14 +51,12 @@ public class Main {
 	
 		
 		Scheddar s = new Scheddar();
-		
+		s.setSaveFile(dest);
 		s.setName("Scheddar Corp.");
 		s.setAdminName("admin");
 		s.setStartHour("09:00");
 		s.setEndHour("18:00");
 		
-		
-		s.setDest("/Users/Prateek/Desktop/" + "group.xml");
 		//Generate ScheddarTime for conflicts
 		//Wednesday
 		ScheddarTime wed10 = new ScheddarTime(3, 10, 60);

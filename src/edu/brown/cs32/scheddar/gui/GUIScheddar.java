@@ -423,7 +423,8 @@ public class GUIScheddar extends JFrame {
 			
 			if (retval == JFileChooser.APPROVE_OPTION) {
 				File scheddarFile = fc.getSelectedFile();
-				ScheddarPane sp = new ScheddarPane(GUIScheddar.this, new Scheddar(scheddarFile));
+				Scheddar s = new Scheddar(scheddarFile);
+				ScheddarPane sp = new ScheddarPane(GUIScheddar.this, s);
 				renderScheddar(sp);
 				startFrame.dispose();
 			}
