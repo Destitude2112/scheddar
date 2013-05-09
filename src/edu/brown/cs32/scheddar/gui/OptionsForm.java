@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -43,10 +44,8 @@ public class OptionsForm extends AbstractForm {
 		JPanel adminNamePanel = new JPanel();
 		JPanel startDayPanel = new JPanel();
 		JPanel endDayPanel = new JPanel();
-		
-		
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		
+				
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));		
 		adminEmail = new JTextField(20);
 		adminEmail.setText(_scheddar.getUsername());
 		

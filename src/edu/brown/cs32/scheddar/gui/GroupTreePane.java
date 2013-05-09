@@ -50,10 +50,8 @@ public class GroupTreePane extends ScheddarSubPane {
 	}
 		
 	public void updateTree() {
-		
 		_topNode = constructTree(_scheddar.getRootGroup());
 		_tree = new JTree(_topNode);
-		
 		_treeView = new JScrollPane(_tree);
 		remove(0);
 		add(_treeView,0);
