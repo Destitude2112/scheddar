@@ -37,4 +37,8 @@ public class PopUps {
 	public static void popUpMeetingNotFound(){
 		JOptionPane.showMessageDialog(null,"That meeting does not exist in this Scheddar.");
 	}
+	
+	public static void popUpInvalidEmail(){
+		JOptionPane.showMessageDialog(null, "Invalid user/password, use File -> Options to set correct email/password.");
+	}
 } 	

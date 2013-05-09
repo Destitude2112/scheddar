@@ -14,6 +14,8 @@ import javax.mail.Flags.Flag;
 import javax.mail.internet.*;
 import javax.mail.search.FlagTerm;
 
+import edu.brown.cs32.scheddar.gui.PopUps;
+
 public class EmailParser {
 	
 	private String username;
@@ -67,11 +69,13 @@ public class EmailParser {
 			msg.setText(msgBody);
 			
 			Transport.send(msg);
-		} catch (AddressException ex){
-			ex.printStackTrace();
-		} catch (MessagingException e){
-			e.printStackTrace();
-		}	
+		}// catch (AddressException ex){
+		//	ex.printStackTrace();
+		//} catch (MessagingException e){
+			//e.printStackTrace();
+		 catch (Exception e) {
+			PopUps.popUpInvalidEmail();
+		}
 	}
 	
 	/**
@@ -107,11 +111,13 @@ public class EmailParser {
 			msg.setText(msgBody);
 			
 			Transport.send(msg);
-		} catch (AddressException ex){
-			ex.printStackTrace();
-		} catch (MessagingException e){
-			e.printStackTrace();
-		}	
+		}// catch (AddressException ex){
+			//ex.printStackTrace();
+	//	} catch (MessagingException e){
+		//	e.printStackTrace();
+		 catch (Exception e) {
+			PopUps.popUpInvalidEmail();
+		}
 	}
 	
 	/**
@@ -147,11 +153,13 @@ public class EmailParser {
 			msg.setText(msgBody);
 			
 			Transport.send(msg);
-		} catch (AddressException ex){
-			ex.printStackTrace();
-		} catch (MessagingException e){
-			e.printStackTrace();
-		}	
+		}// catch (AddressException ex){
+		//	ex.printStackTrace();
+		//} catch (MessagingException e){
+		//	e.printStackTrace();
+		 catch (Exception e){
+			PopUps.popUpInvalidEmail();
+		}
 	}
 	
 	/**
@@ -187,11 +195,13 @@ public class EmailParser {
 			msg.setText(msgBody);
 			
 			Transport.send(msg);
-		} catch (AddressException ex){
-			ex.printStackTrace();
-		} catch (MessagingException e){
-			e.printStackTrace();
-		}	
+	//	} catch (AddressException ex){
+	//		ex.printStackTrace();
+	//	} catch (MessagingException e){
+	//		e.printStackTrace();
+		} catch (Exception e){
+			PopUps.popUpInvalidEmail();
+		}
 	}
 	
 	/**
@@ -227,11 +237,13 @@ public class EmailParser {
 			msg.setText(msgBody);
 			
 			Transport.send(msg);
-		} catch (AddressException ex){
-			ex.printStackTrace();
-		} catch (MessagingException e){
-			e.printStackTrace();
-		}	
+	//	} catch (AddressException ex){
+	//		ex.printStackTrace();
+	//	} catch (MessagingException e){
+	//		e.printStackTrace();
+		} catch (Exception e) {
+			PopUps.popUpInvalidEmail();
+		}
 	}
 	
 	/**
@@ -270,7 +282,7 @@ public class EmailParser {
 			ex.printStackTrace();
 		} catch (MessagingException e){
 			e.printStackTrace();
-		}	
+		}
 	}
 	
 	
