@@ -50,6 +50,13 @@ public class Main {
 	
 		
 		Scheddar s = new Scheddar();
+		
+		s.setName("Scheddar Corp.");
+		s.setAdminName("admin");
+		s.setStartHour("09:00");
+		s.setEndHour("18:00");
+		
+		
 		s.setDest("/Users/Prateek/Desktop/" + "group.xml");
 		//Generate ScheddarTime for conflicts
 		//Wednesday
