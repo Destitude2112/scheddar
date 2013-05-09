@@ -39,9 +39,6 @@ public class Main {
 		
 		//Application use
 		
-		System.out.println("ALL PERSONS HAS "+ s1.getPersons().size());
-		System.out.println("ALL GROUPS HAS " + s1.getGroups().size());
-		System.out.println("all meetings HAS "+ s1.getMeetings().size());
 		
 		//s1.saveData();// This finally saves all the data for the Scheddar object in the XML
 	}
@@ -331,7 +328,7 @@ public class Main {
 		listGroups.add(engineers);
 		listGroups.add(managers);
 		listGroups.add(marketing);
-		allPeople.setSubgroups(listGroups);
+		allGroups.setSubgroups(listGroups);
 		
 		//Adding things to groups
 		s.getGroups().put(allGroups.getName(), allGroups);

@@ -161,14 +161,14 @@ public class MonthPane extends ScheddarSubPane {
 	}
 
 	public void displayEvents(Graphics2D g) {
-		g.setFont(new Font("SansSerif",Font.PLAIN,10));
+		g.setFont(new Font("SansSerif",Font.PLAIN,12));
 		List<Meeting> meetings = _scheddarPane._scheddar.monthMeetings(_time.getMonth(), _time.getYear());
 		int[] meetingArray = new int[1+UsefulMethods.daysInMonth(_time.getMonth(), _time.getYear())];
 		for(Meeting m: meetings) {
 			int day = m.getFinalTime().getDay();
 			if(meetingArray[day]<5) { 	// Only displays first 5 meetings on a given day
 				Point p = getBlock(m.getFinalTime());
-				g.drawString(m.getName(), p.x+5, p.y+5+15*meetingArray[day]);
+				g.drawString(m.getName(), p.x+5, p.y+35+25*meetingArray[day]);
 				meetingArray[day] = meetingArray[day] + 1;
 			}
 		}
@@ -178,7 +178,8 @@ public class MonthPane extends ScheddarSubPane {
 		Dimension size = getPreferredSize();
 		int x = t.getDayOfWeek();
 		int startDay = _startDay.getMonth()==t.getMonth() ? t.getDay() : t.getDay()-UsefulMethods.daysInMonth(_startDay.getMonth(), _startDay.getYear());
-		int y = (t.getDay()-startDay)/7-1;
+		int y = (t.getDay()-startDay)/7;
+		y = y-2;
 		return new Point(size.width/7*x, (int)(size.height/WEEKS_TO_DISPLAY*y));
 	}
 
