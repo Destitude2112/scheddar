@@ -384,14 +384,12 @@ public class Meeting {
 		ScheddarTime endScheddar = time.getEndTime();
 		int endTime = endScheddar.getStartHour() * 60 + endScheddar.getStartMinutes(); // the end time in minutes
 		
-		System.out.println("Day : " + day);
-		System.out.println("Month : " + month);
-		System.out.println("Year : " + year);
-		System.out.println("Start Time : " + startTime);
-		System.out.println("End Time : " + endTime);
 		while(startTime+duration<=endTime){
-			int hour = startTime % 60;
+			System.out.println("StartTime  " + startTime);
+			int hour = startTime / 60;
+			System.out.println("Hour: " + hour);
 			int minutes = startTime - (hour * 60);
+			System.out.println("Minutes: " + minutes);
 			potentialTimes.add(new ScheddarTime(hour,minutes,duration,dayOfWeek,day,month,year,false));
 			startTime += duration;
 		}

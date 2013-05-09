@@ -86,7 +86,7 @@ public class MeetingPane extends ScheddarSubPane {
 	
 	
 	
-	String[] importanceArray = {"Whatever", "Debatably Important", "Definitely Important", "Extremely Important", "Cataclysmically Important"};
+	
 	SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 	
 	public MeetingPane(ScheddarPane s, Meeting m) {
@@ -258,7 +258,7 @@ public class MeetingPane extends ScheddarSubPane {
 			JPanel individualPanel = new JPanel(new GridLayout(1,3,8,0));
 			nameComboBox = new JComboBox<String>();
 			nameComboBox.setEditable(true);
-			impComboBox = new JComboBox<String>(importanceArray);
+			impComboBox = new JComboBox<String>(Scheddar.importanceArrayLabels);
 			impComboBox.setSelectedIndex(2);
 			JButton addPersonButton = new JButton("Add to Meeting ^^");
 			addPersonButton.addActionListener(new ActionListener() {
@@ -267,7 +267,7 @@ public class MeetingPane extends ScheddarSubPane {
 				public void actionPerformed(ActionEvent arg0) {
 					Person p = _scheddar.getPersonFromName((String)nameComboBox.getSelectedItem());
 					if (p != null) {
-						meeting.addExtraPerson(p, (impComboBox.getSelectedIndex() + 1) * 20);
+						meeting.addExtraPerson(p, Scheddar.importanceArrayValues[impComboBox.getSelectedIndex()]);
 						updateLists();
 					} else {
 						PopUps.popUpPersonNotFound();
@@ -346,7 +346,10 @@ public class MeetingPane extends ScheddarSubPane {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					Calendar date,from,to,difference;
-					date = from = to = difference = new GregorianCalendar();
+					date = Calendar.getInstance();
+					from = Calendar.getInstance();
+					to = Calendar.getInstance();
+					difference = Calendar.getInstance();
 					
 					//TODO : Times being passed in here are incorrect
 					
@@ -354,10 +357,10 @@ public class MeetingPane extends ScheddarSubPane {
 					from.setTime(fromFieldModel.getDate());
 					to.setTime(toFieldModel.getDate());
 					difference.setTimeInMillis(to.getTimeInMillis() - from.getTimeInMillis());
-					
+					System.out.println("Button time: " + from.toString());
 					System.out.println("Button day : " + from.get(Calendar.HOUR_OF_DAY));
 					
-					ScheddarTime range = new ScheddarTime(from.get(Calendar.HOUR_OF_DAY),from.get(Calendar.MINUTE), difference.get(Calendar.MINUTE),date.get(Calendar.DAY_OF_WEEK),date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR),false);
+					ScheddarTime range = new ScheddarTime(from.get(Calendar.HOUR_OF_DAY),from.get(Calendar.MINUTE), difference.get(Calendar.MINUTE) + difference.get(Calendar.HOUR_OF_DAY)*60,date.get(Calendar.DAY_OF_WEEK)-1,date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR),false);
 					
 					Calendar d = new GregorianCalendar();
 					try {

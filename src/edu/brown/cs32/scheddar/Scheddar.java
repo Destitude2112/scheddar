@@ -36,6 +36,9 @@ public class Scheddar implements ScheddarFace {
 	
 	private String startHour = "07:00";
 	private String endHour = "18:00";
+	
+	public static String[] importanceArrayLabels = {"Whatever", "Debatably Important", "Definitely Important", "Extremely Important", "Cataclysmically Important"};
+	public static double[] importanceArrayValues = {Math.pow(2, 1), Math.pow(2, 2), Math.pow(2, 3), Math.pow(2, 4), Math.pow(2, 5)};
 		
     Scheddar(String dest){
 		

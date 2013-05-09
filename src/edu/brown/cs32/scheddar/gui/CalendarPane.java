@@ -2,6 +2,8 @@ package edu.brown.cs32.scheddar.gui;
 
 
 
+import java.awt.Dimension;
+
 import edu.brown.cs32.scheddar.*;
 
 /**
@@ -49,6 +51,10 @@ public class CalendarPane extends ScheddarSubPane {
 
 	public ScheddarTime getTime() {
 		return _time;
+	}
+	
+	public Dimension getPreferredSize() {
+		return new Dimension(_scheddarPane.getPreferredSize().width * 7/8 - 10, _scheddarPane.getPreferredSize().height);
 	}
 
 }
