@@ -21,7 +21,7 @@ public class PopUps {
 	 */
 	
 	public static boolean popUpConfirmationBox(){
-		return(JOptionPane.showConfirmDialog(null, "Are you sure?","Scheddar",
+		return(JOptionPane.showConfirmDialog(null, "Do you want to save?","Scheddar",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)
 				== JOptionPane.YES_OPTION);
 	}

@@ -112,13 +112,15 @@ public class GUIScheddar extends JFrame {
 		options.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO: write options form. Make sure there's xml for saving options
+				new OptionsForm(_scheddarPane);
 			}
 		});
 		
 		exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// TODO:
+				boolean save = PopUps.popUpConfirmationBox();
 				System.exit(0);
 			}
 		});
