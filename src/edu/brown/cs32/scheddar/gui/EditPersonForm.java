@@ -33,7 +33,6 @@ public class EditPersonForm extends AbstractForm {
 	JTextField email;
 	JTextField phone;
 	JTextField description;
-	JList<String> groupMemberships;
 	Person p;
 	
 	public EditPersonForm(ScheddarPane s, Person person) {
@@ -75,6 +74,7 @@ public class EditPersonForm extends AbstractForm {
 					p.setEmail(email.getText().trim());
 					p.setPhoneNum(phone.getText().trim());
 					p.setDescription(description.getText().trim());
+					_scheddarPane._groupTree.updateTree();
 					dispose();				
 				}
 			}
@@ -92,7 +92,6 @@ public class EditPersonForm extends AbstractForm {
 		panel.add(phone);
 		panel.add(new JLabel("Description:"));
 		panel.add(description);
-		panel.add(groupMemberships);
 		panel.add(create);
 		add(panel);
 		pack();
