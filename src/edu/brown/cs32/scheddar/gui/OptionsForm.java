@@ -107,13 +107,16 @@ public class OptionsForm extends AbstractForm {
 				start.setTime(startFieldModel.getDate());
 				end.setTime(endFieldModel.getDate());
 				
+				String newStart = start.get(Calendar.HOUR) + ":" + start.get(Calendar.MINUTE);
+				String newEnd = end.get(Calendar.HOUR) + ":" + end.get(Calendar.MINUTE);
 				
+				if(newStart.length()>0){
+					_scheddar.setStartHour(newStart);
+				}
 				
-//				if(startDay.getText().trim().length()>0){
-//					_scheddar.setStartHour(startDay.getText().trim());
-//				}
-				
-				
+				if(newEnd.length()>0){
+					_scheddar.setEndHour(newEnd);
+				}
 			}
 		});
 		
