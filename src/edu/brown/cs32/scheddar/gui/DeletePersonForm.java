@@ -2,13 +2,10 @@ package edu.brown.cs32.scheddar.gui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collection;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -40,7 +37,7 @@ public class DeletePersonForm extends AbstractForm {
 		panel.add(personList);
 		
 		// making "Remove Group" button
-		JButton delete = new JButton("Remove Person");
+		JButton delete = toDelete ? new JButton("Remove Person") : new JButton("Edit Person");
 		delete.addActionListener(new ActionListener() {
 			
 			@Override
