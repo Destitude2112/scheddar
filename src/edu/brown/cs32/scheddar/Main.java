@@ -54,7 +54,7 @@ public class Main {
 		s.setSaveFile(dest);
 		s.setName("Scheddar Corp.");
 		s.setAdminName("admin");
-		s.setStartHour("09:00");
+		s.setStartHour("09:00");a
 		s.setEndHour("18:00");
 		
 		//Generate ScheddarTime for conflicts
