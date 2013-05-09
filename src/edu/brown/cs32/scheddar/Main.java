@@ -52,6 +52,11 @@ public class Main {
 		
 		Scheddar s = new Scheddar();
 		s.setSaveFile(dest);
+		s.setName("Scheddar Corp.");
+		s.setAdminName("admin");
+		s.setStartHour("09:00");
+		s.setEndHour("18:00");
+		
 		//Generate ScheddarTime for conflicts
 		//Wednesday
 		ScheddarTime wed10 = new ScheddarTime(3, 10, 60);
@@ -187,9 +192,9 @@ public class Main {
 				"THIS DUDE'S AWESOME", c4);
 		
 		//People with c1 conflicts
-		Person p1 = new Person("Tom", "Cruise", "blabla@brown.edu", "401-935-3094",
+		Person p1 = new Person("Tom", "Cruise", "alec_tutino@brown.edu", "401-935-3094",
 				"He's okay... Could be a little cuter", c1);
-		Person p2 = new Person("Neil", "Patrick Harris", "blabla@brown.edu", "401-935-3094",
+		Person p2 = new Person("Neil", "Patrick Harris", "alec_tutino@brown.edu", "401-935-3094",
 				"Top Programmer in Python", c1);
 		Person p3 = new Person("Zoey", "Deschenel", "prateek_arora@brown.edu", "401-935-3094",
 				"Stereotypically annoying girl", c1);
@@ -205,9 +210,9 @@ public class Main {
 				"Small dude who watches chick flicks", c1);
 		
 		//People with c2 conflicts
-		Person p9 = new Person("Brad", "Pitt", "blabla@brown.edu", "401-935-3094",
+		Person p9 = new Person("Brad", "Pitt", "alec_tutino@brown.edu", "401-935-3094",
 						"Chill dude. But doesnt work with Angi", c2);
-		Person p10 = new Person("Angelina", "Jolie", "blabla@brown.edu", "401-935-3094",
+		Person p10 = new Person("Angelina", "Jolie", "stephanie_demane@brown.edu", "401-935-3094",
 						"AJ is bleh and doesn't even work with Brad", c2);
 		Person p11 = new Person("George", "Clooney", "prateek_arora@brown.edu", "401-935-3094",
 						"Looks like the CEO. He also is the CEO.", c2);
@@ -223,9 +228,9 @@ public class Main {
 						"Dude who's always outside the bathroom", c2);
 		
 		//People with c3 conflicts
-		Person p17 = new Person("Jim", "Halpert", "blabla@brown.edu", "401-935-3094",
+		Person p17 = new Person("Jim", "Halpert", "rob_volgman@brown.edu", "401-935-3094",
 								"Dude who's flirting with the receptionist", c3);
-		Person p18 = new Person("Pam", "Beesly", "blabla@brown.edu", "401-935-3094",
+		Person p18 = new Person("Pam", "Beesly", "prateek_arora@brown.edu", "401-935-3094",
 								"The receptionist", c3);
 		Person p19 = new Person("Dwight", "Schrute", "prateek_arora@brown.edu", "401-935-3094",
 								"Kinda weird", c3);

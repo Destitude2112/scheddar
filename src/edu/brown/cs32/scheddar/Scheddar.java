@@ -196,14 +196,14 @@ public class Scheddar implements ScheddarFace {
 	 * @param name the person's name to remove
 	 */
 	
-	public void removePerson(String name){
+	public void removePerson(String name) {
 		Person p = this.people.get(name);
 		for(Group g: p.getGroups()) {
 			g.removeMember(p);
 		}
 		this.people.remove(name);
 	}
-	
+
 	/**
 	 * Removes a group from the Hashmap of groups
 	 * 
@@ -438,6 +438,10 @@ public class Scheddar implements ScheddarFace {
 		return this.people.values();
 	}
 	
+	public String getName(){
+		return name;
+	}
+	
 	/**
 	 * Return a Collection of all the groups in this Scheddar instance
 	 */
@@ -663,6 +667,10 @@ public class Scheddar implements ScheddarFace {
 	}
 
 
+	public void setName(String name){
+		this.name = name;
+	}
+	
 	@Override
 	public void setAdminUsername(String user) {
 		this.username = user;
