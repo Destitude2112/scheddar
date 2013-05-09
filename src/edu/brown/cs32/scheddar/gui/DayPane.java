@@ -3,6 +3,7 @@ package edu.brown.cs32.scheddar.gui;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -100,7 +101,8 @@ public class DayPane extends ScheddarSubPane {
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, 0.0f));
 		}
 		
-		
+		Composite originalComposite = g2.getComposite();
+		Composite transparentComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.2f);
 		
 		
 		Dimension size = getPreferredSize();
@@ -146,9 +148,12 @@ public class DayPane extends ScheddarSubPane {
 					
 					g2.setPaint(Color.black);
 					g2.draw(block);
+					g2.drawString(m.getName(), 10, 15+block.y);
 					
+					g2.setComposite(transparentComposite);
 					g2.setPaint(finalMeetingColor);
 					g2.fill(block);
+					g2.setComposite(originalComposite);
 				}
 			} else {
 				List<ScheddarTime> proposedTimes = m.getProposedTimes();
@@ -162,8 +167,10 @@ public class DayPane extends ScheddarSubPane {
 						g2.setPaint(Color.black);
 						g2.draw(block);
 						
+						g2.setComposite(transparentComposite);
 						g2.setPaint(proposedMeetingColor);
 						g2.fill(block);
+						g2.setComposite(originalComposite);
 					}
 				}
 			}

@@ -453,13 +453,15 @@ public class MeetingPane extends ScheddarSubPane {
 				
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+					ScheddarTime time = null;
 					for (ScheddarTime t : meeting.getProposedTimes()) {
 						if (proposedTimes.getSelectedValue().equals(t.timeRangeToString())) {
-							meeting.removeProposedTime(t);
-							updateLists();
+							time = t;
+							break;
 						}
 					}
-					
+					meeting.removeProposedTime(time);
+					updateLists();
 				}
 			});
 			

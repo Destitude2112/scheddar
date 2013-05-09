@@ -32,8 +32,8 @@ public class Main {
 		 */
 		
 		
-		Scheddar s1 = new Scheddar(dest); //This creates a Scheddar object from all that is in the XML
-		//Scheddar s1 = getTestData();
+		//Scheddar s1 = new Scheddar(dest); //This creates a Scheddar object from all that is in the XML
+		Scheddar s1 = getTestData();
 		
 		//Scheddar s1;
 		
@@ -280,36 +280,8 @@ public class Main {
 		s.getPersons().put(p24.getFullName(), p24);
 		
 		//Group allPeople
-		Group allPeople = new Group("Scheddar Corp.");
-		allPeople.addMember(p1);
-		allPeople.addMember(p2);
-		allPeople.addMember(p3);
-		allPeople.addMember(p4);
-		allPeople.addMember(p5);
-		allPeople.addMember(p6);
-		allPeople.addMember(p7);
-		allPeople.addMember(p8);
-		allPeople.addMember(p9);
-		allPeople.addMember(p10);
-		allPeople.addMember(p11);
-		allPeople.addMember(p12);
-		allPeople.addMember(p13);
-		allPeople.addMember(p14);
-		allPeople.addMember(p15);
-		allPeople.addMember(p16);
-		allPeople.addMember(p17);
-		allPeople.addMember(p18);
-		allPeople.addMember(p19);
-		allPeople.addMember(p20);
-		allPeople.addMember(p21);
-		allPeople.addMember(p22);
-		allPeople.addMember(p23);
-		allPeople.addMember(p24);
-		allPeople.addMember(prateek);
-		allPeople.addMember(alec);
-		allPeople.addMember(rob);
-		allPeople.addMember(stephanie);
-		allPeople.addMember(alwaysBusy);
+		Group allGroups = new Group("Scheddar Corp.");
+		
 		
 		
 		//Group engineers
@@ -351,13 +323,12 @@ public class Main {
 		managers.addMember(p3);
 		
 		//Setting parent groups
-		managers.setParentGroup(allPeople);
-		engineers.setParentGroup(allPeople);
-		marketing.setParentGroup(allPeople);
-		managers.setParentGroup(allPeople);
+		managers.setParentGroup(allGroups);
+		engineers.setParentGroup(allGroups);
+		marketing.setParentGroup(allGroups);
 		
 		//Adding things to groups
-		s.getGroups().put(allPeople.getName(), allPeople);
+		s.getGroups().put(allGroups.getName(), allGroups);
 		s.getGroups().put(engineers.getName(), engineers);
 		s.getGroups().put(marketing.getName(), marketing);
 		s.getGroups().put(managers.getName(), managers);
