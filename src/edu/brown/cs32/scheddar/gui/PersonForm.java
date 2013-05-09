@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
@@ -45,8 +46,9 @@ public class PersonForm extends AbstractForm {
 	
 	public PersonForm(ScheddarPane s) {
 		super(s);
+		this.setTitle("New Person");
 		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
 		//getting name of new group
 		firstName = new JTextField(20);
@@ -62,7 +64,7 @@ public class PersonForm extends AbstractForm {
 		groupMemberships.setSelectedValue(s._scheddar.getRootGroup().getName(), true);
 		JScrollPane memberListPane = new JScrollPane(groupMemberships);
 		memberListPane.setPreferredSize(new Dimension(75,100));
-		panel.setPreferredSize(new Dimension(360,165+31*groupMemberships.getModel().getSize()));
+		panel.setPreferredSize(new Dimension(360,300));
 		
 		// making "Create Person" button
 		
@@ -97,19 +99,28 @@ public class PersonForm extends AbstractForm {
 		
 		// adding everything
 		JPanel fieldsPanel = new JPanel(new GridLayout(5,2,5,5));
-		fieldsPanel.add(new JLabel("First name:",SwingConstants.RIGHT));
+		
+		JPanel testPanel = new JPanel();
+		testPanel.add(new JLabel("First Name: "));
+		testPanel.add(firstName);
+		
+		
+		fieldsPanel.add(new JLabel("First name:",SwingConstants.LEFT));
 		fieldsPanel.add(firstName);
-		fieldsPanel.add(new JLabel("Last name:",SwingConstants.RIGHT));
+		fieldsPanel.add(new JLabel("Last name:",SwingConstants.LEFT));
 		fieldsPanel.add(lastName);
-		fieldsPanel.add(new JLabel("Email:",SwingConstants.RIGHT));
+		fieldsPanel.add(new JLabel("Email:",SwingConstants.LEFT));
 		fieldsPanel.add(email);
-		fieldsPanel.add(new JLabel("Phone:",SwingConstants.RIGHT));
+		fieldsPanel.add(new JLabel("Phone:",SwingConstants.LEFT));
 		fieldsPanel.add(phone);
-		fieldsPanel.add(new JLabel("Description:",SwingConstants.RIGHT));
+		fieldsPanel.add(new JLabel("Description:",SwingConstants.LEFT));
 		fieldsPanel.add(description);
 		
+		JScrollPane groupMem = new JScrollPane(groupMemberships);
+		groupMem.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
 		panel.add(fieldsPanel);
-		panel.add(new JScrollPane(groupMemberships));
+		panel.add(groupMem);
 		panel.add(create);
 		add(panel);
 		pack();
