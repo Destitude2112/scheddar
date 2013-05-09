@@ -1,15 +1,14 @@
 package edu.brown.cs32.scheddar.gui;
 
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.GregorianCalendar;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,8 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
-
-import edu.brown.cs32.scheddar.Group;
+import javax.swing.SpringLayout;
 
 public class OptionsForm extends AbstractForm {
 	private static final long serialVersionUID = 1L;
@@ -37,10 +35,17 @@ public class OptionsForm extends AbstractForm {
 	
 	public OptionsForm(ScheddarPane s) {
 		super(s);
+		this.setTitle("Options");
 		
 		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout());
 		
+		JPanel adminEmailPanel = new JPanel();
+		JPanel adminPassPanel = new JPanel();
+		JPanel adminNamePanel = new JPanel();
+		JPanel startDayPanel = new JPanel();
+		JPanel endDayPanel = new JPanel();
+				
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));		
 		adminEmail = new JTextField(20);
 		adminEmail.setText(_scheddar.getUsername());
 		
@@ -72,16 +77,22 @@ public class OptionsForm extends AbstractForm {
 		startDay.setEditor(new JSpinner.DateEditor(startDay, "HH:mm"));
 		endDay.setEditor(new JSpinner.DateEditor(endDay, "HH:mm"));
 		
-		panel.add(new JLabel("Admin Email: "));
-		panel.add(adminEmail);
-		panel.add(new JLabel("Admin Password: "));
-		panel.add(adminPassword);
-		panel.add(new JLabel("Admin Name: "));
-		panel.add(adminName);
-		panel.add(new JLabel("Day Start: "));
-		panel.add(startDay);
-		panel.add(new JLabel("End Start: "));
-		panel.add(endDay);
+		adminEmailPanel.add(new JLabel("Admin Email: "));
+		adminEmailPanel.add(adminEmail);
+		adminPassPanel.add(new JLabel("Admin Pass : "));
+		adminPassPanel.add(adminPassword);
+		adminNamePanel.add(new JLabel("Admin Name: "));
+		adminNamePanel.add(adminName);
+		startDayPanel.add(new JLabel("Day Start: "));
+		startDayPanel.add(startDay);
+		endDayPanel.add(new JLabel("End Start: "));
+		endDayPanel.add(endDay);
+		
+		panel.add(adminEmailPanel);
+		panel.add(adminPassPanel);
+		panel.add(adminNamePanel);
+		panel.add(startDayPanel);
+		panel.add(endDayPanel);
 		
 		// Submit Button
 		
@@ -103,13 +114,15 @@ public class OptionsForm extends AbstractForm {
 				}
 				
 				Calendar start,end;
-				start = end = new GregorianCalendar();
+				start = Calendar.getInstance();
+				end = Calendar.getInstance();
 				start.setTime(startFieldModel.getDate());
 				end.setTime(endFieldModel.getDate());
 				
-				String newStart = start.get(Calendar.HOUR) + ":" + start.get(Calendar.MINUTE);
-				String newEnd = end.get(Calendar.HOUR) + ":" + end.get(Calendar.MINUTE);
-				
+				String newStart = start.get(Calendar.HOUR_OF_DAY) + ":" + start.get(Calendar.MINUTE);
+				String newEnd = end.get(Calendar.HOUR_OF_DAY) + ":" + end.get(Calendar.MINUTE);
+		
+
 				if(newStart.length()>0){
 					_scheddar.setStartHour(newStart);
 				}
@@ -117,8 +130,13 @@ public class OptionsForm extends AbstractForm {
 				if(newEnd.length()>0){
 					_scheddar.setEndHour(newEnd);
 				}
+				dispose();
 			}
 		});
 		
+		panel.add(submit);
+		add(panel);
+		pack();
+		setVisible(true);
 	}
 }

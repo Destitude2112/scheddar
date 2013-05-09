@@ -1,11 +1,9 @@
 package edu.brown.cs32.scheddar;
 
 
-import edu.brown.cs32.scheddar.gui.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -77,8 +75,6 @@ public class Scheddar implements ScheddarFace {
 		//Finally, load the file contents from the XML location
 		sxml.makeDBFromXML(dest);
 		
-		System.out.println("allPersons has "+ people.size() + " members");
-		System.out.println("allGroups has "+ groups.size() + " members");
 		
 	}
 	
@@ -110,10 +106,7 @@ public class Scheddar implements ScheddarFace {
 	 * Construct a Scheddar from an XML file
 	 * 
 	 * Ask Prateek what data structure represents an XML file
-	 */
-	
-	
-	//TODO : Make this a constructor for loading XML
+	 */	
 
 	public Scheddar(File xmlFile){
 		

@@ -39,6 +39,10 @@ public class ScheddarPane extends JPanel {
 		_scheddar = s;
 	}
 	
+	public boolean isFun() {
+		return _gui.isFun();
+	}
+	
 	public String getRootGroupName() {
 		return _scheddar.getRootGroup().getName();
 	}

@@ -1,15 +1,12 @@
 package edu.brown.cs32.scheddar.gui;
 
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -17,11 +14,8 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.NavigableMap;
-import java.util.HashMap;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -29,8 +23,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -46,7 +38,6 @@ import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
-import javax.swing.text.MaskFormatter;
 
 import edu.brown.cs32.scheddar.*;
 
@@ -363,10 +354,23 @@ public class MeetingPane extends ScheddarSubPane {
 					from.setTime(fromFieldModel.getDate());
 					to.setTime(toFieldModel.getDate());
 					difference.setTimeInMillis(to.getTimeInMillis() - from.getTimeInMillis());
-					System.out.println("Button time: " + from.toString());
-					System.out.println("Button day : " + from.get(Calendar.HOUR_OF_DAY));
+		//			System.out.println("Day of Month : " + date.get(Calendar.DAY_OF_MONTH));
+					System.out.println("Start Hour : " + from.get(Calendar.HOUR_OF_DAY));
+					System.out.println("Start Minute : " + from.get(Calendar.MINUTE));
+					System.out.println("End Hour : " + to.get(Calendar.HOUR_OF_DAY));
+					System.out.println("End Minutes : " + to.get(Calendar.MINUTE));
 					
-					ScheddarTime range = new ScheddarTime(from.get(Calendar.HOUR_OF_DAY),from.get(Calendar.MINUTE), difference.get(Calendar.MINUTE) + difference.get(Calendar.HOUR_OF_DAY)*60,date.get(Calendar.DAY_OF_WEEK),date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR),false);
+					System.out.println("Difference Minutes : " + difference.get(Calendar.MINUTE));
+					//System.out.println("Difference Hours : " + difference.get(Calendar.HOUR_OF_DAY));
+					
+					int diffHours = difference.get(Calendar.HOUR_OF_DAY) + 5;
+					if(diffHours>=24){
+						diffHours = diffHours - 24;
+					}
+					
+					System.out.println("Difference Hours : " + diffHours);
+					
+					ScheddarTime range = new ScheddarTime(from.get(Calendar.HOUR_OF_DAY),from.get(Calendar.MINUTE), difference.get(Calendar.MINUTE) + diffHours*60,date.get(Calendar.DAY_OF_WEEK)-1,date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR),false);
 					
 					Calendar d = new GregorianCalendar();
 					try {
