@@ -476,16 +476,7 @@ public class ScheddarXML{
 	}
 	
 	
-	/* After you add people while the application is running and now want to quit and save the new
-	 * data to the XML, you can call the function to saveLocalDataToXML
-	 */
-	/**
-	 * After you run the application and modify the groups HashMap in the Main i.e. add people, remove
-	 * people etc., this function can be called any time to save these changes in the XML
-	 */
-	public void saveLocalDataToXML(){
-		addElements();
-	}
+
 	
 	
 	/**
@@ -825,7 +816,7 @@ public class ScheddarXML{
 	 * This is the main function that is called to go through the groups HashMap in the main
 	 * and add everything to the XML
 	 */
-	public void addElements(){
+	public void saveLocalDataToXML(){
 		
 		try{			
 			this.dbf = DocumentBuilderFactory.newInstance();

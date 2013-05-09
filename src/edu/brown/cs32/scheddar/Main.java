@@ -29,10 +29,10 @@ public class Main {
 		 <description>blabla</description></meeting></meeting></All>
 		 */
 		
-		String dest = "/Users/Prateek/Desktop/" + "group.xml"; //Can specify any location of an XML file
+		String dest = "data/" + "group.xml"; //Can specify any location of an XML file
 		
-		Scheddar s1 = new Scheddar(dest); //This creates a Scheddar object from all that is in the XML
-		//Scheddar s1 = getTestData();
+		//Scheddar s1 = new Scheddar(dest); //This creates a Scheddar object from all that is in the XML
+		Scheddar s1 = getTestData();
 		
 		//Scheddar s1;
 		
@@ -42,7 +42,7 @@ public class Main {
 		System.out.println("ALL GROUPS HAS " + s1.getGroups().size());
 		System.out.println("all meetings HAS "+ s1.getMeetings().size());
 		
-		//s1.saveData();// This finally saves all the data for the Scheddar object in the XML
+		s1.saveData();// This finally saves all the data for the Scheddar object in the XML
 	}
 
 
