@@ -1,5 +1,6 @@
 package edu.brown.cs32.scheddar.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -187,7 +189,6 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			
 			
-			
 			JPanel groupPanel = new JPanel(new GridLayout(1,3,10,0));
 			
 			addedGroups = new JList<String>();
@@ -199,7 +200,8 @@ public class MeetingPane extends ScheddarSubPane {
 			proposedTimes = new JList<String>();
 			proposedTimes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			
-			
+			groupPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		
 			
 			// TODO: add labels above scrollpanes
 			JScrollPane unaddedGroupsPane = new JScrollPane(unaddedGroups);
@@ -273,6 +275,8 @@ public class MeetingPane extends ScheddarSubPane {
 					}
 				}
 			});
+			individualPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
 			
 			individualPanel.add(nameComboBox);
 			individualPanel.add(impComboBox);
@@ -307,11 +311,12 @@ public class MeetingPane extends ScheddarSubPane {
 			schedulePanel.add(meetingLabel);
 			schedulePanel.add(Box.createVerticalStrut(10));
 			JPanel timeRangePanel = new JPanel();
-			timeRangePanel.setLayout(new GridLayout(4,2,5,2));
+			timeRangePanel.setLayout(new GridLayout(5,2,5,2));
 			dateFieldModel = new SpinnerDateModel();
 			dateFieldModel.setValue(new Date());
 			dateFieldModel.setCalendarField(Calendar.DAY_OF_YEAR);
-			
+			schedulePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
 			
 			
 			fromFieldModel = new SpinnerDateModel();
@@ -388,6 +393,8 @@ public class MeetingPane extends ScheddarSubPane {
 				}
 			});
 			
+			timeRangePanel.add(new JLabel("Select range of possible meeting times:"));
+			timeRangePanel.add(Box.createVerticalStrut(5));
 			timeRangePanel.add(new JLabel("Date:",SwingConstants.RIGHT));
 			timeRangePanel.add(dateField);
 			timeRangePanel.add(new JLabel("Earliest start time:",SwingConstants.RIGHT));
@@ -396,7 +403,8 @@ public class MeetingPane extends ScheddarSubPane {
 			timeRangePanel.add(toTime);
 			timeRangePanel.add(new JPanel());
 			timeRangePanel.add(addRange);
-			
+			timeRangePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
 			
 			// making panel for choosing time slots
 			
