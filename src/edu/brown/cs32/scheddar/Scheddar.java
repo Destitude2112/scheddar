@@ -26,7 +26,6 @@ public class Scheddar implements ScheddarFace {
 	private String name;
 	private String adminName; // the name of the admin of this Scheddar
 	public ScheddarXML sxml;
-	private String dest;
 
 	private String username; // the username of the admin's email account
 	private String password; // the password of the admin's email account
@@ -40,7 +39,7 @@ public class Scheddar implements ScheddarFace {
 	public static double[] importanceArrayValues = {Math.pow(2, 1), Math.pow(2, 2), Math.pow(2, 3), Math.pow(2, 4), Math.pow(2, 5)};
 
 
-	Scheddar(){
+	public Scheddar(){
 		
 		people = new HashMap<String, Person>();
 		groups = new HashMap<String, Group>();
@@ -51,7 +50,7 @@ public class Scheddar implements ScheddarFace {
 		
 	}
 	
-    Scheddar(String dest){
+    public Scheddar(File saveFile){
 		
 		//Instantiate the hashMaps
 		people = new HashMap<String, Person>();
@@ -59,22 +58,12 @@ public class Scheddar implements ScheddarFace {
 		meetings = new HashMap<String, Meeting>();
 		
 		//Initialize the destination and the XML file
-		this.dest = dest;
+		this.saveFile = saveFile;
 		this.sxml = new ScheddarXML(this);
 		
-		//Adding meetings to allMeetings just to test the meetings parser
-		/*ScheddarTime tff = new ScheddarTime(14,30, 2, 0, 12,10, 2012, false);
-		ArrayList<ScheddarTime> nl = new ArrayList<ScheddarTime>();
-		nl.add(tff);
-		HashMap<Integer, Double> hm = new HashMap<Integer, Double>();
-		hm.put(1,1.0);
-		ArrayList<String> gi = new ArrayList<String>();
-		gi.add("noone");
-		Meeting m = new Meeting("meeting1", false, tff, tff, nl, hm, gi, "blabla");
-		meetings.put("meeting1", m);*/
 		
 		//Finally, load the file contents from the XML location
-		sxml.makeDBFromXML(dest);
+		sxml.makeDBFromXML(saveFile);
 		
 		
 	}
@@ -103,19 +92,15 @@ public class Scheddar implements ScheddarFace {
 		this.emailParser = new EmailParser(username,password);
 	}
 	
-	/**
-	 * Construct a Scheddar from an XML file
-	 * 
-	 * Ask Prateek what data structure represents an XML file
-	 */	
 
-	public Scheddar(File xmlFile){
-		saveFile = xmlFile;
-	}
 	
 	public void save(File file) {
 		this.saveFile = file;
 		sxml.saveLocalDataToXML();
+	}
+	
+	public void setSaveFile(File file) {
+		saveFile = file;
 	}
 	
 	public File getSaveFile() {
@@ -154,9 +139,6 @@ public class Scheddar implements ScheddarFace {
 		return this.adminName;
 	}
 	
-	public String getDest(){
-		return this.dest;
-	}
 	
 	/**
 	 * Adds a new person to the Hashmap of people
@@ -214,14 +196,14 @@ public class Scheddar implements ScheddarFace {
 	 * @param name the person's name to remove
 	 */
 	
-	public void removePerson(String name){
+	public void removePerson(String name) {
 		Person p = this.people.get(name);
 		for(Group g: p.getGroups()) {
 			g.removeMember(p);
 		}
 		this.people.remove(name);
 	}
-	
+
 	/**
 	 * Removes a group from the Hashmap of groups
 	 * 
@@ -270,7 +252,7 @@ public class Scheddar implements ScheddarFace {
 	 * Save all the data in the corresponding ScheddarXML file
 	 */
 	public void saveData(){
-		sxml.saveLocalDataToXML();	
+		sxml.saveLocalDataToXML();
 	}
 	
 	/**
@@ -454,6 +436,10 @@ public class Scheddar implements ScheddarFace {
 	
 	public Collection<Person> getAllPeople(){
 		return this.people.values();
+	}
+	
+	public String getName(){
+		return name;
 	}
 	
 	/**
@@ -681,6 +667,10 @@ public class Scheddar implements ScheddarFace {
 	}
 
 
+	public void setName(String name){
+		this.name = name;
+	}
+	
 	@Override
 	public void setAdminUsername(String user) {
 		this.username = user;
@@ -692,8 +682,5 @@ public class Scheddar implements ScheddarFace {
 		this.password = pass;
 	}
 
-	public void setDest(String string) {
-		this.dest = string;
-	}
 	
 }

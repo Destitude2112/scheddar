@@ -88,6 +88,15 @@ public class Group {
 		}
 	}
 	
+	public boolean hasMember(String name) {
+		for(Person p :this.members) {
+			if(p.getFullName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void removeMember(Person person){
 		this.members.remove(person);
 	}
