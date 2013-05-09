@@ -157,11 +157,12 @@ public class MonthPane extends ScheddarSubPane {
 			drawCenteredString(g, days[i],i*size.width/7+size.width/14, (int)(size.height/WEEKS_TO_DISPLAY-10));
 			g.draw(new Line2D.Double(size.width/days.length*i,size.height/WEEKS_TO_DISPLAY, size.width/days.length*i, size.height));
 		}
+		displayEvents(g);
 	}
 
 	public void displayEvents(Graphics2D g) {
+		g.setFont(new Font("SansSerif",Font.PLAIN,10));
 		List<Meeting> meetings = _scheddarPane._scheddar.monthMeetings(_time.getMonth(), _time.getYear());
-		System.out.println(meetings.size());
 		int[] meetingArray = new int[1+UsefulMethods.daysInMonth(_time.getMonth(), _time.getYear())];
 		for(Meeting m: meetings) {
 			int day = m.getFinalTime().getDay();
@@ -177,7 +178,7 @@ public class MonthPane extends ScheddarSubPane {
 		Dimension size = getPreferredSize();
 		int x = t.getDayOfWeek();
 		int startDay = _startDay.getMonth()==t.getMonth() ? t.getDay() : t.getDay()-UsefulMethods.daysInMonth(_startDay.getMonth(), _startDay.getYear());
-		int y = (t.getDay()-startDay)/7;
+		int y = (t.getDay()-startDay)/7-1;
 		return new Point(size.width/7*x, (int)(size.height/WEEKS_TO_DISPLAY*y));
 	}
 

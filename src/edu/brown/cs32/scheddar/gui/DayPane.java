@@ -103,13 +103,8 @@ public class DayPane extends ScheddarSubPane {
 		
 		
 		
-		Dimension size = getPreferredSize();
-		
-		
+		Dimension size = getPreferredSize();		
 		g2.setBackground(Color.white);
-		
-		
-		
 		
 		g2.setStroke(new BasicStroke(1));
 		g2.setPaint(Color.darkGray);

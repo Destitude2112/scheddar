@@ -59,9 +59,9 @@ public class GroupForm extends AbstractForm {
 		memberList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		JScrollPane memberListPane = new JScrollPane(memberList);
 		memberListPane.setPreferredSize(new Dimension(75,100));
-		JPanel listPanePane = new JPanel(new GridLayout(1,1));
+		JPanel listPanePane = new JPanel(new GridLayout(1,1,10,10));
 		listPanePane.add(memberListPane);
-		panel.setPreferredSize(new Dimension(370,Math.max(100,80+28*memberList.getModel().getSize())));
+		panel.setPreferredSize(new Dimension(370,Math.max(120,90+30*memberList.getModel().getSize())));
 		
 		//adding listener so member list is updated if parent group changes
 		groupList.addActionListener(new ActionListener() {
@@ -103,12 +103,15 @@ public class GroupForm extends AbstractForm {
 		});
 		
 		
+		panel.add(topPanel);
 		// adding everything
 		if(memberList.getModel().getSize()>0) {
-			panel.add(new JLabel("Choose members:"));
-			panel.add(memberList);
+			JPanel bottomPanel = new JPanel();
+			bottomPanel.setLayout(new GridLayout(1,2));
+			bottomPanel.add(new JLabel("Choose members:"));
+			bottomPanel.add(memberList);
+			panel.add(bottomPanel);
 		}
-		panel.add(topPanel);
 		panel.add(create);
 		add(panel);
 		pack();

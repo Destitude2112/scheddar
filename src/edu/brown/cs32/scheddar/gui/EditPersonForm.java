@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 
 import edu.brown.cs32.scheddar.Group;
 import edu.brown.cs32.scheddar.Person;
@@ -80,19 +81,22 @@ public class EditPersonForm extends AbstractForm {
 				}
 			}
 		});
-		
-		
-		// adding everything
-		panel.add(new JLabel("First name:"));
-		panel.add(firstName);
-		panel.add(new JLabel("Last name:"));
-		panel.add(lastName);
-		panel.add(new JLabel("Email:"));
-		panel.add(email);
-		panel.add(new JLabel("Phone:"));
-		panel.add(phone);
-		panel.add(new JLabel("Description:"));
-		panel.add(description);
+
+		JPanel fieldsPanel = new JPanel(new GridLayout(5,2,5,5));
+
+		fieldsPanel.add(new JLabel("First name:",SwingConstants.LEFT));
+		fieldsPanel.add(firstName);
+		fieldsPanel.add(new JLabel("Last name:",SwingConstants.LEFT));
+		fieldsPanel.add(lastName);
+		fieldsPanel.add(new JLabel("Email:",SwingConstants.LEFT));
+		fieldsPanel.add(email);
+		fieldsPanel.add(new JLabel("Phone:",SwingConstants.LEFT));
+		fieldsPanel.add(phone);
+		fieldsPanel.add(new JLabel("Description:",SwingConstants.LEFT));
+		fieldsPanel.add(description);
+		fieldsPanel.setPreferredSize(new Dimension(350,140));
+
+		panel.add(fieldsPanel);
 		panel.add(create);
 		add(panel);
 		pack();
