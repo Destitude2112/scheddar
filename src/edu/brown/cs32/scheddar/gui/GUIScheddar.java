@@ -110,7 +110,6 @@ public class GUIScheddar extends JFrame {
 		JMenuItem options = new JMenuItem("Options");
 		JMenuItem exit = new JMenuItem("Exit");
 		
-		
 		// adding listeners for file menu
 		newScheddar.addActionListener(new NewScheddarListener());
 		

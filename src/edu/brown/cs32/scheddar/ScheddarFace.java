@@ -114,5 +114,6 @@ public interface ScheddarFace {
 	public void setAdminName(String name);
 	public void setAdminUsername(String user);
 	public void setAdminPassword(String pass);
+	public void readEmail();
 	
 }
