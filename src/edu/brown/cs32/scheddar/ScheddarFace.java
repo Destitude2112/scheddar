@@ -105,5 +105,8 @@ public interface ScheddarFace {
 	public String getAdminName();
 	public String getPassword();
 	public String getUsername();
+	public void setAdminName(String name);
+	public void setAdminUsername(String user);
+	public void setAdminPassword(String pass);
 	
 }

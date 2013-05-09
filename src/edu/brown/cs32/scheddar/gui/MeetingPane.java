@@ -365,9 +365,10 @@ public class MeetingPane extends ScheddarSubPane {
 						d.setTime(timeFormat.parse(durationField.getValue().toString()));
 						int duration = d.get(Calendar.HOUR_OF_DAY) * 60 + d.get(Calendar.MINUTE);
 						
-						timeSlots = new HashMap<ScheddarTime,Double>(meeting.recommendMeetingTimes(range, duration));
+						timeSlots = meeting.recommendMeetingTimes(range, duration);
 					} catch (ParseException e) {
 						// do nothing
+						System.out.println("parse exception D:");
 					}
 					updateLists();
 					

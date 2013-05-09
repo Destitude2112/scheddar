@@ -656,5 +656,22 @@ public class Scheddar implements ScheddarFace {
 	public String getPassword(){
 		return this.password;
 	}
+
+	@Override
+	public void setAdminName(String name) {
+		this.adminName = name;
+	}
+
+
+	@Override
+	public void setAdminUsername(String user) {
+		this.username = user;
+	}
+
+
+	@Override
+	public void setAdminPassword(String pass) {
+		this.password = pass;
+	}
 	
 }
