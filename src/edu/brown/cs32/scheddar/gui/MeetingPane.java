@@ -365,8 +365,7 @@ public class MeetingPane extends ScheddarSubPane {
 					if(diffHours>=24){
 						diffHours = diffHours - 24;
 					}
-					
-					System.out.println("Difference Hours : " + diffHours);
+
 					
 					ScheddarTime range = new ScheddarTime(from.get(Calendar.HOUR_OF_DAY),from.get(Calendar.MINUTE), difference.get(Calendar.MINUTE) + diffHours*60,date.get(Calendar.DAY_OF_WEEK)-1,date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR),false);
 					
@@ -487,7 +486,11 @@ public class MeetingPane extends ScheddarSubPane {
 						int retval = JOptionPane.showConfirmDialog(MeetingPane.this, "Would you like to finalize this meeting for "+proposedTime+"?");
 						if (retval == JOptionPane.OK_OPTION) {
 							for (ScheddarTime t : meeting.getProposedTimes()) {
+							//	System.out.println(proposedTimes.getSelectedValue());
+							//	System.out.println(t.timeRangeToString());
 								if (proposedTimes.getSelectedValue().equals(t.timeRangeToString())) {
+									meeting.user = _scheddar.getUsername();
+									meeting.password = _scheddar.getPassword();
 									meeting.setFinalTime(t);
 									break;
 								}
@@ -497,18 +500,18 @@ public class MeetingPane extends ScheddarSubPane {
 							panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 							panel.add(Box.createVerticalStrut(20));
 							
-							JTextArea info = new JTextArea();
-							info.append("Name: " + meeting.getName() + "\n");
-							info.append("Description: " + meeting.getDescription() + "\n");
-							info.append("\n");
-							info.append("This meeting has been scheduled for "+meeting.getFinalTime().timeRangeToString() + "\n");
-							info.append("\n");
-							info.append("Invitees:\n");
-							for (String n : meeting.getAllNames()) {
-								info.append(n + "\n");
-							}
+					//		JTextArea info = new JTextArea();
+					//		info.append("Name: " + meeting.getName() + "\n");
+					//		info.append("Description: " + meeting.getDescription() + "\n");
+					//		info.append("\n");
+					//		info.append("This meeting has been scheduled for "+meeting.getFinalTime().timeRangeToString() + "\n");
+					//		info.append("\n");
+					//		info.append("Invitees:\n");
+					//		for (String n : meeting.getAllNames()) {
+					//			info.append(n + "\n");
+					//		}
 							
-							panel.add(info);
+					//		panel.add(info);
 							MeetingPane.this.add(panel);
 							MeetingPane.this.revalidate();
 						}
@@ -573,7 +576,7 @@ public class MeetingPane extends ScheddarSubPane {
 		for (int i = 0; i < meeting.getProposedTimes().size(); i++) {
 			ScheddarTime t = meeting.getProposedTimes().get(i);
 			proposedTimeStrings.add(t.timeRangeToString());
-			proposedTimesList.addElement(t.timeRangeToString() + "    [" + meeting.getIndexToScore().get(i)+"]");
+			proposedTimesList.addElement(t.timeRangeToString());
 		}
 		
 		

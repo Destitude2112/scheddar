@@ -69,11 +69,11 @@ public class EmailParser {
 			msg.setText(msgBody);
 			
 			Transport.send(msg);
-		}// catch (AddressException ex){
-		//	ex.printStackTrace();
-		//} catch (MessagingException e){
-			//e.printStackTrace();
-		 catch (Exception e) {
+		} catch (AddressException ex){
+			ex.printStackTrace();
+		} catch (MessagingException e){
+			e.printStackTrace();
+		} catch (Exception e) {
 			PopUps.popUpInvalidEmail();
 		}
 	}
@@ -111,11 +111,11 @@ public class EmailParser {
 			msg.setText(msgBody);
 			
 			Transport.send(msg);
-		}// catch (AddressException ex){
-			//ex.printStackTrace();
-	//	} catch (MessagingException e){
-		//	e.printStackTrace();
-		 catch (Exception e) {
+		} catch (AddressException ex){
+			ex.printStackTrace();
+		} catch (MessagingException e){
+			e.printStackTrace();
+		} catch (Exception e) {
 			PopUps.popUpInvalidEmail();
 		}
 	}
@@ -153,11 +153,12 @@ public class EmailParser {
 			msg.setText(msgBody);
 			
 			Transport.send(msg);
-		}// catch (AddressException ex){
-		//	ex.printStackTrace();
-		//} catch (MessagingException e){
-		//	e.printStackTrace();
-		 catch (Exception e){
+		} catch (AddressException ex){
+			ex.printStackTrace();
+		} catch (MessagingException e){
+			e.printStackTrace();
+		} catch (Exception e){
+			e.printStackTrace();
 			PopUps.popUpInvalidEmail();
 		}
 	}
@@ -195,10 +196,10 @@ public class EmailParser {
 			msg.setText(msgBody);
 			
 			Transport.send(msg);
-	//	} catch (AddressException ex){
-	//		ex.printStackTrace();
-	//	} catch (MessagingException e){
-	//		e.printStackTrace();
+		} catch (AddressException ex){
+			ex.printStackTrace();
+		} catch (MessagingException e){
+			e.printStackTrace();
 		} catch (Exception e){
 			PopUps.popUpInvalidEmail();
 		}
@@ -237,10 +238,10 @@ public class EmailParser {
 			msg.setText(msgBody);
 			
 			Transport.send(msg);
-	//	} catch (AddressException ex){
-	//		ex.printStackTrace();
-	//	} catch (MessagingException e){
-	//		e.printStackTrace();
+		} catch (AddressException ex){
+			ex.printStackTrace();
+		} catch (MessagingException e){
+			e.printStackTrace();
 		} catch (Exception e) {
 			PopUps.popUpInvalidEmail();
 		}
