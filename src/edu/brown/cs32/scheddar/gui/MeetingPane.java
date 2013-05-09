@@ -1,6 +1,5 @@
 package edu.brown.cs32.scheddar.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -18,7 +17,6 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -90,7 +88,6 @@ public class MeetingPane extends ScheddarSubPane {
 	
 	public MeetingPane(ScheddarPane s, Meeting m) {
 		super(s);
-		this.setLayout(new GridLayout(1,1));
 		
 		meeting = m;
 		if (meeting == null)
@@ -190,6 +187,7 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			
 			
+			
 			JPanel groupPanel = new JPanel(new GridLayout(1,3,10,0));
 			
 			addedGroups = new JList<String>();
@@ -201,8 +199,7 @@ public class MeetingPane extends ScheddarSubPane {
 			proposedTimes = new JList<String>();
 			proposedTimes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			
-			groupPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		
+			
 			
 			// TODO: add labels above scrollpanes
 			JScrollPane unaddedGroupsPane = new JScrollPane(unaddedGroups);
@@ -213,7 +210,6 @@ public class MeetingPane extends ScheddarSubPane {
 			JPanel groupButtonsPanel = new JPanel(new GridLayout(4,1,0,3));
 			
 			JButton addGroup = new JButton("Add to Meeting -->");
-			addGroup.setPreferredSize(new Dimension(80,20));
 			addGroup.addActionListener(new ActionListener() {
 				
 				@Override
@@ -226,7 +222,6 @@ public class MeetingPane extends ScheddarSubPane {
 			});
 			
 			JButton removeGroup = new JButton("<-- Remove from Meeting");
-			removeGroup.setPreferredSize(new Dimension(80,20));
 			removeGroup.addActionListener(new ActionListener() {
 				
 				@Override
@@ -276,8 +271,6 @@ public class MeetingPane extends ScheddarSubPane {
 					}
 				}
 			});
-			individualPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-
 			
 			individualPanel.add(nameComboBox);
 			individualPanel.add(impComboBox);
@@ -305,20 +298,17 @@ public class MeetingPane extends ScheddarSubPane {
 			schedulePanel.add(durationPanel);
 			schedulePanel.add(Box.createVerticalStrut(10));
 			
-			// TODO Add field for time to autoschedule
+			
 			
 			JLabel meetingLabel = new JLabel("Select range of possible meeting times:");
 			meetingLabel.setAlignmentX(RIGHT_ALIGNMENT);
 			schedulePanel.add(meetingLabel);
 			schedulePanel.add(Box.createVerticalStrut(10));
 			JPanel timeRangePanel = new JPanel();
-			timeRangePanel.setLayout(new GridLayout(5,2,5,2));
+			timeRangePanel.setLayout(new GridLayout(4,2,5,2));
 			dateFieldModel = new SpinnerDateModel();
 			dateFieldModel.setValue(new Date());
-			dateFieldModel.setCalendarField(Calendar.DAY_OF_YEAR);
-			schedulePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-
-			
+			dateFieldModel.setCalendarField(Calendar.DAY_OF_YEAR);			
 			
 			fromFieldModel = new SpinnerDateModel();
 			toFieldModel = new SpinnerDateModel();
@@ -341,7 +331,6 @@ public class MeetingPane extends ScheddarSubPane {
 			fromTime.setEditor(new JSpinner.DateEditor(fromTime, "HH:mm"));
 			toTime.setEditor(new JSpinner.DateEditor(toTime, "HH:mm"));
 
-			//TODO: debug time spinners
 			
 			
 			JButton addRange = new JButton("Calculate meeting times");
@@ -355,12 +344,11 @@ public class MeetingPane extends ScheddarSubPane {
 					to = Calendar.getInstance();
 					difference = Calendar.getInstance();
 					
-					//TODO : Times being passed in here are incorrect
 					
 					date.setTime(dateFieldModel.getDate());
 					from.setTime(fromFieldModel.getDate());
 					to.setTime(toFieldModel.getDate());
-/*					difference.setTimeInMillis(to.getTimeInMillis() - from.getTimeInMillis());
+					difference.setTimeInMillis(to.getTimeInMillis() - from.getTimeInMillis());
 		//			System.out.println("Day of Month : " + date.get(Calendar.DAY_OF_MONTH));
 					System.out.println("Start Hour : " + from.get(Calendar.HOUR_OF_DAY));
 					System.out.println("Start Minute : " + from.get(Calendar.MINUTE));
@@ -369,7 +357,7 @@ public class MeetingPane extends ScheddarSubPane {
 					
 					System.out.println("Difference Minutes : " + difference.get(Calendar.MINUTE));
 					//System.out.println("Difference Hours : " + difference.get(Calendar.HOUR_OF_DAY));
-	*/				
+					
 					int diffHours = difference.get(Calendar.HOUR_OF_DAY) + 5;
 					if(diffHours>=24){
 						diffHours = diffHours - 24;
@@ -393,8 +381,6 @@ public class MeetingPane extends ScheddarSubPane {
 				}
 			});
 			
-			timeRangePanel.add(new JLabel("Select range of possible meeting times:"));
-			timeRangePanel.add(Box.createVerticalStrut(5));
 			timeRangePanel.add(new JLabel("Date:",SwingConstants.RIGHT));
 			timeRangePanel.add(dateField);
 			timeRangePanel.add(new JLabel("Earliest start time:",SwingConstants.RIGHT));
@@ -403,14 +389,13 @@ public class MeetingPane extends ScheddarSubPane {
 			timeRangePanel.add(toTime);
 			timeRangePanel.add(new JPanel());
 			timeRangePanel.add(addRange);
-			timeRangePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-
+			
 			
 			// making panel for choosing time slots
 			
 			
 			JScrollPane slotListPane = new JScrollPane(selectSlots);
-			slotListPane.getViewport().setViewSize(slotListPane.getSize());
+			
 			
 			
 			
@@ -507,25 +492,29 @@ public class MeetingPane extends ScheddarSubPane {
 									break;
 								}
 							}
-							MeetingPane.this.removeAll();
-							JPanel panel = new JPanel();
-							panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-							panel.add(Box.createVerticalStrut(20));
-							
-					//		JTextArea info = new JTextArea();
-					//		info.append("Name: " + meeting.getName() + "\n");
-					//		info.append("Description: " + meeting.getDescription() + "\n");
-					//		info.append("\n");
-					//		info.append("This meeting has been scheduled for "+meeting.getFinalTime().timeRangeToString() + "\n");
-					//		info.append("\n");
-					//		info.append("Invitees:\n");
-					//		for (String n : meeting.getAllNames()) {
-					//			info.append(n + "\n");
-					//		}
-							
-					//		panel.add(info);
-							MeetingPane.this.add(panel);
-							MeetingPane.this.revalidate();
+
+//							MeetingPane.this.removeAll();
+//							JPanel panel = new JPanel();
+//							panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+//							panel.add(Box.createVerticalStrut(20));
+//							
+//							JTextArea info = new JTextArea();
+//							info.append("Name: " + meeting.getName() + "\n");
+//							info.append("Description: " + meeting.getDescription() + "\n");
+//							info.append("\n");
+//							info.append("This meeting has been scheduled for "+meeting.getFinalTime().timeRangeToString() + "\n");
+//							info.append("\n");
+//							info.append("Invitees:\n");
+//							for (String n : meeting.getAllNames()) {
+//								info.append(n + "\n");
+//							}
+//							
+//							panel.add(info);
+//							MeetingPane.this.add(panel);
+//							MeetingPane.this.revalidate();
+							_scheddar.addMeeting(meeting);
+							_scheddarPane._calendar.switchToMeeting(meeting.getFinalTime(), meeting);
+
 						}
 					}
 				}
@@ -549,13 +538,8 @@ public class MeetingPane extends ScheddarSubPane {
 		
 		updateLists();
 		
-		JPanel otherPanel = new JPanel();
-		otherPanel.setLayout(new BoxLayout(otherPanel,BoxLayout.X_AXIS));
-		otherPanel.add(Box.createHorizontalStrut(20));
-		otherPanel.add(panel);
-		otherPanel.add(Box.createHorizontalStrut(20));
 		
-		add(otherPanel);
+		add(panel);
 	}
 	
 	
@@ -634,7 +618,6 @@ public class MeetingPane extends ScheddarSubPane {
 		nameComboBox.setModel(peopleList);
 		selectSlots.setModel(timeslotList);
 		proposedTimes.setModel(proposedTimesList);
-		this.revalidate();
 	}
 	
 	
