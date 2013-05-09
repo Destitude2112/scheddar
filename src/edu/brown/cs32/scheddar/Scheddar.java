@@ -681,6 +681,11 @@ public class Scheddar implements ScheddarFace {
 	public void setAdminPassword(String pass) {
 		this.password = pass;
 	}
+	
+	@Override
+	public void readEmail(){
+		this.readAndParseEmails();
+	}
 
 	
 }
