@@ -43,7 +43,7 @@ public class Main {
 		System.out.println("ALL GROUPS HAS " + s1.getGroups().size());
 		System.out.println("all meetings HAS "+ s1.getMeetings().size());
 		
-		s1.saveData();// This finally saves all the data for the Scheddar object in the XML
+		//s1.saveData();// This finally saves all the data for the Scheddar object in the XML
 	}
 
 
@@ -355,6 +355,12 @@ public class Main {
 		engineers.setParentGroup(allPeople);
 		marketing.setParentGroup(allPeople);
 		managers.setParentGroup(allPeople);
+		
+		ArrayList<Group> listGroups = new ArrayList<Group>();
+		listGroups.add(engineers);
+		listGroups.add(managers);
+		listGroups.add(marketing);
+		allPeople.setSubgroups(listGroups);
 		
 		//Adding things to groups
 		s.getGroups().put(allPeople.getName(), allPeople);
