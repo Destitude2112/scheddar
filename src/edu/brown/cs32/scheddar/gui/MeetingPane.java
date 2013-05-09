@@ -95,17 +95,67 @@ public class MeetingPane extends ScheddarSubPane {
 	public MeetingPane(ScheddarPane s, Meeting m) {
 		super(s);
 		
+		addedGroups = new JList<String>();
+		addedGroups.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		unaddedGroups = new JList<String>();
+		unaddedGroups.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		selectSlots = new JList<String>();
+		selectSlots.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		proposedTimes = new JList<String>();
+		proposedTimes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		nameComboBox = new JComboBox<String>();
+		nameComboBox.setEditable(true);
+		impComboBox = new JComboBox<String>(Scheddar.importanceArrayLabels);
+		impComboBox.setSelectedIndex(2);
+		
+		String[] durations = new String[12];
+		for (int i = 0; i < 6; i++) {
+			durations[i*2] = "0" + i + ":30";
+			durations[i*2+1] = "0" + new Integer(i+1) + ":00";
+		}
+		durationField.setModel(new SpinnerListModel(durations));
+		durationField.setValue("01:00");
+		
+		dateFieldModel = new SpinnerDateModel();
+		dateFieldModel.setValue(new Date());
+		dateFieldModel.setCalendarField(Calendar.DAY_OF_YEAR);			
+		
+		fromFieldModel = new SpinnerDateModel();
+		toFieldModel = new SpinnerDateModel();
+		try {
+			fromFieldModel.setValue(timeFormat.parse(_scheddar.getStartHour()));
+			toFieldModel.setValue(timeFormat.parse(_scheddar.getEndHour()));
+		} catch (ParseException e) {
+			System.out.println("parse error meetingpanel");
+		}
+		
+		fromFieldModel.setCalendarField(Calendar.MINUTE);
+		toFieldModel.setCalendarField(Calendar.MINUTE);
+		
+		dateField.setModel(dateFieldModel);
+		fromTime.setModel(fromFieldModel);
+		toTime.setModel(toFieldModel);
+		
+		
+		dateField.setEditor(new JSpinner.DateEditor(dateField, "MM/dd/yy"));
+		fromTime.setEditor(new JSpinner.DateEditor(fromTime, "HH:mm"));
+		toTime.setEditor(new JSpinner.DateEditor(toTime, "HH:mm"));
+		
 		meeting = m;
-		if (meeting == null)
+		if (meeting == null) {
 			meeting = new Meeting();
+		} else {
+			updateLists();
+		}
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(Box.createVerticalStrut(20));
 		
 		if (meeting.isDecided()) {
-			
 			JTextArea info = new JTextArea();
+			info.setOpaque(false);
 			info.append("Name: " + meeting.getName() + "\n");
 			info.append("Description: " + meeting.getDescription() + "\n");
 			info.append("\n");
@@ -196,14 +246,7 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			JPanel groupPanel = new JPanel(new GridLayout(1,3,10,0));
 			
-			addedGroups = new JList<String>();
-			addedGroups.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			unaddedGroups = new JList<String>();
-			unaddedGroups.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			selectSlots = new JList<String>();
-			selectSlots.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			proposedTimes = new JList<String>();
-			proposedTimes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			
 			
 			
 			
@@ -259,10 +302,7 @@ public class MeetingPane extends ScheddarSubPane {
 			panel.add(Box.createVerticalStrut(20));
 			
 			JPanel individualPanel = new JPanel(new GridLayout(1,3,8,0));
-			nameComboBox = new JComboBox<String>();
-			nameComboBox.setEditable(true);
-			impComboBox = new JComboBox<String>(Scheddar.importanceArrayLabels);
-			impComboBox.setSelectedIndex(2);
+			
 			JButton addPersonButton = new JButton("Add to Meeting ^^");
 			addPersonButton.addActionListener(new ActionListener() {
 				
@@ -291,13 +331,8 @@ public class MeetingPane extends ScheddarSubPane {
 			JPanel schedulePanel = new JPanel();
 			schedulePanel.setLayout(new BoxLayout(schedulePanel,BoxLayout.Y_AXIS));
 			JPanel durationPanel = new JPanel();
-			String[] durations = new String[12];
-			for (int i = 0; i < 6; i++) {
-				durations[i*2] = "0" + i + ":30";
-				durations[i*2+1] = "0" + new Integer(i+1) + ":00";
-			}
-			durationField.setModel(new SpinnerListModel(durations));
-			durationField.setValue("01:00");
+			
+			
 			durationPanel.add(new JLabel("Required meeting duration (HH:MM):"));
 			durationPanel.add(durationField);
 			durationPanel.setAlignmentX(RIGHT_ALIGNMENT);
@@ -312,30 +347,7 @@ public class MeetingPane extends ScheddarSubPane {
 			schedulePanel.add(Box.createVerticalStrut(10));
 			JPanel timeRangePanel = new JPanel();
 			timeRangePanel.setLayout(new GridLayout(4,2,5,2));
-			dateFieldModel = new SpinnerDateModel();
-			dateFieldModel.setValue(new Date());
-			dateFieldModel.setCalendarField(Calendar.DAY_OF_YEAR);			
 			
-			fromFieldModel = new SpinnerDateModel();
-			toFieldModel = new SpinnerDateModel();
-			try {
-				fromFieldModel.setValue(timeFormat.parse(_scheddar.getStartHour()));
-				toFieldModel.setValue(timeFormat.parse(_scheddar.getEndHour()));
-			} catch (ParseException e) {
-				System.out.println("parse error meetingpanel");
-			}
-			
-			fromFieldModel.setCalendarField(Calendar.MINUTE);
-			toFieldModel.setCalendarField(Calendar.MINUTE);
-			
-			dateField.setModel(dateFieldModel);
-			fromTime.setModel(fromFieldModel);
-			toTime.setModel(toFieldModel);
-			
-			
-			dateField.setEditor(new JSpinner.DateEditor(dateField, "MM/dd/yy"));
-			fromTime.setEditor(new JSpinner.DateEditor(fromTime, "HH:mm"));
-			toTime.setEditor(new JSpinner.DateEditor(toTime, "HH:mm"));
 
 			
 			
@@ -523,7 +535,7 @@ public class MeetingPane extends ScheddarSubPane {
 //							MeetingPane.this.add(panel);
 //							MeetingPane.this.revalidate();
 							_scheddar.addMeeting(meeting);
-							_scheddarPane._calendar.switchToMeeting(meeting.getFinalTime(), meeting);
+							_scheddarPane._calendar.switchToWeek(meeting.getFinalTime());
 
 						}
 					}
