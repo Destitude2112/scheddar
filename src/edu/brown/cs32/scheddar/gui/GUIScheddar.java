@@ -115,12 +115,7 @@ public class GUIScheddar extends JFrame {
 		
 		open.addActionListener(new OpenScheddarListener());
 		
-		save.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
+		save.addActionListener(new SaveScheddarListener());
 		
 		options.addActionListener(new ActionListener() {
 			@Override

@@ -331,7 +331,7 @@ public class Main {
 		listGroups.add(engineers);
 		listGroups.add(managers);
 		listGroups.add(marketing);
-		allPeople.setSubgroups(listGroups);
+		allGroups.setSubgroups(listGroups);
 		
 		//Adding things to groups
 		s.getGroups().put(allGroups.getName(), allGroups);
