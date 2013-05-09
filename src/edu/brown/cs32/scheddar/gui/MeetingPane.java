@@ -340,8 +340,8 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			
 			dateField.setEditor(new JSpinner.DateEditor(dateField, "MM/dd/yy"));
-			fromTime.setEditor(new JSpinner.DateEditor(dateField, "HH:mm"));
-			toTime.setEditor(new JSpinner.DateEditor(dateField, "HH:mm"));
+			fromTime.setEditor(new JSpinner.DateEditor(fromTime, "HH:mm"));
+			toTime.setEditor(new JSpinner.DateEditor(toTime, "HH:mm"));
 			
 			//TODO: debug time spinners
 			

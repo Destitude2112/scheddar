@@ -1,7 +1,9 @@
 package edu.brown.cs32.scheddar.gui;
 
 import java.awt.FlowLayout;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -34,9 +36,29 @@ public class OptionsForm extends AbstractForm {
 		adminEmail = new JTextField();
 		adminEmail.setText(_scheddar.getUsername());
 		
+		adminPassword = new JPasswordField();
+		adminPassword.setText(_scheddar.getPassword());
 		
+		adminName = new JTextField();
+		adminName.setText(_scheddar.getAdminName());
 		
+		startFieldModel = new SpinnerDateModel();
+		endFieldModel = new SpinnerDateModel();
 		
+		try {
+			startFieldModel.setValue(timeFormat.parse(_scheddar.getStartHour()));
+			endFieldModel.setValue(timeFormat.parse(_scheddar.getEndHour()));
+		} catch (ParseException e) {
+			System.out.println("parse error meetingpanel");
+		}
+		
+		startDay = new JSpinner();
+		endDay = new JSpinner();
+		
+		startFieldModel.setCalendarField(Calendar.MINUTE);
+		endFieldModel.setCalendarField(Calendar.MINUTE);
+		
+		startDay.setModel(startFieldModel);
+		endDay.setModel(endFieldModel);	
 	}
-
 }
