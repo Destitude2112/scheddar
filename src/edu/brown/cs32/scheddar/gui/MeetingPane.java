@@ -370,7 +370,7 @@ public class MeetingPane extends ScheddarSubPane {
 					}
 
 					
-					ScheddarTime range = new ScheddarTime(from.get(Calendar.HOUR_OF_DAY),from.get(Calendar.MINUTE), difference.get(Calendar.MINUTE) + diffHours*60,date.get(Calendar.DAY_OF_WEEK)-1,date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH)+1,date.get(Calendar.YEAR),false);
+					ScheddarTime range = new ScheddarTime(from.get(Calendar.HOUR_OF_DAY),from.get(Calendar.MINUTE), difference.get(Calendar.MINUTE) + diffHours*60,date.get(Calendar.DAY_OF_WEEK)-1,date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR),false);
 					
 					Calendar d = new GregorianCalendar();
 					try {
@@ -400,10 +400,7 @@ public class MeetingPane extends ScheddarSubPane {
 			// making panel for choosing time slots
 			
 			
-			JScrollPane slotListPane = new JScrollPane(selectSlots);
-			
-			
-			
+			JScrollPane slotListPane = new JScrollPane(selectSlots);			
 			
 			JPanel slotSelectionPanel = new JPanel(new GridLayout(1,2,5,0));
 			slotSelectionPanel.add(timeRangePanel);
@@ -500,6 +497,7 @@ public class MeetingPane extends ScheddarSubPane {
 								if (proposedTimes.getSelectedValue().equals(t.timeRangeToString())) {
 									meeting.user = _scheddar.getUsername();
 									meeting.password = _scheddar.getPassword();
+//									meeting.setFinalTime(new ScheddarTime(t.getStartHour(),t.getStartMinutes(),t.getDuration(),t.getDayOfWeek(),t.getDay(),t.getMonth()-1,t.getYear(),t.isRecurring()));
 									meeting.setFinalTime(t);
 									break;
 								}
