@@ -649,4 +649,12 @@ public class Scheddar implements ScheddarFace {
 		emailParser.sendCustomEmail(toEmail, body, subject);
 	}
 	
+	public String getUsername(){
+		return this.username;
+	}
+	
+	public String getPassword(){
+		return this.password;
+	}
+	
 }
