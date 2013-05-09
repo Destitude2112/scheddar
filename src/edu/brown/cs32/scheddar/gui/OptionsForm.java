@@ -134,6 +134,15 @@ public class OptionsForm extends AbstractForm {
 			}
 		});
 		
+		JButton emailRead = new JButton("Read Email");
+		
+		emailRead.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				_scheddar.readEmail();
+			}
+		});
+		panel.add(emailRead);
 		panel.add(submit);
 		add(panel);
 		pack();
