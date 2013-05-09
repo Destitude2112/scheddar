@@ -354,16 +354,23 @@ public class MeetingPane extends ScheddarSubPane {
 					from.setTime(fromFieldModel.getDate());
 					to.setTime(toFieldModel.getDate());
 					difference.setTimeInMillis(to.getTimeInMillis() - from.getTimeInMillis());
-					System.out.println("Day of Month : " + date.get(Calendar.DAY_OF_MONTH));
+		//			System.out.println("Day of Month : " + date.get(Calendar.DAY_OF_MONTH));
 					System.out.println("Start Hour : " + from.get(Calendar.HOUR_OF_DAY));
 					System.out.println("Start Minute : " + from.get(Calendar.MINUTE));
 					System.out.println("End Hour : " + to.get(Calendar.HOUR_OF_DAY));
 					System.out.println("End Minutes : " + to.get(Calendar.MINUTE));
 					
 					System.out.println("Difference Minutes : " + difference.get(Calendar.MINUTE));
-					System.out.println("Difference Hours : " + difference.get(Calendar.HOUR_OF_DAY));
+					//System.out.println("Difference Hours : " + difference.get(Calendar.HOUR_OF_DAY));
 					
-					ScheddarTime range = new ScheddarTime(from.get(Calendar.HOUR_OF_DAY),from.get(Calendar.MINUTE), difference.get(Calendar.MINUTE) + difference.get(Calendar.HOUR_OF_DAY)*60,date.get(Calendar.DAY_OF_WEEK)-1,date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR),false);
+					int diffHours = difference.get(Calendar.HOUR_OF_DAY) + 5;
+					if(diffHours>=24){
+						diffHours = diffHours - 24;
+					}
+					
+					System.out.println("Difference Hours : " + diffHours);
+					
+					ScheddarTime range = new ScheddarTime(from.get(Calendar.HOUR_OF_DAY),from.get(Calendar.MINUTE), difference.get(Calendar.MINUTE) + diffHours*60,date.get(Calendar.DAY_OF_WEEK)-1,date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR),false);
 					
 					Calendar d = new GregorianCalendar();
 					try {

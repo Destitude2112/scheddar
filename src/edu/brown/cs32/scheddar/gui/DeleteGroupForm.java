@@ -42,7 +42,7 @@ public class DeleteGroupForm extends AbstractForm {
 						_scheddarPane._groupTree.updateTree();
 					}
 				} else {
-					new EditGroupForm(_scheddarPane, _scheddar.getGroupFromName((String)groupList.getSelectedItem()));
+				//	new EditGroupForm(_scheddarPane, _scheddar.getGroupFromName((String)groupList.getSelectedItem()));
 				}
 				dispose();
 			}

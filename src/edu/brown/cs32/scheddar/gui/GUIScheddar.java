@@ -297,7 +297,7 @@ public class GUIScheddar extends JFrame {
 		_mb.add(fileMenu);
 		_mb.add(createMenu);
 		_mb.add(editMenu);
-		_mb.add(emailMenu);
+		//_mb.add(emailMenu);
 		_mb.add(viewMenu);
 		return _mb;
 	}
