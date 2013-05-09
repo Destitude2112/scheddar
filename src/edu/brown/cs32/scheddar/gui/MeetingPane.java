@@ -352,7 +352,10 @@ public class MeetingPane extends ScheddarSubPane {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					Calendar date,from,to,difference;
-					date = from = to = difference = new GregorianCalendar();
+					date = Calendar.getInstance();
+					from = Calendar.getInstance();
+					to = Calendar.getInstance();
+					difference = Calendar.getInstance();
 					
 					//TODO : Times being passed in here are incorrect
 					
@@ -360,10 +363,10 @@ public class MeetingPane extends ScheddarSubPane {
 					from.setTime(fromFieldModel.getDate());
 					to.setTime(toFieldModel.getDate());
 					difference.setTimeInMillis(to.getTimeInMillis() - from.getTimeInMillis());
-					
+					System.out.println("Button time: " + from.toString());
 					System.out.println("Button day : " + from.get(Calendar.HOUR_OF_DAY));
 					
-					ScheddarTime range = new ScheddarTime(from.get(Calendar.HOUR_OF_DAY),from.get(Calendar.MINUTE), difference.get(Calendar.MINUTE),date.get(Calendar.DAY_OF_WEEK),date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR),false);
+					ScheddarTime range = new ScheddarTime(from.get(Calendar.HOUR_OF_DAY),from.get(Calendar.MINUTE), difference.get(Calendar.MINUTE) + difference.get(Calendar.HOUR_OF_DAY)*60,date.get(Calendar.DAY_OF_WEEK),date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR),false);
 					
 					Calendar d = new GregorianCalendar();
 					try {
