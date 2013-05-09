@@ -29,6 +29,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import edu.brown.cs32.scheddar.Main;
 import edu.brown.cs32.scheddar.Scheddar;
 
 
@@ -496,7 +497,12 @@ public class GUIScheddar extends JFrame {
 		} catch (Exception e) {}
 		GUIScheddar gui = new GUIScheddar();
 		
-		gui.showStartFrame();
+		//gui.showStartFrame();
+		
+		Scheddar scheddar = Main.getTestData();
+		ScheddarPane sp = new ScheddarPane(gui,scheddar);
+		gui.renderScheddar(sp);
+		
 		
 		
 	}

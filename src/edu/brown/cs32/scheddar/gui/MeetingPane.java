@@ -1,9 +1,14 @@
 package edu.brown.cs32.scheddar.gui;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,6 +22,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -631,6 +637,21 @@ public class MeetingPane extends ScheddarSubPane {
 		Dimension d = _scheddarPane.getPreferredSize();
 		return new Dimension(d.width * 3/4 - 25, d.height);
 	}
+	
+//	@Override
+//	public void paintComponent(Graphics graphics) {
+//		super.paintComponent(graphics);
+//		Graphics2D g = (Graphics2D) graphics;
+//		if (isFun()) {
+//			BufferedImage img = null;
+//			try {
+//			    img = ImageIO.read(new File("data/Getty_Stilton.jpg"));
+//			    g.drawImage(img,0,0,getPreferredSize().width,getPreferredSize().height,null);
+//			} catch (IOException e) {
+//			}
+//		}
+//	}
+	
 	
 	
 }
