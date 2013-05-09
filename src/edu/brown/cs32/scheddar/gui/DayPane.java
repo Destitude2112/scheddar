@@ -119,18 +119,12 @@ public class DayPane extends ScheddarSubPane {
 		g2.setPaint(Color.gray);
 		g2.setFont(new Font("SansSerif",Font.PLAIN,10));
 		
-<<<<<<< HEAD
 		for (double i = 1; i < numHours; i += 1.0) {
 			
 			g2.draw(new Line2D.Double(0,size.height/numHours*i,size.width,size.height/numHours*i));
 			
 			g2.drawString((int)(i+startHour)+":00",4,(int)(size.height/numHours*i-3));
-			
-=======
-		for (double i = 1.0; i < 24; i += 1.0) {
-			g2.draw(new Line2D.Double(0,size.height/24.0*i,size.width,size.height/24.0*i));			
-			g2.drawString((int)i+":00",4,(int)(size.height/24.0*i-3));			
->>>>>>> c2064100e62b7a9fe02c5df82412ddf83a4aa289
+
 		}
 		
 		g2.drawString(time.dateToString(), 10, 15);

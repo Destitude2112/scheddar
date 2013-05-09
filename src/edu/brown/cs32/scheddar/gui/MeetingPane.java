@@ -39,10 +39,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 
-import edu.brown.cs32.scheddar.Group;
-import edu.brown.cs32.scheddar.Meeting;
-import edu.brown.cs32.scheddar.Person;
-import edu.brown.cs32.scheddar.ScheddarTime;
+import edu.brown.cs32.scheddar.*;
 
 
 /**
