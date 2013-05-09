@@ -1,6 +1,7 @@
 package edu.brown.cs32.scheddar.gui;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,14 +22,18 @@ public class DeleteGroupForm extends AbstractForm {
 		_toDelete = toDelete;
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-		panel.setPreferredSize(new Dimension(250,200));
-
+		panel.setPreferredSize(new Dimension(300,60));
+		
+		JPanel topPanel = new JPanel();
+		topPanel.setLayout(new GridLayout(1,2,5,5));
+		topPanel.setPreferredSize(new Dimension(250,50));
 		String[] groupNames = getAllGroupNames();
 		groupList = new JComboBox<String>(groupNames);
 		groupList.setSelectedItem(_scheddarPane.getCurrentGroup());
-		groupList.setMaximumSize(new Dimension(250,25));
-		panel.add(toDelete ? new JLabel("Group to Delete:") : new JLabel("Group to Edit"));
-		panel.add(groupList);		
+		groupList.setPreferredSize(new Dimension(250,25));
+		topPanel.add(toDelete ? new JLabel("Group to Delete:") : new JLabel("Group to Edit"));
+		topPanel.add(groupList);		
+		panel.add(topPanel);
 		
 		// making "Remove Group" button
 		JButton delete = toDelete ? new JButton("Remove Group") : new JButton("Edit Group");

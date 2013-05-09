@@ -285,16 +285,13 @@ public class Meeting {
 		for(Group g : groupsInvolved){
 			for(Person p : g.getMembers()){
 				String email = p.getEmail();
-				System.out.println(email);
 				ep.sendFinalizedMeetingEmail(email,p.getFullName(),this);
 			}
 		}
 		Collection<Person> extras = getExtraPeopleToImportance().keySet();
 		for(Person p : extras){
-			System.out.println(p.getEmail());
 			ep.sendFinalizedMeetingEmail(p.getEmail(),p.getFullName(),this);
 		}
-		System.out.println("Done");
 	}
 	
 	/**
@@ -436,9 +433,6 @@ public class Meeting {
 		ScheddarTime endScheddar = time.getEndTime();
 		int endTime = endScheddar.getStartHour() * 60 + endScheddar.getStartMinutes(); // the end time in minutes
 		
-//		System.out.println("Start time : " + startTime);
-//		System.out.println("Duration : " + time.getDuration());
-//		System.out.println("End Time : " + endTime);
 		
 		while(startTime+duration<=endTime){
 			int hour = startTime / 60;
@@ -447,7 +441,6 @@ public class Meeting {
 			startTime += duration;
 		}
 		
-	//	System.out.println(potentialTimes.size());
 		// Generate rankings based on recurring conflicts
 		
 		for(ScheddarTime t : potentialTimes){
@@ -489,17 +482,7 @@ public class Meeting {
 				}
 			}
 			toRet.put(t,((totalWeight - currScore) / totalWeight) * 100);
-		}
-		
-		Collection<ScheddarTime> times = toRet.keySet();
-		Collection<Double> scores = toRet.values();
-		
-		for(ScheddarTime t : times){
-			System.out.println(t.toString());
-		}
-		for(Double score : scores){
-			System.out.println(score);
-		}
+		}		
 		return toRet;
 	}
 }

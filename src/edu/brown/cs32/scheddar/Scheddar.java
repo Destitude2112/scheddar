@@ -236,7 +236,7 @@ public class Scheddar implements ScheddarFace {
 		List<String> emailList = new LinkedList<String>();
 		Group g = groups.get(name);
 		if(g==null){
-			System.out.println("That group does not exist");
+			System.err.println("That group does not exist");
 			return emailList;
 		}
 		else{

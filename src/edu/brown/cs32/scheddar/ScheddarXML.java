@@ -36,7 +36,7 @@ public class ScheddarXML{
 			this.db = dbf.newDocumentBuilder();
 			doc = db.newDocument();
 		} catch (ParserConfigurationException e) {
-			System.out.println("ERROR: Error generating the XML file");
+//			System.out.println("ERROR: Error generating the XML file");
 		}
 	}
 	
@@ -62,15 +62,14 @@ public class ScheddarXML{
 				
 				doc.getDocumentElement().normalize();
 				
-				System.out.println(" The first element is: "+ doc.getDocumentElement().getNodeName());
-				
-				
+//				System.out.println(" The first element is: "+ doc.getDocumentElement().getNodeName());
+								
 				NodeList n = doc.getElementsByTagName("general");
 				NodeList nl = doc.getElementsByTagName("group");
 				NodeList n2 = doc.getElementsByTagName("person");
 				NodeList n3 = doc.getElementsByTagName("meeting");
 				
-				System.out.println("----------------");
+//				System.out.println("----------------");
 				
 				for(int i = 0; i<n.getLength()-1; i++){
 					Node currNode = n.item(i);
@@ -86,10 +85,10 @@ public class ScheddarXML{
 						currEndHour = e.getElementsByTagName("endHour").item(0).getTextContent();
 						
 						
-						System.out.println("currName: "+ currName);
-						System.out.println("organizationName: " + currAdminName);
-						System.out.println("startHour: "+ currStartHour);
-						System.out.println("endHour: "+ currEndHour);
+//						System.out.println("currName: "+ currName);
+//						System.out.println("organizationName: " + currAdminName);
+//						System.out.println("startHour: "+ currStartHour);
+//						System.out.println("endHour: "+ currEndHour);
 						
 					}
 					
@@ -99,7 +98,7 @@ public class ScheddarXML{
 					
 					Node currNode = nl.item(i);
 					
-					System.out.println("Current element is: "+ currNode.getNodeName()); //just prints "group"
+//					System.out.println("Current element is: "+ currNode.getNodeName()); //just prints "group"
 					
 					String currName, currMembers, currMemberRankings, currSubgroups, currParentGroup;
 					
@@ -113,16 +112,16 @@ public class ScheddarXML{
 						currParentGroup = e.getElementsByTagName("parentGroup").item(0).getTextContent();
 						
 						
-						System.out.println("Name: "+ currName);
-						System.out.println("Members: "+ currMembers);
-						System.out.println("Member Rankings: "+ currMemberRankings);
-						System.out.println("Subgroups: "+ currSubgroups);
-						System.out.println("Parent Group: "+ currParentGroup);
+//						System.out.println("Name: "+ currName);
+//						System.out.println("Members: "+ currMembers);
+//						System.out.println("Member Rankings: "+ currMemberRankings);
+//						System.out.println("Subgroups: "+ currSubgroups);
+//						System.out.println("Parent Group: "+ currParentGroup);
 					    
 						Group g = new Group(currName, getMembersFromString(currMembers), getHMFromString(currMemberRankings), getGroupsFromString(currSubgroups), currParentGroup);
 						myScheddar.getGroups().put(g.getName(), g);
 						
-					    System.out.println("One group added to the allGroups");
+//					    System.out.println("One group added to the allGroups");
 					    
 					 } 
 				}
@@ -145,12 +144,12 @@ public class ScheddarXML{
 						currConflicts = e.getElementsByTagName("conflicts").item(0).getTextContent();
 						//currGroupMembership = e.getElementsByTagName("group_membership").item(0).getTextContent();
 						
-						System.out.println("Email id: "+ currEmailID);
-						System.out.println("First Name: "+ currFirstName);
-						System.out.println("Last Name: "+ currLastName);
-						System.out.println("Phone: "+ currPhone);
-						System.out.println("Description: "+ currDescription);
-						System.out.println("Conflicts: "+ currConflicts);
+//						System.out.println("Email id: "+ currEmailID);
+//						System.out.println("First Name: "+ currFirstName);
+//						System.out.println("Last Name: "+ currLastName);
+//						System.out.println("Phone: "+ currPhone);
+//						System.out.println("Description: "+ currDescription);
+//						System.out.println("Conflicts: "+ currConflicts);
 						
 					    //System.out.println("Group membership: " + currGroupMembership);
 					    
@@ -159,7 +158,7 @@ public class ScheddarXML{
 					    Person p = new Person(currEmailID, currFirstName, currLastName, currPhone, currDescription, conflicts);
 					    myScheddar.getPersons().put(currFirstName+" " + currLastName, p);
 					    
-					    System.out.println("");
+//					    System.out.println("");
 					    
 					}
 					
@@ -184,7 +183,7 @@ public class ScheddarXML{
 					if (currNode.getNodeType() == Node.ELEMENT_NODE && currNode.getNodeName().equals("meeting")){
                         Element e = (Element)currNode;
 						
-                        System.out.println("MEETING WAS READ");
+//                        System.out.println("MEETING WAS READ");
                         
 						currName =e.getAttribute("name");
 						currDecided = e.getElementsByTagName("decided").item(0).getTextContent();
@@ -198,15 +197,15 @@ public class ScheddarXML{
 						
 						//currGroupMembership = e.getElementsByTagName("group_membership").item(0).getTextContent();
 						
-						System.out.println("Name: "+ currName);
-						System.out.println("Decided: "+ currDecided);
-						System.out.println("Time for Finalizing: "+ currTimeForFinalizing);
-						System.out.println("Final Time: "+ currFinalTime);
-						System.out.println("Proposed Times: "+ currProposedTimes);
-						System.out.println("Index to Score: "+ currIndexToScore);
-						System.out.println("Dummy Groups Involved: "+ currGroupsInvolved);
-						System.out.println("Description: "+ currDescription);
-						System.out.println("Extra People to Importance: "+ currExtraPeopleToImportance);
+//						System.out.println("Name: "+ currName);
+//						System.out.println("Decided: "+ currDecided);
+//						System.out.println("Time for Finalizing: "+ currTimeForFinalizing);
+//						System.out.println("Final Time: "+ currFinalTime);
+//						System.out.println("Proposed Times: "+ currProposedTimes);
+//						System.out.println("Index to Score: "+ currIndexToScore);
+//						System.out.println("Dummy Groups Involved: "+ currGroupsInvolved);
+//						System.out.println("Description: "+ currDescription);
+//						System.out.println("Extra People to Importance: "+ currExtraPeopleToImportance);
 						
 					    //System.out.println("Group membership: " + currGroupMembership);
 					    
@@ -219,11 +218,11 @@ public class ScheddarXML{
 					    		getGroupsFromString(currGroupsInvolved),
 					    		currDescription,
 					    		getHMFromString(currExtraPeopleToImportance));
-					    System.out.println("ADDING MEETING TO MEETINGS " + m.getName());
-					    System.out.println(" CURRENT SIZE: " + myScheddar.getMeetings().size());
+//					    System.out.println("ADDING MEETING TO MEETINGS " + m.getName());
+//					    System.out.println(" CURRENT SIZE: " + myScheddar.getMeetings().size());
 					    myScheddar.getMeetings().put(m.getName(), m);
 					    
-					    System.out.println("");
+//					    System.out.println("");
 					    
 					}
 					
@@ -234,7 +233,7 @@ public class ScheddarXML{
 				
 				
 			} catch (Exception e) {
-				System.out.println("Problem reading the XML File");
+//				System.out.println("Problem reading the XML File");
 				e.printStackTrace();
 			}
 			
@@ -309,7 +308,7 @@ public class ScheddarXML{
 	        
 	    	currGroup.setMembers(members);
 	    	if(parentGroup!=null && !parentGroup.getName().equals("")){
-	    		System.out.println("parent group is "+ parentGroup.getName());
+//	    		System.out.println("parent group is "+ parentGroup.getName());
 	        currGroup.setParentGroup(parentGroup);
 	    	}
 	        currGroup.setSubgroups(subgroups);
@@ -640,9 +639,7 @@ public class ScheddarXML{
 	public void addMeetingElement(Element currElement, String currName, Boolean currDecided, ScheddarTime currTimeForFinalizing,
 			ScheddarTime currFinalTime, List<ScheddarTime> currProposedTimes, HashMap<Integer,Double> currIndexToScore,
 			List<String> currGroupsInvolved, String currDescription, HashMap<Person, Double> extraPeopleToImportance){
-		
-       System.out.println("Entered add Meeting element");
-		
+
 		Element staff = doc.createElement("meeting");
 		currElement.appendChild(staff);
 		
@@ -791,9 +788,6 @@ public class ScheddarXML{
 	 */
 	public void addGroupElement(Element currElement, String currName, List<String> currMembers, HashMap<String,Double> currMemberRankings, ArrayList<String> currSubgroups, String currParentGroup){
 		
-		
-		System.out.println("Entered add Group element");
-		
 		Element staff = doc.createElement("group");
 		currElement.appendChild(staff);
 		
@@ -801,14 +795,12 @@ public class ScheddarXML{
 		attr.setValue(currName);
 		staff.setAttributeNode(attr);
 		
-		System.out.println("Got the name");
 		
 		//members elements
 		Element members = doc.createElement("members");
 		members.appendChild(doc.createTextNode(generateMembersString(currMembers)));
 		staff.appendChild(members);
 		
-		System.out.println("Got the members");
 		
 		//memberRankings elements
 		Element memberRankings = doc.createElement("memberRankings");
@@ -816,15 +808,12 @@ public class ScheddarXML{
 		staff.appendChild(memberRankings);
 		
 		//subgroups elements
-		System.out.println("Writing subgroups: " + currSubgroups);
 		Element subgroups = doc.createElement("subgroups");
 		subgroups.appendChild(doc.createTextNode(generateSubgroupString(currSubgroups)));
 		staff.appendChild(subgroups);
 		
 		//parent group element
-		//System.out.println("curr parent group: "+ currParentGroup);
 		if (currParentGroup==null) currParentGroup = "";
-		System.out.println("Writing parentgroups: " + currParentGroup);
 		Element parentGroup = doc.createElement("parentGroup");
 		parentGroup.appendChild(doc.createTextNode(currParentGroup));
 		staff.appendChild(parentGroup);
@@ -909,13 +898,11 @@ public class ScheddarXML{
 			Element personElement = doc.createElement("person");    
 			firstElement.appendChild(personElement);
 			
-			System.out.println("all persons has "+ myScheddar.getPersons().size());
 			
 			Iterator it2 = myScheddar.getPersons().entrySet().iterator();
 			    while (it2.hasNext()) {
 			        Map.Entry pairs = (Map.Entry)it2.next();
 			        Person currPerson = (Person) pairs.getValue();
-			        System.out.println("adding a person element");
 			        addPersonElement(personElement, currPerson.getEmail(), currPerson.getFirstName(),
 			        		currPerson.getLastName(), currPerson.getPhoneNum(),
 			        		currPerson.getDescription(), (ArrayList<ScheddarTime>)currPerson.getConflicts());
@@ -926,13 +913,11 @@ public class ScheddarXML{
 			Element meetingElement = doc.createElement("meeting");
 			firstElement.appendChild(meetingElement);
 			
-			System.out.println(" all meetings has "+ myScheddar.getMeetings().size()+ " members");
 			
 			Iterator it3 = myScheddar.getMeetings().entrySet().iterator();
 			while(it3.hasNext()){
 				Map.Entry pairs = (Map.Entry)it3.next();
 				Meeting currMeeting = (Meeting) pairs.getValue();
-				System.out.println("adding a meeting element");
 				
 				addMeetingElement(meetingElement, currMeeting.getName(), currMeeting.getDecided(), 
 				currMeeting.getTimeForFinalizing(),
@@ -952,10 +937,8 @@ public class ScheddarXML{
 			
 			t.transform(src, result);
 			
-			System.out.println("File saved");
 			
 		}catch(Exception e){
-			System.out.println("Error writing the local data");
 			e.printStackTrace();
 		}
 		

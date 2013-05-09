@@ -10,7 +10,6 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +24,6 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 import edu.brown.cs32.scheddar.Meeting;
 import edu.brown.cs32.scheddar.ScheddarTime;
@@ -159,17 +157,18 @@ public class MonthPane extends ScheddarSubPane {
 			drawCenteredString(g, days[i],i*size.width/7+size.width/14, (int)(size.height/WEEKS_TO_DISPLAY-10));
 			g.draw(new Line2D.Double(size.width/days.length*i,size.height/WEEKS_TO_DISPLAY, size.width/days.length*i, size.height));
 		}
+		displayEvents(g);
 	}
 
 	public void displayEvents(Graphics2D g) {
+		g.setFont(new Font("SansSerif",Font.PLAIN,12));
 		List<Meeting> meetings = _scheddarPane._scheddar.monthMeetings(_time.getMonth(), _time.getYear());
-		System.out.println(meetings.size());
 		int[] meetingArray = new int[1+UsefulMethods.daysInMonth(_time.getMonth(), _time.getYear())];
 		for(Meeting m: meetings) {
 			int day = m.getFinalTime().getDay();
 			if(meetingArray[day]<5) { 	// Only displays first 5 meetings on a given day
 				Point p = getBlock(m.getFinalTime());
-				g.drawString(m.getName(), p.x+5, p.y+5+15*meetingArray[day]);
+				g.drawString(m.getName(), p.x+5, p.y+35+25*meetingArray[day]);
 				meetingArray[day] = meetingArray[day] + 1;
 			}
 		}
@@ -180,6 +179,7 @@ public class MonthPane extends ScheddarSubPane {
 		int x = t.getDayOfWeek();
 		int startDay = _startDay.getMonth()==t.getMonth() ? t.getDay() : t.getDay()-UsefulMethods.daysInMonth(_startDay.getMonth(), _startDay.getYear());
 		int y = (t.getDay()-startDay)/7;
+		y = y-2;
 		return new Point(size.width/7*x, (int)(size.height/WEEKS_TO_DISPLAY*y));
 	}
 
