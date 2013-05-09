@@ -91,7 +91,7 @@ public class MonthPane extends ScheddarSubPane {
 		this.add(prevButton);
 		this.add(weekButton);
 		this.add(nextButton);
-}	
+	}	
 	
 	@Override
 	public Dimension getPreferredSize() {
@@ -163,6 +163,7 @@ public class MonthPane extends ScheddarSubPane {
 
 	public void displayEvents(Graphics2D g) {
 		List<Meeting> meetings = _scheddarPane._scheddar.monthMeetings(_time.getMonth(), _time.getYear());
+		System.out.println(meetings.size());
 		int[] meetingArray = new int[1+UsefulMethods.daysInMonth(_time.getMonth(), _time.getYear())];
 		for(Meeting m: meetings) {
 			int day = m.getFinalTime().getDay();

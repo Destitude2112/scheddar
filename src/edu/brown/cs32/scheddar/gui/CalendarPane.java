@@ -25,6 +25,7 @@ import edu.brown.cs32.scheddar.*;
 public class CalendarPane extends ScheddarSubPane {
 	private static final long serialVersionUID = 1L;
 	private ScheddarTime _time;
+	ScheddarSubPane activePane = null;
 	
 	public CalendarPane(ScheddarPane s) {
 		super(s);
@@ -35,7 +36,8 @@ public class CalendarPane extends ScheddarSubPane {
 	public void switchToMonth(ScheddarTime time) {
 		removeAll();
 		revalidate();
-		add(new MonthPane(_scheddarPane,time));
+		activePane = new MonthPane(_scheddarPane,time); 
+		add(activePane);
 		_time = time;
 		revalidate();
 	}
@@ -43,7 +45,8 @@ public class CalendarPane extends ScheddarSubPane {
 	public void switchToWeek(ScheddarTime time) {
 		removeAll();
 		revalidate();
-		add(new WeekPane(_scheddarPane,time));
+		activePane = new WeekPane(_scheddarPane,time);
+		add(activePane);
 		_time = time;
 		revalidate();
 	}
@@ -71,6 +74,9 @@ public class CalendarPane extends ScheddarSubPane {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		if(activePane!=null) {
+			activePane.repaint();
+		}
 		Graphics2D g2 = (Graphics2D) g;
 		if (isFun()) {
 			BufferedImage img = null;

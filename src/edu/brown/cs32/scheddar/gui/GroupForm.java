@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -35,21 +36,23 @@ public class GroupForm extends AbstractForm {
 	public GroupForm(ScheddarPane s) {
 		super(s);
 		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout());
+		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+		JPanel topPanel = new JPanel();
+		topPanel.setLayout(new GridLayout(2,2,5,5));
 		
 		//getting name of new group
 		nameField = new JTextField(20);
 		nameField.setMaximumSize(new Dimension(250,25));
-		panel.add(new JLabel("Group Name:"));
-		panel.add(nameField);
+		topPanel.add(new JLabel("Group Name:"));
+		topPanel.add(nameField);
 		
 		//getting parent group
 		String[] groupNames = getAllGroupNames();
 		groupList = new JComboBox<String>(groupNames);
 		groupList.setSelectedItem(_scheddarPane.getCurrentGroup());
 		groupList.setPreferredSize(new Dimension(260,25));
-		panel.add(new JLabel("Parent Group:"));
-		panel.add(groupList);
+		topPanel.add(new JLabel("Parent Group:"));
+		topPanel.add(groupList);
 		
 		//getting initial members
 		memberList = new JList<String>(_scheddarPane.getGroupMembers((String)groupList.getSelectedItem()));
@@ -58,8 +61,7 @@ public class GroupForm extends AbstractForm {
 		memberListPane.setPreferredSize(new Dimension(75,100));
 		JPanel listPanePane = new JPanel(new GridLayout(1,1));
 		listPanePane.add(memberListPane);
-		panel.setPreferredSize(new Dimension(370,Math.max(110,80+28*memberList.getModel().getSize())));
-		
+		panel.setPreferredSize(new Dimension(370,Math.max(100,80+28*memberList.getModel().getSize())));
 		
 		//adding listener so member list is updated if parent group changes
 		groupList.addActionListener(new ActionListener() {
@@ -106,6 +108,7 @@ public class GroupForm extends AbstractForm {
 			panel.add(new JLabel("Choose members:"));
 			panel.add(memberList);
 		}
+		panel.add(topPanel);
 		panel.add(create);
 		add(panel);
 		pack();
