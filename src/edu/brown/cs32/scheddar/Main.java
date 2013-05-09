@@ -32,8 +32,8 @@ public class Main {
 		 */
 		
 		
-		//Scheddar s1 = new Scheddar(dest); //This creates a Scheddar object from all that is in the XML
-		Scheddar s1 = getTestData();
+		Scheddar s1 = new Scheddar(dest); //This creates a Scheddar object from all that is in the XML
+		//Scheddar s1 = getTestData();
 		
 		//Scheddar s1;
 		
