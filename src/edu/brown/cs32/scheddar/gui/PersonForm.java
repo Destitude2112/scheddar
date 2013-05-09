@@ -86,7 +86,7 @@ public class PersonForm extends AbstractForm {
 						Group g = _scheddarPane._scheddar.getGroupFromName(name);
 						p.addGroup(g);
 						g.addMember(p);
-					}				
+					}
 					_scheddarPane._scheddar.addPerson(p);
 					_scheddarPane._groupTree.updateTree();
 					_scheddarPane._gui._mb.getMenu(2).getMenuComponent(0).setEnabled(true);

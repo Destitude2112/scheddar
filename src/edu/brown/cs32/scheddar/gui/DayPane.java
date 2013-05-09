@@ -12,13 +12,8 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.imageio.ImageIO;
 
 import edu.brown.cs32.scheddar.Meeting;
 import edu.brown.cs32.scheddar.ScheddarTime;
