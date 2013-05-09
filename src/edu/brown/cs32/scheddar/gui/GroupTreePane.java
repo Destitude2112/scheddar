@@ -35,6 +35,9 @@ public class GroupTreePane extends ScheddarSubPane {
 		
 		_topNode = constructTree(_scheddar.getRootGroup());
 		_tree = new JTree(_topNode);
+		for (int i = 0; i < _tree.getRowCount(); i++) {
+	         _tree.expandRow(i);
+		}
 		_tree.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
