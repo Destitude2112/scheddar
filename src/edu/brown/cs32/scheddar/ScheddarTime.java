@@ -31,6 +31,26 @@ public class ScheddarTime implements Comparable {
 		this.isRecurring = isRecurring;
 	}
 	
+	
+	/**
+	 * Default Constructor with some preset values
+	 * 
+	 * @param dayOfWeek
+	 * @param startHour
+	 * @param duration
+	 */
+	public ScheddarTime(int dayOfWeek, int startHour, int duration){
+		this.startHour = startHour;
+		this.duration = duration;
+		this.dayOfWeek = dayOfWeek;
+		//Default values
+		this.startMinutes = 0;
+		this.isRecurring = true;
+		this.day = 0;
+		this.month = 0;
+		this.year = 0;
+	}
+	
 	/**
 	 * Getter functions
 	 */

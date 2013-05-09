@@ -82,6 +82,7 @@ public class Group {
 	
 	public void addMember(Person person){
 		this.members.add(person);
+		this.dummyMembers.add(person.getFullName());
 		if (this.getParentGroup()!=null){
 			this.getParentGroup().addMember(person);
 		}
@@ -181,6 +182,9 @@ public class Group {
 		this.memberRankings = new HashMap<String,Double>();
 		this.subgroups = new LinkedList<Group>();
 		this.parentGroup = null;
+		this.dummyMembers = new ArrayList<String>();
+		this.subgroups = new ArrayList<Group>();
+		this.dummySubgroups = new ArrayList<String>();
 	}
 	
 	public Group(String currName, String[] members,

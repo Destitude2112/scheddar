@@ -153,7 +153,8 @@ public class ScheddarXML{
 					String description;
 					
 					String currName, currDecided, currTimeForFinalizing, currFinalTime,
-					currProposedTimes, currIndexToScore, currGroupsInvolved, currDescription; 
+					currProposedTimes, currIndexToScore, currGroupsInvolved, currDescription,
+					currExtraPeopleToImportance; 
 					
 					if (currNode.getNodeType() == Node.ELEMENT_NODE && currNode.getNodeName().equals("meeting")){
                         Element e = (Element)currNode;
@@ -166,8 +167,10 @@ public class ScheddarXML{
 						currFinalTime = e.getElementsByTagName("finalTime").item(0).getTextContent();
 						currProposedTimes = e.getElementsByTagName("proposedTimes").item(0).getTextContent();
 						currIndexToScore = e.getElementsByTagName("indexToScore").item(0).getTextContent();
-						currGroupsInvolved = e.getElementsByTagName("dummyGroupsInvolved").item(0).getTextContent();
+						currGroupsInvolved = e.getElementsByTagName("groupsInvolved").item(0).getTextContent();
 						currDescription = e.getElementsByTagName("description").item(0).getTextContent();
+						currExtraPeopleToImportance = e.getElementsByTagName("extraPeopleToImportance").item(0).getTextContent();
+						
 						//currGroupMembership = e.getElementsByTagName("group_membership").item(0).getTextContent();
 						
 						System.out.println("Name: "+ currName);
@@ -178,6 +181,7 @@ public class ScheddarXML{
 						System.out.println("Index to Score: "+ currIndexToScore);
 						System.out.println("Dummy Groups Involved: "+ currGroupsInvolved);
 						System.out.println("Description: "+ currDescription);
+						System.out.println("Extra People to Importance: "+ currExtraPeopleToImportance);
 						
 					    //System.out.println("Group membership: " + currGroupMembership);
 					    
@@ -188,7 +192,10 @@ public class ScheddarXML{
 					    		getConflictsFromString(currProposedTimes), 
 					    		getHM2FromString(currIndexToScore), 
 					    		getGroupsFromString(currGroupsInvolved),
-					    		currDescription);
+					    		currDescription,
+					    		getHMFromString(currExtraPeopleToImportance));
+					    System.out.println("ADDING MEETING TO MEETINGS " + m.getName());
+					    System.out.println(" CURRENT SIZE: " + myScheddar.getMeetings().size());
 					    myScheddar.getMeetings().put(m.getName(), m);
 					    
 					    System.out.println("");
@@ -276,7 +283,9 @@ public class ScheddarXML{
 	        }  
 	        
 	    	currGroup.setMembers(members);
+	    	if(parentGroup!=null && !parentGroup.getName().equals("")){
 	        currGroup.setParentGroup(parentGroup);
+	    	}
 	        currGroup.setSubgroups(subgroups);
 	        
 	        //it.remove(); // avoids a ConcurrentModificationException
@@ -292,6 +301,7 @@ public class ScheddarXML{
 	    	
 	        ArrayList<Group> groupsInvolved = new ArrayList<Group>();
 	        
+	        //Change dummyGroupsInvolved to groupsInvolved
 	        for(String currDummyGroup: currMeeting.dummyGroupsInvolved){
 	        	
 	        	if(myScheddar.getGroups().containsKey(currDummyGroup)){
@@ -299,9 +309,24 @@ public class ScheddarXML{
 	        	}
 	        }
 	        
+	        //Change dummyExtraPeopleToImportance to extraPeopleToImportance
+	        HashMap<Person, Double> memberRankings = new HashMap<Person, Double>();
+	        Iterator it2 = currMeeting.dummyExtraPeopleToImportance.entrySet().iterator();
+	        while(it2.hasNext()){
+	        	
+	        	Map.Entry p = (Map.Entry)it2.next();
+	        	String name = (String) p.getKey();
+		        Double g = (Double) p.getValue();
+		        
+		        if(myScheddar.getPersons().containsKey(name)){
+		        memberRankings.put(myScheddar.getPersons().get(name), g);
+		        }
+		        
+	        	//it2.remove();
+	        }
 	        
 	        currMeeting.setGroupsInvolved(groupsInvolved);
-	    	it4.remove();
+	    	//it4.remove();
 	    }
 	    
 	}
@@ -324,11 +349,14 @@ public class ScheddarXML{
 			
 			String[] parts = conflict.split("/");
 			
+			
+			if(parts.length<7) return new ArrayList<ScheddarTime>();
+			
 			ScheddarTime currST = new ScheddarTime(
-			Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), 
-			Integer.parseInt(parts[2]), Integer.parseInt(parts[3]),
-			Integer.parseInt(parts[4]), Integer.parseInt(parts[4]),
-			Integer.parseInt(parts[6]), Boolean.parseBoolean(parts[7]));
+			getInt(parts[0]), getInt(parts[1]), 
+			getInt(parts[2]), getInt(parts[3]),
+			getInt(parts[4]), getInt(parts[4]),
+			getInt(parts[6]), Boolean.parseBoolean(parts[7]));
 			stList.add(currST);
 			
 		}
@@ -337,6 +365,12 @@ public class ScheddarXML{
 		return stList;
 	}
 	
+	
+	int getInt(String s){
+		
+		if(s.equals("")) return 0;
+		else return Integer.parseInt(s);
+	}
 	
 	/**
 	 * 
@@ -442,16 +476,7 @@ public class ScheddarXML{
 	}
 	
 	
-	/* After you add people while the application is running and now want to quit and save the new
-	 * data to the XML, you can call the function to saveLocalDataToXML
-	 */
-	/**
-	 * After you run the application and modify the groups HashMap in the Main i.e. add people, remove
-	 * people etc., this function can be called any time to save these changes in the XML
-	 */
-	public void saveLocalDataToXML(){
-		addElements();
-	}
+
 	
 	
 	/**
@@ -482,6 +507,9 @@ public class ScheddarXML{
 	 */
 	public String generateMembersString(List<String> members){
 		
+		if(members.size() == 0) return "";
+		else{
+			
 		String toReturn= members.get(0);
 		
 	    
@@ -490,6 +518,7 @@ public class ScheddarXML{
 		}
 		
 		return toReturn;
+		}
 		
 	}
 	
@@ -580,7 +609,7 @@ public class ScheddarXML{
 	 */
 	public void addMeetingElement(Element currElement, String currName, Boolean currDecided, ScheddarTime currTimeForFinalizing,
 			ScheddarTime currFinalTime, List<ScheddarTime> currProposedTimes, HashMap<Integer,Double> currIndexToScore,
-			List<String> currGroupsInvolved, String currDescription){
+			List<String> currGroupsInvolved, String currDescription, HashMap<Person, Double> extraPeopleToImportance){
 		
        System.out.println("Entered add Meeting element");
 		
@@ -626,6 +655,11 @@ public class ScheddarXML{
 		Element description = doc.createElement("description");
 		description.appendChild(doc.createTextNode(currDescription));
 		staff.appendChild(description);
+		
+		//dummyExtraPeopleToImportance element
+		Element epti = doc.createElement("extraPeopleToImportance");
+		epti.appendChild(doc.createTextNode(generateMeetingHMToString2(extraPeopleToImportance)));
+		staff.appendChild(epti);
 		
 	}
 	
@@ -682,7 +716,37 @@ public class ScheddarXML{
 		
 	}		
 	
-	
+	/**
+	 * 
+	 * This function is used to convert a HashMap<Integer, Double> to String for
+	 * XML storage
+	 * 
+	 * @param extraPeopleToImportance the HashMap<Integer, Double> to be converted to String
+	 * @return the String conversion
+	 */
+	public String generateMeetingHMToString2(HashMap<Person, Double> extraPeopleToImportance){
+		
+		String toReturn = "";
+		
+		if(extraPeopleToImportance.size() == 0){
+			return "";
+		} else{
+		
+		    Iterator it = extraPeopleToImportance.entrySet().iterator();
+		    while (it.hasNext()) {
+		        Map.Entry pairs = (Map.Entry)it.next();
+		        Person p = (Person)pairs.getKey();
+		        toReturn+=  p.getFullName()+ ","+pairs.getValue()+";";
+		        it.remove(); // avoids a ConcurrentModificationException
+		    }
+		    
+		    //Remove the last ";"
+		    toReturn = toReturn.substring(0, toReturn.length()-1);
+		   
+		    return toReturn;
+		}
+		
+	}
 	
 	/**
 	 * 
@@ -727,6 +791,8 @@ public class ScheddarXML{
 		staff.appendChild(subgroups);
 		
 		//parent group element
+		//System.out.println("curr parent group: "+ currParentGroup);
+		if (currParentGroup==null) currParentGroup = "";
 		Element parentGroup = doc.createElement("parentGroup");
 		parentGroup.appendChild(doc.createTextNode(currParentGroup));
 		staff.appendChild(parentGroup);
@@ -750,7 +816,7 @@ public class ScheddarXML{
 	 * This is the main function that is called to go through the groups HashMap in the main
 	 * and add everything to the XML
 	 */
-	public void addElements(){
+	public void saveLocalDataToXML(){
 		
 		try{			
 			this.dbf = DocumentBuilderFactory.newInstance();
@@ -805,7 +871,8 @@ public class ScheddarXML{
 				addMeetingElement(meetingElement, currMeeting.getName(), currMeeting.getDecided(), 
 				currMeeting.getTimeForFinalizing(),
 			    currMeeting.getFinalTime(), currMeeting.getProposedTimes(), currMeeting.getIndexToScore(),
-			    currMeeting.dummyGroupsInvolved, currMeeting.getDescription());
+			    currMeeting.dummyGroupsInvolved, currMeeting.getDescription(),
+			    currMeeting.getExtraPeopleToImportance());
 				
 				
 				it3.remove();
@@ -897,6 +964,9 @@ public class ScheddarXML{
 	 */
 	public String STsToString(ArrayList<ScheddarTime> conflicts){
 		
+		
+		if(conflicts.size()==0) return "";
+		
 		String toReturn = "";
 		
 		for(ScheddarTime conflict: conflicts){
@@ -934,3 +1004,5 @@ public class ScheddarXML{
 	
 	
 }
+
+

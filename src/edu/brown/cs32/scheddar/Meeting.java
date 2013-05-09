@@ -31,6 +31,7 @@ public class Meeting {
 	// A Hashmap of individuals to importance for a meeting that are not in groups involved with the meeting
 	// Maps the Person to their importance in this meeting
 	
+	public HashMap<String, Double> dummyExtraPeopleToImportance;
 	private HashMap<Person, Double> extraPeopleToImportance;
 	
 	//TODO : Add extraPeopleToImportance to the XML file for Meetings
@@ -42,6 +43,26 @@ public class Meeting {
 	Meeting(String name, Boolean decided, ScheddarTime timeForFinalizing, ScheddarTime finalTime,
 			List<ScheddarTime> proposedTimes, HashMap<Integer, Double> indexToScore, 
 			List<String> dummyGroupsInvolved, String description){
+		this.dummyExtraPeopleToImportance = new HashMap<String, Double>();
+		this.name = name;
+		this.decided = decided;
+		this.timeForFinalizing = timeForFinalizing;
+		this.finalTime = finalTime;
+		this.proposedTimes = proposedTimes;
+		this.indexToScore = indexToScore;
+		this.dummyGroupsInvolved = dummyGroupsInvolved;
+		this.description = description;
+		this.extraPeopleToImportance = new HashMap<Person,Double>();
+	}
+	
+	/**
+	 * XML Constructor 2
+	 */
+	Meeting(String name, Boolean decided, ScheddarTime timeForFinalizing, ScheddarTime finalTime,
+			List<ScheddarTime> proposedTimes, HashMap<Integer, Double> indexToScore, 
+			List<String> dummyGroupsInvolved, String description, 
+			HashMap<String, Double> currDummyExtraPeopleToImportance){
+		this.dummyExtraPeopleToImportance = currDummyExtraPeopleToImportance;
 		this.name = name;
 		this.decided = decided;
 		this.timeForFinalizing = timeForFinalizing;
@@ -169,6 +190,25 @@ public class Meeting {
 		this.extraPeopleToImportance = new HashMap<Person,Double>();
 	}
 	
+	//Constructor for adding a final meeting
+	public Meeting(String name, ScheddarTime oneTime, List<Group> groupsInvolved){
+		this.name = name;
+		this.decided = true;
+		this.timeForFinalizing = oneTime;
+		this.finalTime = oneTime;
+		this.proposedTimes = new ArrayList<ScheddarTime>();
+		this.indexToScore = new HashMap<Integer, Double>();
+		
+		ArrayList<String> dgi = new ArrayList<String>();
+		for(Group group: groupsInvolved){
+			dgi.add(group.getName());
+		}
+		this.dummyGroupsInvolved = dgi;
+		
+		this.groupsInvolved = groupsInvolved;
+		this.description = "";
+		this.extraPeopleToImportance = new HashMap<Person, Double>();
+	}
 	
 	/**
 	 * Getter Functions
@@ -215,7 +255,6 @@ public class Meeting {
 	public HashMap<Person,Double> getExtraPeopleToImportance(){
 		return this.extraPeopleToImportance;
 	}
-
 	
 	/**
 	 * Setter Functions (to completely reset values)
