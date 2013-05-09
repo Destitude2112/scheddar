@@ -54,7 +54,7 @@ public class Main {
 		s.setSaveFile(dest);
 		s.setName("Scheddar Corp.");
 		s.setAdminName("admin");
-		s.setStartHour("09:00");a
+		s.setStartHour("09:00");
 		s.setEndHour("18:00");
 		
 		//Generate ScheddarTime for conflicts
@@ -331,7 +331,7 @@ public class Main {
 		listGroups.add(engineers);
 		listGroups.add(managers);
 		listGroups.add(marketing);
-		allPeople.setSubgroups(listGroups);
+		allGroups.setSubgroups(listGroups);
 		
 		//Adding things to groups
 		s.getGroups().put(allGroups.getName(), allGroups);
