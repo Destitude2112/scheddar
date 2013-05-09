@@ -34,7 +34,8 @@ public class Meeting {
 	public HashMap<String, Double> dummyExtraPeopleToImportance;
 	private HashMap<Person, Double> extraPeopleToImportance;
 	
-	//TODO : Add extraPeopleToImportance to the XML file for Meetings
+	public String user;
+	public String password;
 	
 	/**
 	 * XML Constructor
@@ -276,12 +277,24 @@ public class Meeting {
 		this.proposedTimes = timeList;
 	}
 	
-	// THIS IS FOR TESTING PURPOSES ONLY. FINALTIME SHOULD
-	// NOT BE SET USING THIS METHOD!
-	
 	public void setFinalTime(ScheddarTime time){
 		decided = true;
 		this.finalTime = time;
+		EmailParser ep = new EmailParser(user,password);
+		Set<String> emails = new TreeSet<String>();
+		for(Group g : groupsInvolved){
+			for(Person p : g.getMembers()){
+				String email = p.getEmail();
+				System.out.println(email);
+				ep.sendFinalizedMeetingEmail(email,p.getFullName(),this);
+			}
+		}
+		Collection<Person> extras = getExtraPeopleToImportance().keySet();
+		for(Person p : extras){
+			System.out.println(p.getEmail());
+			ep.sendFinalizedMeetingEmail(p.getEmail(),p.getFullName(),this);
+		}
+		System.out.println("Done");
 	}
 	
 	/**
