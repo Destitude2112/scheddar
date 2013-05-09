@@ -83,6 +83,7 @@ public interface ScheddarFace {
 	 */
 	public void addPerson(Person p);
 	public void addGroup(Group g);
+	public void addMeeting(Meeting m);
 	public void removePerson(String name);
 	public void removeGroup(String name);
 	public Collection<Person> getAllPeople();

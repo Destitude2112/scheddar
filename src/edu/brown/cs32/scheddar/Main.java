@@ -280,7 +280,7 @@ public class Main {
 		s.getPersons().put(p24.getFullName(), p24);
 		
 		//Group allPeople
-		Group allPeople = new Group("everyone");
+		Group allPeople = new Group("Scheddar Corp.");
 		allPeople.addMember(p1);
 		allPeople.addMember(p2);
 		allPeople.addMember(p3);

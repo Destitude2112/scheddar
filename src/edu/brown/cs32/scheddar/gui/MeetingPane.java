@@ -305,7 +305,6 @@ public class MeetingPane extends ScheddarSubPane {
 			schedulePanel.add(durationPanel);
 			schedulePanel.add(Box.createVerticalStrut(10));
 			
-			// TODO Add field for time to autoschedule
 			
 			JLabel meetingLabel = new JLabel("Select range of possible meeting times:");
 			meetingLabel.setAlignmentX(RIGHT_ALIGNMENT);
@@ -341,7 +340,6 @@ public class MeetingPane extends ScheddarSubPane {
 			fromTime.setEditor(new JSpinner.DateEditor(fromTime, "HH:mm"));
 			toTime.setEditor(new JSpinner.DateEditor(toTime, "HH:mm"));
 
-			//TODO: debug time spinners
 			
 			
 			JButton addRange = new JButton("Calculate meeting times");
@@ -355,7 +353,6 @@ public class MeetingPane extends ScheddarSubPane {
 					to = Calendar.getInstance();
 					difference = Calendar.getInstance();
 					
-					//TODO : Times being passed in here are incorrect
 					
 					date.setTime(dateFieldModel.getDate());
 					from.setTime(fromFieldModel.getDate());
@@ -504,25 +501,27 @@ public class MeetingPane extends ScheddarSubPane {
 									break;
 								}
 							}
-							MeetingPane.this.removeAll();
-							JPanel panel = new JPanel();
-							panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-							panel.add(Box.createVerticalStrut(20));
-							
-							JTextArea info = new JTextArea();
-							info.append("Name: " + meeting.getName() + "\n");
-							info.append("Description: " + meeting.getDescription() + "\n");
-							info.append("\n");
-							info.append("This meeting has been scheduled for "+meeting.getFinalTime().timeRangeToString() + "\n");
-							info.append("\n");
-							info.append("Invitees:\n");
-							for (String n : meeting.getAllNames()) {
-								info.append(n + "\n");
-							}
-							
-							panel.add(info);
-							MeetingPane.this.add(panel);
-							MeetingPane.this.revalidate();
+//							MeetingPane.this.removeAll();
+//							JPanel panel = new JPanel();
+//							panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+//							panel.add(Box.createVerticalStrut(20));
+//							
+//							JTextArea info = new JTextArea();
+//							info.append("Name: " + meeting.getName() + "\n");
+//							info.append("Description: " + meeting.getDescription() + "\n");
+//							info.append("\n");
+//							info.append("This meeting has been scheduled for "+meeting.getFinalTime().timeRangeToString() + "\n");
+//							info.append("\n");
+//							info.append("Invitees:\n");
+//							for (String n : meeting.getAllNames()) {
+//								info.append(n + "\n");
+//							}
+//							
+//							panel.add(info);
+//							MeetingPane.this.add(panel);
+//							MeetingPane.this.revalidate();
+							_scheddar.addMeeting(meeting);
+							_scheddarPane._calendar.switchToMeeting(meeting.getFinalTime(), meeting);
 						}
 					}
 				}
