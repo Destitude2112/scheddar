@@ -34,30 +34,25 @@ public class EditPersonForm extends AbstractForm {
 	JTextField phone;
 	JTextField description;
 	JList<String> groupMemberships;
+	Person p;
 	
-	public EditPersonForm(ScheddarPane s, Person p) {
+	public EditPersonForm(ScheddarPane s, Person person) {
 		super(s);
+		p = person;
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		//getting name of new group
 		firstName = new JTextField(20);
+		firstName.setText(p.getFirstName());
 		lastName = new JTextField(20);
+		lastName.setText(p.getLastName());
 		email = new JTextField(20);
+		email.setText(p.getEmail());
 		phone = new JTextField(20);
+		phone.setText(p.getPhoneNum());
 		description = new JTextField(20);
-		
-		//getting groups
-		String[] groupNames = getAllGroupNames();
-		groupMemberships = new JList<String>(groupNames);
-		groupMemberships.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		groupMemberships.setSelectedValue(s._scheddar.getRootGroup().getName(), true);
-		JScrollPane memberListPane = new JScrollPane(groupMemberships);
-		memberListPane.setPreferredSize(new Dimension(75,100));
-		JPanel listPanePane = new JPanel(new GridLayout(1,1));
-		listPanePane.add(memberListPane);
-		listPanePane.add(new JLabel("Choose members:"));		
-		panel.setPreferredSize(new Dimension(360,165+31*groupMemberships.getModel().getSize()));
+		description.setText(p.getDescription());
 		
 		// making "Create Person" button
 		
@@ -66,22 +61,20 @@ public class EditPersonForm extends AbstractForm {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(firstName.getText().trim().length()>0 && lastName.getText().trim().length()>0) {
-					
-					Person p = new Person(firstName.getText().trim(),lastName.getText().trim(),email.getText().trim(),phone.getText().trim(),description.getText().trim());
 					Collection <Person> existingPeople = _scheddarPane._scheddar.getAllPeople();
-					for(Person ep : existingPeople){
-						if(ep.getFullName().equals(p.getFullName())){
-							PopUps.popUpPersonAlreadyExists();
-							return;
+					if(!p.getFirstName().equals(firstName.getText().trim()) || !p.getLastName().equals(lastName.getText().trim())) {
+						for(Person ep : existingPeople){
+							if(ep.getFirstName().equals(firstName.getText().trim()) && ep.getLastName().equals(lastName.getText().trim())){
+								PopUps.popUpPersonAlreadyExists();
+								return;
+							}
 						}
 					}
-					List<String> groups = groupMemberships.getSelectedValuesList(); 
-					for (String name : groups) {
-						Group g = _scheddarPane._scheddar.getGroupFromName(name);
-						p.addGroup(g);
-						g.addMember(p);
-					}				
-					_scheddarPane._groupTree.updateTree();
+					p.setFirstName(firstName.getText().trim());
+					p.setLastName(lastName.getText().trim());
+					p.setEmail(email.getText().trim());
+					p.setPhoneNum(phone.getText().trim());
+					p.setDescription(description.getText().trim());
 					dispose();				
 				}
 			}
