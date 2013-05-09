@@ -129,6 +129,7 @@ public class GUIScheddar extends JFrame {
 		fileMenu.add(open);
 		fileMenu.add(save);
 		fileMenu.add(exit);
+		fileMenu.add(options);
 		
 		// creating create menu
 		JMenu createMenu = new JMenu("Create");

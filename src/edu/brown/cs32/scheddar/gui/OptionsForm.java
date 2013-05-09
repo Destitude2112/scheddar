@@ -19,6 +19,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
+import javax.swing.SpringLayout;
 
 import edu.brown.cs32.scheddar.Group;
 
@@ -38,6 +39,7 @@ public class OptionsForm extends AbstractForm {
 	
 	public OptionsForm(ScheddarPane s) {
 		super(s);
+		this.setTitle("Options");
 		
 		JPanel panel = new JPanel();
 		
@@ -48,7 +50,7 @@ public class OptionsForm extends AbstractForm {
 		JPanel endDayPanel = new JPanel();
 		
 		
-		panel.setLayout(new GridLayout());
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		adminEmail = new JTextField(20);
 		adminEmail.setText(_scheddar.getUsername());
@@ -83,7 +85,7 @@ public class OptionsForm extends AbstractForm {
 		
 		adminEmailPanel.add(new JLabel("Admin Email: "));
 		adminEmailPanel.add(adminEmail);
-		adminPassPanel.add(new JLabel("Admin Password: "));
+		adminPassPanel.add(new JLabel("Admin Pass : "));
 		adminPassPanel.add(adminPassword);
 		adminNamePanel.add(new JLabel("Admin Name: "));
 		adminNamePanel.add(adminName);
@@ -118,13 +120,15 @@ public class OptionsForm extends AbstractForm {
 				}
 				
 				Calendar start,end;
-				start = end = new GregorianCalendar();
+				start = Calendar.getInstance();
+				end = Calendar.getInstance();
 				start.setTime(startFieldModel.getDate());
 				end.setTime(endFieldModel.getDate());
 				
-				String newStart = start.get(Calendar.HOUR) + ":" + start.get(Calendar.MINUTE);
-				String newEnd = end.get(Calendar.HOUR) + ":" + end.get(Calendar.MINUTE);
-				
+				String newStart = start.get(Calendar.HOUR_OF_DAY) + ":" + start.get(Calendar.MINUTE);
+				String newEnd = end.get(Calendar.HOUR_OF_DAY) + ":" + end.get(Calendar.MINUTE);
+		
+
 				if(newStart.length()>0){
 					_scheddar.setStartHour(newStart);
 				}
@@ -132,8 +136,13 @@ public class OptionsForm extends AbstractForm {
 				if(newEnd.length()>0){
 					_scheddar.setEndHour(newEnd);
 				}
+				dispose();
 			}
 		});
 		
+		panel.add(submit);
+		add(panel);
+		pack();
+		setVisible(true);
 	}
 }
