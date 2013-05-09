@@ -1,6 +1,7 @@
 package edu.brown.cs32.scheddar.gui;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -33,9 +34,13 @@ public class WeekPane extends ScheddarSubPane {
 		
 	}
 	
+	@Override
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		if (isFun())
+		if (isFun()) {
+			setOpaque(false);
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, 0.0f));
+		}
 	}
 }

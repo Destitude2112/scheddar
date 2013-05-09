@@ -91,7 +91,7 @@ public class GroupForm extends AbstractForm {
 					g.setParentGroup(_scheddarPane._scheddar.getGroupFromName((String)groupList.getSelectedItem()));
 					for (String name : memberList.getSelectedValuesList()) {
 						g.addMember(_scheddarPane._scheddar.getPersonFromName(name));
-						g.addMemberRanking(name, Scheddar.importanceArrayValues[2]);
+						g.addMemberRanking(name, Scheddar.importanceArrayValues[1]);
 					}
 					
 					_scheddarPane.addGroup(g);
@@ -103,7 +103,6 @@ public class GroupForm extends AbstractForm {
 		
 		// adding everything
 		if(memberList.getModel().getSize()>0) {
-			
 			panel.add(new JLabel("Choose members:"));
 			panel.add(memberList);
 		}

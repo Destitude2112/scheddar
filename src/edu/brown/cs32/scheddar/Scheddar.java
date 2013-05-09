@@ -19,6 +19,7 @@ import java.util.Set;
 
 public class Scheddar implements ScheddarFace {
 	
+	private File saveFile = null;
 	private HashMap<String,Group> groups; // maps names of groups to Groups 
 	private HashMap<String,Person> people; // maps names of people People
 	private HashMap<String,Meeting> meetings; // maps names of meetings to Meetings
@@ -109,7 +110,16 @@ public class Scheddar implements ScheddarFace {
 	 */	
 
 	public Scheddar(File xmlFile){
-		
+		saveFile = xmlFile;
+	}
+	
+	public void save(File file) {
+		this.saveFile = file;
+		sxml.saveLocalDataToXML();
+	}
+	
+	public File getSaveFile() {
+		return saveFile;
 	}
 	
 	/**

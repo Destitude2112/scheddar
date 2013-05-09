@@ -1,10 +1,14 @@
 package edu.brown.cs32.scheddar;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
 public interface ScheddarFace {
+	
+	public void save(File file);
+	
 	
 	/**
 	 * Project option getters and setters
@@ -14,6 +18,7 @@ public interface ScheddarFace {
 	public String getEndHour();
 	public void setStartHour(String time);
 	public void setEndHour(String time);
+	public File getSaveFile();
 	
 	/**
 	 * Need to be able to get the actual object by a name
