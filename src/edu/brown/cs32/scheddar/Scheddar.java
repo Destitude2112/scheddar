@@ -202,14 +202,14 @@ public class Scheddar implements ScheddarFace {
 	 * @param name the person's name to remove
 	 */
 	
-	public void removePerson(String name){
+	public void removePerson(String name) {
 		Person p = this.people.get(name);
 		for(Group g: p.getGroups()) {
 			g.removeMember(p);
 		}
 		this.people.remove(name);
 	}
-	
+
 	/**
 	 * Removes a group from the Hashmap of groups
 	 * 
