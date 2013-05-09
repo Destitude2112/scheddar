@@ -628,7 +628,7 @@ public class MeetingPane extends ScheddarSubPane {
 		Collections.sort(orderedTimes, c);
 		
 		while (!orderedTimes.isEmpty()) {
-			Map.Entry<ScheddarTime, Double> e = orderedTimes.pollLast();
+			Map.Entry<ScheddarTime, Double> e = orderedTimes.pollFirst();
 			if (!proposedTimeStrings.contains(e.getKey().timeRangeToString()))
 				timeslotList.addElement(e.getKey().timeRangeToString() + "    ["+e.getValue()+"]");
 		}
@@ -648,19 +648,19 @@ public class MeetingPane extends ScheddarSubPane {
 		return new Dimension(d.width * 3/4 - 25, d.height);
 	}
 	
-//	@Override
-//	public void paintComponent(Graphics graphics) {
-//		super.paintComponent(graphics);
-//		Graphics2D g = (Graphics2D) graphics;
-//		if (isFun()) {
-//			BufferedImage img = null;
-//			try {
-//			    img = ImageIO.read(new File("data/Getty_Stilton.jpg"));
-//			    g.drawImage(img,0,0,getPreferredSize().width,getPreferredSize().height,null);
-//			} catch (IOException e) {
-//			}
-//		}
-//	}
+	@Override
+	public void paintComponent(Graphics graphics) {
+		super.paintComponent(graphics);
+		Graphics2D g = (Graphics2D) graphics;
+		if (isFun()) {
+			BufferedImage img = null;
+			try {
+			    img = ImageIO.read(new File("data/Getty_Stilton.jpg"));
+			    g.drawImage(img,0,0,getPreferredSize().width,getPreferredSize().height,null);
+			} catch (IOException e) {
+			}
+		}
+	}
 	
 	
 	

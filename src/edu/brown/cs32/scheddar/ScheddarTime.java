@@ -207,7 +207,7 @@ public class ScheddarTime implements Comparable {
 	public String timeRangeToString() { 
 		String startTime = timeToString();
 		String endTime = getEndTime().timeToString();
-		String date = month + "/" + day + "/" + year;
+		String date = (month) + "/" + day + "/" + year;
 		return startTime + " - " + endTime + "    " + date;
 	}
 	
