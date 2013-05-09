@@ -52,6 +52,7 @@ public class EditPersonForm extends AbstractForm {
 		phone.setText(p.getPhoneNum());
 		description = new JTextField(20);
 		description.setText(p.getDescription());
+		panel.setPreferredSize(new Dimension(360,200));
 		
 		// making "Create Person" button
 		

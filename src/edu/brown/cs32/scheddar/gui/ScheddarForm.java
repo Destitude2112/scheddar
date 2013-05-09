@@ -1,7 +1,5 @@
 package edu.brown.cs32.scheddar.gui;
 
-import java.awt.ComponentOrientation;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,19 +7,14 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
-import edu.brown.cs32.scheddar.*;
+import edu.brown.cs32.scheddar.Scheddar;
+import edu.brown.cs32.scheddar.ScheddarFace;
 
 /**
  * @author sdemane

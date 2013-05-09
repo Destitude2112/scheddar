@@ -40,12 +40,11 @@ public class DeleteGroupForm extends AbstractForm {
 					if(!_scheddarPane._scheddar.getRootGroup().getName().equals((String)groupList.getSelectedItem())) { // If not the root group
 						_scheddarPane._scheddar.removeGroup((String)groupList.getSelectedItem());
 						_scheddarPane._groupTree.updateTree();
-						dispose();
 					}
 				} else {
-//					new EditGroupForm(_scheddarPane, _scheddar.getGroupFromName((String)groupList.getSelectedItem()));
-					dispose();
+					new EditGroupForm(_scheddarPane, _scheddar.getGroupFromName((String)groupList.getSelectedItem()));
 				}
+				dispose();
 			}
 		});
 		panel.add(delete);
