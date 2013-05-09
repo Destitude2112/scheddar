@@ -64,11 +64,36 @@ public class ScheddarXML{
 				
 				System.out.println(" The first element is: "+ doc.getDocumentElement().getNodeName());
 				
+				
+				NodeList n = doc.getElementsByTagName("general");
 				NodeList nl = doc.getElementsByTagName("group");
 				NodeList n2 = doc.getElementsByTagName("person");
 				NodeList n3 = doc.getElementsByTagName("meeting");
 				
 				System.out.println("----------------");
+				
+				for(int i = 0; i<n.getLength()-1; i++){
+					Node currNode = n.item(i);
+					
+					String currName, currAdminName, currDaysBeforeFin, currStartHour, currEndHour;
+					
+					if(currNode.getNodeType() == Node.ELEMENT_NODE && currNode.getNodeName().equals("general")){
+						Element e = (Element)currNode;
+						
+						currName = e.getAttribute("adminName");
+						currAdminName = e.getElementsByTagName("organizationName").item(0).getTextContent();
+						currStartHour = e.getElementsByTagName("startHour").item(0).getTextContent();
+						currEndHour = e.getElementsByTagName("endHour").item(0).getTextContent();
+						
+						
+						System.out.println("currName: "+ currName);
+						System.out.println("organizationName: " + currAdminName);
+						System.out.println("startHour: "+ currStartHour);
+						System.out.println("endHour: "+ currEndHour);
+						
+					}
+					
+				}
 				
 				for(int i = 0; i<nl.getLength(); i++){
 					
@@ -593,6 +618,10 @@ public class ScheddarXML{
 	String description;
 	 */
 	
+	
+	
+	
+	
 	/**
 	 * 
 	 * Helper function to add a meeting element to an XML file
@@ -811,6 +840,33 @@ public class ScheddarXML{
 		
 	}
 	
+	public void addGeneralElement(Element currElement){
+		
+		Element staff = doc.createElement("general");
+		currElement.appendChild(staff);
+		
+		Attr attr = doc.createAttribute("adminName");
+		attr.setValue(myScheddar.getAdminName());
+		staff.setAttributeNode(attr);
+		
+		//organizationName elements
+		Element organizationName = doc.createElement("organizationName");
+		organizationName.appendChild(doc.createTextNode(myScheddar.getName()));
+		staff.appendChild(organizationName);
+		
+		//startHours element
+		Element startHour = doc.createElement("startHour");
+		startHour.appendChild(doc.createTextNode(myScheddar.getStartHour()));
+		staff.appendChild(startHour);
+		
+		//endHours element
+		Element endHour = doc.createElement("endHour");
+		endHour.appendChild(doc.createTextNode(myScheddar.getEndHour()));
+		staff.appendChild(endHour);
+		
+		
+	}
+	
 	
 	/**
 	 * This is the main function that is called to go through the groups HashMap in the main
@@ -825,6 +881,13 @@ public class ScheddarXML{
 			Element firstElement = doc.createElement("All");
 			doc.appendChild(firstElement);
 			
+			//General Information
+			Element generalElement = doc.createElement("general");
+			firstElement.appendChild(generalElement);
+			
+			addGeneralElement(generalElement);
+			
+			//General Information over
 			
 			Element groupElement = doc.createElement("group");
 			firstElement.appendChild(groupElement);

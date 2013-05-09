@@ -456,6 +456,10 @@ public class Scheddar implements ScheddarFace {
 		return this.people.values();
 	}
 	
+	public String getName(){
+		return name;
+	}
+	
 	/**
 	 * Return a Collection of all the groups in this Scheddar instance
 	 */
@@ -681,6 +685,10 @@ public class Scheddar implements ScheddarFace {
 	}
 
 
+	public void setName(String name){
+		this.name = name;
+	}
+	
 	@Override
 	public void setAdminUsername(String user) {
 		this.username = user;
