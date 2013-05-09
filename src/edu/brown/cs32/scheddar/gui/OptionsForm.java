@@ -1,6 +1,7 @@
 package edu.brown.cs32.scheddar.gui;
 
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -39,7 +40,15 @@ public class OptionsForm extends AbstractForm {
 		super(s);
 		
 		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout());
+		
+		JPanel adminEmailPanel = new JPanel();
+		JPanel adminPassPanel = new JPanel();
+		JPanel adminNamePanel = new JPanel();
+		JPanel startDayPanel = new JPanel();
+		JPanel endDayPanel = new JPanel();
+		
+		
+		panel.setLayout(new GridLayout());
 		
 		adminEmail = new JTextField(20);
 		adminEmail.setText(_scheddar.getUsername());
@@ -72,16 +81,22 @@ public class OptionsForm extends AbstractForm {
 		startDay.setEditor(new JSpinner.DateEditor(startDay, "HH:mm"));
 		endDay.setEditor(new JSpinner.DateEditor(endDay, "HH:mm"));
 		
-		panel.add(new JLabel("Admin Email: "));
-		panel.add(adminEmail);
-		panel.add(new JLabel("Admin Password: "));
-		panel.add(adminPassword);
-		panel.add(new JLabel("Admin Name: "));
-		panel.add(adminName);
-		panel.add(new JLabel("Day Start: "));
-		panel.add(startDay);
-		panel.add(new JLabel("End Start: "));
-		panel.add(endDay);
+		adminEmailPanel.add(new JLabel("Admin Email: "));
+		adminEmailPanel.add(adminEmail);
+		adminPassPanel.add(new JLabel("Admin Password: "));
+		adminPassPanel.add(adminPassword);
+		adminNamePanel.add(new JLabel("Admin Name: "));
+		adminNamePanel.add(adminName);
+		startDayPanel.add(new JLabel("Day Start: "));
+		startDayPanel.add(startDay);
+		endDayPanel.add(new JLabel("End Start: "));
+		endDayPanel.add(endDay);
+		
+		panel.add(adminEmailPanel);
+		panel.add(adminPassPanel);
+		panel.add(adminNamePanel);
+		panel.add(startDayPanel);
+		panel.add(endDayPanel);
 		
 		// Submit Button
 		
