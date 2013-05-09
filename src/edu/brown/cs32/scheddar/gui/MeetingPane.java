@@ -210,6 +210,7 @@ public class MeetingPane extends ScheddarSubPane {
 			JPanel groupButtonsPanel = new JPanel(new GridLayout(4,1,0,3));
 			
 			JButton addGroup = new JButton("Add to Meeting -->");
+			addGroup.setPreferredSize(new Dimension(80,20));
 			addGroup.addActionListener(new ActionListener() {
 				
 				@Override
@@ -222,6 +223,7 @@ public class MeetingPane extends ScheddarSubPane {
 			});
 			
 			JButton removeGroup = new JButton("<-- Remove from Meeting");
+			removeGroup.setPreferredSize(new Dimension(80,20));
 			removeGroup.addActionListener(new ActionListener() {
 				
 				@Override
@@ -300,7 +302,6 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			// TODO Add field for time to autoschedule
 			
-			
 			JLabel meetingLabel = new JLabel("Select range of possible meeting times:");
 			meetingLabel.setAlignmentX(RIGHT_ALIGNMENT);
 			schedulePanel.add(meetingLabel);
@@ -353,7 +354,7 @@ public class MeetingPane extends ScheddarSubPane {
 					date.setTime(dateFieldModel.getDate());
 					from.setTime(fromFieldModel.getDate());
 					to.setTime(toFieldModel.getDate());
-					difference.setTimeInMillis(to.getTimeInMillis() - from.getTimeInMillis());
+/*					difference.setTimeInMillis(to.getTimeInMillis() - from.getTimeInMillis());
 		//			System.out.println("Day of Month : " + date.get(Calendar.DAY_OF_MONTH));
 					System.out.println("Start Hour : " + from.get(Calendar.HOUR_OF_DAY));
 					System.out.println("Start Minute : " + from.get(Calendar.MINUTE));
@@ -362,7 +363,7 @@ public class MeetingPane extends ScheddarSubPane {
 					
 					System.out.println("Difference Minutes : " + difference.get(Calendar.MINUTE));
 					//System.out.println("Difference Hours : " + difference.get(Calendar.HOUR_OF_DAY));
-					
+	*/				
 					int diffHours = difference.get(Calendar.HOUR_OF_DAY) + 5;
 					if(diffHours>=24){
 						diffHours = diffHours - 24;
