@@ -394,10 +394,7 @@ public class MeetingPane extends ScheddarSubPane {
 			// making panel for choosing time slots
 			
 			
-			JScrollPane slotListPane = new JScrollPane(selectSlots);
-			
-			
-			
+			JScrollPane slotListPane = new JScrollPane(selectSlots);			
 			
 			JPanel slotSelectionPanel = new JPanel(new GridLayout(1,2,5,0));
 			slotSelectionPanel.add(timeRangePanel);
@@ -494,6 +491,7 @@ public class MeetingPane extends ScheddarSubPane {
 								if (proposedTimes.getSelectedValue().equals(t.timeRangeToString())) {
 									meeting.user = _scheddar.getUsername();
 									meeting.password = _scheddar.getPassword();
+//									meeting.setFinalTime(new ScheddarTime(t.getStartHour(),t.getStartMinutes(),t.getDuration(),t.getDayOfWeek(),t.getDay(),t.getMonth()-1,t.getYear(),t.isRecurring()));
 									meeting.setFinalTime(t);
 									break;
 								}
