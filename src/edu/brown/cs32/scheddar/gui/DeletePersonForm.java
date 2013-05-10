@@ -19,6 +19,7 @@ public class DeletePersonForm extends AbstractForm {
 	boolean _toDelete;
 	public DeletePersonForm(ScheddarPane s, boolean toDelete) {
 		super(s);
+		this.setTitle("Delete Person");
 		_scheddarPane = s;
 		_toDelete = toDelete;
 		JPanel panel = new JPanel();

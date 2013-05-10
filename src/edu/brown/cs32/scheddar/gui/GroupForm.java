@@ -35,6 +35,7 @@ public class GroupForm extends AbstractForm {
 	
 	public GroupForm(ScheddarPane s) {
 		super(s);
+		this.setTitle("New Group");
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		JPanel topPanel = new JPanel();

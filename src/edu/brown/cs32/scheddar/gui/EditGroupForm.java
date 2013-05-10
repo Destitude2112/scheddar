@@ -36,6 +36,7 @@ public class EditGroupForm extends AbstractForm {
 	
 	public EditGroupForm(final ScheddarPane s, Group group) {
 		super(s);
+		this.setTitle("Edit Group");
 		g = group;
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout());

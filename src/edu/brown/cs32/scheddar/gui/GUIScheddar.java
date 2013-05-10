@@ -312,9 +312,9 @@ public class GUIScheddar extends JFrame {
 	public void showStartFrame() {
 		startFrame = new JFrame();
 		JLabel l1 = new JLabel("Welcome to Scheddar, the cheesy scheduling app!");
-		JLabel l2 = new JLabel("Would you like to start a new Scheddar project, or open an existing one?");
-		JButton newButton = new JButton("New project");
-		JButton openButton = new JButton("Open project");
+		JLabel l2 = new JLabel("Would you like to start a new Scheddar schedule, or open an existing one?");
+		JButton newButton = new JButton("New Schedule");
+		JButton openButton = new JButton("Open Schedule");
 		
 		checkbox = new JCheckBox();
 		checkbox.setSelected(false);

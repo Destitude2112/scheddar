@@ -38,6 +38,7 @@ public class EditPersonForm extends AbstractForm {
 	
 	public EditPersonForm(ScheddarPane s, Person person) {
 		super(s);
+		this.setTitle("Edit Person");
 		p = person;
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));

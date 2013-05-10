@@ -32,6 +32,7 @@ public class ScheddarForm extends AbstractForm {
 	
 	public ScheddarForm(ScheddarPane s, GUIScheddar gui) {
 		super(s);
+		this.setTitle("New Scheddar");
 		_gui = gui;
 		
 		JPanel panel = new JPanel();

@@ -18,6 +18,7 @@ public class DeleteGroupForm extends AbstractForm {
 	boolean _toDelete;
 	public DeleteGroupForm(ScheddarPane s, boolean toDelete) {
 		super(s);
+		this.setTitle("Delete Group");
 		_scheddarPane = s;
 		_toDelete = toDelete;
 		JPanel panel = new JPanel();
