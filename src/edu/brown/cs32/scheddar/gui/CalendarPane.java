@@ -74,9 +74,9 @@ public class CalendarPane extends ScheddarSubPane {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if(activePane!=null) {
-			activePane.repaint();
-		}
+//		if(activePane!=null) {
+//			activePane.repaint();
+//		}
 		Graphics2D g2 = (Graphics2D) g;
 		if (isFun()) {
 			BufferedImage img = null;

@@ -94,6 +94,7 @@ public class MeetingPane extends ScheddarSubPane {
 	
 	public MeetingPane(ScheddarPane s, Meeting m) {
 		super(s);
+		this.setLayout(new GridLayout(1,1));
 		
 		addedGroups = new JList<String>();
 		addedGroups.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -292,11 +293,11 @@ public class MeetingPane extends ScheddarSubPane {
 			JPanel b1 = new JPanel();
 			b1.setOpaque(false);
 			JPanel b2 = new JPanel();
-			b1.setOpaque(false);
+			b2.setOpaque(false);
 			JPanel b3 = new JPanel();
-			b1.setOpaque(false);
+			b3.setOpaque(false);
 			JPanel b4 = new JPanel();
-			b1.setOpaque(false);
+			b4.setOpaque(false);
 			groupButtonsPanel.add(b1);
 			groupButtonsPanel.add(addGroup);
 			groupButtonsPanel.add(removeGroup);
@@ -354,7 +355,7 @@ public class MeetingPane extends ScheddarSubPane {
 			
 			JLabel meetingLabel = new JLabel("Select range of possible meeting times:");
 			meetingLabel.setOpaque(false);
-			meetingLabel.setAlignmentX(CENTER_ALIGNMENT);
+			meetingLabel.setAlignmentX(RIGHT_ALIGNMENT);
 			schedulePanel.add(meetingLabel);
 			schedulePanel.add(Box.createVerticalStrut(10));
 			JPanel timeRangePanel = new JPanel();
