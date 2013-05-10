@@ -40,7 +40,9 @@ public class Main {
 		//Application use
 		
 		
-		//s1.saveData();// This finally saves all the data for the Scheddar object in the XML
+		s1.saveData();// This finally saves all the data for the Scheddar object in the XML
+		
+		Scheddar testScheddar = new Scheddar (dest);
 	}
 
 

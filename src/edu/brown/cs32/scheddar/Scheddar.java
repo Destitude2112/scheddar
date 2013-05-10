@@ -39,6 +39,24 @@ public class Scheddar implements ScheddarFace {
 	public static double[] importanceArrayValues = {Math.pow(2, 1), Math.pow(2, 2), Math.pow(2, 3), Math.pow(2, 4), Math.pow(2, 5)};
 
 
+	public void debugScheddar() {
+		System.out.println("Root group name: "+name);
+		System.out.println("GROUPS:");
+		for (String g : groups.keySet()) {
+			System.out.println(g);
+		}
+		System.out.println("PEOPLE:");
+		for (String g : people.keySet()) {
+			System.out.println(g);
+		}
+		System.out.println("MEETINGS:");
+		for (String g : meetings.keySet()) {
+			System.out.println(g);
+		}
+	}
+	
+	
+	
 	public Scheddar(){
 		
 		people = new HashMap<String, Person>();
@@ -65,7 +83,8 @@ public class Scheddar implements ScheddarFace {
 		//Finally, load the file contents from the XML location
 		sxml.makeDBFromXML(saveFile);
 		
-		
+		//This outputs the keys of all the hashmaps after the scheddar has been populated
+		debugScheddar();
 	}
 	
 	
