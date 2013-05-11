@@ -198,6 +198,7 @@ public class Meeting {
 		this.timeForFinalizing = oneTime;
 		this.finalTime = oneTime;
 		this.proposedTimes = new ArrayList<ScheddarTime>();
+		proposedTimes.add(finalTime);
 		this.indexToScore = new HashMap<Integer, Double>();
 		
 		ArrayList<String> dgi = new ArrayList<String>();
@@ -214,6 +215,11 @@ public class Meeting {
 	/**
 	 * Getter Functions
 	 */
+	
+	@Override
+	public String toString() {
+		return this.name;
+	}
 	
 	public String getName(){
 		return this.name;

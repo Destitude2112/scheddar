@@ -31,6 +31,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import edu.brown.cs32.scheddar.Main;
 import edu.brown.cs32.scheddar.Scheddar;
+import edu.brown.cs32.scheddar.XMLtoScheddar;
 
 
 /**
@@ -178,9 +179,7 @@ public class GUIScheddar extends JFrame {
 		JMenuItem editPerson = new JMenuItem("Edit person");
 		JMenuItem editGroup = new JMenuItem("Edit group");	
 		JMenuItem deletePerson = new JMenuItem("Delete person");
-		JMenuItem deleteGroup = new JMenuItem("Delete group");	
-		editPerson.setEnabled(false);
-		deletePerson.setEnabled(false);
+		JMenuItem deleteGroup = new JMenuItem("Delete group");
 		
 		// adding listeners for delete menu
 		editPerson.addActionListener(new ActionListener() {
@@ -418,7 +417,8 @@ public class GUIScheddar extends JFrame {
 			
 			if (retval == JFileChooser.APPROVE_OPTION) {
 				File scheddarFile = fc.getSelectedFile();
-				Scheddar s = new Scheddar(scheddarFile);
+				XMLtoScheddar x = new XMLtoScheddar(scheddarFile);
+				Scheddar s = x.parseScheddar();
 				ScheddarPane sp = new ScheddarPane(GUIScheddar.this, s);
 				renderScheddar(sp);
 				startFrame.dispose();
@@ -497,11 +497,11 @@ public class GUIScheddar extends JFrame {
 		} catch (Exception e) {}
 		GUIScheddar gui = new GUIScheddar();
 		
-		gui.showStartFrame();
+//		gui.showStartFrame();
 		
-//		Scheddar scheddar = Main.getTestData();
-//		ScheddarPane sp = new ScheddarPane(gui,scheddar);
-//		gui.renderScheddar(sp);
+		Scheddar scheddar = Main.getTestData();
+		ScheddarPane sp = new ScheddarPane(gui,scheddar);
+		gui.renderScheddar(sp);
 		
 		
 		

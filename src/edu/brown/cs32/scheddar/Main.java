@@ -179,69 +179,69 @@ public class Main {
 		
 		//Generate persons
 		// String firstName, String lastName, String emailID, String phone, String description, List<ScheddarTime> conflicts
-		Person prateek = new Person("Prateek", "Arora", "prateek_arora@brown.edu", "401-935-3094",
+		Person prateek = new Person("prateek_arora@brown.edu", "Prateek", "Arora", "401-935-3094",
 				"THIS DUDE'S AWESOME", c1);
-		Person alec = new Person("Alec", "Tutino", "alec_tutino@brown.edu", "401-111-7426",
+		Person alec = new Person("alec_tutino@brown.edu", "Alec", "Tutino", "401-111-7426",
 				"THIS DUDE'S SMART", c2);
-		Person stephanie = new Person("Stephanie", "Demane", "stephane_demane@brown.edu", "401-862-9312",
+		Person stephanie = new Person("stephane_demane@brown.edu", "Stephanie", "Demane", "401-862-9312",
 				"SHE DOES THE GUIS", c3);
-		Person rob = new Person("Rob", "Volgman", "rob_volgman@brown.edu", "401-987-9087",
+		Person rob = new Person("rob_volgman@brown.edu", "Rob", "Volgman", "401-987-9087",
 				"HE DOES PLAYS", c2);
-		Person alwaysBusy = new Person("Prateek", "Arora", "prateek_arora@brown.edu", "401-935-3094",
+		Person alwaysBusy = new Person("prateek_arora@brown.edu", "Prateek", "Arora", "401-935-3094",
 				"THIS DUDE'S AWESOME", c4);
 		
 		//People with c1 conflicts
-		Person p1 = new Person("Tom", "Cruise", "alec_tutino@brown.edu", "401-935-3094",
+		Person p1 = new Person("alec_tutino@brown.edu", "Tom", "Cruise", "401-935-3094",
 				"He's okay... Could be a little cuter", c1);
-		Person p2 = new Person("Neil", "Patrick Harris", "alec_tutino@brown.edu", "401-935-3094",
+		Person p2 = new Person("alec_tutino@brown.edu", "Neil", "Patrick Harris", "401-935-3094",
 				"Top Programmer in Python", c1);
-		Person p3 = new Person("Zoey", "Deschenel", "prateek_arora@brown.edu", "401-935-3094",
+		Person p3 = new Person("prateek_arora@brown.edu", "Zoey", "Deschenel", "401-935-3094",
 				"Stereotypically annoying girl", c1);
-		Person p4 = new Person("Lebron", "James", "prateek_arora@brown.edu", "401-935-3094",
+		Person p4 = new Person("prateek_arora@brown.edu", "Lebron", "James", "401-935-3094",
 				"Small guy who's litters everywehre around the trashcan", c1);
-		Person p5 = new Person("Rebecca", "Black", "prateek_arora@brown.edu", "401-935-3094",
+		Person p5 = new Person("prateek_arora@brown.edu", "Rebecca", "Black", "401-935-3094",
 				"Popular girl in the company", c1);
-		Person p6 = new Person("Psy", "NoLastName", "prateek_arora@brown.edu", "401-935-3094",
+		Person p6 = new Person("prateek_arora@brown.edu", "Psy", "NoLastName", "401-935-3094",
 				"Hey! Sexy lady!", c1);
-		Person p7 = new Person("Star", "Wars", "prateek_arora@brown.edu", "401-935-3094",
+		Person p7 = new Person("prateek_arora@brown.edu", "Star", "Wars", "401-935-3094",
 				"The guy with the coolest names", c1);
-		Person p8 = new Person("Arnold", "Sch.", "prateek_arora@brown.edu", "401-935-3094",
+		Person p8 = new Person("prateek_arora@brown.edu", "Arnold", "Sch.", "401-935-3094",
 				"Small dude who watches chick flicks", c1);
 		
 		//People with c2 conflicts
-		Person p9 = new Person("Brad", "Pitt", "alec_tutino@brown.edu", "401-935-3094",
+		Person p9 = new Person("alec_tutino@brown.edu", "Brad", "Pitt", "401-935-3094",
 						"Chill dude. But doesnt work with Angi", c2);
-		Person p10 = new Person("Angelina", "Jolie", "stephanie_demane@brown.edu", "401-935-3094",
+		Person p10 = new Person("stephanie_demane@brown.edu", "Angelina", "Jolie", "401-935-3094",
 						"AJ is bleh and doesn't even work with Brad", c2);
-		Person p11 = new Person("George", "Clooney", "prateek_arora@brown.edu", "401-935-3094",
+		Person p11 = new Person("prateek_arora@brown.edu", "George", "Clooney", "401-935-3094",
 						"Looks like the CEO. He also is the CEO.", c2);
-		Person p12 = new Person("Tiger", "Woods", "prateek_arora@brown.edu", "401-935-3094",
+		Person p12 = new Person("prateek_arora@brown.edu", "Tiger", "Woods", "401-935-3094",
 						"Was considered super nice until...", c2);
-		Person p13 = new Person("Water", "Station Guy", "prateek_arora@brown.edu", "401-935-3094",
+		Person p13 = new Person("prateek_arora@brown.edu", "Water", "Station Guy", "401-935-3094",
 						"Dude who's always at the water station", c2);
-		Person p14 = new Person("John", "Krasinski", "prateek_arora@brown.edu", "401-935-3094",
+		Person p14 = new Person("prateek_arora@brown.edu", "John", "Krasinski", "401-935-3094",
 						"Best friends with Jim", c2);
-		Person p15 = new Person("Ted", "fromTheMovie", "prateek_arora@brown.edu", "401-935-3094",
+		Person p15 = new Person("prateek_arora@brown.edu", "Ted", "fromTheMovie", "401-935-3094",
 						"Its a teddy bear but dont unserestimate his coding skills", c2);
-		Person p16 = new Person("Bathroom", "Guy", "prateek_arora@brown.edu", "401-935-3094",
+		Person p16 = new Person("prateek_arora@brown.edu", "Bathroom", "Guy", "401-935-3094",
 						"Dude who's always outside the bathroom", c2);
 		
 		//People with c3 conflicts
-		Person p17 = new Person("Jim", "Halpert", "rob_volgman@brown.edu", "401-935-3094",
+		Person p17 = new Person("rob_volgman@brown.edu", "Jim", "Halpert", "401-935-3094",
 								"Dude who's flirting with the receptionist", c3);
-		Person p18 = new Person("Pam", "Beesly", "prateek_arora@brown.edu", "401-935-3094",
+		Person p18 = new Person("prateek_arora@brown.edu", "Pam", "Beesly", "401-935-3094",
 								"The receptionist", c3);
-		Person p19 = new Person("Dwight", "Schrute", "prateek_arora@brown.edu", "401-935-3094",
+		Person p19 = new Person("prateek_arora@brown.edu", "Dwight", "Schrute", "401-935-3094",
 								"Kinda weird", c3);
-		Person p20 = new Person("Stanley", "Hudson", "prateek_arora@brown.edu", "401-935-3094",
+		Person p20 = new Person("prateek_arora@brown.edu", "Stanley", "Hudson",  "401-935-3094",
 								"Hardworking, black guy", c3);
-		Person p21 = new Person("Phyllis", "Vance", "prateek_arora@brown.edu", "401-935-3094",
+		Person p21 = new Person("prateek_arora@brown.edu", "Phyllis", "Vance", "401-935-3094",
 								"Just sits and looks miserbale", c3);
-		Person p22 = new Person("Michael", "Scott", "prateek_arora@brown.edu", "401-935-3094",
+		Person p22 = new Person("prateek_arora@brown.edu", "Michael", "Scott", "401-935-3094",
 								"THE MOST EFFICIENT WORKER EVER", c3);
-		Person p23 = new Person("The", "Plumber", "prateek_arora@brown.edu", "401-935-3094",
+		Person p23 = new Person("prateek_arora@brown.edu", "The", "Plumber", "401-935-3094",
 								"Hits on all the women. Ugh", c3);
-		Person p24 = new Person("Guy", "who snores", "prateek_arora@brown.edu", "401-935-3094",
+		Person p24 = new Person("prateek_arora@brown.edu", "Guy", "who snores", "401-935-3094",
 								"Sleeps in every single meeting", c3);
 		
 		

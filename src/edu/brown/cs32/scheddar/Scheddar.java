@@ -23,12 +23,12 @@ public class Scheddar implements ScheddarFace {
 	private HashMap<String,Group> groups; // maps names of groups to Groups 
 	private HashMap<String,Person> people; // maps names of people People
 	private HashMap<String,Meeting> meetings; // maps names of meetings to Meetings
-	private String name;
-	private String adminName; // the name of the admin of this Scheddar
+	private String name = "";
+	private String adminName = ""; // the name of the admin of this Scheddar
 	public ScheddarXML sxml;
 
-	private String username; // the username of the admin's email account
-	private String password; // the password of the admin's email account
+	private String username = ""; // the username of the admin's email account
+	private String password = ""; // the password of the admin's email account
 	
 	private EmailParser emailParser;
 	
@@ -89,6 +89,10 @@ public class Scheddar implements ScheddarFace {
 	public void setRootGroup(String name){
 		this.name = name;
 	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
     
 	/**
 	 * Hi, I implemented a constructor and getRootGroup() to work with my group tree.
@@ -118,8 +122,8 @@ public class Scheddar implements ScheddarFace {
 	public void save(File file) {
 		this.saveFile = file;
 		System.out.println("Saving file to "+ file.getPath());
-		this.sxml = new ScheddarXML(this);
-		sxml.saveLocalDataToXML();
+		ScheddarToXML x = new ScheddarToXML(this);
+		x.saveFile(saveFile);
 	}
 	
 	public void setSaveFile(File file) {
@@ -162,6 +166,7 @@ public class Scheddar implements ScheddarFace {
 	public String getAdminName(){
 		return this.adminName;
 	}
+	
 	
 	public void getSaveFile(File file){
 		this.saveFile = file;
@@ -330,7 +335,7 @@ public class Scheddar implements ScheddarFace {
 		List<Meeting> meetingList = new LinkedList<Meeting>();
 		for(Meeting m : this.meetings.values()){
 			for(ScheddarTime t : m.getProposedTimes()){
-				if(t.getDay()==day && t.getMonth()==month && t.getYear()==year){
+				if((t.getDay()==day && t.getMonth()==month && t.getYear()==year) || (t.isRecurring() && t.getDayOfWeek()==UsefulMethods.dayOfTheWeek(day, month, year))){
 					meetingList.add(m);
 					break;
 				}

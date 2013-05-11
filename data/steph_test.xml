@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<scheddar>
+<organization>Scheddar Corp.</organization>
+<admin>admin</admin>
+<email/>
+<dayStart>09:00</dayStart>
+<dayEnd>18:00</dayEnd>
+<personList>
+<person>
+<firstName>Prateek</firstName>
+<lastName>Arora</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>THIS DUDE'S AWESOME</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="10" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="17" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="18" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="10" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="17" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="18" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="10" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="17" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="18" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Alec</firstName>
+<lastName>Tutino</lastName>
+<email>alec_tutino@brown.edu</email>
+<phone>401-111-7426</phone>
+<description>THIS DUDE'S SMART</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>John</firstName>
+<lastName>Krasinski</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Best friends with Jim</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>George</firstName>
+<lastName>Clooney</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Looks like the CEO. He also is the CEO.</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Stephanie</firstName>
+<lastName>Demane</lastName>
+<email>stephane_demane@brown.edu</email>
+<phone>401-862-9312</phone>
+<description>SHE DOES THE GUIS</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Star</firstName>
+<lastName>Wars</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>The guy with the coolest names</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="10" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Jim</firstName>
+<lastName>Halpert</lastName>
+<email>rob_volgman@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Dude who's flirting with the receptionist</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Tom</firstName>
+<lastName>Cruise</lastName>
+<email>alec_tutino@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>He's okay... Could be a little cuter</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="10" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Arnold</firstName>
+<lastName>Sch.</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Small dude who watches chick flicks</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="10" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Zoey</firstName>
+<lastName>Deschenel</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Stereotypically annoying girl</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="10" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>The</firstName>
+<lastName>Plumber</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Hits on all the women. Ugh</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Bathroom</firstName>
+<lastName>Guy</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Dude who's always outside the bathroom</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Water</firstName>
+<lastName>Station Guy</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Dude who's always at the water station</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Pam</firstName>
+<lastName>Beesly</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>The receptionist</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Guy</firstName>
+<lastName>who snores</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Sleeps in every single meeting</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Dwight</firstName>
+<lastName>Schrute</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Kinda weird</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Ted</firstName>
+<lastName>fromTheMovie</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Its a teddy bear but dont unserestimate his coding skills</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Rebecca</firstName>
+<lastName>Black</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Popular girl in the company</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="10" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Phyllis</firstName>
+<lastName>Vance</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Just sits and looks miserbale</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Lebron</firstName>
+<lastName>James</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Small guy who's litters everywehre around the trashcan</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="10" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Psy</firstName>
+<lastName>NoLastName</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Hey! Sexy lady!</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="10" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Angelina</firstName>
+<lastName>Jolie</lastName>
+<email>stephanie_demane@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>AJ is bleh and doesn't even work with Brad</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Stanley</firstName>
+<lastName>Hudson</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Hardworking, black guy</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Rob</firstName>
+<lastName>Volgman</lastName>
+<email>rob_volgman@brown.edu</email>
+<phone>401-987-9087</phone>
+<description>HE DOES PLAYS</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Brad</firstName>
+<lastName>Pitt</lastName>
+<email>alec_tutino@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Chill dude. But doesnt work with Angi</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Michael</firstName>
+<lastName>Scott</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>THE MOST EFFICIENT WORKER EVER</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Neil</firstName>
+<lastName>Patrick Harris</lastName>
+<email>alec_tutino@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Top Programmer in Python</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="10" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+<person>
+<firstName>Tiger</firstName>
+<lastName>Woods</lastName>
+<email>prateek_arora@brown.edu</email>
+<phone>401-935-3094</phone>
+<description>Was considered super nice until...</description>
+<conflicts>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="19" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="12" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="15" startMinutes="0" year="0"/>
+</conflicts>
+</person>
+</personList>
+<groupList>
+<group>
+<groupName>managers</groupName>
+<parentGroup>Scheddar Corp.</parentGroup>
+<members>
+<member>Alec Tutino</member>
+<member>Prateek Arora</member>
+<member>Stephanie Demane</member>
+<member>Rob Volgman</member>
+<member>Prateek Arora</member>
+<member>Tom Cruise</member>
+<member>Brad Pitt</member>
+<member>Stanley Hudson</member>
+<member>Zoey Deschenel</member>
+</members>
+<subgroups/>
+<memberRankings/>
+</group>
+<group>
+<groupName>marketing</groupName>
+<parentGroup>Scheddar Corp.</parentGroup>
+<members>
+<member>Lebron James</member>
+<member>Rebecca Black</member>
+<member>Psy NoLastName</member>
+<member>Tiger Woods</member>
+<member>Water Station Guy</member>
+<member>John Krasinski</member>
+<member>Stanley Hudson</member>
+<member>Phyllis Vance</member>
+<member>Michael Scott</member>
+<member>The Plumber</member>
+</members>
+<subgroups/>
+<memberRankings/>
+</group>
+<group>
+<groupName>engineers</groupName>
+<parentGroup>Scheddar Corp.</parentGroup>
+<members>
+<member>Tom Cruise</member>
+<member>Brad Pitt</member>
+<member>Jim Halpert</member>
+<member>Neil Patrick Harris</member>
+<member>Angelina Jolie</member>
+<member>Pam Beesly</member>
+<member>Zoey Deschenel</member>
+<member>George Clooney</member>
+<member>Dwight Schrute</member>
+<member>Stanley Hudson</member>
+</members>
+<subgroups/>
+<memberRankings/>
+</group>
+<group>
+<groupName>Scheddar Corp.</groupName>
+<parentGroup/>
+<members/>
+<subgroups>
+<subgroup>engineers</subgroup>
+<subgroup>managers</subgroup>
+<subgroup>marketing</subgroup>
+</subgroups>
+<memberRankings/>
+</group>
+</groupList>
+<meetingList>
+<meeting decided="true">
+<name>Thurs Engineeer meeting</name>
+<description/>
+<finalTime>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+</finalTime>
+<proposedTimes>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+</proposedTimes>
+<groupsInvolved>
+<groupName>engineers</groupName>
+</groupsInvolved>
+<peopleInvolved/>
+</meeting>
+<meeting decided="true">
+<name>Tues Engineeer meeting</name>
+<description/>
+<finalTime>
+<scheddarTime day="0" dayOfWeek="2" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+</finalTime>
+<proposedTimes>
+<scheddarTime day="0" dayOfWeek="2" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+</proposedTimes>
+<groupsInvolved>
+<groupName>engineers</groupName>
+</groupsInvolved>
+<peopleInvolved/>
+</meeting>
+<meeting decided="true">
+<name>Main Engineeer meeting</name>
+<description/>
+<finalTime>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+</finalTime>
+<proposedTimes>
+<scheddarTime day="0" dayOfWeek="4" duration="60" isRecurring="true" month="0" startHour="13" startMinutes="0" year="0"/>
+</proposedTimes>
+<groupsInvolved>
+<groupName>engineers</groupName>
+</groupsInvolved>
+<peopleInvolved/>
+</meeting>
+<meeting decided="true">
+<name>Mon Engineeer meeting</name>
+<description/>
+<finalTime>
+<scheddarTime day="0" dayOfWeek="1" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+</finalTime>
+<proposedTimes>
+<scheddarTime day="0" dayOfWeek="1" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+</proposedTimes>
+<groupsInvolved>
+<groupName>engineers</groupName>
+</groupsInvolved>
+<peopleInvolved/>
+</meeting>
+<meeting decided="true">
+<name>Marketing meeting</name>
+<description/>
+<finalTime>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+</finalTime>
+<proposedTimes>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="16" startMinutes="0" year="0"/>
+</proposedTimes>
+<groupsInvolved>
+<groupName>marketing</groupName>
+</groupsInvolved>
+<peopleInvolved/>
+</meeting>
+<meeting decided="true">
+<name>Wed Engineeer meeting</name>
+<description/>
+<finalTime>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+</finalTime>
+<proposedTimes>
+<scheddarTime day="0" dayOfWeek="3" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+</proposedTimes>
+<groupsInvolved>
+<groupName>engineers</groupName>
+</groupsInvolved>
+<peopleInvolved/>
+</meeting>
+<meeting decided="true">
+<name>Fri Engineeer meeting</name>
+<description/>
+<finalTime>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+</finalTime>
+<proposedTimes>
+<scheddarTime day="0" dayOfWeek="5" duration="60" isRecurring="true" month="0" startHour="11" startMinutes="0" year="0"/>
+</proposedTimes>
+<groupsInvolved>
+<groupName>engineers</groupName>
+</groupsInvolved>
+<peopleInvolved/>
+</meeting>
+<meeting decided="true">
+<name>Managers meeting</name>
+<description/>
+<finalTime>
+<scheddarTime day="0" dayOfWeek="2" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+</finalTime>
+<proposedTimes>
+<scheddarTime day="0" dayOfWeek="2" duration="60" isRecurring="true" month="0" startHour="14" startMinutes="0" year="0"/>
+</proposedTimes>
+<groupsInvolved>
+<groupName>managers</groupName>
+</groupsInvolved>
+<peopleInvolved/>
+</meeting>
+</meetingList>
+</scheddar>

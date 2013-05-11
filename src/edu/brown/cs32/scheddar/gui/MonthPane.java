@@ -157,7 +157,7 @@ public class MonthPane extends ScheddarSubPane {
 			drawCenteredString(g, days[i],i*size.width/7+size.width/14, (int)(size.height/WEEKS_TO_DISPLAY-10));
 			g.draw(new Line2D.Double(size.width/days.length*i,size.height/WEEKS_TO_DISPLAY, size.width/days.length*i, size.height));
 		}
-		displayEvents(g);
+		//displayEvents(g);
 	}
 
 	public void displayEvents(Graphics2D g) {

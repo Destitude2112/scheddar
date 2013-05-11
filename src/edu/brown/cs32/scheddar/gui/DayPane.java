@@ -10,14 +10,21 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 
 import edu.brown.cs32.scheddar.Meeting;
 import edu.brown.cs32.scheddar.ScheddarTime;
+import edu.brown.cs32.scheddar.UsefulMethods;
 
 
 /**
@@ -57,19 +64,36 @@ public class DayPane extends ScheddarSubPane {
 			public void mouseClicked(MouseEvent e) {
 				Dimension size = getPreferredSize();
 				Point p = e.getPoint();
-				int hour = (int)(p.getY()/(size.height/numHours));
+				int minutes = (int)((p.getY()/size.height)*numHours*60 + startHour*60);
 				List<Meeting> meetings = _scheddar.dayMeetings(day, month, year);
-				Meeting m = null;
+				LinkedList<Meeting> clickedMeetings = new LinkedList<Meeting>();
 				for(Meeting meeting: meetings) {
-					if(meeting.isDecided()) {
-						if(meeting.getFinalTime().getStartHour()<=hour && meeting.getFinalTime().getDuration()+meeting.getFinalTime().getStartHour()>=hour) {
-							m = meeting;
-							break;
+					for (ScheddarTime t : meeting.getProposedTimes()) {
+						if((t.getStartHour()*60 + t.getStartMinutes())<=minutes && t.getDuration()+t.getStartHour()*60+t.getStartMinutes()>=minutes) {
+							clickedMeetings.add(meeting);
 						}
 					}
 				}
-				_scheddarPane._calendar.switchToMeeting(new ScheddarTime(hour, 0, 1, time.getDayOfWeek(), day, month, year, false), m);
-				
+				if (clickedMeetings.size() == 0) {
+					_scheddarPane._calendar.switchToMeeting(new ScheddarTime(0, 0, 1, time.getDayOfWeek(), day, month, year, false), null);
+				} else if (clickedMeetings.size() == 1) {
+					_scheddarPane._calendar.switchToMeeting(new ScheddarTime(0, 0, 1, time.getDayOfWeek(), day, month, year, false), clickedMeetings.poll());
+				} else {
+					JPopupMenu pickMeeting = new JPopupMenu();
+					for (Meeting m : clickedMeetings) {
+						JMenuItem mItem = new JMenuItem(m.getName());
+						mItem.addActionListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent arg0) {
+								Object o = arg0.getSource();
+								JMenuItem menuthing = (JMenuItem) o;
+								_scheddarPane._calendar.switchToMeeting(new ScheddarTime(0, 0, 1, time.getDayOfWeek(), day, month, year, false), _scheddar.getMeetingFromName(menuthing.getText()));
+								
+							}
+						});
+					}
+				}
 			}
 		});
 	}
@@ -83,7 +107,7 @@ public class DayPane extends ScheddarSubPane {
 	private Rectangle getTimeBlock(ScheddarTime st) {
 		Dimension d = getPreferredSize();
 		int x = 0;
-		int startMinutes = st.getStartHour() * 60 + st.getStartMinutes();
+		int startMinutes = (st.getStartHour() - startHour)* 60 + st.getStartMinutes();
 		int y = startMinutes * d.height / (60*numHours);
 		int width = d.width;
 		int height = st.getDuration() * d.height / (60*numHours);
@@ -135,36 +159,35 @@ public class DayPane extends ScheddarSubPane {
 				ScheddarTime t = m.getFinalTime();
 				
 				
-				if (t.getDay() == this.day && 
-						t.getMonth() == this.month && 
-						t.getYear() == this.year) {
+				if ((t.getDay() == this.day && t.getMonth() == this.month && t.getYear() == this.year) || 
+						(t.isRecurring() && t.getDayOfWeek()==UsefulMethods.dayOfTheWeek(day, month, year))) {
 					Rectangle block = getTimeBlock(m.getFinalTime());
 					
 					g2.setPaint(Color.black);
 					g2.draw(block);
 					g2.drawString(m.getName(), 10, 15+block.y);
 					
-//					g2.setComposite(transparentComposite);
+					g2.setComposite(transparentComposite);
 					g2.setPaint(finalMeetingColor);
 					g2.fill(block);
-//					g2.setComposite(originalComposite);
+					g2.setComposite(originalComposite);
+					g2.drawString(m.getName(), 10, block.y+15);
 				}
 			} else {
 				List<ScheddarTime> proposedTimes = m.getProposedTimes();
 				HashMap<Integer,Double> indexToScore = m.getIndexToScore();
 				for (ScheddarTime t : proposedTimes) {
-					if (t.getDay() == this.day && 
-							t.getMonth() == this.month && 
-							t.getYear() == this.year) {
+					if ((t.getDay() == this.day && t.getMonth() == this.month && t.getYear() == this.year) ||
+							(t.isRecurring() && t.getDayOfWeek()==UsefulMethods.dayOfTheWeek(day, month, year))) {
 						Rectangle block = getTimeBlock(t);
 						
 						g2.setPaint(Color.black);
 						g2.draw(block);
 						
-//						g2.setComposite(transparentComposite);
+						g2.setComposite(transparentComposite);
 						g2.setPaint(proposedMeetingColor);
 						g2.fill(block);
-//						g2.setComposite(originalComposite);
+						g2.setComposite(originalComposite);
 					}
 				}
 			}

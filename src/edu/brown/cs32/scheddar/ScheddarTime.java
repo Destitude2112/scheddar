@@ -15,6 +15,18 @@ public class ScheddarTime implements Comparable {
 	private UsefulMethods methods = new UsefulMethods();
 	private DateFormatSymbols dateFormat = new DateFormatSymbols();
 	
+	@Override
+	public String toString() {
+		return "ScheddarTime[hour="+startHour+
+				";minutes="+startMinutes+
+				";duration="+duration+
+				";dayOfWeek="+dayOfWeek+
+				";day="+day+
+				";month="+month+
+				";year="+year+
+				";recurring="+isRecurring+"]";
+	}
+	
 	/**
 	 * Full constructor
 	 */
@@ -33,7 +45,7 @@ public class ScheddarTime implements Comparable {
 	
 	
 	/**
-	 * Default Constructor with some preset values
+	 * Default Constructor with some preset values. Does repeat.
 	 * 
 	 * @param dayOfWeek
 	 * @param startHour
@@ -219,7 +231,9 @@ public class ScheddarTime implements Comparable {
 	 */
 	
 	public String dateToString() {
-		String monthString = dateFormat.getShortMonths()[month];
+		if (isRecurring || month == 0 || day == 0 || year == 0)
+			return "Invalid date (recurring ScheddarTime)";
+		String monthString = dateFormat.getShortMonths()[month-1];
 		String weekdayString = dateFormat.getWeekdays()[dayOfWeek+1];
 		String dateString = monthString + " " + day + ", " + year;
 		return weekdayString + " " + dateString;

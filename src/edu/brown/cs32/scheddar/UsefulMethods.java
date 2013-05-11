@@ -1,5 +1,6 @@
 package edu.brown.cs32.scheddar;
 
+import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -40,9 +41,9 @@ public class UsefulMethods {
 		int year = time.getYear();
 		if (day < 1) {
 			month--;
-			if (month < 0) {
+			if (month < 1) {
 				year--;
-				month = 11;
+				month = 12;
 			}
 			day = day + daysInMonth(month, year);
 		}
@@ -72,7 +73,7 @@ public class UsefulMethods {
 			day = 1;
 		}
 		
-		if (month > 11) {
+		if (month > 12) {
 			year++;
 			month = 0;
 		}
@@ -91,34 +92,29 @@ public class UsefulMethods {
 		String dateString = date.toString();
 		String[] splitDate = dateString.split(" ");
 		String dayName = splitDate[0];
-		
+		DateFormatSymbols dateFormat = new DateFormatSymbols();
 		// Convert the day of the week to the correct number
 		
-		int dayOfWeek = -1;
-		if(dayName.equals("Sun")) dayOfWeek = 0;
-		else if(dayName.equals("Mon")) dayOfWeek = 1;
-		else if(dayName.equals("Tue")) dayOfWeek = 2;
-		else if(dayName.equals("Wed")) dayOfWeek = 3;
-		else if(dayName.equals("Thu")) dayOfWeek = 4;
-		else if(dayName.equals("Fri")) dayOfWeek = 5;
-		else if(dayName.equals("Sat")) dayOfWeek = 6;
+		String[] dayNames = dateFormat.getShortWeekdays();
+		int dayOfWeek = 0;
+		for (int i = 0; i < 7; i++) {
+			if (dayName.equals(dayNames[i])) {
+				dayOfWeek = i;
+				break;
+			}
+		}
 		
 		// Convert the month of the year to the correct number
 		
 		String monthName = splitDate[1];
-		int month;
-		if(monthName.equals("Jan")) month = 0;
-		else if(monthName.equals("Feb")) month = 1;
-		else if(monthName.equals("Mar")) month = 2;
-		else if(monthName.equals("Apr")) month = 3;
-		else if(monthName.equals("May")) month = 4;
-		else if(monthName.equals("Jun")) month = 5;
-		else if(monthName.equals("Jul")) month = 6;
-		else if(monthName.equals("Aug")) month = 7;
-		else if(monthName.equals("Sep")) month = 8;
-		else if(monthName.equals("Oct")) month = 9;
-		else if(monthName.equals("Nov")) month = 10;
-		else month = 11;
+		String[] monthNames = dateFormat.getShortMonths();
+		int month = 1;
+		for (int i = 0; i < 12; i++) {
+			if (monthName.equals(monthNames[i])) {
+				month = i+1;
+				break;
+			}
+		}
 		
 		int day = Integer.parseInt(splitDate[2]);
 		String[] timeSpl = splitDate[3].split(":");

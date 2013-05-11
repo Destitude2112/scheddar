@@ -1,5 +1,6 @@
 package edu.brown.cs32.scheddar.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -303,15 +304,28 @@ public class MeetingPane extends ScheddarSubPane {
 			groupButtonsPanel.add(removeGroup);
 			groupButtonsPanel.add(b2);
 			
-			groupPanel.add(unaddedGroupsPane);
+			
+			JPanel g1 = new JPanel();
+			g1.setLayout(new BorderLayout(0, 5));
+			g1.add(new JLabel("Available groups:"),BorderLayout.NORTH);
+			g1.add(unaddedGroupsPane,BorderLayout.CENTER);
+			
+			JPanel g2 = new JPanel();
+			g2.setLayout(new BorderLayout(0, 5));
+			g2.add(new JLabel("Current invitees:"),BorderLayout.NORTH);
+			g2.add(addedGroupsPane,BorderLayout.CENTER);
+			
+			
+			
+			groupPanel.add(g1);
 			groupPanel.add(groupButtonsPanel);
-			groupPanel.add(addedGroupsPane);
+			groupPanel.add(g2);
 			
 			groupPanel.setAlignmentX(RIGHT_ALIGNMENT);
 			panel.add(groupPanel);
 			panel.add(Box.createVerticalStrut(20));
 			
-			JPanel individualPanel = new JPanel(new GridLayout(1,3,8,0));
+			JPanel individualPanel = new JPanel(new GridLayout(1,4,8,0));
 			individualPanel.setOpaque(false);
 			JButton addPersonButton = new JButton("Add to Meeting ^^");
 			addPersonButton.addActionListener(new ActionListener() {
@@ -328,6 +342,7 @@ public class MeetingPane extends ScheddarSubPane {
 				}
 			});
 			
+			individualPanel.add(new JLabel("Available people:",SwingConstants.RIGHT));
 			individualPanel.add(nameComboBox);
 			individualPanel.add(impComboBox);
 			individualPanel.add(addPersonButton);
