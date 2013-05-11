@@ -56,7 +56,6 @@ public class Scheddar implements ScheddarFace {
 	}
 	
 	
-	
 	public Scheddar(){
 		
 		people = new HashMap<String, Person>();
@@ -87,7 +86,10 @@ public class Scheddar implements ScheddarFace {
 		debugScheddar();
 	}
 	
-	
+	public void setRootGroup(String name){
+		this.name = name;
+	}
+    
 	/**
 	 * Hi, I implemented a constructor and getRootGroup() to work with my group tree.
 	 * Feel free to reimplement if you want it done differently. 
@@ -115,6 +117,8 @@ public class Scheddar implements ScheddarFace {
 	
 	public void save(File file) {
 		this.saveFile = file;
+		System.out.println("Saving file to "+ file.getPath());
+		this.sxml = new ScheddarXML(this);
 		sxml.saveLocalDataToXML();
 	}
 	
@@ -151,6 +155,7 @@ public class Scheddar implements ScheddarFace {
 	 * @return The root group has the same name as the overall scheddar project, and contains all other groups and members
 	 */
 	public Group getRootGroup() {
+		System.out.println("The name of the group we are looking for is :"+ name);
 		return groups.get(name);
 	}
 	
@@ -158,6 +163,9 @@ public class Scheddar implements ScheddarFace {
 		return this.adminName;
 	}
 	
+	public void getSaveFile(File file){
+		this.saveFile = file;
+	}
 	
 	/**
 	 * Adds a new person to the Hashmap of people

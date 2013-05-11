@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Main {
 	
-	static File dest = new File("data/group.xml");
+	static File dest = new File("data/group7.xml");
 	public static void main(String[] args){
 		
 		//Contents of a sample test XML

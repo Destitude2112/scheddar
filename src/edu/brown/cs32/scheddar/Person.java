@@ -108,7 +108,7 @@ public class Person {
 		this.groupList = new LinkedList<Group>();
 	}
 	
-	Person(String firstName, String lastName, String emailID, String phone, String description, List<ScheddarTime> conflicts){
+	Person(String emailID,String firstName, String lastName, String phone, String description, List<ScheddarTime> conflicts){
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = emailID;

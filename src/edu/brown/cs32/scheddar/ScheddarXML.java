@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -41,6 +42,7 @@ public class ScheddarXML{
 	}
 	
 	public void makeDBFromXML(String dest) {
+		System.out.println("MAKE DB FROM XML WAS CALLED");
 		makeDBFromXML(new File(dest));
 	}
 	
@@ -81,6 +83,7 @@ public class ScheddarXML{
 						
 						currName = e.getAttribute("adminName");
 						currAdminName = e.getElementsByTagName("organizationName").item(0).getTextContent();
+						myScheddar.setRootGroup(currAdminName);
 						currStartHour = e.getElementsByTagName("startHour").item(0).getTextContent();
 						currEndHour = e.getElementsByTagName("endHour").item(0).getTextContent();
 						
@@ -153,10 +156,16 @@ public class ScheddarXML{
 						
 					    //System.out.println("Group membership: " + currGroupMembership);
 					    
+						//System.out.println("First Name: "+ currFirstName);
+//						System.out.println("Last Name: "+ currLastName);
 						
 						ArrayList<ScheddarTime> conflicts = getConflictsFromString(currConflicts);
 					    Person p = new Person(currEmailID, currFirstName, currLastName, currPhone, currDescription, conflicts);
-					    myScheddar.getPersons().put(currFirstName+" " + currLastName, p);
+					    System.out.println("currFirstName: "+ currFirstName);
+					    System.out.println("currLastName: "+ currLastName);
+					    System.out.println("currEmailID: "+ currEmailID);
+					    System.out.println("Full name: "+ p.getFullName());
+					    myScheddar.getPersons().put(currFirstName +" "+currLastName, p);
 					    
 //					    System.out.println("");
 					    
@@ -903,9 +912,13 @@ public class ScheddarXML{
 			    while (it2.hasNext()) {
 			        Map.Entry pairs = (Map.Entry)it2.next();
 			        Person currPerson = (Person) pairs.getValue();
+			        
+			        List<ScheddarTime> currConflicts= currPerson.getConflicts();
+			        
 			        addPersonElement(personElement, currPerson.getEmail(), currPerson.getFirstName(),
 			        		currPerson.getLastName(), currPerson.getPhoneNum(),
-			        		currPerson.getDescription(), (ArrayList<ScheddarTime>)currPerson.getConflicts());
+			        		currPerson.getDescription(), currPerson.getConflicts());
+			        
 			        it2.remove(); // avoids a ConcurrentModificationException
 			    }
 			
@@ -932,6 +945,7 @@ public class ScheddarXML{
 			//Write this into an XML file now and save the file locally
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer t = tf.newTransformer();
+			t.setOutputProperty(OutputKeys.INDENT, "yes");
 			DOMSource src = new DOMSource(doc);
 			StreamResult result = new StreamResult(myScheddar.getSaveFile());
 			
@@ -957,7 +971,7 @@ public class ScheddarXML{
 	 * @param currDescription
 	 * @param curr_group_membership
 	 */
-	public void addPersonElement(Element currElement, String currEmail, String currFirstName, String currLastName, String currPhone, String currDescription, ArrayList<ScheddarTime> currConflicts){
+	public void addPersonElement(Element currElement, String currEmail, String currFirstName, String currLastName, String currPhone, String currDescription, List<ScheddarTime> currConflicts){
 		
 		Element staff = doc.createElement("person");
 		currElement.appendChild(staff);
@@ -1011,7 +1025,7 @@ public class ScheddarXML{
 	 * @param conflicts ArrayList<ScheddarTime> to be converted to String
 	 * @return the String conversion so that it can be used for XML storage
 	 */
-	public String STsToString(ArrayList<ScheddarTime> conflicts){
+	public String STsToString(List<ScheddarTime> conflicts){
 		
 		
 		if(conflicts.size()==0) return "";
