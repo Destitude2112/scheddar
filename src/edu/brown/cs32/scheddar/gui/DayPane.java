@@ -161,7 +161,9 @@ public class DayPane extends ScheddarSubPane {
 				
 				if ((t.getDay() == this.day && t.getMonth() == this.month && t.getYear() == this.year) || 
 						(t.isRecurring() && t.getDayOfWeek()==UsefulMethods.dayOfTheWeek(day, month, year))) {
+					System.out.println("Drawing meeting "+m.toString());
 					Rectangle block = getTimeBlock(m.getFinalTime());
+					System.out.println("Drawing block "+block.toString());
 					
 					g2.setPaint(Color.black);
 					g2.draw(block);

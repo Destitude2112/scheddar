@@ -419,6 +419,7 @@ public class GUIScheddar extends JFrame {
 				File scheddarFile = fc.getSelectedFile();
 				XMLtoScheddar x = new XMLtoScheddar(scheddarFile);
 				Scheddar s = x.parseScheddar();
+				s.debugScheddar();
 				ScheddarPane sp = new ScheddarPane(GUIScheddar.this, s);
 				renderScheddar(sp);
 				startFrame.dispose();
