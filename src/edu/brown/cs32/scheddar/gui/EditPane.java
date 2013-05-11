@@ -32,7 +32,9 @@ public class EditPane extends AbstractForm {
 
 		final JComboBox<String> importanceLabels = new JComboBox<String>(Scheddar.importanceArrayLabels);
 		groupMembers = new JComboBox<String>(names.toArray(new String[0]));
-		importanceLabels.setSelectedIndex((int)(Math.log(g.getMemberRanking(_scheddar.getPersonFromName((String)groupMembers.getSelectedItem())))/Math.log(2))-1);
+		if(g.getMemberRankings()!=null && !g.getMemberRankings().isEmpty()){
+			importanceLabels.setSelectedIndex((int)(Math.log(g.getMemberRanking(_scheddar.getPersonFromName((String)groupMembers.getSelectedItem())))/Math.log(2))-1);
+		}
 		groupMembers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				importanceLabels.setSelectedIndex((int)(Math.log(g.getMemberRanking(_scheddar.getPersonFromName((String)groupMembers.getSelectedItem())))/Math.log(2))-1);

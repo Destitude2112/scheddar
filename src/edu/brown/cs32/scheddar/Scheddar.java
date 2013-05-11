@@ -714,5 +714,9 @@ public class Scheddar implements ScheddarFace {
 		this.readAndParseEmails();
 	}
 
-	
+
+	@Override
+	public HashMap<String, Double> getGroupMemberRankings(Group g) {
+		return g.getMemberRankings();
+	}
 }

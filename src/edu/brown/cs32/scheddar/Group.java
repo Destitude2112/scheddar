@@ -265,6 +265,9 @@ public class Group {
 	 */
 	
 	public double getMemberRanking(Person p) {
+		if(p==null){
+			return 0;
+		}
 		if(!this.memberRankings.containsKey(p.getFullName())){
 			return 1.0;
 		}

@@ -116,4 +116,6 @@ public interface ScheddarFace {
 	public void setAdminPassword(String pass);
 	public void readEmail();
 	
+	public HashMap<String,Double> getGroupMemberRankings(Group g);
+	
 }
