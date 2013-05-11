@@ -179,6 +179,7 @@ public class Scheddar implements ScheddarFace {
 	 */
 	
 	public void addPerson(Person p){
+		if (p != null)
 			this.people.put(p.getFullName(),p);
 	}
 	
@@ -189,6 +190,7 @@ public class Scheddar implements ScheddarFace {
 	 */
 	
 	public void addGroup(Group g){
+		if (g != null)
 		this.groups.put(g.getName(),g);
 	}
 	
@@ -219,6 +221,7 @@ public class Scheddar implements ScheddarFace {
 	 */
 	
 	public void addMeeting(Meeting m){
+		if (m != null)
 		this.meetings.put(m.getName(),m);
 	}
 	

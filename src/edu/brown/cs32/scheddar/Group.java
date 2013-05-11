@@ -77,9 +77,7 @@ public class Group {
 	}
 	
 	public void setParentGroup(Group newParent){
-		this.dummyParentGroup = newParent.name;
 		this.parentGroup = newParent;
-		newParent.addSubgroup(this);
 	}
 	
 	/**
@@ -87,8 +85,8 @@ public class Group {
 	 */
 	
 	public void addMember(Person person){
+		if (person != null)
 		this.members.add(person);
-		this.dummyMembers.add(person.getFullName());
 		if (this.getParentGroup()!=null){
 			this.getParentGroup().addMember(person);
 		}
@@ -144,6 +142,7 @@ public class Group {
 		if(this.subgroups==null){
 			this.subgroups = new ArrayList<Group>();
 		}
+		if(newSubgroup!= null)
 		this.subgroups.add(newSubgroup);
 	}
 	

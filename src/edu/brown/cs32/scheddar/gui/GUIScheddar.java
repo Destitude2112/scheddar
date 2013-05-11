@@ -497,11 +497,11 @@ public class GUIScheddar extends JFrame {
 		} catch (Exception e) {}
 		GUIScheddar gui = new GUIScheddar();
 		
-//		gui.showStartFrame();
+		gui.showStartFrame();
 		
-		Scheddar scheddar = Main.getTestData();
-		ScheddarPane sp = new ScheddarPane(gui,scheddar);
-		gui.renderScheddar(sp);
+//		Scheddar scheddar = Main.getTestData();
+//		ScheddarPane sp = new ScheddarPane(gui,scheddar);
+//		gui.renderScheddar(sp);
 		
 		
 		
